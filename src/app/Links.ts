@@ -13,7 +13,7 @@ export interface LinksType {
 }
 
 export const admin_links = [
-    { title: "Blog", link: "/" },
+    { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/" },
     { title: "Alumnos", link: "/about_me" },
     { title: "Dashboard", link: "/dashboard" },
@@ -21,14 +21,14 @@ export const admin_links = [
 ];
 
 const user_links = [
-    { title: "Blog", link: "/" },
+    { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/" },
     { title: "Alumnos", link: "/about_me" },
 
 ];
 
 export const guest_links = [
-    { title: "Blog", link: "/" },
+    { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/" },
 ];
 

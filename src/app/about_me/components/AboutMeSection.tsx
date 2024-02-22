@@ -42,7 +42,7 @@ export default function AboutMeSection() {
   }, []);
 
   return (
-    <motion.main
+    <motion.div
       className={"mt-4"}
       initial={{ opacity: 0, x: -5 }}
       animate={{ opacity: 1, x: 0 }}
@@ -144,7 +144,7 @@ export default function AboutMeSection() {
           );
         })}
       </div>
-    </motion.main>
+    </motion.div>
   );
 }
 

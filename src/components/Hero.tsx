@@ -14,7 +14,7 @@ export default function Hero({
   return (
     <motion.div
       whileTap={{ scale: 0.995 }}
-      className="flex flex-col w-fit pr-2 hover:cursor-pointer mb-12"
+      className="flex flex-col pr-2 hover:cursor-pointer mb-8 w-fit"
     >
       <motion.h1 className=" md:text-8xl text-5xl -ml-1">
         <Link href="/about_me">{title}</Link>

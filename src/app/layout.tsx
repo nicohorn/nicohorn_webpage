@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import HorizontalNavbar from "@/components/HorizontalNavbar";
+import HorizontalNavbar from "@/components/Sidebar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
