@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
             return token;
         },
         async session({ session, token }) {
-            //Modifying the user object inside session to have the data in the token.
+            //Using the data I put in the token to modify the session user object. This way I can access that data from anywhere on the app.
             session.user = {
                 name: token.name,
                 email: token.email,
