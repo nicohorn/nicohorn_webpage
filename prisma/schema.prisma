@@ -13,7 +13,7 @@ model users {
   name       String
   email      String      @unique
   image      String?
-  role       String?
+  role       String
   last_login DateTime?
 
   @@schema("next_auth")

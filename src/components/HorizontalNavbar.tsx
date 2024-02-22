@@ -16,6 +16,7 @@ export default function HorizontalNavbar({
 }) {
   const [open, setOpen] = useState(false);
 
+  //These buttons <loginButton and logoutButton> aren't meant to be reusable components, but since they're conditionally called (if there's an active session), it's easier to manage them having them defined as functions inside this component.
   const loginButton = () => {
     return (
       <Disclosure>

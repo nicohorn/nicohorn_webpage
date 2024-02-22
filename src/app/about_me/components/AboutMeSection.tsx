@@ -33,12 +33,12 @@ const merriweather = Merriweather({
 });
 
 export default function AboutMeSection() {
-  const [twoSecs, setTwoSecs] = useState(false);
+  const [delay500ms, setDelay500ms] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      setTwoSecs(true);
-    }, 1000);
+      setDelay500ms(true);
+    }, 500);
   }, []);
 
   return (
@@ -53,10 +53,10 @@ export default function AboutMeSection() {
           <span
             className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500  transition"
             onMouseEnter={() => {
-              animate("#image0", { scale: 1.03 });
+              animate("#image0", { scale: 1.03, borderColor: "yellow" });
             }}
             onMouseLeave={() => {
-              animate("#image0", { scale: 1 });
+              animate("#image0", { scale: 1, borderColor: "black" });
             }}
           >
             {" "}
@@ -66,10 +66,10 @@ export default function AboutMeSection() {
           <span
             className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
             onMouseEnter={() => {
-              animate("#image1", { scale: 1.03 });
+              animate("#image1", { scale: 1.03, borderColor: "yellow" });
             }}
             onMouseLeave={() => {
-              animate("#image1", { scale: 1 });
+              animate("#image1", { scale: 1, borderColor: "black" });
             }}
           >
             un perro que se llama Zeus.
@@ -79,22 +79,23 @@ export default function AboutMeSection() {
           <span
             className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
             onMouseEnter={() => {
-              animate("#image2", { scale: 1.03 });
+              animate("#image2", { scale: 1.03, borderColor: "yellow" });
             }}
             onMouseLeave={() => {
-              animate("#image2", { scale: 1 });
+              animate("#image2", { scale: 1, borderColor: "black" });
             }}
           >
+            <br />
             Hace varios años que me dedico al desarrollo de software
           </span>
           , pero también trabajé como{" "}
           <span
             className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
             onMouseEnter={() => {
-              animate("#image3", { scale: 1.03 });
+              animate("#image3", { scale: 1.03, borderColor: "yellow" });
             }}
             onMouseLeave={() => {
-              animate("#image3", { scale: 1 });
+              animate("#image3", { scale: 1, borderColor: "black" });
             }}
           >
             fotógrafo, editor de videos
@@ -102,15 +103,15 @@ export default function AboutMeSection() {
           <span
             className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 transition"
             onMouseEnter={() => {
-              animate("#image4", { scale: 1.03 });
+              animate("#image4", { scale: 1.03, borderColor: "yellow" });
             }}
             onMouseLeave={() => {
-              animate("#image4", { scale: 1 });
+              animate("#image4", { scale: 1, borderColor: "black" });
             }}
           >
             , barista y gerente de restaurante.{" "}
           </span>
-          Como hobbie, estoy empezando a desarrollar videjuegos.
+          Como hobbie, estoy empezando a desarrollar videojuegos.
         </p>
       </div>
       <div className=" flex mt-4 flex-wrap gap-2 ">
@@ -125,12 +126,17 @@ export default function AboutMeSection() {
                 bottom: 50,
               }}
               dragSnapToOrigin
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 0, borderColor: "black" }}
               animate={{ opacity: 1 }}
-              transition={twoSecs ? { delay: 0 } : { delay: Math.random() }}
-              whileTap={{ scale: 1.3 }}
+              transition={
+                delay500ms ? { delay: 0 } : { delay: Math.random() * 0.25 }
+              }
+              whileHover={{
+                borderColor: "yellow",
+              }}
+              whileTap={{ scale: 1.3, borderColor: "yellow" }}
               id={`image${idx}`}
-              className="md:w-[21rem] object-cover hover:border-white border-black border"
+              className="md:w-[21rem] object-cover  border"
               alt={image.alt}
               src={image.src}
               key={idx}
