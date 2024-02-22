@@ -48,7 +48,6 @@ export default function AboutMeSection() {
       animate={{ opacity: 1, x: 0 }}
     >
       <div className={merriweather.className}>
-        <h1 className="text-3xl">Sobre mí</h1>
         <p className="font-thin text-[1.05rem] leading-relaxed mt-2">
           <span
             className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500  transition"
