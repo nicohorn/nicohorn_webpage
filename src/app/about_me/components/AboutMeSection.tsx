@@ -84,7 +84,6 @@ export default function AboutMeSection() {
               animate("#image2", { scale: 1, borderColor: "black" });
             }}
           >
-            <br />
             Hace varios años que me dedico al desarrollo de software
           </span>
           , pero también trabajé como{" "}
@@ -133,9 +132,12 @@ export default function AboutMeSection() {
               whileHover={{
                 borderColor: "yellow",
               }}
-              whileTap={{ scale: 1.3, borderColor: "yellow" }}
+              whileTap={{
+                scale: 1.3,
+                borderColor: "yellow",
+              }}
               id={`image${idx}`}
-              className="md:w-[21rem] object-cover  border"
+              className="md:w-[19rem] aspect-[9/16] 3xl:aspect-auto 3xl:w-[21rem] object-cover  border"
               alt={image.alt}
               src={image.src}
               key={idx}
