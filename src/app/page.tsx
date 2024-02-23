@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 export default function Home() {
-  return <main className="bg-black"></main>;
+  return (
+    <main className="bg-black w-full flex justify-center flex-col items-center"></main>
+  );
 }

@@ -81,7 +81,7 @@ export default function HorizontalNavbar({
           whileTap={{ scale: 0.97 }}
           whileHover={{ x: 5 }}
         >
-          <button className="text-left"> Hola {session?.user!.name}!</button>
+          <button className="text-left"> Cerrar sesión</button>
 
           <img
             alt="Profile picture"
