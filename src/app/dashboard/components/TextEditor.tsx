@@ -14,7 +14,7 @@ const MenuBar = () => {
   }
 
   return (
-    <div className="flex gap-3 flex-wrap border-b pb-3">
+    <div className="flex gap-3 flex-wrap border-b pb-3 mb-3">
       <button
         onClick={() => {
           console.log(editor.getJSON());
@@ -259,7 +259,7 @@ display: none;
 
 export default function TextEditor() {
   return (
-    <div className="xl:w-[50%] w-fit">
+    <div className="border p-3">
       <EditorProvider
         slotBefore={<MenuBar />}
         extensions={extensions}
