@@ -5,11 +5,11 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["next_auth"]
+  schemas  = ["next_auth", "public"]
 }
 
 model users {
-  id         String      @id @default(uuid())
+  id         String      @id @default(uuid()) @db.Uuid
   name       String
   email      String      @unique
   image      String?
@@ -18,4 +18,54 @@ model users {
 
   @@schema("next_auth")
   
+}
+
+model blog_entries {
+  id          String     @id @default(uuid()) @db.Uuid
+  created_at  DateTime?
+  edited_at   DateTime?
+  author_id   String 
+  title       String
+  description String
+  cover_image String
+  node        String?
+  images      String[]
+  tags        blog_entries_on_tags[]
+  
+  @@schema("public")
+}
+
+model blog_tags{
+  id      String    @id @default(uuid()) @db.Uuid
+  name    String
+  posts   blog_entries_on_tags[]
+
+  @@schema("public")
+}
+
+model blog_entries_on_tags{
+
+  blog_entry      blog_entries  @relation(fields: [blog_entry_id], references: [id])
+  blog_entry_id   String  
+  blog_tag        blog_tags     @relation(fields: [blog_tag_id], references: [id])
+  blog_tag_id     String      
+       
+
+
+  @@id([blog_entry_id, blog_tag_id])
+  @@schema("public")
+
+}
+
+
+model Post{
+
+  id          Int      @id @default(autoincrement()) @db.Integer
+  title       String
+  author_id   String 
+
+
+
+  @@schema("public")
+
 }
