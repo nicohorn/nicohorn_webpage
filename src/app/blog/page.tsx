@@ -6,13 +6,15 @@ import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 
 export default async function Page() {
   const blog_entries = await getAllBlogEntriesWithTags();
+
   return (
     <main className="-mt-20">
       <Title title="Últimas entradas" />
       <div className="flex my-4">
-        <div className="grid  lg:grid-cols-2 gap-10 w-[75%] grid-cols-1">
+        <div className="grid xl:grid-cols-2 gap-10 w-[75%] grid-cols-1">
           {blog_entries!.map((entry, idx) => {
-            return <BlogCard blog_entry={entry} key={idx} />;
+            console.log(idx);
+            return <BlogCard blog_entry={entry} key={idx} idx={idx} />;
           })}
         </div>
         <SearchSidebar />

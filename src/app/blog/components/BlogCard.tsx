@@ -2,8 +2,13 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useScroll } from "framer-motion";
-import { blog_entries } from "@prisma/client";
 import { Prisma } from "@prisma/client";
+import { Merriweather } from "next/font/google";
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "300",
+});
 
 type BlogEntryWithTags = Prisma.blog_entriesGetPayload<{
   include: {
@@ -18,22 +23,22 @@ type BlogEntryWithTags = Prisma.blog_entriesGetPayload<{
 export default function BlogCard({
   blog_entry,
   colSpan,
-  key,
+  idx,
 }: {
   blog_entry: BlogEntryWithTags;
   colSpan?: boolean;
-  key: string | number;
+  idx: number;
 }) {
   const router = useRouter();
 
   return (
     <motion.div
-      key={key}
+      key={idx}
       initial={{ opacity: 0, y: -10, backgroundSize: "100%" }}
       transition={{ delay: Math.random() * 0.3 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{
-        backgroundSize: "102%",
+        backgroundSize: "101%",
         transition: {
           duration: 0.1,
           delay: 0,
@@ -44,39 +49,45 @@ export default function BlogCard({
         router.push(`/blog/${blog_entry.id}`);
       }}
       style={{ backgroundImage: `url("${blog_entry.cover_image}")` }}
-      className={`p-6 bg-zinc-900 transition group flex flex-col gap-2 cursor-pointer bg-cover bg-center
+      //Latest two entries show up with more height
+      className={`p-6 bg-zinc-900 transition group flex flex-col cursor-pointer bg-cover  bg-center relative ${
+        idx === 1 || idx === 0 ? "min-h-[40vh]" : ""
+      }
         ${colSpan && "col-span-2"}
            
         `}
     >
-      <div className="flex justify-between">
-        <h2 className="border-b border-transparent shadow-md group-hover:border-white text-2xl py-2 px-4 transition bg-black/60 ">
-          {blog_entry.title}
-        </h2>
-        <p className="text-right text-white/60 group-hover:text-white transition drop-shadow-md">
-          {blog_entry.created_at.toLocaleDateString()}
-        </p>
-      </div>
+      <div className="group-hover:bg-black/50 bg-black/20 transition absolute w-full h-full left-0 top-0"></div>
+      <p className="text-right text-white/80 group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,1)]">
+        {blog_entry.created_at.toLocaleDateString()}
+      </p>
+      <h2 className="border-b w-fit mt-2 border-transparent hover:drop-shadow-none group-hover:bg-black/0 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)] group-hover:border-white text-3xl py-3 px-6 transition bg-black/50 text-white group-hover:text-[#FFFFFF]">
+        {blog_entry.title}
+      </h2>
 
-      <p className="text-md mb-3 drop-shadow-md px-4 py-2">
+      <p
+        className={`${merriweather.className} text-md mb-3 px-4 py-2 group-hover:text-[#FFFFFF] transition drop-shadow-[2px_2px_4px_rgba(0,0,0,1)]`}
+      >
         {blog_entry.description}
       </p>
-      <div className="flex gap-3 flex-wrap">
-        {blog_entry.tags.map(({ blog_tag }, idx) => {
-          return (
-            <h3
-              key={idx}
-              className="px-2 pb-1 text-black bg-yellow-400 rounded-xl opacity-60 group-hover:opacity-100 transition"
-            >
-              {blog_tag.name}
-            </h3>
-          );
-        })}
-      </div>
+      <div className="flex justify-between items-center mt-auto">
+        <div className="flex gap-2 flex-wrap w-fit py-4 pr-4 self-end">
+          {blog_entry.tags.map(({ blog_tag }, idx) => {
+            return (
+              <h3
+                key={idx}
+                className="px-2 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)] text-sm text-white bg-black rounded-xl opacity-60 group-hover:opacity-100 transition"
+              >
+                {blog_tag.name}
+              </h3>
+            );
+          })}
+        </div>
 
-      <p className="text-sm text-white/60 text-right group-hover:text-white transition drop-shadow-md">
-        {blog_entry.author_name}
-      </p>
+        <p className="text-sm text-white/80 text-right whitespace-nowrap group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,1)] self-end">
+          {blog_entry.author_name}
+        </p>
+      </div>
     </motion.div>
   );
 }

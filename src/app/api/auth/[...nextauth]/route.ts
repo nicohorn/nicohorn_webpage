@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
                 role: token.role,
                 id: token.id,
             } as User
-            console.log("SESSION", session)
+
             return session;
         },
     },

@@ -26,7 +26,7 @@ export default function TextEditor({
 
   const extensions = [
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
-    TextStyle.configure({ types: [ListItem.name] }),
+    TextStyle.configure({ types: [ListItem.name] } as any),
     Image.configure({}),
     StarterKit.configure({
       orderedList: {
