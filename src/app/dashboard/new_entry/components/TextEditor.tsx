@@ -3,12 +3,7 @@ import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import Image from "@tiptap/extension-image";
-import {
-  EditorProvider,
-  JSONContent,
-  useCurrentEditor,
-  useEditor,
-} from "@tiptap/react";
+import { EditorProvider, JSONContent, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
 import { supabase } from "@/supabase";

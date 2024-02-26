@@ -50,7 +50,7 @@ export default function BlogCard({
       }}
       style={{ backgroundImage: `url("${blog_entry.cover_image}")` }}
       //Latest two entries show up with more height
-      className={`p-6 bg-zinc-900 transition group flex flex-col cursor-pointer bg-cover  bg-center relative ${
+      className={`p-6 bg-zinc-900 transition group flex flex-col cursor-pointer bg-cover   bg-center relative ${
         idx === 1 || idx === 0 ? "min-h-[40vh]" : ""
       }
         ${colSpan && "col-span-2"}
