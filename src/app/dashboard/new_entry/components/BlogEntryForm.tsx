@@ -174,8 +174,6 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
                       }),
                     ]);
                   }
-
-                  console.log(selectedTags);
                 }}
                 className={`${
                   selectedTags.includes(tag)
@@ -239,8 +237,8 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
             ...form.values,
             cover_image: blog_entry_cover_image,
             content: JSON.stringify(blog_entry_content),
-            author_name: author.id,
-            author_id: author.user.name,
+            author_name: author.user.name,
+            author_id: author.id,
             tags: selectedTags,
             node: null,
           });

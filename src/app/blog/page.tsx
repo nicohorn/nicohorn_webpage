@@ -2,20 +2,17 @@ import Title from "@/components/Title";
 import React, { useRef } from "react";
 import BlogCard from "./components/BlogCard";
 import SearchSidebar from "./components/SearchSidebar";
+import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 
-export default function Page() {
+export default async function Page() {
+  const blog_entries = await getAllBlogEntriesWithTags();
   return (
     <main className="-mt-20">
       <Title title="Últimas entradas" />
       <div className="flex my-4">
         <div className="grid  lg:grid-cols-2 gap-10 w-[75%] grid-cols-1">
-          {[
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5,
-            6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1,
-            2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6,
-            7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-          ].map((i, idx) => {
-            return <BlogCard key={idx} />;
+          {blog_entries!.map((entry, idx) => {
+            return <BlogCard blog_entry={entry} key={idx} />;
           })}
         </div>
         <SearchSidebar />

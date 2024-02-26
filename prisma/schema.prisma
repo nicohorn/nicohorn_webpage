@@ -10,14 +10,55 @@ datasource db {
 
 model users {
   id         String      @id @default(uuid()) @db.Uuid
-  name       String
-  email      String      @unique
-  image      String?
-  role       String
-  last_login DateTime?
+  name       String      @db.Text
+  email      String      @db.Text @unique
+  image      String?     @db.Text
+  role       String      @db.Text
+  last_login DateTime?   @db.Timestamptz()
+ 
 
   @@schema("next_auth")
   
+}
+
+model accounts {
+  id                     String       @id @default(uuid()) @db.Uuid
+  type                   String       @db.Text
+  provider               String       @db.Text
+  providerAccountId      String       @db.Text
+  refresh_token          String?      @db.Text
+  access_token           String       @db.Text
+  expires_at             Int          @db.Integer
+  token_type             String       @db.Text
+  scope                  String       @db.Text
+  id_token               String       @db.Text
+  session_state          String?      @db.Text
+  oauth_token_secret     String?      @db.Text
+  oauth_token            String?      @db.Text
+  userId                 String       @db.Uuid
+
+  @@schema("next_auth")
+  
+}
+
+model sessions {
+
+  id            String      @id @default(uuid()) @db.Uuid
+  expires       DateTime    @db.Timestamptz
+  sessionToken  String      @db.Text
+  userId        String      @db.Uuid
+
+  @@schema("next_auth")
+}
+
+model verification_tokens {
+
+  token        String       @id @db.Text
+  identifier   String       @db.Text
+  expires      DateTime     @db.Timestamptz()
+
+
+  @@schema("next_auth")
 }
 
 model blog_entries {
@@ -48,9 +89,9 @@ model blog_tags{
 model blog_entries_on_tags{
 
   blog_entry      blog_entries  @relation(fields: [blog_entry_id], references: [id])
-  blog_entry_id   String  
+  blog_entry_id   String        @db.Uuid
   blog_tag        blog_tags     @relation(fields: [blog_tag_id], references: [id])
-  blog_tag_id     String      
+  blog_tag_id     String        @db.Uuid      
        
 
 
@@ -60,14 +101,3 @@ model blog_entries_on_tags{
 }
 
 
-model Post{
-
-  id          Int      @id @default(autoincrement()) @db.Integer
-  title       String
-  author_id   String 
-
-
-
-  @@schema("public")
-
-}

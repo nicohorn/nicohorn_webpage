@@ -45,6 +45,7 @@ export const authOptions: NextAuthOptions = {
                 };
                 return token;
             }
+
             return token;
         },
         async session({ session, token }) {
@@ -56,6 +57,7 @@ export const authOptions: NextAuthOptions = {
                 role: token.role,
                 id: token.id,
             } as User
+            console.log("SESSION", session)
             return session;
         },
     },

@@ -1,14 +1,10 @@
 import { BlogEntryWithTags } from "@/app/dashboard/new_entry/components/BlogEntryForm"
 import { prisma } from "@/utils/db"
-import { blog_entries } from "@prisma/client"
+
 
 
 export const createBlogEntry = async (data: BlogEntryWithTags) => {
     try {
-
-
-
-
         const blog_entry = await prisma.blog_entries.create({
             data: {
                 ...data,
@@ -29,10 +25,31 @@ export const createBlogEntry = async (data: BlogEntryWithTags) => {
 
             },
         })
-        console.log("prisma createBlogEntry", blog_entry)
+        console.log("Prisma createBlogEntry", blog_entry)
         return blog_entry
     } catch (error) {
-        console.log(error)
+        console.log("Prisma createBlogEntry ERROR", error)
+        return null
+    }
+}
+
+
+export const getAllBlogEntriesWithTags = async () => {
+
+    try {
+
+        const blog_entries = await prisma.blog_entries.findMany({
+            include: {
+                tags: {
+                    include: {
+                        blog_tag: true
+                    }
+                }
+            }
+        })
+        return blog_entries
+    }
+    catch (error) {
         return null
     }
 }
