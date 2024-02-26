@@ -15,8 +15,12 @@ import { supabase } from "@/supabase";
 
 export default function TextEditor({
   setContent,
+  imageSrcs,
+  setImageSrcs,
 }: {
-  setContent: React.Dispatch<JSONContent>;
+  setContent: React.Dispatch<JSONContent | undefined>;
+  imageSrcs: string[];
+  setImageSrcs: React.Dispatch<string[]>;
 }) {
   const [contentSet, setContentSet] = useState(false);
 
@@ -48,7 +52,10 @@ export default function TextEditor({
     return (
       <div className="flex gap-3 flex-wrap border-b border-zinc-600 pb-3 mb-3">
         <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBold().run();
+          }}
           disabled={!editor.can().chain().focus().toggleBold().run()}
           className={
             editor.isActive("bold")
@@ -59,7 +66,10 @@ export default function TextEditor({
           bold
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleItalic().run();
+          }}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
           className={
             editor.isActive("italic")
@@ -70,7 +80,10 @@ export default function TextEditor({
           italic
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleStrike().run();
+          }}
           disabled={!editor.can().chain().focus().toggleStrike().run()}
           className={
             editor.isActive("strike")
@@ -81,7 +94,10 @@ export default function TextEditor({
           strike
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleCode().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleCode().run();
+          }}
           disabled={!editor.can().chain().focus().toggleCode().run()}
           className={
             editor.isActive("code")
@@ -91,14 +107,27 @@ export default function TextEditor({
         >
           code
         </button>
-        <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().unsetAllMarks().run();
+          }}
+        >
           clear marks
         </button>
-        <button onClick={() => editor.chain().focus().clearNodes().run()}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().clearNodes().run();
+          }}
+        >
           clear nodes
         </button>
         <button
-          onClick={() => editor.chain().focus().setParagraph().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().setParagraph().run();
+          }}
           className={
             editor.isActive("paragraph")
               ? "bg-white text-black rounded-sm px-1 border"
@@ -108,9 +137,10 @@ export default function TextEditor({
           paragraph
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 1 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 1 })
               ? "bg-white text-black rounded-sm px-1 border"
@@ -120,9 +150,10 @@ export default function TextEditor({
           h1
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 2 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 2 })
               ? "bg-white text-black rounded-sm px-1 border"
@@ -132,9 +163,10 @@ export default function TextEditor({
           h2
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 3 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 3 })
               ? "bg-white text-black rounded-sm px-1 border"
@@ -144,9 +176,10 @@ export default function TextEditor({
           h3
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 4 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 4 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 4 })
               ? "bg-white text-black rounded-sm px-1 border"
@@ -156,9 +189,10 @@ export default function TextEditor({
           h4
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 5 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 5 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 5 })
               ? "bg-white text-black rounded-sm px-1 border"
@@ -168,9 +202,10 @@ export default function TextEditor({
           h5
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 6 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 6 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 6 })
               ? "bg-white text-black rounded-sm px-1 border"
@@ -180,7 +215,10 @@ export default function TextEditor({
           h6
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBulletList().run();
+          }}
           className={
             editor.isActive("bulletList")
               ? "bg-white text-black rounded-sm px-1 border"
@@ -190,7 +228,10 @@ export default function TextEditor({
           bullet list
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleOrderedList().run();
+          }}
           className={
             editor.isActive("orderedList")
               ? "bg-white text-black rounded-sm px-1 border"
@@ -200,7 +241,10 @@ export default function TextEditor({
           ordered list
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleCodeBlock().run();
+          }}
           className={
             editor.isActive("codeBlock")
               ? "bg-white text-black rounded-sm px-1 border"
@@ -210,7 +254,10 @@ export default function TextEditor({
           code block
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBlockquote().run();
+          }}
           className={
             editor.isActive("blockquote")
               ? "bg-white text-black rounded-sm px-1 border"
@@ -220,44 +267,77 @@ export default function TextEditor({
           blockquote
         </button>
         <button
-          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().setHorizontalRule().run();
+          }}
         >
           horizontal rule
         </button>
-        <button onClick={() => editor.chain().focus().setHardBreak().run()}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().setHardBreak().run();
+          }}
+        >
           hard break
         </button>
         <button
-          onClick={() => editor.chain().focus().undo().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().undo().run();
+          }}
           disabled={!editor.can().chain().focus().undo().run()}
         >
           👈🏻
         </button>
         <button
-          onClick={() => editor.chain().focus().redo().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().redo().run();
+          }}
           disabled={!editor.can().chain().focus().redo().run()}
         >
           👉🏻
         </button>
         <button
-          onClick={() => editor.chain().focus().setColor("#FF7254").run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().setColor("#FF7254").run();
+          }}
           className={"rounded-sm px-1"}
         >
           🟥
         </button>
         <button
-          onClick={() => editor.chain().focus().setColor("#EFF743").run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().setColor("#EFF743").run();
+          }}
           className={"rounded-sm px-1"}
         >
           🟨
         </button>
         <button
-          onClick={() => editor.chain().focus().setColor("#40EFEF").run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().setColor("#40EFEF").run();
+          }}
           className={"rounded-sm px-1"}
         >
           🟦
         </button>
         <label
+          onClick={(e) => {
+            console.log();
+
+            editor.getJSON().content?.map((node) => {
+              if (node.type === "image") {
+                console.log(node.attrs!.src);
+              }
+            });
+            console.log(imageSrcs);
+          }}
           htmlFor="text_editor_image"
           className={"text-white rounded-sm px-1 cursor-pointer"}
         >
@@ -267,7 +347,6 @@ export default function TextEditor({
           onChange={async () => {
             //Image file from the input.
             const image = text_editor_image.current?.files![0];
-            console.log(image);
 
             //Now upload it to the storage bucket from supabase.
             const { data, error } = await supabase.storage
@@ -279,6 +358,9 @@ export default function TextEditor({
 
             const imageSrc =
               process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_URL! + data?.path;
+
+            if (data) setImageSrcs([...imageSrcs, imageSrc]);
+            else console.log(error);
 
             editor
               .chain()
@@ -296,9 +378,10 @@ export default function TextEditor({
           accept="image/png, image/gif, image/jpeg"
         />
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             setContentSet(!contentSet);
-            contentSet ? setContent({}) : setContent(editor.getJSON());
+            contentSet ? setContent(undefined) : setContent(editor.getJSON());
           }}
           className={`
             ${

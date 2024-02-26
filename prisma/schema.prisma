@@ -21,16 +21,18 @@ model users {
 }
 
 model blog_entries {
-  id          String     @id @default(uuid()) @db.Uuid
-  created_at  DateTime?
-  edited_at   DateTime?
-  author_id   String 
-  title       String
-  description String
-  cover_image String
-  node        String?
-  images      String[]
-  tags        blog_entries_on_tags[]
+  id            String     @id @default(uuid()) @db.Uuid
+  created_at    DateTime
+  edited_at     DateTime
+  author_id     String 
+  author_name   String
+  title         String
+  content       String
+  description   String
+  cover_image   String
+  node          String?
+  tags          blog_entries_on_tags[]
+  
   
   @@schema("public")
 }
