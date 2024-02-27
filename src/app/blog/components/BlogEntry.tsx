@@ -4,12 +4,17 @@ import React from "react";
 import TipTapContent from "../components/TipTapContent";
 import { IconCalendar } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
+import { useScroll } from "framer-motion";
 
 export default function BlogEntry({
   blog_entry,
 }: {
   blog_entry: BlogEntryWithTags;
 }) {
+  const { scrollYProgress } = useScroll();
+
+  console.log(scrollYProgress);
+
   return (
     <main className="md:-mt-10 -mt-10 flex flex-col 2xl:w-[45%] xl:w-[70%] w-[100%] mx-auto gap-4 text-xl">
       <div

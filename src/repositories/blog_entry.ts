@@ -58,7 +58,7 @@ export const createBlogEntry = async (data: BlogEntryWithTags) => {
 export const getAllBlogEntriesWithTags = async (tag: string) => {
 
   try {
-    console.log("SEARCH PARAMS", tag)
+
     const blog_entries = await prisma.blog_entries.findMany({
       where: {
         tags: {

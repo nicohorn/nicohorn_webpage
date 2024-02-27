@@ -84,6 +84,7 @@ export default function HorizontalNavbar({
           <button className="text-left"> Cerrar sesión</button>
 
           <img
+            referrerPolicy="no-referrer"
             alt="Profile picture"
             className="rounded-full w-12"
             src={session?.user?.image!}
@@ -110,7 +111,7 @@ export default function HorizontalNavbar({
               transition={{ duration: 1 }}
               whileHover={{ backgroundColor: "white", color: "black" }}
             >
-              <Link className="font-thin" href={link.link}>
+              <Link prefetch className="font-thin" href={link.link}>
                 <motion.p
                   className="px-7 py-5"
                   onClick={() => {
