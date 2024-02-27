@@ -7,6 +7,12 @@ import { EditorProvider, JSONContent, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
 import { supabase } from "@/supabase";
+import { Merriweather } from "next/font/google";
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "300",
+});
 
 export default function TextEditor({
   setContent,
@@ -392,7 +398,7 @@ export default function TextEditor({
   };
 
   return (
-    <div className="border border-zinc-600 p-3">
+    <div className={`border border-zinc-600 p-3 ${merriweather.className}`}>
       <EditorProvider
         slotBefore={<MenuBar />}
         extensions={extensions}

@@ -1,5 +1,15 @@
-import { BlogEntryWithTags } from "@/app/dashboard/new_entry/components/BlogEntryForm";
 import { prisma } from "@/utils/db";
+import { Prisma } from "@prisma/client";
+
+export type BlogEntryWithTags = Prisma.blog_entriesGetPayload<{
+  include: {
+    tags: {
+      include: {
+        blog_tag: true;
+      };
+    };
+  };
+}>;
 
 export const getBlogEntryById = async (id: string) => {
   try {
@@ -7,6 +17,9 @@ export const getBlogEntryById = async (id: string) => {
       where: {
         id,
       },
+      include: {
+        tags: true,
+      }
     });
     return blog_entry;
   } catch (error) {
@@ -26,7 +39,7 @@ export const createBlogEntry = async (data: BlogEntryWithTags) => {
             return {
               blog_tag: {
                 connect: {
-                  id: tag.id,
+                  id: tag.blog_tag_id,
                 },
               },
             };
@@ -45,7 +58,7 @@ export const createBlogEntry = async (data: BlogEntryWithTags) => {
 export const getAllBlogEntriesWithTags = async (tag: string) => {
 
   try {
-    console.log("SEARCH PARAMS", tag)
+
     const blog_entries = await prisma.blog_entries.findMany({
       where: {
         tags: {

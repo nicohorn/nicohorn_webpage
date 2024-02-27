@@ -5,21 +5,12 @@ import { motion, useScroll } from "framer-motion";
 import { Prisma } from "@prisma/client";
 import { IconCalendar } from "@tabler/icons-react";
 import { Merriweather } from "next/font/google";
+import { BlogEntryWithTags } from "@/repositories/blog_entry";
 const merriweather = Merriweather({
   subsets: ["latin"],
   display: "swap",
   weight: "300",
 });
-
-type BlogEntryWithTags = Prisma.blog_entriesGetPayload<{
-  include: {
-    tags: {
-      include: {
-        blog_tag: true;
-      };
-    };
-  };
-}>;
 
 export default function BlogCard({
   blog_entry,
