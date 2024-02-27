@@ -22,7 +22,7 @@ export default function SearchSidebar({ tags }: { tags: blog_tags[] }) {
   );
 
   return (
-    <div className="fixed right-[5rem] text-right px-4 flex flex-col gap-4">
+    <div className="fixed right-[5rem] text-right px-4 xl:flex flex-col gap-4 hidden ">
       {tags.map((tag, idx) => {
         return (
           <Link

@@ -16,7 +16,7 @@ export default async function Page({
   const tags = await getTags();
 
   return (
-    <main className="-mt-20">
+    <main className="xl:-mt-20 -mt-12">
       <SearchSidebar tags={tags!} />
       <div className="flex gap-2 items-end">
         <Title title="Últimas entradas" />
@@ -27,7 +27,7 @@ export default async function Page({
           <IconLayoutRows />
         </Link>
       </div>
-      <div className="flex my-4 w-[80%]">
+      <div className="flex my-4 w-full xl:w-[80%]">
         <div
           className={`
             ${

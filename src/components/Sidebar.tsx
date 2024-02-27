@@ -6,6 +6,10 @@ import { animate, motion } from "framer-motion";
 import { Disclosure, Transition } from "@headlessui/react";
 import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
+import {
+  IconArrowBigLeftFilled,
+  IconArrowBigRightFilled,
+} from "@tabler/icons-react";
 
 export default function HorizontalNavbar({
   links,
@@ -24,10 +28,10 @@ export default function HorizontalNavbar({
           as={motion.button}
           transition={{ duration: 1 }}
           whileHover={{ backgroundColor: "white", color: "black" }}
-          className="border-l  w-full text-left"
+          className=" w-full text-left"
         >
           <motion.p
-            className="px-7 py-5"
+            className="button py-5"
             whileTap={{ scale: 0.97 }}
             whileHover={{ x: 5 }}
           >
@@ -42,7 +46,7 @@ export default function HorizontalNavbar({
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Disclosure.Panel className="border-l text-lg">
+          <Disclosure.Panel className="text-lg">
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => {
@@ -61,12 +65,11 @@ export default function HorizontalNavbar({
   const logoutButton = () => {
     return (
       <motion.span
-        className="border-l"
         transition={{ duration: 1 }}
         whileHover={{ backgroundColor: "white", color: "black" }}
       >
         <motion.div
-          className="px-7 py-5 text-left flex gap-3 items-center justify-between text-2xl"
+          className="px-12 py-5 cursor-pointer text-left flex gap-3 items-center justify-between text-2xl"
           onClick={() => {
             setTimeout(() => {
               setOpen(false);
@@ -95,68 +98,69 @@ export default function HorizontalNavbar({
   };
 
   return (
-    <motion.div
-      initial={open ? { x: 0, opacity: 1 } : { x: -340 - 48 + 32 }}
-      animate={{ x: -320 - 48 + 32 }}
-      transition={{ delay: 0.5, duration: 0.5, bounce: 0.4, type: "spring" }}
-      id="nav_container"
-      className="flex fixed z-50 drop-shadow-lg"
-    >
-      <motion.div className="flex flex-col text-4xl w-72 bg-black/90">
-        {links.map((link, idx) => {
-          return (
-            <motion.span
-              className="border-l"
-              key={idx}
-              transition={{ duration: 1 }}
-              whileHover={{ backgroundColor: "white", color: "black" }}
-            >
-              <Link prefetch className="font-thin" href={link.link}>
-                <motion.p
-                  className="px-7 py-5"
-                  onClick={() => {
-                    setTimeout(() => {
-                      setOpen(false);
-                      animate(
-                        "#nav_container",
-                        { x: -320 - 48 + 32 },
-                        { duration: 0.5, type: "spring", bounce: 0.2 }
-                      );
-                    }, 250);
-                  }}
-                  whileTap={{ scale: 0.97 }}
-                  whileHover={{ x: 5 }}
-                >
-                  {link.title}
-                </motion.p>
-              </Link>
-            </motion.span>
-          );
-        })}
-        {!session ? loginButton() : logoutButton()}
-      </motion.div>
-      <motion.button
-        initial={{ opacity: 0.95 }}
-        whileHover={{ opacity: 1 }}
-        whileTap={{ opacity: 0.5 }}
-        onClick={() => {
-          setOpen(!open);
-          open
-            ? animate(
-                "#nav_container",
-                { x: -320 - 48 + 32 },
-                { duration: 0.5, type: "spring", bounce: 0.2 }
-              )
-            : animate(
-                "#nav_container",
-                { x: 0 },
-                { duration: 0.5, type: "spring", bounce: 0.2 }
-              );
-        }}
-        className="bg-yellow-300 w-5 flex items-center justify-center text-lg text-black "
+    <div className="-translate-x-[48px] fixed z-50">
+      <motion.div
+        initial={open ? { x: 0, opacity: 1 } : { x: -340 + 32 }}
+        animate={{ x: -320 + 32 }}
+        transition={{ delay: 0.5, duration: 0.5, bounce: 0.4, type: "spring" }}
+        id="nav_container"
+        className="flex drop-shadow-lg "
       >
-        {open ? "<" : ">"}
-      </motion.button>
-    </motion.div>
+        <motion.div className="flex flex-col text-4xl w-72  bg-zinc-950/95">
+          {links.map((link, idx) => {
+            return (
+              <motion.span
+                key={idx}
+                transition={{ duration: 1 }}
+                whileHover={{ backgroundColor: "white", color: "black" }}
+              >
+                <Link className="font-thin" href={link.link}>
+                  <motion.p
+                    className="px-12 py-5"
+                    onClick={() => {
+                      setTimeout(() => {
+                        setOpen(false);
+                        animate(
+                          "#nav_container",
+                          { x: -320 + 32 },
+                          { duration: 0.5, type: "spring", bounce: 0.2 }
+                        );
+                      }, 250);
+                    }}
+                    whileTap={{ scale: 0.97 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    {link.title}
+                  </motion.p>
+                </Link>
+              </motion.span>
+            );
+          })}
+          {!session ? loginButton() : logoutButton()}
+        </motion.div>
+        <motion.button
+          initial={{ opacity: 0.95 }}
+          whileHover={{ opacity: 1 }}
+          whileTap={{ opacity: 0.5 }}
+          onClick={() => {
+            setOpen(!open);
+            open
+              ? animate(
+                  "#nav_container",
+                  { x: -320 + 32 },
+                  { duration: 0.5, type: "spring", bounce: 0.2 }
+                )
+              : animate(
+                  "#nav_container",
+                  { x: 0 },
+                  { duration: 0.5, type: "spring", bounce: 0.2 }
+                );
+          }}
+          className="bg-yellow-300 w-5 flex items-center justify-center text-lg text-black "
+        >
+          {!open ? <IconArrowBigRightFilled /> : <IconArrowBigLeftFilled />}
+        </motion.button>
+      </motion.div>
+    </div>
   );
 }

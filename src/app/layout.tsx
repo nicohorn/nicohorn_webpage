@@ -29,7 +29,8 @@ export default async function RootLayout({
     <html className="bg-black text-white overflow-x-hidden" lang="en">
       <body
         className={
-          oswald.className + " bg-black mx-12 my-8 rounded-lg z-0 relative"
+          oswald.className +
+          " bg-black mx-12 my-8 rounded-lg z-0 relative scroll-smooth"
         }
       >
         <HorizontalNavbar
