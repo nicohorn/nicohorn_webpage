@@ -34,7 +34,7 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
   >([]);
 
   const getLoggedInUser = async () => {
-    const res = await fetch(`http://localhost:3000/api/auth/session`);
+    const res = await fetch(`/api/auth/session`);
     return res.json().then((res) => {
       return { user: res.user, id: res.user.id };
     });
