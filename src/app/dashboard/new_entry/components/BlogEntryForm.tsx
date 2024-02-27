@@ -34,14 +34,14 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
   >([]);
 
   const getLoggedInUser = async () => {
-    const res = await fetch(`http://localhost:3000/api/auth/session`);
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`);
     return res.json().then((res) => {
       return { user: res.user, id: res.user.id };
     });
   };
 
   const createBlogEntry = async (blog_entry: BlogEntryWithTags) => {
-    const res = await fetch("http://localhost:3000/api/blog_entry", {
+    const res = await fetch("/api/blog_entry", {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(blog_entry),
