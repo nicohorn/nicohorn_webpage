@@ -29,7 +29,7 @@ export default function HorizontalNavbar({
           className=" w-full text-left"
         >
           <motion.p
-            className="button py-5"
+            className="button py-5 px-12"
             whileTap={{ scale: 0.97 }}
             whileHover={{ x: 5 }}
           >
@@ -50,7 +50,7 @@ export default function HorizontalNavbar({
               onClick={() => {
                 signIn("google");
               }}
-              className=" px-9 py-6"
+              className=" px-14 py-6"
             >
               Iniciar sesión con Google
             </motion.button>
