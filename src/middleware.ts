@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt';
-import { redirect } from 'next/dist/server/api-utils';
+
 
 
 export async function middleware(req: NextRequest) {
