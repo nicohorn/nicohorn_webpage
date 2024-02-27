@@ -6,10 +6,8 @@ import { animate, motion } from "framer-motion";
 import { Disclosure, Transition } from "@headlessui/react";
 import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
-import {
-  IconArrowBigLeftFilled,
-  IconArrowBigRightFilled,
-} from "@tabler/icons-react";
+
+import { IconArrowBadgeLeft, IconArrowBadgeRight } from "@tabler/icons-react";
 
 export default function HorizontalNavbar({
   links,
@@ -158,7 +156,7 @@ export default function HorizontalNavbar({
           }}
           className="bg-yellow-300 w-5 flex items-center justify-center text-lg text-black "
         >
-          {!open ? <IconArrowBigRightFilled /> : <IconArrowBigLeftFilled />}
+          {!open ? <IconArrowBadgeRight /> : <IconArrowBadgeLeft />}
         </motion.button>
       </motion.div>
     </div>
