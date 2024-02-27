@@ -6,6 +6,7 @@ import { Prisma } from "@prisma/client";
 import { IconCalendar } from "@tabler/icons-react";
 import { Merriweather } from "next/font/google";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
+import { TagsToSpanish } from "@/utils/dictionaries/Tags";
 const merriweather = Merriweather({
   subsets: ["latin"],
   display: "swap",
@@ -68,7 +69,9 @@ export default function BlogCard({
                 key={idx}
                 className="px-3 pt-[1px] pb-[3px] drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)] text-sm text-white bg-black rounded-xl opacity-60 group-hover:opacity-100 transition self-end"
               >
-                {blog_tag.name}
+                {TagsToSpanish[blog_tag.name]
+                  ? TagsToSpanish[blog_tag.name]
+                  : blog_tag.name}
               </h3>
             );
           })}
