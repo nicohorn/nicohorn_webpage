@@ -4,7 +4,13 @@ import { users, blog_tags } from "@prisma/client"
 
 export const getTags = async () => {
     try {
-        const tags = await prisma.blog_tags.findMany({})
+
+        const tags = await prisma.blog_tags.findMany({
+
+            orderBy: {
+                name: "asc"
+            }
+        })
         return tags
     } catch (error) {
         return null;

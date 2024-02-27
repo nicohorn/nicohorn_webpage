@@ -34,24 +34,42 @@ export const createBlogEntry = async (data: BlogEntryWithTags) => {
         },
       },
     });
-    console.log("Prisma createBlogEntry", blog_entries);
+
     return blog_entries;
   } catch (error) {
-    console.log("Prisma createBlogEntry ERROR", error);
+
     return null;
   }
 };
 
-export const getAllBlogEntriesWithTags = async () => {
+export const getAllBlogEntriesWithTags = async (tag: string) => {
+
   try {
+    console.log("SEARCH PARAMS", tag)
     const blog_entries = await prisma.blog_entries.findMany({
+      where: {
+        tags: {
+          some: {
+            blog_tag: {
+              name: {
+                contains: tag
+              }
+            }
+          }
+        }
+      },
       include: {
         tags: {
           include: {
             blog_tag: true,
           },
         },
+
       },
+      orderBy: {
+        created_at: "desc"
+
+      }
     });
     return blog_entries;
   } catch (error) {

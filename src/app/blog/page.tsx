@@ -3,21 +3,48 @@ import React, { useRef } from "react";
 import BlogCard from "./components/BlogCard";
 import SearchSidebar from "./components/SearchSidebar";
 import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
+import Link from "next/link";
+import { IconLayoutRows, IconLayoutColumns } from "@tabler/icons-react";
+import { getTags } from "@/repositories/blog_tag";
 
-export default async function Page() {
-  const blog_entries = await getAllBlogEntriesWithTags();
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) {
+  const blog_entries = await getAllBlogEntriesWithTags(searchParams.tag);
+  const tags = await getTags();
 
   return (
     <main className="-mt-20">
-      <Title title="Últimas entradas" />
-      <div className="flex my-4">
-        <div className="grid xl:grid-cols-2 gap-10 w-[75%] grid-cols-1">
+      <SearchSidebar tags={tags!} />
+      <div className="flex gap-2 items-end">
+        <Title title="Últimas entradas" />
+        <Link className="ml-3" href={`/blog?display=cols`}>
+          <IconLayoutColumns />
+        </Link>
+        <Link href={`/blog?display=rows`}>
+          <IconLayoutRows />
+        </Link>
+      </div>
+      <div className="flex my-4 w-[80%]">
+        <div
+          className={`
+            ${
+              searchParams.display === "cols"
+                ? "grid xl:grid-cols-2 gap-10  grid-cols-1"
+                : "grid gap-10  grid-cols-1"
+            }
+           transition`}
+        >
           {blog_entries!.map((entry, idx) => {
-            console.log(idx);
-            return <BlogCard blog_entry={entry} key={idx} idx={idx} />;
+            return (
+              <Link prefetch key={idx} href={`/blog/${entry.id}`}>
+                <BlogCard blog_entry={entry} idx={idx} />
+              </Link>
+            );
           })}
         </div>
-        <SearchSidebar />
       </div>
     </main>
   );

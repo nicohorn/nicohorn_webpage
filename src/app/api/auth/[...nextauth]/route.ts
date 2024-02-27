@@ -6,6 +6,7 @@ import {
     updateUserByEmail,
 } from "@/repositories/user";
 import { JWT } from "next-auth/jwt";
+import { users } from "@prisma/client";
 export const authOptions: NextAuthOptions = {
     // Configure one or more authentication providers
     adapter: SupabaseAdapter({
@@ -35,28 +36,16 @@ export const authOptions: NextAuthOptions = {
             if (user) {
                 const dbUser = await getUserByEmail(user.email!);
                 //Adding more useful data to the token (role and id)
-                token = {
-                    ...token,
-                    id: dbUser?.id,
-                    name: dbUser?.name,
-                    email: dbUser?.email,
-                    picture: dbUser?.image,
-                    role: dbUser?.role,
-                };
-                return token;
+                token.user = dbUser as users
+
             }
+
 
             return token;
         },
         async session({ session, token }) {
             //Using the data I put in the token to modify the session user object. This way I can access that data from anywhere on the app.
-            session.user = {
-                name: token.name,
-                email: token.email,
-                image: token.picture,
-                role: token.role,
-                id: token.id,
-            } as User
+            session.user = token.user as User
 
             return session;
         },

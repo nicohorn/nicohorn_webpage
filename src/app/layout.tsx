@@ -12,7 +12,7 @@ import { guest_links, links } from "./Links";
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Nico Horn",
+  title: "Nico Horn ",
   description:
     "Welcome to my personal webpage, I'm Nico Horn, full stack developer, systems engineer and educator.",
 };
@@ -27,7 +27,11 @@ export default async function RootLayout({
 
   return (
     <html className="bg-black text-white overflow-x-hidden" lang="en">
-      <body className={oswald.className + " bg-black mx-12 my-8 rounded-lg"}>
+      <body
+        className={
+          oswald.className + " bg-black mx-12 my-8 rounded-lg z-0 relative"
+        }
+      >
         <HorizontalNavbar
           session={session!}
           links={user ? links[user.role] : guest_links}

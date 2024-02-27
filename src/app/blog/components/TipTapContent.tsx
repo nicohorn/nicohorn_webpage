@@ -1,32 +1,42 @@
 "use client";
-import Color from "@tiptap/extension-color";
-import Image from "@tiptap/extension-image";
+import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
-import { EditorContent, generateHTML, useEditor } from "@tiptap/react";
+import Image from "@tiptap/extension-image";
+import { EditorProvider, JSONContent, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Paragraph from "@tiptap/starter-kit";
-import Bold from "@tiptap/starter-kit";
-import Document from "@tiptap/starter-kit";
-import Text from "@tiptap/starter-kit";
-import React from "react";
+import React, { useRef, useState } from "react";
 
 export default function TipTapContent({
   blog_entry_content,
 }: {
   blog_entry_content: string;
 }) {
-  const content_to_json = JSON.parse(blog_entry_content);
-  const output = generateHTML(content_to_json, [
-    Document,
-    Paragraph,
-    Text,
-    Bold,
-    Image,
-    // other extensions …
-  ]);
-  const editor = useEditor({});
+  const extensions = [
+    Color.configure({ types: [TextStyle.name, ListItem.name] }),
+    TextStyle.configure({ types: [ListItem.name] } as any),
+    Image.configure({}),
+    StarterKit.configure({
+      orderedList: {
+        keepMarks: true,
+        keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      },
+      bulletList: {
+        keepMarks: true,
+        keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      },
+    }),
+  ];
+
   return (
-    <EditorContent content={blog_entry_content} editor={editor}></EditorContent>
+    <div className="">
+      <EditorProvider
+        editable={false}
+        extensions={extensions}
+        content={blog_entry_content}
+        // eslint-disable-next-line react/no-children-prop
+        children={undefined}
+      />
+    </div>
   );
 }

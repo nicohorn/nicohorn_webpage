@@ -35,8 +35,9 @@ h3 {
   line-height: 1.1;
 }
 .tiptap code {
-  background-color: rgba(97, 97, 97, 0.1);
-  color: #616161;
+  padding: 0 0.2rem;
+  background-color: rgb(39, 39, 39);
+  color: #e2e2e2;
 }
 .tiptap pre {
   background: #0d0d0d;
@@ -49,15 +50,18 @@ h3 {
   color: inherit;
   padding: 0;
   background: none;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 .tiptap img {
   max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   height: auto;
+  max-height: 450px;
 }
 .tiptap blockquote {
   padding-left: 1rem;
-  border-left: 2px solid rgba(13, 13, 13, 0.1);
+  border-left: 2px solid rgba(82, 82, 82, 0.1);
 }
 .tiptap hr {
   border: none;
@@ -67,10 +71,12 @@ h3 {
 
 ul {
   list-style-type: square;
+  padding-left: 1rem;
 }
 
 ol {
   list-style-type: decimal;
+  margin-left: 1rem;
 }
 
 div {

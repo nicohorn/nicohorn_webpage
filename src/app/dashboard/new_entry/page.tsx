@@ -1,6 +1,6 @@
 import React from "react";
 import BlogEntryForm from "./components/BlogEntryForm";
-import { getTags } from "@/repositories/tag";
+import { getTags } from "@/repositories/blog_tag";
 
 export default async function Page() {
   const tags = await getTags();

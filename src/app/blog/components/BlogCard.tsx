@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useScroll } from "framer-motion";
 import { Prisma } from "@prisma/client";
+import { IconCalendar } from "@tabler/icons-react";
 import { Merriweather } from "next/font/google";
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -45,9 +46,6 @@ export default function BlogCard({
         },
       }}
       viewport={{ once: true }}
-      onClick={() => {
-        router.push(`/blog/${blog_entry.id}`);
-      }}
       style={{ backgroundImage: `url("${blog_entry.cover_image}")` }}
       //Latest two entries show up with more height
       className={`p-6 bg-zinc-900 transition group flex flex-col cursor-pointer bg-cover   bg-center relative ${
@@ -58,7 +56,8 @@ export default function BlogCard({
         `}
     >
       <div className="group-hover:bg-black/50 bg-black/20 transition absolute w-full h-full left-0 top-0"></div>
-      <p className="text-right text-white/80 group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,1)]">
+      <p className="flex gap-2 text-white/80 group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,1)]">
+        <IconCalendar />
         {blog_entry.created_at.toLocaleDateString()}
       </p>
       <h2 className="border-b w-fit mt-2 border-transparent hover:drop-shadow-none group-hover:bg-black/0 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)] group-hover:border-white text-3xl py-3 px-6 transition bg-black/50 text-white group-hover:text-[#FFFFFF]">
@@ -66,17 +65,17 @@ export default function BlogCard({
       </h2>
 
       <p
-        className={`${merriweather.className} text-md mb-3 px-4 py-2 group-hover:text-[#FFFFFF] transition drop-shadow-[2px_2px_4px_rgba(0,0,0,1)]`}
+        className={`${merriweather.className} text-md mb-3 px-1 my-4 group-hover:text-[#FFFFFF] transition drop-shadow-[2px_2px_4px_rgba(0,0,0,1)]`}
       >
         {blog_entry.description}
       </p>
       <div className="flex justify-between items-center mt-auto">
-        <div className="flex gap-2 flex-wrap w-fit py-4 pr-4 self-end">
+        <div className="flex gap-2 flex-wrap w-fit py-4 pr-4">
           {blog_entry.tags.map(({ blog_tag }, idx) => {
             return (
               <h3
                 key={idx}
-                className="px-2 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)] text-sm text-white bg-black rounded-xl opacity-60 group-hover:opacity-100 transition"
+                className="px-3 pt-[1px] pb-[3px] drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)] text-sm text-white bg-black rounded-xl opacity-60 group-hover:opacity-100 transition self-end"
               >
                 {blog_tag.name}
               </h3>

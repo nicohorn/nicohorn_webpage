@@ -13,7 +13,7 @@ export default function TextEditor({
   imageSrcs,
   setImageSrcs,
 }: {
-  setContent: React.Dispatch<JSONContent | undefined>;
+  setContent: React.Dispatch<string | undefined>;
   imageSrcs: string[];
   setImageSrcs: React.Dispatch<string[]>;
 }) {
@@ -22,7 +22,11 @@ export default function TextEditor({
   const extensions = [
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
     TextStyle.configure({ types: [ListItem.name] } as any),
-    Image.configure({}),
+    Image.configure({
+      HTMLAttributes: {
+        class: "tiptap_image",
+      },
+    }),
     StarterKit.configure({
       orderedList: {
         keepMarks: true,
@@ -324,14 +328,10 @@ export default function TextEditor({
         </button>
         <label
           onClick={(e) => {
-            console.log();
-
             editor.getJSON().content?.map((node) => {
               if (node.type === "image") {
-                console.log(node.attrs!.src);
               }
             });
-            console.log(imageSrcs);
           }}
           htmlFor="text_editor_image"
           className={"text-white rounded-sm px-1 cursor-pointer"}
@@ -376,7 +376,7 @@ export default function TextEditor({
           onClick={(e) => {
             e.preventDefault();
             setContentSet(!contentSet);
-            contentSet ? setContent(undefined) : setContent(editor.getJSON());
+            contentSet ? setContent(undefined) : setContent(editor.getHTML());
           }}
           className={`
             ${

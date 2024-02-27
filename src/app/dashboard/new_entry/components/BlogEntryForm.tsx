@@ -5,7 +5,6 @@ import React, { useRef, useState } from "react";
 import Title from "@/components/Title";
 import TextEditor from "../components/TextEditor";
 import { blog_entries, blog_tags } from "@prisma/client";
-import { JSONContent } from "@tiptap/react";
 import { useForm, zodResolver } from "@mantine/form";
 import { BlogEntry, BlogEntrySchema } from "@/zod";
 import { PrismaClientErrors } from "@/utils/dictionaries/PrismaClientErrors";
@@ -27,7 +26,7 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
   const [blog_entry_cover_image, setBlogEntryCoverImage] = useState<string>();
   const blog_entry_new_tag = useRef<HTMLInputElement>(null);
   const [imageSrcs, setImageSrcs] = useState<string[]>([]);
-  const [blog_entry_content, setContent] = useState<JSONContent>();
+  const [blog_entry_content, setContent] = useState<string>();
   const [tagList, setTagList] = useState(tags);
 
   const [selectedTags, setSelectedTags] = useState<
@@ -236,7 +235,7 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
           const parseResult = BlogEntrySchema.safeParse({
             ...form.values,
             cover_image: blog_entry_cover_image,
-            content: JSON.stringify(blog_entry_content),
+            content: blog_entry_content,
             author_name: author.user.name,
             author_id: author.id,
             tags: selectedTags,
@@ -259,4 +258,6 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
 /* 
 I'm retrieving the tags from the db on the ssr-ed page that is parent to this client side component. I'm leaving the option to add tags too, I know how to show the new added tags to the bd using useState.
 -- hw -> investigate how to do that without using useState. Update: apparently this isn't needed at all.
+
+-- hw -> set unique title and cover_image as a safeguard to not publish twice the same content, although this should be solved by redirecting to the blog entry once the response is sucessful.
  */
