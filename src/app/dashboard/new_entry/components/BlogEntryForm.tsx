@@ -11,11 +11,11 @@ import { PrismaClientErrors } from "@/utils/dictionaries/PrismaClientErrors";
 import { supabase } from "@/supabase";
 
 //Had to create these two types here to make the createBlogEntry parameter type more readable.
-export type BlogEntryWithoutIdCreatedAt = Omit<
+type BlogEntryWithoutIdCreatedAt = Omit<
   blog_entries,
   "id" | "edited_at" | "created_at"
 >;
-export type BlogEntryWithTags = BlogEntryWithoutIdCreatedAt & {
+type BlogEntryWithTagsForm = BlogEntryWithoutIdCreatedAt & {
   tags: { id: string; name: string }[];
 };
 
@@ -40,7 +40,7 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
     });
   };
 
-  const createBlogEntry = async (blog_entry: BlogEntryWithTags) => {
+  const createBlogEntry = async (blog_entry: BlogEntryWithTagsForm) => {
     const res = await fetch("/api/blog_entry", {
       method: "POST",
       mode: "cors",
