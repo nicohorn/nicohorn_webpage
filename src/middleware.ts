@@ -7,8 +7,10 @@ import { getToken } from 'next-auth/jwt';
 
 export async function middleware(req: NextRequest) {
 
-    const res = NextResponse.next();
+
     const token = await getToken({ req })
+
+
 
     if (req.nextUrl.pathname.includes("api") && !req.nextUrl.pathname.includes("auth")) {
         if (token?.user.role !== "admin") {
@@ -16,9 +18,15 @@ export async function middleware(req: NextRequest) {
         }
     } else if (req.nextUrl.pathname.includes("dashboard")) {
         if (token?.user.role !== "admin") {
-            return NextResponse.redirect(new URL("/", req.url))
+            return NextResponse.redirect(new URL("/blog", req.url))
         }
     }
+
+    else if (req.nextUrl.pathname == "/") {
+        console.log(req.nextUrl.pathname)
+        return NextResponse.redirect(new URL("/blog", req.url))
+    }
+
 
     return NextResponse.next()
 
