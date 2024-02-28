@@ -29,7 +29,7 @@ export default function HorizontalNavbar({
           className=" w-full text-left"
         >
           <motion.p
-            className="button py-5"
+            className="button py-5 px-12"
             whileTap={{ scale: 0.97 }}
             whileHover={{ x: 5 }}
           >
@@ -50,7 +50,7 @@ export default function HorizontalNavbar({
               onClick={() => {
                 signIn("google");
               }}
-              className=" px-9 py-6"
+              className=" px-14 py-6"
             >
               Iniciar sesión con Google
             </motion.button>
@@ -74,6 +74,11 @@ export default function HorizontalNavbar({
               animate(
                 "#nav_container",
                 { x: -320 - 48 + 32 },
+                { duration: 0.5, type: "spring", bounce: 0.2 }
+              );
+              animate(
+                "#nav_container",
+                { zIndex: 0 },
                 { duration: 0.5, type: "spring", bounce: 0.2 }
               );
             }, 250);
