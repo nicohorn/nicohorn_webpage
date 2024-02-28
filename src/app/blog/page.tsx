@@ -20,10 +20,17 @@ export default async function Page({
       <SearchSidebar tags={tags!} />
       <div className="flex gap-2 items-end">
         <Title title="Últimas entradas" />
-        <Link className="ml-3" href={`/blog?display=cols`}>
+        <Link
+          className="ml-3"
+          aria-label="Display blog cards in columns"
+          href={`/blog?display=cols`}
+        >
           <IconLayoutColumns />
         </Link>
-        <Link href={`/blog?display=rows`}>
+        <Link
+          href={`/blog?display=rows`}
+          aria-label="Display blog cards in rows"
+        >
           <IconLayoutRows />
         </Link>
       </div>

@@ -7,6 +7,7 @@ import { IconCalendar } from "@tabler/icons-react";
 import { Merriweather } from "next/font/google";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { TagsToSpanish } from "@/utils/dictionaries/Tags";
+import SquareLoader from "@/components/SquareLoader";
 const merriweather = Merriweather({
   subsets: ["latin"],
   display: "swap",
