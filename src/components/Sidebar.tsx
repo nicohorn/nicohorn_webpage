@@ -6,9 +6,9 @@ import { animate, motion } from "framer-motion";
 import { Disclosure, Transition } from "@headlessui/react";
 import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
-
 import { IconArrowBadgeLeft, IconArrowBadgeRight } from "@tabler/icons-react";
 
+//This component urgent refactoring.
 export default function HorizontalNavbar({
   links,
   session,
@@ -101,7 +101,7 @@ export default function HorizontalNavbar({
   };
 
   return (
-    <div className="-translate-x-[48px] fixed z-50">
+    <div id="container" className="-translate-x-[48px] fixed z-50">
       <motion.div
         initial={open ? { x: 0, opacity: 1 } : { x: -340 + 32 }}
         animate={{ x: -320 + 32 }}
