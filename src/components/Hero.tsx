@@ -25,7 +25,11 @@ export default function Hero({
         scale: pathname.includes("/blog") ? 0.5 : 1,
       }}
       animate={pathname.includes("/blog") ? { scale: 0.5 } : { scale: 1 }}
-      className="flex flex-col pr-2 hover:cursor-pointer mb-8 w-fit"
+      className={
+        pathname.split("/").length > 2
+          ? "opacity-0"
+          : "flex flex-col pr-2 hover:cursor-pointer mb-8 w-fit"
+      }
     >
       <motion.h1 className=" md:text-8xl text-5xl -ml-1">
         <Link href="/about_me">{title}</Link>

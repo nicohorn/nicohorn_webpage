@@ -181,5 +181,3 @@ export default function AboutMeSection() {
 /*My moat is that I have no preference. I will work on anything you throw at me. I will crunch numbers. I will machine parts. I will write code. I will read papers. I will make frontend interfaces
 
 I might not be the best at the job but I will do it*/
-
-//aspect-[9/16] 3xl:aspect-auto 3xl:w-[21rem]
