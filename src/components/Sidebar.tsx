@@ -76,6 +76,11 @@ export default function HorizontalNavbar({
                 { x: -320 - 48 + 32 },
                 { duration: 0.5, type: "spring", bounce: 0.2 }
               );
+              animate(
+                "#nav_container",
+                { zIndex: 0 },
+                { duration: 0.5, type: "spring", bounce: 0.2 }
+              );
             }, 250);
             signOut({ callbackUrl: "/" });
           }}
