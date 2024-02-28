@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useScroll } from "framer-motion";
-import { Prisma } from "@prisma/client";
+
 import { IconCalendar } from "@tabler/icons-react";
 import { Merriweather } from "next/font/google";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { TagsToSpanish } from "@/utils/dictionaries/Tags";
-import SquareLoader from "@/components/SquareLoader";
+
 const merriweather = Merriweather({
   subsets: ["latin"],
   display: "swap",
@@ -23,8 +23,6 @@ export default function BlogCard({
   colSpan?: boolean;
   idx: number;
 }) {
-  const router = useRouter();
-
   return (
     <motion.div
       key={idx}

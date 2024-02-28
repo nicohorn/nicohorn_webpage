@@ -158,6 +158,7 @@ export default function HorizontalNavbar({
                 { duration: 0.5, type: "spring", bounce: 0.2 }
               );
         }}
+        aria-label={open ? "Sidebar close button" : "Sidebar open button"}
         className="bg-yellow-300 w-5 flex items-center justify-center text-lg text-black "
       >
         {!open ? <IconArrowBadgeRight /> : <IconArrowBadgeLeft />}

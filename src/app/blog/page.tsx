@@ -6,6 +6,8 @@ import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 import Link from "next/link";
 import { IconLayoutRows, IconLayoutColumns } from "@tabler/icons-react";
 import { getTags } from "@/repositories/blog_tag";
+import { Suspense } from "react";
+import CardLoader from "./components/CardLoader";
 
 export default async function Page({
   searchParams,
@@ -46,9 +48,11 @@ export default async function Page({
         >
           {blog_entries!.map((entry, idx) => {
             return (
-              <Link prefetch key={idx} href={`/blog/${entry.id}`}>
-                <BlogCard blog_entry={entry} idx={idx} />
-              </Link>
+              <Suspense key={idx} fallback={<CardLoader />}>
+                <Link prefetch href={`/blog/${entry.id}`}>
+                  <BlogCard blog_entry={entry} idx={idx} />
+                </Link>
+              </Suspense>
             );
           })}
         </div>
