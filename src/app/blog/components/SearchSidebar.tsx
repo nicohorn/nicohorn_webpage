@@ -3,12 +3,13 @@ import { TagsToSpanish } from "@/utils/dictionaries/Tags";
 import { blog_tags } from "@prisma/client";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 export default function SearchSidebar({ tags }: { tags: blog_tags[] }) {
-  const router = useRouter();
   const path = usePathname();
   const searchParams = useSearchParams();
+
+  const [selected, setSelected] = useState(-1);
 
   console.log({ ...searchParams });
   const createQueryString = useCallback(
@@ -27,12 +28,13 @@ export default function SearchSidebar({ tags }: { tags: blog_tags[] }) {
         return (
           <Link
             className={`${
-              searchParams.get("tag") === tag.name &&
+              (selected === idx || searchParams.get("tag") === tag.name) &&
               "text-yellow-400 underline"
             } "hover:underline hover:text-yellow-400 transition"`}
             href={`${path}?${createQueryString("tag", tag.name)}`}
             key={idx}
             onClick={() => {
+              setSelected(idx);
               console.log(createQueryString("tag", tag.name));
             }}
           >

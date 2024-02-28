@@ -120,3 +120,92 @@ div {
 *::-webkit-scrollbar-thumb:active {
   background-color: rgb(113, 113, 122);
 }
+
+.loaderContainer {
+  --uib-size: 35px;
+  --uib-color: black;
+  --uib-speed: 1.2s;
+  --uib-bg-opacity: 0.1;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  transform-origin: center;
+  will-change: transform;
+  overflow: visible;
+}
+
+.loaderCar {
+  fill: none;
+  stroke: rgb(255, 232, 120);
+  stroke-dasharray: 25, 75;
+  stroke-dashoffset: 0;
+  animation: travel var(--uib-speed) linear infinite;
+  will-change: stroke-dasharray, stroke-dashoffset;
+  transition: stroke 0.5s ease;
+}
+
+.loaderTrack {
+  fill: none;
+  stroke: #0d0d0d;
+  opacity: 1;
+  transition: stroke 0.5s ease;
+}
+
+@keyframes travel {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+.cardLoaderContainer {
+  --uib-size: 80px;
+  --uib-color: black;
+  --uib-speed: 1.75s;
+  --uib-stroke: 5px;
+  --uib-bg-opacity: 0.1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--uib-stroke);
+  width: var(--uib-size);
+  border-radius: calc(var(--uib-stroke) / 2);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.cardLoaderContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--uib-color);
+  opacity: var(--uib-bg-opacity);
+  transition: background-color 0.3s ease;
+}
+
+.cardLoaderContainer::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--uib-stroke) / 2);
+  animation: wobble var(--uib-speed) ease-in-out infinite;
+  transform: translateX(-95%);
+  background-color: rgb(255, 232, 120);
+  transition: background-color 0.3s ease;
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(-95%);
+  }
+  50% {
+    transform: translateX(95%);
+  }
+}

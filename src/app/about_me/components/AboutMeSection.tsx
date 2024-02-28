@@ -2,6 +2,7 @@
 import { animate, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { Merriweather } from "next/font/google";
+import Image from "next/image";
 
 const images = [
   {
@@ -31,6 +32,25 @@ const merriweather = Merriweather({
   display: "swap",
   weight: "300",
 });
+
+const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#333" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#333" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#333" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === "undefined"
+    ? Buffer.from(str).toString("base64")
+    : window.btoa(str);
 
 export default function AboutMeSection() {
   const [delay500ms, setDelay500ms] = useState(false);
@@ -115,7 +135,8 @@ export default function AboutMeSection() {
       <div className=" flex mt-4 flex-wrap gap-2 ">
         {images.map((image, idx) => {
           return (
-            <motion.img
+            <motion.div
+              id={`image${idx}`}
               drag
               dragConstraints={{
                 left: -50,
@@ -136,12 +157,20 @@ export default function AboutMeSection() {
                 scale: 1.3,
                 borderColor: "yellow",
               }}
-              id={`image${idx}`}
-              className="flex-grow w-[10rem] object-cover border"
-              alt={image.alt}
-              src={image.src}
               key={idx}
-            ></motion.img>
+              className="flex-grow w-[15rem] min-h-[50vh] object-cover border border-black relative"
+            >
+              <Image
+                style={{ objectFit: "cover" }}
+                className="pointer-events-none"
+                layout="fill"
+                alt={image.alt}
+                src={image.src}
+                placeholder={`data:image/svg+xml;base64,${toBase64(
+                  shimmer(800, 800)
+                )}`}
+              ></Image>
+            </motion.div>
           );
         })}
       </div>
@@ -152,5 +181,3 @@ export default function AboutMeSection() {
 /*My moat is that I have no preference. I will work on anything you throw at me. I will crunch numbers. I will machine parts. I will write code. I will read papers. I will make frontend interfaces
 
 I might not be the best at the job but I will do it*/
-
-//aspect-[9/16] 3xl:aspect-auto 3xl:w-[21rem]

@@ -20,26 +20,35 @@ export default async function Page({
       <SearchSidebar tags={tags!} />
       <div className="flex gap-2 items-end">
         <Title title="Últimas entradas" />
-        <Link className="ml-3" href={`/blog?display=cols`}>
+        <Link
+          className="ml-3"
+          aria-label="Display blog cards in columns"
+          href={`/blog?display=cols`}
+        >
           <IconLayoutColumns />
         </Link>
-        <Link href={`/blog?display=rows`}>
+        <Link
+          href={`/blog?display=rows`}
+          aria-label="Display blog cards in rows"
+        >
           <IconLayoutRows />
         </Link>
       </div>
       <div className="flex my-4 w-full xl:w-[80%]">
         <div
-          className={`
+          className={` 
             ${
-              searchParams.display === "cols"
+              searchParams.display === "cols" || !searchParams.display
                 ? "grid xl:grid-cols-2 gap-10  grid-cols-1"
                 : "grid gap-10  grid-cols-1"
             }
-           transition`}
+           transition ${
+             !searchParams && "grid xl:grid-cols-2 gap-10  grid-cols-1"
+           }`}
         >
           {blog_entries!.map((entry, idx) => {
             return (
-              <Link prefetch key={idx} href={`/blog/${entry.id}`}>
+              <Link prefetch href={`/blog/${entry.id}`}>
                 <BlogCard blog_entry={entry} idx={idx} />
               </Link>
             );
