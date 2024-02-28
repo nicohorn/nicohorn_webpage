@@ -29,7 +29,7 @@ export default function HorizontalNavbar({
           className=" w-full text-left"
         >
           <motion.p
-            className="button py-5"
+            className="button py-5 px-12"
             whileTap={{ scale: 0.97 }}
             whileHover={{ x: 5 }}
           >
@@ -50,7 +50,7 @@ export default function HorizontalNavbar({
               onClick={() => {
                 signIn("google");
               }}
-              className=" px-9 py-6"
+              className=" px-14 py-6"
             >
               Iniciar sesión con Google
             </motion.button>
@@ -76,6 +76,11 @@ export default function HorizontalNavbar({
                 { x: -320 - 48 + 32 },
                 { duration: 0.5, type: "spring", bounce: 0.2 }
               );
+              animate(
+                "#nav_container",
+                { zIndex: 0 },
+                { duration: 0.5, type: "spring", bounce: 0.2 }
+              );
             }, 250);
             signOut({ callbackUrl: "/" });
           }}
@@ -96,69 +101,67 @@ export default function HorizontalNavbar({
   };
 
   return (
-    <div className="-translate-x-[48px] fixed z-50">
-      <motion.div
-        initial={open ? { x: 0, opacity: 1 } : { x: -340 + 32 }}
-        animate={{ x: -320 + 32 }}
-        transition={{ delay: 0.5, duration: 0.5, bounce: 0.4, type: "spring" }}
-        id="nav_container"
-        className="flex drop-shadow-lg "
-      >
-        <motion.div className="flex flex-col text-4xl w-72  bg-zinc-950/95">
-          {links.map((link, idx) => {
-            return (
-              <motion.span
-                key={idx}
-                transition={{ duration: 1 }}
-                whileHover={{ backgroundColor: "white", color: "black" }}
-              >
-                <Link className="font-thin" href={link.link}>
-                  <motion.p
-                    className="px-12 py-5"
-                    onClick={() => {
-                      setTimeout(() => {
-                        setOpen(false);
-                        animate(
-                          "#nav_container",
-                          { x: -320 + 32 },
-                          { duration: 0.5, type: "spring", bounce: 0.2 }
-                        );
-                      }, 250);
-                    }}
-                    whileTap={{ scale: 0.97 }}
-                    whileHover={{ x: 5 }}
-                  >
-                    {link.title}
-                  </motion.p>
-                </Link>
-              </motion.span>
-            );
-          })}
-          {!session ? loginButton() : logoutButton()}
-        </motion.div>
-        <motion.button
-          initial={{ opacity: 0.95 }}
-          whileHover={{ opacity: 1 }}
-          whileTap={{ opacity: 0.5 }}
-          onClick={() => {
-            setOpen(!open);
-            open
-              ? animate(
-                  "#nav_container",
-                  { x: -320 + 32 },
-                  { duration: 0.5, type: "spring", bounce: 0.2 }
-                )
-              : animate(
-                  "#nav_container",
-                  { x: 0 },
-                  { duration: 0.5, type: "spring", bounce: 0.2 }
-                );
-          }}
-          className="bg-yellow-300 w-5 flex items-center justify-center text-lg text-black "
-        >
-          {!open ? <IconArrowBadgeRight /> : <IconArrowBadgeLeft />}
-        </motion.button>
+    <motion.div
+      initial={open ? { x: 0, opacity: 1 } : { x: -368 + 32 }}
+      animate={{ x: -368 + 32 }}
+      transition={{ delay: 0.5, duration: 0.5, bounce: 0.4, type: "spring" }}
+      id="nav_container"
+      className="flex drop-shadow-lg fixed z-50"
+    >
+      <motion.div className="flex flex-col text-4xl w-72  bg-zinc-950/95">
+        {links.map((link, idx) => {
+          return (
+            <motion.span
+              key={idx}
+              transition={{ duration: 1 }}
+              whileHover={{ backgroundColor: "white", color: "black" }}
+            >
+              <Link className="font-thin" href={link.link}>
+                <motion.p
+                  className="px-12 py-5"
+                  onClick={() => {
+                    setTimeout(() => {
+                      setOpen(false);
+                      animate(
+                        "#nav_container",
+                        { x: -368 + 32 },
+                        { duration: 0.5, type: "spring", bounce: 0.2 }
+                      );
+                    }, 250);
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ x: 5 }}
+                >
+                  {link.title}
+                </motion.p>
+              </Link>
+            </motion.span>
+          );
+        })}
+        {!session ? loginButton() : logoutButton()}
       </motion.div>
-    </div>
+      <motion.button
+        initial={{ opacity: 0.95 }}
+        whileHover={{ opacity: 1 }}
+        whileTap={{ opacity: 0.5 }}
+        onClick={() => {
+          setOpen(!open);
+          open
+            ? animate(
+                "#nav_container",
+                { x: -368 + 32 },
+                { duration: 0.5, type: "spring", bounce: 0.2 }
+              )
+            : animate(
+                "#nav_container",
+                { x: -48 },
+                { duration: 0.5, type: "spring", bounce: 0.2 }
+              );
+        }}
+        className="bg-yellow-300 w-5 flex items-center justify-center text-lg text-black "
+      >
+        {!open ? <IconArrowBadgeRight /> : <IconArrowBadgeLeft />}
+      </motion.button>
+    </motion.div>
   );
 }
