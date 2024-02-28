@@ -38,13 +38,15 @@ export default async function Page({
       </div>
       <div className="flex my-4 w-full xl:w-[80%]">
         <div
-          className={`
+          className={` 
             ${
               searchParams.display === "cols"
                 ? "grid xl:grid-cols-2 gap-10  grid-cols-1"
                 : "grid gap-10  grid-cols-1"
             }
-           transition`}
+           transition ${
+             !searchParams && "grid xl:grid-cols-2 gap-10  grid-cols-1"
+           }`}
         >
           {blog_entries!.map((entry, idx) => {
             return (

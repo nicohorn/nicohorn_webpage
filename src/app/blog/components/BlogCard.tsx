@@ -47,7 +47,7 @@ export default function BlogCard({
         `}
     >
       <div className="group-hover:bg-black/50 bg-black/20 transition absolute w-full h-full left-0 top-0"></div>
-      <p className="flex gap-2 text-white/80 group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,1)]">
+      <p className="flex gap-2 text-white/80 group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,0.3)]">
         <IconCalendar />
         {blog_entry.created_at.toLocaleDateString()}
       </p>
@@ -76,7 +76,7 @@ export default function BlogCard({
           })}
         </div>
 
-        <p className="text-sm text-white/80 text-right whitespace-nowrap group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,1)] self-end">
+        <p className="text-sm text-white/80 text-right whitespace-nowrap group-hover:text-white transition drop-shadow-[2px_2px_2px_rgba(0,0,0,0.3)] self-end">
           {blog_entry.author_name}
         </p>
       </div>
