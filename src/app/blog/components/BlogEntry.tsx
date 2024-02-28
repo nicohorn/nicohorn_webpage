@@ -1,11 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TipTapContent from "../components/TipTapContent";
 import { IconCalendar } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { animate, useMotionValueEvent, useScroll } from "framer-motion";
-import { IconCircleArrowUpFilled } from "@tabler/icons-react";
+import {
+  IconCircleArrowUpFilled,
+  IconTextSize,
+  IconPlus,
+  IconMinus,
+} from "@tabler/icons-react";
 
 export default function BlogEntry({
   blog_entry,
@@ -13,6 +18,15 @@ export default function BlogEntry({
   blog_entry: BlogEntryWithTags;
 }) {
   const { scrollY, scrollYProgress } = useScroll();
+
+  const [textSize, setTextSize] = useState(1);
+
+  const textSizes: { [key: number]: string } = {
+    0: "text-sm",
+    1: "text-lg",
+    2: "text-xl",
+    3: "text-2xl",
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     console.log(latest);
@@ -46,7 +60,7 @@ export default function BlogEntry({
   });
 
   return (
-    <main className="lg:-mt-36 -mt-10 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
+    <main className="lg:-mt-36 text-justify -mt-10 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
       <div
         id="progress_bar"
         className="h-2 w-screen origin-left bg-zinc-500 fixed bottom-0 left-0 z-50"
@@ -81,14 +95,42 @@ export default function BlogEntry({
             {blog_entry?.created_at.toLocaleDateString()}
           </p>
         </div>
+        <div className="mx-auto md:w-[85%] w-[70%]">
+          <h1 className="text-5xl drop-shadow-[0px_0px_3px_rgba(0,0,0,1)]">
+            {blog_entry?.title}
+          </h1>
+          <div className="flex flex-col gap-2 ">
+            <p>{blog_entry?.description}</p>
+          </div>
+        </div>
       </div>
-      <h1 className="text-5xl drop-shadow-[0px_0px_3px_rgba(0,0,0,1)]">
-        {blog_entry?.title}
-      </h1>
-      <div className="flex flex-col gap-2 ">
-        <p>{blog_entry?.description}</p>
-      </div>
-      <div className={`my-20  pt-5`}>
+
+      <div
+        className={`mt-[18rem] leading-relaxed relative ${textSizes[textSize]}`}
+      >
+        <div className="flex my-6 items-center gap-3 ">
+          <button
+            className="opacity-40 hover:opacity-100 active:scale-90"
+            aria-label="Decrease text size"
+            onClick={() => {
+              if (textSize > 0) setTextSize(textSize - 1);
+              else if (textSize == 0) setTextSize(0);
+            }}
+          >
+            <IconMinus />
+          </button>
+          <IconTextSize className="w-8 h-8" />
+          <button
+            className="opacity-40 hover:opacity-100 active:scale-90"
+            aria-label="Increase text size"
+            onClick={() => {
+              if (textSize < 3) setTextSize(textSize + 1);
+              else if (textSize == 3) setTextSize(3);
+            }}
+          >
+            <IconPlus />
+          </button>
+        </div>
         <TipTapContent blog_entry_content={blog_entry?.content!} />
       </div>
     </main>
