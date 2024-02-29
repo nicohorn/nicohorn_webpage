@@ -15,10 +15,13 @@ export default function Hero({
 
   const pathname = usePathname();
 
-  if (pathname == "/landing") return null;
+  if (pathname.includes("/landing")) return null;
+  if (pathname.includes("/dashboard")) return null;
   return (
     <motion.div
-      whileTap={pathname !== "/about_me" ? { scale: 0.495 } : { scale: 0.995 }}
+      whileTap={
+        !pathname.includes("about_me") ? { scale: 0.495 } : { scale: 0.995 }
+      }
       initial={{
         originX: 0,
         originY: 0,
@@ -26,13 +29,13 @@ export default function Hero({
       }}
       animate={pathname.includes("/blog") ? { scale: 0.5 } : { scale: 1 }}
       className={
-        pathname.split("/").length > 2
+        pathname.split("/").length > 3 && pathname.includes("/blog")
           ? "opacity-0"
           : "flex flex-col pr-2 hover:cursor-pointer mb-8 w-fit"
       }
     >
       <motion.h1 className=" md:text-8xl text-5xl -ml-1">
-        <Link href="/about_me">{title}</Link>
+        <Link href={`/${pathname.split("/")[1]}/about_me`}>{title}</Link>
       </motion.h1>
       <motion.div
         className=" font-thin flex text-xl "

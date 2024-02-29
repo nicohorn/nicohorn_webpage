@@ -60,7 +60,7 @@ export default function BlogEntry({
   });
 
   return (
-    <main className="lg:-mt-36 text-justify -mt-10 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
+    <main className="-mt-36 text-justify  flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
       <div
         id="progress_bar"
         className="h-2 w-screen origin-left bg-zinc-500 fixed bottom-0 left-0 z-50"

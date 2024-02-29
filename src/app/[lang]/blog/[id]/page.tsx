@@ -4,7 +4,11 @@ import React from "react";
 import type { Metadata } from "next";
 import BlogEntry from "../components/BlogEntry";
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { id: string; lang: string };
+}) {
   const blog_entry = (await getBlogEntryById(params.id)) as BlogEntryWithTags;
 
   return <BlogEntry blog_entry={blog_entry} />;

@@ -40,3 +40,13 @@ export const links: LinksType = {
     admin: admin_links,
     user: user_links,
 };
+
+
+export const dictLinksToEnglish: { [key: string]: string } = {
+    "Inicio": "Home",
+    "Blog": "Blog",
+    "Playground": "Playground",
+    "Alumnos": "Students",
+    "Dashboard": "Dashboard"
+
+}
