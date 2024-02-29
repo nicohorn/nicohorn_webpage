@@ -25,8 +25,6 @@ export async function middleware(req: NextRequest) {
 
 
 
-
-
     /* 
        401 response code: server says hey you're not authenticated
        403 response code: server says hey you're authenticated but you're not supposed to do/see that
