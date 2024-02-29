@@ -6,6 +6,7 @@ import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 import Link from "next/link";
 import { IconLayoutRows, IconLayoutColumns } from "@tabler/icons-react";
 import { getTags } from "@/repositories/blog_tag";
+import { headers as reqHeaders } from "next/headers";
 
 export default async function Page({
   searchParams,
@@ -15,9 +16,12 @@ export default async function Page({
   const blog_entries = await getAllBlogEntriesWithTags(searchParams.tag);
   const tags = await getTags();
 
+  const headers = reqHeaders() as any;
+
   return (
     <main className="xl:-mt-20 -mt-12">
       <SearchSidebar tags={tags!} />
+
       <div className="flex gap-2 items-end">
         <Title title="Últimas entradas" />
         <Link
@@ -48,7 +52,15 @@ export default async function Page({
         >
           {blog_entries!.map((entry, idx) => {
             return (
-              <Link prefetch href={`/blog/${entry.id}`}>
+              <Link
+                key={idx}
+                prefetch
+                //This "next-url" is to get the current language
+                href={`/${
+                  headers.headers["next-url"]?.split("/")[1] ||
+                  headers.headers["Accept-Language"]?.split(",")[0]
+                }/blog/${entry.id}`}
+              >
                 <BlogCard blog_entry={entry} idx={idx} />
               </Link>
             );
