@@ -61,11 +61,7 @@ export default async function Page({
               <Link
                 key={idx}
                 prefetch
-                //This "next-url" is to get the current language
-                href={`/${
-                  headers.headers["next-url"]?.split("/")[1] ||
-                  headers.headers["Accept-Language"]?.split(",")[0]
-                }/blog/${entry.id}`}
+                href={`/${params.lang}/blog/${entry.id}`}
               >
                 <BlogCard blog_entry={entry} idx={idx} />
               </Link>
