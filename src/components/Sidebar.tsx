@@ -8,6 +8,7 @@ import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
 
 import { IconArrowBadgeLeft, IconArrowBadgeRight } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
 
 export default function HorizontalNavbar({
   links,
@@ -17,6 +18,7 @@ export default function HorizontalNavbar({
   session?: Session;
 }) {
   const [open, setOpen] = useState(false);
+  const path = usePathname();
 
   //These buttons <loginButton and logoutButton> aren't meant to be reusable components, but since they're conditionally called (if there's an active session), it's easier to manage them having them defined as functions inside this component.
   const loginButton = () => {
@@ -116,7 +118,10 @@ export default function HorizontalNavbar({
               transition={{ duration: 1 }}
               whileHover={{ backgroundColor: "white", color: "black" }}
             >
-              <Link className="font-thin" href={link.link}>
+              <Link
+                className="font-thin"
+                href={`/${path.split("/")[1]}${link.link}`}
+              >
                 <motion.p
                   className="px-12 py-5"
                   onClick={() => {

@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import HorizontalNavbar from "@/components/Sidebar";
-import "./globals.css";
+import "./../globals.css";
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
 import Hero from "@/components/Hero";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "./../api/auth/[...nextauth]/route";
 import { users } from "@prisma/client";
-import { guest_links, links } from "./Links";
+import { guest_links, links } from "./../Links";
 
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 
