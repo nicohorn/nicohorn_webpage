@@ -72,7 +72,6 @@ model blog_entries {
   description   String
   cover_image   String
   node          String?
-  lang          String
   tags          blog_entries_on_tags[]
   
   
