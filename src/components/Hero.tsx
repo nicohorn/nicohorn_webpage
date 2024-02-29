@@ -15,7 +15,8 @@ export default function Hero({
 
   const pathname = usePathname();
 
-  if (pathname == "/landing") return null;
+  if (pathname.includes("/landing")) return null;
+  if (pathname.includes("/dashboard")) return null;
   return (
     <motion.div
       whileTap={
@@ -28,7 +29,7 @@ export default function Hero({
       }}
       animate={pathname.includes("/blog") ? { scale: 0.5 } : { scale: 1 }}
       className={
-        pathname.split("/").length > 3
+        pathname.split("/").length > 3 && pathname.includes("/blog")
           ? "opacity-0"
           : "flex flex-col pr-2 hover:cursor-pointer mb-8 w-fit"
       }

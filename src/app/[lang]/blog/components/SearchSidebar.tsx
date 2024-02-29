@@ -5,7 +5,13 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useState } from "react";
 
-export default function SearchSidebar({ tags }: { tags: blog_tags[] }) {
+export default function SearchSidebar({
+  lang,
+  tags,
+}: {
+  lang: string;
+  tags: blog_tags[];
+}) {
   const path = usePathname();
   const searchParams = useSearchParams();
 
@@ -23,7 +29,7 @@ export default function SearchSidebar({ tags }: { tags: blog_tags[] }) {
   );
 
   return (
-    <div className="fixed right-[5rem] text-right px-4 xl:flex flex-col gap-4 hidden ">
+    <div className="fixed right-[2rem] text-right px-4 xl:flex flex-col gap-4 hidden ">
       {tags.map((tag, idx) => {
         return (
           <Link
@@ -38,7 +44,11 @@ export default function SearchSidebar({ tags }: { tags: blog_tags[] }) {
               console.log(createQueryString("tag", tag.name));
             }}
           >
-            {TagsToSpanish[tag.name] ? TagsToSpanish[tag.name] : tag.name}
+            {lang === "en-US"
+              ? tag.name
+              : TagsToSpanish[tag.name]
+              ? TagsToSpanish[tag.name]
+              : tag.name}
           </Link>
         );
       })}

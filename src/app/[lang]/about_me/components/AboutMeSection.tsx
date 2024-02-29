@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import { animate, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
@@ -52,7 +53,142 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString("base64")
     : window.btoa(str);
 
-export default function AboutMeSection() {
+const contentSpanish = (
+  <div className={merriweather.className}>
+    <p className="font-thin text-[1.05rem] leading-relaxed mt-2">
+      <span
+        className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image0", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image0", { scale: 1, borderColor: "black" });
+        }}
+      >
+        {" "}
+        Me llamo Nicolás Horn
+      </span>
+      , soy ingeniero en sistemas, nací en Buenos Aires, tengo 26 años, y{" "}
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image1", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image1", { scale: 1, borderColor: "black" });
+        }}
+      >
+        un perro que se llama Zeus.
+      </span>{" "}
+      Actualmente estoy especializándome en redes de telecomunicaciones y
+      machine learning.{" "}
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image2", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image2", { scale: 1, borderColor: "black" });
+        }}
+      >
+        Hace varios años que me dedico al desarrollo de software
+      </span>
+      , pero también trabajé como{" "}
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image3", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image3", { scale: 1, borderColor: "black" });
+        }}
+      >
+        fotógrafo, editor de videos
+      </span>
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 transition"
+        onMouseEnter={() => {
+          animate("#image4", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image4", { scale: 1, borderColor: "black" });
+        }}
+      >
+        , barista y gerente de restaurante.{" "}
+      </span>
+      Como hobbie, estoy empezando a desarrollar videojuegos.
+    </p>
+  </div>
+);
+
+const contentEnglish = (
+  <div className={merriweather.className}>
+    <p className="font-thin text-[1.05rem] leading-relaxed mt-2">
+      <span
+        className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image0", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image0", { scale: 1, borderColor: "black" });
+        }}
+      >
+        {" "}
+        Hello! I'm Nicolas Horn
+      </span>
+      , I'm a systems engineer, born in Buenos Aires, 26 years old. I{" "}
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image1", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image1", { scale: 1, borderColor: "black" });
+        }}
+      >
+        have a dog named Zeus.
+      </span>{" "}
+      I'm currently specializing in computer networks and machine learning.{" "}
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image2", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image2", { scale: 1, borderColor: "black" });
+        }}
+      >
+        I've been a sofware engineer for quite a while now
+      </span>
+      , but I also worked as a{" "}
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
+        onMouseEnter={() => {
+          animate("#image3", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image3", { scale: 1, borderColor: "black" });
+        }}
+      >
+        wedding photographer, video editor
+      </span>
+      <span
+        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 transition"
+        onMouseEnter={() => {
+          animate("#image4", { scale: 1.03, borderColor: "yellow" });
+        }}
+        onMouseLeave={() => {
+          animate("#image4", { scale: 1, borderColor: "black" });
+        }}
+      >
+        , barista and restaurant manager.{" "}
+      </span>
+      As a hobby, I got into game developing recently.
+    </p>
+  </div>
+);
+
+export default function AboutMeSection({ lang }: { lang: string }) {
   const [delay500ms, setDelay500ms] = useState(false);
 
   useEffect(() => {
@@ -67,71 +203,7 @@ export default function AboutMeSection() {
       initial={{ opacity: 0, x: -5 }}
       animate={{ opacity: 1, x: 0 }}
     >
-      <div className={merriweather.className}>
-        <p className="font-thin text-[1.05rem] leading-relaxed mt-2">
-          <span
-            className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500  transition"
-            onMouseEnter={() => {
-              animate("#image0", { scale: 1.03, borderColor: "yellow" });
-            }}
-            onMouseLeave={() => {
-              animate("#image0", { scale: 1, borderColor: "black" });
-            }}
-          >
-            {" "}
-            Me llamo Nicolás Horn
-          </span>
-          , soy ingeniero en sistemas, nací en Buenos Aires, tengo 26 años, y{" "}
-          <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-            onMouseEnter={() => {
-              animate("#image1", { scale: 1.03, borderColor: "yellow" });
-            }}
-            onMouseLeave={() => {
-              animate("#image1", { scale: 1, borderColor: "black" });
-            }}
-          >
-            un perro que se llama Zeus.
-          </span>{" "}
-          Actualmente estoy especializándome en redes de telecomunicaciones y
-          machine learning.{" "}
-          <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-            onMouseEnter={() => {
-              animate("#image2", { scale: 1.03, borderColor: "yellow" });
-            }}
-            onMouseLeave={() => {
-              animate("#image2", { scale: 1, borderColor: "black" });
-            }}
-          >
-            Hace varios años que me dedico al desarrollo de software
-          </span>
-          , pero también trabajé como{" "}
-          <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-            onMouseEnter={() => {
-              animate("#image3", { scale: 1.03, borderColor: "yellow" });
-            }}
-            onMouseLeave={() => {
-              animate("#image3", { scale: 1, borderColor: "black" });
-            }}
-          >
-            fotógrafo, editor de videos
-          </span>
-          <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 transition"
-            onMouseEnter={() => {
-              animate("#image4", { scale: 1.03, borderColor: "yellow" });
-            }}
-            onMouseLeave={() => {
-              animate("#image4", { scale: 1, borderColor: "black" });
-            }}
-          >
-            , barista y gerente de restaurante.{" "}
-          </span>
-          Como hobbie, estoy empezando a desarrollar videojuegos.
-        </p>
-      </div>
+      {lang === "en-US" ? contentEnglish : contentSpanish}
       <div className=" flex mt-4 flex-wrap gap-2 ">
         {images.map((image, idx) => {
           return (

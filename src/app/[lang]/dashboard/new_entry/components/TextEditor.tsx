@@ -3,7 +3,7 @@ import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import Image from "@tiptap/extension-image";
-import { EditorProvider, JSONContent, useCurrentEditor } from "@tiptap/react";
+import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
 import { supabase } from "@/supabase";
@@ -13,6 +13,15 @@ const merriweather = Merriweather({
   display: "swap",
   weight: "300",
 });
+import {
+  IconBold,
+  IconItalic,
+  IconStrikethrough,
+  IconCode,
+  IconArrowBack,
+  IconArrowForwardUp,
+  IconPhoto,
+} from "@tabler/icons-react";
 
 export default function TextEditor({
   setContent,
@@ -65,10 +74,10 @@ export default function TextEditor({
           className={
             editor.isActive("bold")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
-          bold
+          <IconBold />
         </button>
         <button
           onClick={(e) => {
@@ -79,10 +88,10 @@ export default function TextEditor({
           className={
             editor.isActive("italic")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
-          italic
+          <IconItalic />
         </button>
         <button
           onClick={(e) => {
@@ -93,10 +102,10 @@ export default function TextEditor({
           className={
             editor.isActive("strike")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
-          strike
+          <IconStrikethrough />
         </button>
         <button
           onClick={(e) => {
@@ -107,12 +116,13 @@ export default function TextEditor({
           className={
             editor.isActive("code")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
-          code
+          <IconCode />
         </button>
         <button
+          className="opacity-60 hover:opacity-100 transition"
           onClick={(e) => {
             e.preventDefault();
             editor.chain().focus().unsetAllMarks().run();
@@ -121,6 +131,7 @@ export default function TextEditor({
           clear marks
         </button>
         <button
+          className="opacity-60 hover:opacity-100 transition"
           onClick={(e) => {
             e.preventDefault();
             editor.chain().focus().clearNodes().run();
@@ -136,7 +147,7 @@ export default function TextEditor({
           className={
             editor.isActive("paragraph")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           paragraph
@@ -149,7 +160,7 @@ export default function TextEditor({
           className={
             editor.isActive("heading", { level: 1 })
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           h1
@@ -162,7 +173,7 @@ export default function TextEditor({
           className={
             editor.isActive("heading", { level: 2 })
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           h2
@@ -175,7 +186,7 @@ export default function TextEditor({
           className={
             editor.isActive("heading", { level: 3 })
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           h3
@@ -188,37 +199,12 @@ export default function TextEditor({
           className={
             editor.isActive("heading", { level: 4 })
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           h4
         </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleHeading({ level: 5 }).run();
-          }}
-          className={
-            editor.isActive("heading", { level: 5 })
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
-          }
-        >
-          h5
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().toggleHeading({ level: 6 }).run();
-          }}
-          className={
-            editor.isActive("heading", { level: 6 })
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
-          }
-        >
-          h6
-        </button>
+
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -227,7 +213,7 @@ export default function TextEditor({
           className={
             editor.isActive("bulletList")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           bullet list
@@ -240,7 +226,7 @@ export default function TextEditor({
           className={
             editor.isActive("orderedList")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           ordered list
@@ -253,7 +239,7 @@ export default function TextEditor({
           className={
             editor.isActive("codeBlock")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           code block
@@ -266,7 +252,7 @@ export default function TextEditor({
           className={
             editor.isActive("blockquote")
               ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border"
+              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
           }
         >
           blockquote
@@ -294,7 +280,7 @@ export default function TextEditor({
           }}
           disabled={!editor.can().chain().focus().undo().run()}
         >
-          👈🏻
+          <IconArrowBack />
         </button>
         <button
           onClick={(e) => {
@@ -303,7 +289,7 @@ export default function TextEditor({
           }}
           disabled={!editor.can().chain().focus().redo().run()}
         >
-          👉🏻
+          <IconArrowForwardUp />
         </button>
         <button
           onClick={(e) => {
@@ -342,7 +328,7 @@ export default function TextEditor({
           htmlFor="text_editor_image"
           className={"text-white rounded-sm px-1 cursor-pointer"}
         >
-          🖼️
+          <IconPhoto />
         </label>
         <input
           onChange={async () => {
@@ -398,7 +384,7 @@ export default function TextEditor({
   };
 
   return (
-    <div className={`border border-zinc-600 p-3 ${merriweather.className}`}>
+    <div className={`border border-zinc-600 p-3 ${merriweather.className} `}>
       <EditorProvider
         slotBefore={<MenuBar />}
         extensions={extensions}
