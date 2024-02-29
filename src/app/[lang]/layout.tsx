@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Welcome to my personal webpage, I'm Nico Horn, full stack developer, systems engineer and educator.",
   other: {
-    "og:image": "/src/ms-icon-144x144.png",
+    "og:image": "/app/ms-icon-144x144.png",
   },
 };
 
