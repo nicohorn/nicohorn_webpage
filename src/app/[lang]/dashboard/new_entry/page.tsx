@@ -2,12 +2,12 @@ import React from "react";
 import BlogEntryForm from "./components/BlogEntryForm";
 import { getTags } from "@/repositories/blog_tag";
 
-export default async function Page() {
+export default async function Page({ params }: { params: { lang: string } }) {
   const tags = await getTags();
 
   return (
     <main>
-      <BlogEntryForm tags={tags!} />
+      <BlogEntryForm lang={params.lang} tags={tags!} />
     </main>
   );
 }
