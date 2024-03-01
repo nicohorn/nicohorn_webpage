@@ -1,15 +1,20 @@
+import { BlogEntryWithTagsForm } from "@/app/[lang]/dashboard/new_entry/components/BlogEntryForm";
 import { prisma } from "@/utils/db";
 import { Prisma } from "@prisma/client";
 
+
+//This type is for the frontend. I have yet to investigate a little more of this.
 export type BlogEntryWithTags = Prisma.blog_entriesGetPayload<{
   include: {
     tags: {
       include: {
-        blog_tag: true;
-      };
-    };
-  };
+        blog_tag: true
+      }
+    }
+  }
+
 }>;
+
 
 export const getBlogEntryById = async (id: string) => {
   try {
@@ -27,7 +32,7 @@ export const getBlogEntryById = async (id: string) => {
   }
 };
 
-export const createBlogEntry = async (data: BlogEntryWithTags) => {
+export const createBlogEntry = async (data: BlogEntryWithTagsForm) => {
   try {
     const blog_entries = await prisma.blog_entries.create({
       data: {
@@ -39,7 +44,7 @@ export const createBlogEntry = async (data: BlogEntryWithTags) => {
             return {
               blog_tag: {
                 connect: {
-                  id: tag.blog_tag_id,
+                  id: tag.id,
                 },
               },
             };
@@ -55,7 +60,7 @@ export const createBlogEntry = async (data: BlogEntryWithTags) => {
   }
 };
 
-export const getAllBlogEntriesWithTags = async (tag: string) => {
+export const getAllBlogEntriesWithTags = async (tag: string, lang: string) => {
 
   try {
 
@@ -69,6 +74,9 @@ export const getAllBlogEntriesWithTags = async (tag: string) => {
               }
             }
           }
+        },
+        lang: {
+          equals: lang
         }
       },
       include: {

@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import { dictLinksToEnglish } from "@/app/Links";
 import { IconLanguage } from "@tabler/icons-react";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
-import ListboxComponent from "./ListboxComponent";
+import ListboxComponent from "./LanguagesListbox";
 
 //This component urgent refactoring.
 export default function HorizontalNavbar({

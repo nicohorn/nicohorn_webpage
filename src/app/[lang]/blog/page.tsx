@@ -6,7 +6,6 @@ import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 import Link from "next/link";
 import { IconLayoutRows, IconLayoutColumns } from "@tabler/icons-react";
 import { getTags } from "@/repositories/blog_tag";
-import { headers as reqHeaders } from "next/headers";
 
 export default async function Page({
   searchParams,
@@ -15,12 +14,19 @@ export default async function Page({
   searchParams: { [key: string]: string };
   params: { lang: string };
 }) {
-  const blog_entries = await getAllBlogEntriesWithTags(searchParams.tag);
+  const blog_entries = await getAllBlogEntriesWithTags(
+    searchParams.tag,
+    params.lang
+  );
   const tags = await getTags();
 
-  const headers = reqHeaders() as any;
-
   if (!blog_entries) return null;
+  if (blog_entries!.length < 1)
+    return (
+      <div className="xl:-mt-20 -mt-12 text-5xl">
+        {params.lang === "en-US" ? "No entries found" : "No hay entradas"}
+      </div>
+    );
 
   return (
     <main className="xl:-mt-20 -mt-12">
@@ -31,13 +37,14 @@ export default async function Page({
           title={params.lang === "en-US" ? "Last entries" : "Últimas entradas"}
         />
         <Link
-          className="ml-3"
+          className="ml-3 hidden xl:block"
           aria-label="Display blog cards in columns"
           href={`/${params.lang}/blog?display=cols`}
         >
           <IconLayoutColumns />
         </Link>
         <Link
+          className="hidden xl:block"
           href={`/${params.lang}/blog?display=rows`}
           aria-label="Display blog cards in rows"
         >

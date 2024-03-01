@@ -22,6 +22,15 @@ h3 {
   color: #e2e2e2;
 }
 
+.tiptap a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tiptap a:hover {
+  color: aquamarine;
+}
+
 .tiptap ul,
 .tiptap ol {
   padding: 0 1rem;

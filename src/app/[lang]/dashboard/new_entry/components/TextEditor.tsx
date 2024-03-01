@@ -3,6 +3,7 @@ import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
 import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
@@ -37,6 +38,7 @@ export default function TextEditor({
   const extensions = [
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
     TextStyle.configure({ types: [ListItem.name] } as any),
+    Link.configure({ linkOnPaste: true }),
     Image.configure({
       HTMLAttributes: {
         class: "tiptap_image",
@@ -273,6 +275,7 @@ export default function TextEditor({
         >
           hard break
         </button>
+
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -369,6 +372,14 @@ export default function TextEditor({
             e.preventDefault();
             setContentSet(!contentSet);
             contentSet ? setContent(undefined) : setContent(editor.getHTML());
+            if (!contentSet)
+              document
+                .getElementById("publish_entry_buton")
+                ?.classList.remove("opacity-50", "pointer-events-none");
+            else
+              document
+                .getElementById("publish_entry_buton")
+                ?.classList.add("opacity-50", "pointer-events-none");
           }}
           className={`
             ${

@@ -15,11 +15,17 @@ type BlogEntryWithoutIdCreatedAt = Omit<
   blog_entries,
   "id" | "edited_at" | "created_at"
 >;
-type BlogEntryWithTagsForm = BlogEntryWithoutIdCreatedAt & {
+export type BlogEntryWithTagsForm = BlogEntryWithoutIdCreatedAt & {
   tags: { id: string; name: string }[];
 };
 
-export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
+export default function BlogEntryForm({
+  tags,
+  lang,
+}: {
+  tags: blog_tags[];
+  lang: string;
+}) {
   const blog_title = useRef<HTMLInputElement>(null);
   const blog_description = useRef<HTMLTextAreaElement>(null);
   const blog_entry_cover_image_input = useRef<HTMLInputElement>(null);
@@ -32,7 +38,7 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
   const [selectedTags, setSelectedTags] = useState<
     { id: string; name: string }[]
   >([]);
-
+  console.log(selectedTags);
   const getLoggedInUser = async () => {
     const res = await fetch(`/api/auth/session`);
     return res.json().then((res) => {
@@ -227,6 +233,8 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
         />
       </div>
       <button
+        id="publish_entry_buton"
+        className="border border-white/50 bg-zinc-800 hover:bg-zinc-900 transition h-10 opacity-50 pointer-events-none"
         type="submit"
         onClick={async (e) => {
           e.preventDefault();
@@ -239,17 +247,19 @@ export default function BlogEntryForm({ tags }: { tags: blog_tags[] }) {
             author_name: author.user.name,
             author_id: author.id,
             tags: selectedTags,
+            lang: lang,
             node: null,
           });
 
           console.log("safe parse result", parseResult);
+
           if (parseResult.success) await createBlogEntry(parseResult.data);
           else {
             console.log(parseResult.error.message);
           }
         }}
       >
-        Log images
+        Publicar entrada
       </button>
     </form>
   );

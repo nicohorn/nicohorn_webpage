@@ -17,6 +17,7 @@ export const BlogEntrySchema = z.object({
     node: z.string().nullable(),
     author_name: z.string(),
     author_id: z.string(),
+    lang: z.string()
 
     /**Sadly, Prisma doesn't support multi schema table relations. I have my users in the next-auth schema and all tables regarding the blog in the public schema. I'm saving the data like this because I don't have any other options for now. Maybe at some point I'll migrate to another ORM that supports this */
 
