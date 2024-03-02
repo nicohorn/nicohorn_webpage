@@ -73,6 +73,7 @@ export default function BlogEntry({
         className="h-2 w-screen origin-left bg-zinc-500 fixed bottom-0 left-0 z-50"
       ></motion.div>
       <button
+        className="hidden lg:block"
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
@@ -81,7 +82,7 @@ export default function BlogEntry({
         <IconCircleArrowUpFilled
           width={50}
           height={50}
-          className="fixed bottom-28 right-20 mb-28 mr-8 lg:mr-40 z-50"
+          className="fixed bottom-28 right-0 mb-28 mr-20 lg:mr-28 z-50 "
         />
       </button>
       <div
