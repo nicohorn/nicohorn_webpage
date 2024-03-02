@@ -6,11 +6,10 @@ import Image from "@tiptap/extension-image";
 import { EditorProvider, JSONContent, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
-import { Merriweather } from "next/font/google";
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "300",
+import { Montserrat } from "next/font/google";
+const montserrat = Montserrat({
+  subsets: ["cyrillic"],
+  weight: ["100", "300", "400", "500", "700", "900"],
 });
 
 export default function TipTapContent({
@@ -35,7 +34,7 @@ export default function TipTapContent({
   ];
 
   return (
-    <div className={merriweather.className}>
+    <div className={montserrat.className}>
       <EditorProvider
         editable={false}
         extensions={extensions}

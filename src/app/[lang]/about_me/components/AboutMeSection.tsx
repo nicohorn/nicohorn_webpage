@@ -198,35 +198,19 @@ export default function AboutMeSection({ lang }: { lang: string }) {
   }, []);
 
   return (
-    <motion.div
-      className={"mt-4"}
-      initial={{ opacity: 0, x: -5 }}
-      animate={{ opacity: 1, x: 0 }}
-    >
+    <motion.div initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}>
       {lang === "en-US" ? contentEnglish : contentSpanish}
       <div className=" flex mt-4 flex-wrap gap-2 ">
         {images.map((image, idx) => {
           return (
             <motion.div
               id={`image${idx}`}
-              drag
-              dragConstraints={{
-                left: -50,
-                right: 50,
-                top: -50,
-                bottom: 50,
-              }}
-              dragSnapToOrigin
               initial={{ opacity: 0, borderColor: "black" }}
               animate={{ opacity: 1 }}
               transition={
                 delay500ms ? { delay: 0 } : { delay: Math.random() * 0.25 }
               }
               whileHover={{
-                borderColor: "yellow",
-              }}
-              whileTap={{
-                scale: 1.3,
                 borderColor: "yellow",
               }}
               key={idx}

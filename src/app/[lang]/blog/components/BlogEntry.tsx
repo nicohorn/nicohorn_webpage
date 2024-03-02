@@ -1,10 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TipTapContent from "../components/TipTapContent";
 import { IconCalendar } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
-import { animate, useMotionValueEvent, useScroll } from "framer-motion";
+import {
+  animate,
+  useMotionValueEvent,
+  useScroll,
+  motion,
+  delay,
+} from "framer-motion";
+
 import {
   IconCircleArrowUpFilled,
   IconTextSize,
@@ -44,8 +51,6 @@ export default function BlogEntry({
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
-
     animate("#progress_bar", { scaleX: latest }, { duration: 0.1 });
   });
 
@@ -54,17 +59,19 @@ export default function BlogEntry({
 
     animate(
       "#top_top_button",
-      { opacity: latest > 100 ? 1 : 0 },
+      { opacity: latest > 200 ? 1 : 0 },
       { duration: 0.1 }
     );
   });
 
   return (
-    <main className="-mt-36 text-justify  flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
-      <div
+    <main className="-mt-36 text-justify  my-20 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         id="progress_bar"
         className="h-2 w-screen origin-left bg-zinc-500 fixed bottom-0 left-0 z-50"
-      ></div>
+      ></motion.div>
       <button
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -74,7 +81,7 @@ export default function BlogEntry({
         <IconCircleArrowUpFilled
           width={50}
           height={50}
-          className="fixed bottom-0 right-0 mb-20 mr-16 lg:mr-40 z-50"
+          className="fixed bottom-28 right-20 mb-28 mr-8 lg:mr-40 z-50"
         />
       </button>
       <div

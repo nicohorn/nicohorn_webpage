@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { users } from "@prisma/client";
 import { guest_links, links } from "../Links";
+import Footer from "@/components/Footer";
 
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 
@@ -32,29 +33,33 @@ export default async function RootLayout({
 
   return (
     <html
-      className="bg-black text-white overflow-x-hidden"
+      className="bg-black text-white overflow-x-hidden h-screen"
       lang={`${params.lang}`}
     >
       <body
         className={
           oswald.className +
-          " bg-black mx-12 my-16 md:my-8 rounded-lg z-0 relative scroll-smooth"
+          " bg-black z-0 relative scroll-smooth h-full flex flex-col"
         }
       >
-        <HorizontalNavbar
-          lang={params.lang}
-          session={session!}
-          links={user ? links[user.role] : guest_links}
-        />
-        <Hero
-          title={"Nico Horn"}
-          description={
-            params.lang === "en-US"
-              ? "engineer, developer and educator"
-              : "ingeniero, desarrollador y docente"
-          }
-        />
-        {children}
+        <div className="mx-12 my-16 md:my-8">
+          <HorizontalNavbar
+            lang={params.lang}
+            session={session!}
+            links={user ? links[user.role] : guest_links}
+          />
+          <Hero
+            title={"Nico Horn"}
+            description={
+              params.lang === "en-US"
+                ? "engineer, developer and educator"
+                : "ingeniero, desarrollador y docente"
+            }
+          />
+          {children}
+        </div>
+
+        <Footer lang={params.lang} />
       </body>
     </html>
   );

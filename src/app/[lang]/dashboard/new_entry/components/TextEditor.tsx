@@ -8,12 +8,13 @@ import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
 import { supabase } from "@/supabase";
-import { Merriweather } from "next/font/google";
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "300",
+import { Roboto, Open_Sans } from "next/font/google";
+import { Montserrat } from "next/font/google";
+const montserrat = Montserrat({
+  subsets: ["cyrillic"],
+  weight: ["100", "300", "400", "500", "700", "900"],
 });
+
 import {
   IconBold,
   IconItalic,
@@ -395,7 +396,7 @@ export default function TextEditor({
   };
 
   return (
-    <div className={`border border-zinc-600 p-3 ${merriweather.className} `}>
+    <div className={`border border-zinc-600 p-3 ${montserrat.className} `}>
       <EditorProvider
         slotBefore={<MenuBar />}
         extensions={extensions}
