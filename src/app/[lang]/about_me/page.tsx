@@ -8,14 +8,14 @@ export default function AboutMe({ params }: { params: { lang: string } }) {
     <main className="flex flex-col gap-2">
       <Title title={params.lang === "en-US" ? "About me" : "Acerca de mí"} />
       <AboutMeSection lang={params.lang} />
-      <Title
+      {/* <Title
         title={
           params.lang === "en-US"
             ? "Professional experience"
             : "Experiencia profesional"
         }
       />
-      <ProfessionalExperience lang={params.lang} />
+      <ProfessionalExperience lang={params.lang} /> */}
     </main>
   );
 }
