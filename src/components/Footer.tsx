@@ -111,7 +111,7 @@ export default function Footer({ lang }: { lang: string }) {
           </div>
         </div>
       </div>
-      <Stack />
+      <Stack lang={lang} />
     </div>
   );
 }

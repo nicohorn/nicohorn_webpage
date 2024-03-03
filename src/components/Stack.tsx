@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion, animate } from "framer-motion";
 import Link from "next/link";
 
-export default function Stack() {
+export default function Stack({ lang }: { lang: string }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const nextlogo = (
@@ -57,11 +57,9 @@ export default function Stack() {
       return (
         <motion.div
           onClick={(e) => {
-            if (e.target === document.getElementById("stack_modal_content"))
-              return;
+            if (e.target !== document.getElementById("stack_modal")) return;
             animate("#stack_modal_content", { scale: 0.8 });
             animate("#stack_modal", { opacity: 0 });
-
             setTimeout(() => {
               setModalOpen(false);
             }, 300);
@@ -85,7 +83,7 @@ export default function Stack() {
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             id="stack_modal_content"
-            className=" bg-zinc-800 py-6 px-8 absolute"
+            className=" bg-zinc-800 py-6 px-8 "
           >
             {children}
           </motion.div>
@@ -101,17 +99,18 @@ export default function Stack() {
         <div
           onClick={() => {
             setModalOpen(true);
+            //.focus() is to make the Esc key work.
             setTimeout(() => {
               document.getElementById("stack_modal")?.focus();
             }, 100);
           }}
           className="flex gap-2 cursor-pointer border-b border-zinc-800 hover:border-white transition"
         >
-          <p>Made with</p>
+          <p>{lang === "en-US" ? "Made with" : "Hecho con"}</p>
           {nextlogo}
         </div>
         <Modal>
-          <div className="pointer-events-none ">
+          <div>
             <h1>Tech stack</h1>
             <div className="flex gap-3 flex-col lg:flex-row">
               <div>Framework: {nextlogo}</div>
