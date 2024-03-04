@@ -166,7 +166,8 @@ export default function HorizontalNavbar({
               >
                 <Link
                   className="font-thin"
-                  href={`/${path.split("/")[1]}${link.link}`}
+                  href={`/${lang}${link.link}`}
+                  scroll={false}
                 >
                   <motion.p
                     className="px-12 py-5"

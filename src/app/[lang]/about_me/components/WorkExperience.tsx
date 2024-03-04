@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { IconArrowBadgeRightFilled } from "@tabler/icons-react";
@@ -12,9 +13,14 @@ import {
   IconUser,
   IconMovie,
   IconCode,
+  IconBook,
+  IconBrandCodesandbox,
 } from "@tabler/icons-react";
-
+import { motion } from "framer-motion";
 import { Merriweather } from "next/font/google";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 const merriweather = Merriweather({
   subsets: ["latin"],
   display: "swap",
@@ -22,6 +28,7 @@ const merriweather = Merriweather({
 });
 
 export default function ProfessionalExperience({ lang }: { lang: string }) {
+  const pathname = usePathname();
   const Timeline = ({
     yearsWithItems,
   }: {
@@ -37,55 +44,163 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
     }[];
   }) => {
     return (
-      <div className="flex flex-col ml-6 mt-4 border-b-2 border-yellow-300 border-dashed  ">
-        {yearsWithItems.map((yearItem, idx) => {
-          return (
-            <div
-              className="border-dashed border-l-2 border-yellow-300 px-4 relative pb-6 "
-              key={idx}
-            >
-              <h1 className="text-lg font-bold mb-2 rounded-md -translate-x-10 bg-yellow-300 w-fit px-2 text-black ">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+      >
+        <div className="flex gap-2 mt-2 flex-wrap">
+          {yearsWithItems.map((yearItem, idx) => {
+            return (
+              <button
+                onClick={() => {
+                  document
+                    .getElementById(`work_year_${yearItem.year}`)
+                    ?.scrollIntoView({ behavior: "smooth" });
+
+                  setTimeout(() => {
+                    document
+                      .getElementById(`work_year_${yearItem.year}`)
+                      ?.classList.add("translate-x-16");
+                  }, 600);
+                  setTimeout(() => {
+                    document
+                      .getElementById(`work_year_${yearItem.year}`)
+                      ?.classList.remove("translate-x-16");
+                  }, 800);
+                }}
+                className="opacity-40 cursor-pointer hover:text-yellow-300 hover:opacity-100"
+                key={idx}
+              >
                 {yearItem.year}
-              </h1>
-              <div className="absolute border-b w-full -translate-y-6 translate-x-2 border-white/20"></div>
-              <div>
-                {yearItem.items.map((item, idx) => {
-                  return (
-                    <div
-                      className="flex flex-col md:flex-row justify-between items-center"
-                      key={idx}
-                    >
-                      <div>
-                        {" "}
-                        <div className="flex items-center">
-                          <span className="ml-4">
-                            <IconArrowMoveRight />
-                          </span>
-                          <h3 className=" ml-6 my-1 px-2 font-bold -translate-x-4 mb-2 bg-white w-fit text-black">
-                            {item.title}
-                          </h3>
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex flex-col md:ml-6 mt-4 border-b-2 border-yellow-300 border-dashed  ">
+          {yearsWithItems.map((yearItem, idx) => {
+            return (
+              <motion.div
+                id={`work_year_${yearItem.year}`}
+                transition={{ delay: 0.1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="border-dashed border-l-2 border-yellow-300 md:px-4 relative pb-6 transition"
+                key={idx}
+              >
+                <div className="py-2">
+                  <h1 className="text-lg font-bold mb-2 rounded-md md:-translate-x-10 -translate-x-4 bg-yellow-300 w-fit px-2 text-black ">
+                    {yearItem.year}
+                  </h1>
+                </div>
+                <div className="absolute border-b w-full -translate-y-4 translate-x-2 border-white/20"></div>
+                <div>
+                  {yearItem.items.map((item, idx) => {
+                    return (
+                      <motion.div
+                        transition={{ delay: 0.1 }}
+                        initial={{ y: 10 }}
+                        whileInView={{ y: 0 }}
+                        viewport={{ once: true }}
+                        className="flex flex-col md:flex-row justify-between items-center"
+                        key={idx}
+                      >
+                        <div>
+                          {" "}
+                          <div className="flex items-center">
+                            <span className="md:ml-4 -ml-1">
+                              <IconArrowMoveRight />
+                            </span>
+                            <h3 className=" ml-6 my-1 px-2 font-bold -translate-x-4 mb-2 bg-white w-fit text-black">
+                              {item.title}
+                            </h3>
+                          </div>
+                          <p
+                            className={`${merriweather.className} font-bold ml-5 mb-3 text-zinc-300`}
+                          >
+                            {item.description}
+                          </p>
                         </div>
-                        <p
-                          className={`${merriweather.className} font-bold ml-5 mb-3 text-zinc-300`}
+                        <motion.div
+                          transition={{ duration: 0.7 }}
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          className="px-5 mb-3 md:mb-0"
                         >
-                          {item.description}
-                        </p>
-                      </div>
-                      <div className="px-5 mb-3 md:mb-0">{item.icon}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+                          {item.icon}
+                        </motion.div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
     );
   };
 
   const yearItems = ({ lang }: { lang: string }) => {
     const langIsEnglish = lang === "en-US";
     return [
+      {
+        year: "Present",
+        items: [
+          {
+            title: langIsEnglish
+              ? "University Teacher"
+              : "Docente de Universidad",
+            description: langIsEnglish
+              ? "Still working as teacher at River Plate Adventist University for the Fundamentals of Programming course and now adding two more courses, Software Engineering I and Software Engineering II, for the Systems Engineering graduate degree."
+              : "Sigo trabajando como docente universitario en la Universidad Adventista del Plata, ahora agregando dos cátedras más: Ingeniería de Software I e Ingeniería de Software II, además de Fundamentos de la Programación, para la carrera de Ingeniería en Sistemas.",
+            icon: <IconBook width={28} height={28} />,
+          },
+          {
+            title: langIsEnglish
+              ? "Software Engineer at pqlub"
+              : "Ingeniero de Software en pqlub",
+            description: langIsEnglish
+              ? "Kept working on the River Plate Adventist University project. It's a big project, it needs to support at least 3000 users (not simultaneously) given that every student, professor and event external personnel must be able to access the system. That involves a lot of access control, state management and systems security."
+              : "Continuo trabajando en el desarrollo del proyecto de la Universidad Adventista del Plata. El sistema debe tener la capacidad de atender 3000 usuarios, ya que todos los alumnos, profesores e incluso actores externos deben poder utilizar el sistema. El proyecto involucra mucho manejo de estados, control de acceso y seguridad informática.",
+            icon: <IconBrandCodesandbox width={28} height={28} />,
+          },
+          {
+            title: langIsEnglish
+              ? "Cursif Open Source project"
+              : "Proyecto Open Source Coursif",
+            description: langIsEnglish
+              ? "I've been invited to participate in the development of an open source project. We're developing a simple, collaborative note taking app, without all the bloat that usually comes in the traditional note taking apps. The project involves techonologies such as Next.js, GraphQL, Elixir, Phoenix and PostgreSQL. The deployment is done through Docker containers."
+              : "Fui invitado a participar del desarrollo de un proyecto open source llamado 'Coursif', una app de notas colaborativa y simple, enfocada en la experiencia de usuario. El proyecto involucra tecnologías como Next.js, GraphQL, Elixir, Phoenix y PostgreSQL. Además, el deployment es hecho a través de contenedores de Docker. ",
+            icon: <IconBrandCodesandbox width={28} height={28} />,
+          },
+        ],
+      },
+      {
+        year: "2023",
+        items: [
+          {
+            title: langIsEnglish
+              ? "University Teacher"
+              : "Docente de Universidad",
+            description: langIsEnglish
+              ? "Started working as teacher at River Plate Adventist University for the Fundamentals of Programming course, for the Systems Engineering graduate degree."
+              : "Comencé mi trabajo como docente en la Universidad Adventista del Plata en la cátedra de Fundamentos de la Programación, para la carrera de Ingeniería en Sistemas.",
+            icon: <IconBook width={28} height={28} />,
+          },
+          {
+            title: langIsEnglish
+              ? "Software Engineer at pqlub"
+              : "Ingeniero de Software en pqlub",
+            description: langIsEnglish
+              ? "Kept working on the River Plate Adventist University project. It's a big project, it needs to support at least 3000 users (not simultaneously) given that every student, professor and event external personnel must be able to access the system. That involves a lot of access control, state management and systems security."
+              : "Continué trabajando en el desarrollo del proyecto de la Universidad Adventista del Plata. Debe tener la capacidad de atender 3000 usuarios, ya que todos los alumnos, profesores e incluso actores externos deben poder utilizar el sistema. El proyecto involucra mucho manejo de estados, control de acceso y seguridad informática.",
+            icon: <IconBrandCodesandbox width={28} height={28} />,
+          },
+        ],
+      },
       {
         year: "2022",
         items: [
