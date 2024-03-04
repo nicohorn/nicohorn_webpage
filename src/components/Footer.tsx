@@ -40,7 +40,11 @@ export default function Footer({ lang }: { lang: string }) {
               target="_blank"
               href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
             >
-              <IconBrandLinkedin width={30} height={30} />
+              <IconBrandLinkedin
+                className="hover:stroke-yellow-300 transition-all duration-75"
+                width={30}
+                height={30}
+              />
             </Link>
             <Link
               aria-label={
@@ -51,7 +55,11 @@ export default function Footer({ lang }: { lang: string }) {
               target="_blank"
               href="https://twitter.com/NicoTheEngineer"
             >
-              <IconBrandX width={30} height={30} />
+              <IconBrandX
+                className="hover:stroke-yellow-300 transition-all duration-75"
+                width={30}
+                height={30}
+              />
             </Link>
             <Link
               aria-label={
@@ -62,7 +70,11 @@ export default function Footer({ lang }: { lang: string }) {
               target="_blank"
               href="https://github.com/nicohorn/nicohorn_webpage"
             >
-              <IconBrandGithub width={30} height={30} />
+              <IconBrandGithub
+                className="hover:stroke-yellow-300 transition-all duration-75"
+                width={30}
+                height={30}
+              />
             </Link>
           </div>
           <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
@@ -111,7 +123,7 @@ export default function Footer({ lang }: { lang: string }) {
           </div>
         </div>
       </div>
-      <Stack />
+      <Stack lang={lang} />
     </div>
   );
 }
