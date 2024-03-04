@@ -65,7 +65,7 @@ export default function BlogEntry({
   });
 
   return (
-    <main className="-mt-36 text-justify  my-20 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
+    <main className="-mt-36 text-justify min-h-screen  my-20 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

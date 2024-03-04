@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { animate, motion } from "framer-motion";
 import { Disclosure, Transition } from "@headlessui/react";
 import { signIn, signOut } from "next-auth/react";
@@ -123,6 +123,22 @@ export default function HorizontalNavbar({
     );
   };
 
+  useEffect(() => {
+    document.body.addEventListener("click", (e) => {
+      if (
+        e.target !== document.getElementById("nav_container") &&
+        e.target !== document.getElementById("nav_container_button")
+      ) {
+        setOpen(false);
+        animate(
+          "#nav_container",
+          { x: -368 + 32 },
+          { duration: 0.5, type: "spring", bounce: 0.2 }
+        );
+      }
+    });
+  });
+
   return (
     <>
       <div
@@ -150,6 +166,16 @@ export default function HorizontalNavbar({
       </div>
 
       <motion.div
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            setOpen(false);
+            animate(
+              "#nav_container",
+              { x: -368 + 32 },
+              { duration: 0.5, type: "spring", bounce: 0.2 }
+            );
+          }
+        }}
         initial={open ? { x: 0, opacity: 1 } : { x: -368 + 32 }}
         animate={{ x: -368 + 32 }}
         transition={{ delay: 0.5, duration: 0.5, bounce: 0.4, type: "spring" }}
@@ -195,6 +221,7 @@ export default function HorizontalNavbar({
           {!session ? loginButton() : logoutButton()}
         </motion.div>
         <motion.button
+          id="nav_container_button"
           initial={{ opacity: 0.95 }}
           whileHover={{ opacity: 1 }}
           whileTap={{ opacity: 0.5 }}
