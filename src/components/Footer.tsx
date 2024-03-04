@@ -14,7 +14,7 @@ export default function Footer({ lang }: { lang: string }) {
   const router = useRouter();
   return (
     <div
-      className={` w-screen  md:min-h-[12rem] bg-zinc-950 text-white/[85%] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-center`}
+      className={` w-screen shadow-md md:min-h-[12rem] bg-zinc-950 text-white/[85%] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-center`}
     >
       <div className="flex flex-col md:self-end items-center sm:items-start">
         {" "}
