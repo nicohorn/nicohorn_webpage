@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import { animate, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Merriweather } from "next/font/google";
 import Image from "next/image";
 
@@ -53,168 +53,236 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString("base64")
     : window.btoa(str);
 
-const contentSpanish = (
-  <div className={merriweather.className}>
-    <p className="font-thin text-[1.05rem] leading-relaxed mt-2">
-      <span
-        className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image0", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image0", { scale: 1, borderColor: "black" });
-        }}
-      >
-        {" "}
-        Me llamo Nicolás Horn
-      </span>
-      , soy ingeniero en sistemas, nací en Buenos Aires, tengo 26 años, y{" "}
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image1", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image1", { scale: 1, borderColor: "black" });
-        }}
-      >
-        un perro que se llama Zeus.
-      </span>{" "}
-      Actualmente estoy especializándome en redes de telecomunicaciones y
-      machine learning.{" "}
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image2", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image2", { scale: 1, borderColor: "black" });
-        }}
-      >
-        Hace varios años que me dedico al desarrollo de software
-      </span>
-      , pero también trabajé como{" "}
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image3", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image3", { scale: 1, borderColor: "black" });
-        }}
-      >
-        fotógrafo, editor de videos
-      </span>
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 transition"
-        onMouseEnter={() => {
-          animate("#image4", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image4", { scale: 1, borderColor: "black" });
-        }}
-      >
-        , barista y gerente de restaurante.{" "}
-      </span>
-      Como hobbie, estoy empezando a desarrollar videojuegos.
-    </p>
-  </div>
-);
-
-const contentEnglish = (
-  <div className={merriweather.className}>
-    <p className="font-thin text-[1.05rem] leading-relaxed mt-2">
-      <span
-        className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image0", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image0", { scale: 1, borderColor: "black" });
-        }}
-      >
-        {" "}
-        Hello! I'm Nicolas Horn
-      </span>
-      , I'm a systems engineer, born in Buenos Aires, 26 years old. I{" "}
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image1", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image1", { scale: 1, borderColor: "black" });
-        }}
-      >
-        have a dog named Zeus.
-      </span>{" "}
-      I'm currently specializing in computer networks and machine learning.{" "}
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image2", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image2", { scale: 1, borderColor: "black" });
-        }}
-      >
-        I've been a sofware engineer for quite a while now
-      </span>
-      , but I also worked as a{" "}
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  transition"
-        onMouseEnter={() => {
-          animate("#image3", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image3", { scale: 1, borderColor: "black" });
-        }}
-      >
-        wedding photographer, video editor
-      </span>
-      <span
-        className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 transition"
-        onMouseEnter={() => {
-          animate("#image4", { scale: 1.03, borderColor: "yellow" });
-        }}
-        onMouseLeave={() => {
-          animate("#image4", { scale: 1, borderColor: "black" });
-        }}
-      >
-        , barista and restaurant manager.{" "}
-      </span>
-      As a hobby, I got into game developing recently.
-    </p>
-  </div>
-);
-
 export default function AboutMeSection({ lang }: { lang: string }) {
-  const [delay500ms, setDelay500ms] = useState(false);
+  const Content = ({ lang }: { lang: string }) => {
+    return (
+      <div className={`${merriweather.className} lg:max-w-[60vw]`}>
+        <p className="text-[1.05rem] leading-relaxed mt-2 font-semibold">
+          <span
+            className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500 hover:bg-yellow-400 hover:text-black transition"
+            onMouseMove={(e) => {
+              const width = document.body.clientWidth;
+              const cX = e.clientX;
+              const cY = e.clientY;
+              const cWidth = e.currentTarget.getBoundingClientRect().width;
+              setTimeout(() => {
+                document.getElementById("image0")?.classList.remove("hidden");
+              }, 200);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setDelay500ms(true);
-    }, 500);
-  }, []);
+              animate(
+                "#image0",
+                {
+                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  y: cY - 250,
+                  scale: 1.03,
+                  borderColor: "yellow",
+                  opacity: 1,
+                },
+                { duration: 0 }
+              );
+            }}
+            onMouseLeave={() => {
+              animate(
+                "#image0",
+                { scale: 1, borderColor: "black", opacity: 0 },
+                { delay: 0.1 }
+              );
 
+              setTimeout(() => {
+                document.getElementById("image0")?.classList.add("hidden");
+              }, 200);
+            }}
+          >
+            {" "}
+            {lang === "en-US"
+              ? "Hello! I'm Nicolas Horn"
+              : "Me llamo Nicolás Horn"}
+          </span>
+          {lang === "en-US"
+            ? ", I'm a systems engineer, born in Buenos Aires, 26 years old. I"
+            : ", soy ingeniero en sistemas, nací en Buenos Aires, tengo 26 años, y"}{" "}
+          <span
+            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  hover:bg-yellow-400 hover:text-black transition"
+            onMouseMove={(e) => {
+              const width = document.body.clientWidth;
+              const cX = e.clientX;
+              const cY = e.clientY;
+              const cWidth = e.currentTarget.getBoundingClientRect().width;
+              setTimeout(() => {
+                document.getElementById("image1")?.classList.remove("hidden");
+              }, 200);
+              animate(
+                "#image1",
+                {
+                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  y: cY - 250,
+                  scale: 1.03,
+                  borderColor: "yellow",
+                  opacity: 1,
+                },
+                { duration: 0 }
+              );
+            }}
+            onMouseLeave={() => {
+              animate(
+                "#image1",
+                { scale: 1, borderColor: "black", opacity: 0 },
+                { delay: 0.1 }
+              );
+
+              setTimeout(() => {
+                document.getElementById("image1")?.classList.add("hidden");
+              }, 200);
+            }}
+          >
+            {lang === "en-US"
+              ? " have a dog named Zeus."
+              : "un perro que se llama Zeus."}
+          </span>{" "}
+          {lang === "en-US"
+            ? " I'm currently specializing in computer networks and machine learning."
+            : "Actualmente estoy especializándome en redes de telecomunicaciones y machine learning.  "}{" "}
+          <span
+            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  hover:bg-yellow-400 hover:text-black transition"
+            onMouseMove={(e) => {
+              const width = document.body.clientWidth;
+              const cX = e.clientX;
+              const cY = e.clientY;
+              const cWidth = e.currentTarget.getBoundingClientRect().width;
+              setTimeout(() => {
+                document.getElementById("image2")?.classList.remove("hidden");
+              }, 200);
+              animate(
+                "#image2",
+                {
+                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  y: cY - 250,
+                  scale: 1.03,
+                  borderColor: "yellow",
+                  opacity: 1,
+                },
+                { duration: 0 }
+              );
+            }}
+            onMouseLeave={() => {
+              animate(
+                "#image2",
+                { scale: 1, borderColor: "black", opacity: 0 },
+                { delay: 0.1 }
+              );
+
+              setTimeout(() => {
+                document.getElementById("image2")?.classList.add("hidden");
+              }, 200);
+            }}
+          >
+            {lang === "en-US"
+              ? " I've been a sofware engineer for quite a while now"
+              : "Hace varios años que me dedico al desarrollo de software"}
+          </span>
+          {lang === "en-US"
+            ? ", but I also worked as a"
+            : ", pero también trabajé como"}{" "}
+          <span
+            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  hover:bg-yellow-400 hover:text-black transition"
+            onMouseMove={(e) => {
+              const width = document.body.clientWidth;
+              const cX = e.clientX;
+              const cY = e.clientY;
+              const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              setTimeout(() => {
+                document.getElementById("image3")?.classList.remove("hidden");
+              }, 200);
+              animate(
+                "#image3",
+                {
+                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  y: cY - 250,
+                  scale: 1.03,
+                  borderColor: "yellow",
+                  opacity: 1,
+                },
+                { duration: 0 }
+              );
+            }}
+            onMouseLeave={() => {
+              animate(
+                "#image3",
+                { scale: 1, borderColor: "black", opacity: 0 },
+                { delay: 0.1 }
+              );
+
+              setTimeout(() => {
+                document.getElementById("image3")?.classList.add("hidden");
+              }, 200);
+            }}
+          >
+            {lang === "en-US"
+              ? "wedding photographer, video editor"
+              : "fotógrafo, editor de videos"}
+          </span>
+          <span
+            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 hover:bg-yellow-400 hover:text-black transition"
+            onMouseMove={(e) => {
+              const width = document.body.clientWidth;
+              const cX = e.clientX;
+              const cY = e.clientY;
+              const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              setTimeout(() => {
+                document.getElementById("image4")?.classList.remove("hidden");
+              }, 200);
+              animate(
+                "#image4",
+                {
+                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  y: cY - 250,
+                  scale: 1.03,
+                  borderColor: "yellow",
+                  opacity: 1,
+                },
+                { duration: 0 }
+              );
+            }}
+            onMouseLeave={() => {
+              animate(
+                "#image4",
+                { scale: 1, borderColor: "black", opacity: 0 },
+                { delay: 0.1 }
+              );
+
+              setTimeout(() => {
+                document.getElementById("image4")?.classList.add("hidden");
+              }, 200);
+            }}
+          >
+            {lang === "en-US"
+              ? ", barista and restaurant manager."
+              : ", barista y gerente de restaurante."}{" "}
+          </span>
+          {lang === "en-US"
+            ? "As a hobby, I got into game developing recently."
+            : "Como hobbie, estoy empezando a desarrollar videojuegos."}
+        </p>
+      </div>
+    );
+  };
   return (
     <motion.div initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}>
-      {lang === "en-US" ? contentEnglish : contentSpanish}
-      <div className=" flex mt-4 flex-wrap gap-2 ">
+      <Content lang={lang} />
+      <div id="image_container" className="fixed z-50">
         {images.map((image, idx) => {
           return (
             <motion.div
               id={`image${idx}`}
               initial={{ opacity: 0, borderColor: "black" }}
               animate={{ opacity: 1 }}
-              transition={
-                delay500ms ? { delay: 0 } : { delay: Math.random() * 0.25 }
-              }
               whileHover={{
                 borderColor: "yellow",
               }}
               key={idx}
-              className="flex-grow w-[15rem] min-h-[50vh] object-cover border border-black relative"
+              className=" w-[20rem] min-h-[50vh] object-cover border border-black relative hidden"
             >
               <Image
                 style={{ objectFit: "cover" }}
