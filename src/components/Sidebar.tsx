@@ -13,8 +13,7 @@ import { IconLanguage } from "@tabler/icons-react";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import ListboxComponent from "./LanguagesListbox";
 
-//This component urgent refactoring.
-export default function HorizontalNavbar({
+export default function VerticalNavbar({
   lang,
   links,
   session,
@@ -37,6 +36,44 @@ export default function HorizontalNavbar({
       title:
         lang === "en-US" ? "Cambiar a español" : "Change language to english",
     };
+  };
+  const files: {
+    [key: string]: { name: string; language: string; value: string };
+  } = {
+    "index.html": {
+      name: "index.html",
+      language: "html",
+      value:
+        lang === "en-US"
+          ? `<h1 id="titleId" class="title">Hello world!</h1>`
+          : `<h1 id="tituloId" class="titulo">Hola mundo!</h1>`,
+    },
+    "style.css": {
+      name: "style.css",
+      language: "css",
+      value:
+        lang === "en-US"
+          ? `.title{
+        color: red;
+        cursor: pointer
+    }`
+          : `.titulo{
+        color: red;
+        cursor: pointer
+    }`,
+    },
+    "script.js": {
+      name: "script.js",
+      language: "javascript",
+      value:
+        lang === "en-US"
+          ? `document.getElementById("titleId").addEventListener("click",(e)=>{
+            alert("You clicked the title!")
+        })`
+          : `document.getElementById("tituloId").addEventListener("click",(e)=>{
+            alert("Clickeaste el titulo!")
+        })`,
+    },
   };
   //These buttons <loginButton and logoutButton> aren't meant to be reusable components, but since they're conditionally called (if there's an active session), it's easier to manage them having them defined as functions inside this component.
   const loginButton = () => {
@@ -124,7 +161,8 @@ export default function HorizontalNavbar({
     );
   };
 
-  useEffect(() => {
+  /**Close sidebar when clicking outside */
+  const handleMouseOutsideSidebar = () =>
     document.body.addEventListener("click", (e) => {
       if (
         e.target !== document.getElementById("nav_container") &&
@@ -136,9 +174,15 @@ export default function HorizontalNavbar({
           { x: -368 + 32 },
           { duration: 0.5, type: "spring", bounce: 0.2 }
         );
+      } else {
+        return;
       }
     });
-  });
+
+  useEffect(() => {
+    handleMouseOutsideSidebar();
+    return document.removeEventListener("click", handleMouseOutsideSidebar);
+  }, []);
 
   return (
     <>
