@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import HorizontalNavbar from "@/components/Sidebar";
+import VerticalNavbar from "@/components/Sidebar";
 import "./../globals.css";
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
@@ -43,7 +43,7 @@ export default async function RootLayout({
         }
       >
         <div className="mx-12 my-16 md:my-8">
-          <HorizontalNavbar
+          <VerticalNavbar
             lang={params.lang}
             session={session!}
             links={user ? links[user.role] : guest_links}

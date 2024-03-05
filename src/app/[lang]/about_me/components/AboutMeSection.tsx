@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import { animate, motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Merriweather } from "next/font/google";
 import Image from "next/image";
 
