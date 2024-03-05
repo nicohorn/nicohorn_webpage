@@ -15,7 +15,7 @@ export interface LinksType {
 export const admin_links = [
     { title: "Inicio", link: "/about_me" },
     { title: "Blog", link: "/blog" },
-    { title: "Playground", link: "/" },
+    { title: "Playground", link: "/playground" },
     { title: "Alumnos", link: "/about_me" },
     { title: "Dashboard", link: "/dashboard" },
 
@@ -24,7 +24,7 @@ export const admin_links = [
 const user_links = [
     { title: "Inicio", link: "/about_me" },
     { title: "Blog", link: "/blog" },
-    { title: "Playground", link: "/about_me" },
+    { title: "Playground", link: "/playground" },
     { title: "Alumnos", link: "/about_me" },
 
 ];
@@ -32,7 +32,7 @@ const user_links = [
 export const guest_links = [
     { title: "Inicio", link: "/about_me" },
     { title: "Blog", link: "/blog" },
-    { title: "Playground", link: "/about_me" },
+    { title: "Playground", link: "/playground" },
 ];
 
 
