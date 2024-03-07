@@ -33,15 +33,15 @@ export default async function RootLayout({
 
   return (
     <html
-      className="bg-black text-white overflow-x-hidden h-screen"
+      className=" bg-black pattern-graph-yellow-900/30 text-white overflow-x-hidden h-screen "
       lang={`${params.lang}`}
     >
       <body
         className={
-          oswald.className +
-          " bg-black z-0 relative scroll-smooth h-full flex flex-col"
+          oswald.className + "  z-0 relative scroll-smooth h-full flex flex-col"
         }
       >
+        <div id="notifications_container" className="relative" />
         <div className="mx-12 my-16 md:my-8">
           <VerticalNavbar
             lang={params.lang}

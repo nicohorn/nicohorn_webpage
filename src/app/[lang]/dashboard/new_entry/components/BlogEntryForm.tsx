@@ -9,6 +9,8 @@ import { useForm, zodResolver } from "@mantine/form";
 import { BlogEntry, BlogEntrySchema } from "@/zod";
 import { PrismaClientErrors } from "@/utils/dictionaries/PrismaClientErrors";
 import { supabase } from "@/supabase";
+import { Notification } from "@/components/Notification";
+import { useRouter } from "next/navigation";
 
 //Had to create these two types here to make the createBlogEntry parameter type more readable.
 type BlogEntryWithoutIdCreatedAt = Omit<
@@ -46,6 +48,8 @@ export default function BlogEntryForm({
     });
   };
 
+  const router = useRouter();
+
   const createBlogEntry = async (blog_entry: BlogEntryWithTagsForm) => {
     const res = await fetch("/api/blog_entry", {
       method: "POST",
@@ -54,10 +58,25 @@ export default function BlogEntryForm({
     });
 
     if (res) {
-      console.log("client createBlogEntry res", res);
+      new Notification().props({
+        type: "success",
+        title: "New Blog Entry created",
+        description: "Created new blog entry. Redirecting...",
+        seconds: 4,
+      });
+
+      setTimeout(() => {
+        router.push(`/${lang}/blog`);
+      }, 2000);
+
       return res.json();
     } else {
-      console.log("Error creating post");
+      new Notification().props({
+        type: "error",
+        title: "Erro creating blog post",
+        description: "Couldn't create blog post. An error ocurred.",
+        seconds: 4,
+      });
     }
   };
 
@@ -134,7 +153,13 @@ export default function BlogEntryForm({
               process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_URL! + data?.path;
 
             if (data) setBlogEntryCoverImage(blog_entry_cover_image_src);
-            else console.log("error uploading cover image", error);
+            else
+              new Notification().props({
+                type: "error",
+                title: "Error uploading image",
+                description: error.message,
+                seconds: 4,
+              });
           }}
           ref={blog_entry_cover_image_input}
           className="hidden"
@@ -211,10 +236,12 @@ export default function BlogEntryForm({
                     blog_entry_new_tag.current!.value = "";
                     setTagList([...tagList, new_tag]);
                   } else {
-                    console.log(
-                      "PRISMA CLIENT ERROR: ",
-                      PrismaClientErrors[new_tag.code]
-                    );
+                    new Notification().props({
+                      type: "error",
+                      title: "PRISMA CLIENT ERROR:",
+                      description: PrismaClientErrors[new_tag.code],
+                      seconds: 4,
+                    });
                   }
                 }
               }}

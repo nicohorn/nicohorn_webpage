@@ -14,6 +14,7 @@ export interface LinksType {
 
 export const admin_links = [
     { title: "Inicio", link: "/about_me" },
+    { title: "Acerca de mí", link: "/about_me" },
     { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/playground" },
     { title: "Alumnos", link: "/about_me" },
@@ -23,6 +24,7 @@ export const admin_links = [
 
 const user_links = [
     { title: "Inicio", link: "/about_me" },
+    { title: "Acerca de mí", link: "/about_me" },
     { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/playground" },
     { title: "Alumnos", link: "/about_me" },
@@ -31,6 +33,7 @@ const user_links = [
 
 export const guest_links = [
     { title: "Inicio", link: "/about_me" },
+    { title: "Acerca de mí", link: "/about_me" },
     { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/playground" },
 ];
@@ -47,6 +50,7 @@ export const dictLinksToEnglish: { [key: string]: string } = {
     "Blog": "Blog",
     "Playground": "Playground",
     "Alumnos": "Students",
-    "Dashboard": "Dashboard"
+    "Dashboard": "Dashboard",
+    "Acerca de mí": "About me"
 
 }

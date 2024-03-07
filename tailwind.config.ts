@@ -9,9 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        bg_texture: "url('/dark-concrete-texture-background.jpg')",
       },
       colors: {
         white: "#E5E5E5",
@@ -19,6 +17,6 @@ const config: Config = {
       }
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-patterns'),],
 }
 export default config

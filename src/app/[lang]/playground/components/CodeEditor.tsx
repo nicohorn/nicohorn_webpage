@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHtml5, faCss3, faJs } from "@fortawesome/free-brands-svg-icons";
 import { IconPlayerPlay, IconX } from "@tabler/icons-react";
 import { animate, motion } from "framer-motion";
-import NotificationComponent from "@/components/NotificationComponent";
+import { Notification } from "@/components/Notification";
 import { useNotification } from "@/app/hooks/useNotification";
 
 const files: {
@@ -106,13 +106,6 @@ export default function Home({ lang }: { lang: string }) {
   return (
     <div>
       <div>
-        <button
-          onClick={() => {
-            notification;
-          }}
-        >
-          Notification!
-        </button>
         <div className={styles.topBar}>
           <button
             className={`${
