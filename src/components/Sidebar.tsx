@@ -184,6 +184,8 @@ export default function VerticalNavbar({
     return document.removeEventListener("click", handleMouseOutsideSidebar);
   }, []);
 
+  if (path.split("/").length < 3) return null;
+
   return (
     <>
       <div

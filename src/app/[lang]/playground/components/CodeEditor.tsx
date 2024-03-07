@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHtml5, faCss3, faJs } from "@fortawesome/free-brands-svg-icons";
 import { IconPlayerPlay, IconX } from "@tabler/icons-react";
 import { animate, motion } from "framer-motion";
+import { Notification } from "@/components/Notification";
+import { useNotification } from "@/app/hooks/useNotification";
 
 const files: {
   [key: string]: { name: string; language: string; value: string };
@@ -53,6 +55,13 @@ export default function Home({ lang }: { lang: string }) {
   }, []);
 
   const [outputWindow, setOutputWindow] = useState(false);
+
+  const notification = useNotification({
+    title: "Hola!",
+    description: "Descripción de la notificación!",
+    type: "success",
+    seconds: 4,
+  });
 
   const OutputWindowElement = () => {
     if (outputWindow) {

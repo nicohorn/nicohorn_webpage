@@ -4,6 +4,7 @@ import { blog_tags } from "@prisma/client";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useState } from "react";
+import { animate, motion } from "framer-motion";
 
 export default function SearchSidebar({
   lang,
@@ -29,29 +30,40 @@ export default function SearchSidebar({
   );
 
   return (
-    <div className="fixed right-[2rem] text-right px-4 xl:flex flex-col gap-4 hidden ">
+    <motion.div
+      onMouseOver={() => {
+        animate("#tags_sidebar", { opacity: 1 });
+      }}
+      onMouseLeave={() => {
+        animate("#tags_sidebar", { opacity: 0 });
+      }}
+      id="tags_sidebar"
+      initial={{ opacity: 0 }}
+      className="fixed right-[2rem] text-right px-4 xl:flex flex-col gap-4 hidden  p-2 "
+    >
       {tags.map((tag, idx) => {
         return (
-          <Link
-            className={`${
-              (selected === idx || searchParams.get("tag") === tag.name) &&
-              "text-yellow-400 underline"
-            } "hover:underline hover:text-yellow-400 transition"`}
-            href={`${path}?${createQueryString("tag", tag.name)}`}
-            key={idx}
-            onClick={() => {
-              setSelected(idx);
-              console.log(createQueryString("tag", tag.name));
-            }}
-          >
-            {lang === "en-US"
-              ? tag.name
-              : TagsToSpanish[tag.name]
-              ? TagsToSpanish[tag.name]
-              : tag.name}
-          </Link>
+          <motion.span key={idx}>
+            <Link
+              className={`${
+                (selected === idx || searchParams.get("tag") === tag.name) &&
+                "text-yellow-400 underline"
+              } "hover:underline hover:text-yellow-400 transition"`}
+              href={`${path}?${createQueryString("tag", tag.name)}`}
+              onClick={() => {
+                setSelected(idx);
+                console.log(createQueryString("tag", tag.name));
+              }}
+            >
+              {lang === "en-US"
+                ? tag.name
+                : TagsToSpanish[tag.name]
+                ? TagsToSpanish[tag.name]
+                : tag.name}
+            </Link>
+          </motion.span>
         );
       })}
-    </div>
+    </motion.div>
   );
 }

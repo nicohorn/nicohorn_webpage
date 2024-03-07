@@ -4,6 +4,7 @@ import {
   IconBrandLinkedin,
   IconBrandX,
   IconBrandGithub,
+  IconMail,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,22 +15,12 @@ export default function Footer({ lang }: { lang: string }) {
   const router = useRouter();
   return (
     <div
-      className={` w-screen shadow-md md:min-h-[12rem] bg-zinc-950 text-white/[85%] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-center`}
+      className={` w-screen md:min-h-[12rem] bg-black shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-center`}
     >
       <div className="flex flex-col md:self-end items-center sm:items-start">
         {" "}
-        <div className="text-lg font-bold">
-          {lang === "en-US"
-            ? "Website made by Nico Horn"
-            : "Web creada por Nico Horn"}
-          {" - " + new Date().getFullYear()}
-        </div>
-        <div className="flex gap-1 flex-col items-center sm:items-start">
-          <p>
-            {lang === "en-US"
-              ? "Contact me through my socials"
-              : "Contactame a través de mis redes"}
-          </p>
+        <div className="flex gap-1 flex-col items-center sm:items-start ">
+          <p>{lang === "en-US" ? "Contact me" : "Contactame"}</p>
           <div className="flex gap-2">
             <Link
               aria-label={
@@ -76,50 +67,45 @@ export default function Footer({ lang }: { lang: string }) {
                 height={30}
               />
             </Link>
+            <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
+              <p
+                id="tooltip_email"
+                className="absolute translate-y-6 px-2 hidden md:block translate-x-4 rounded-sm bg-zinc-700  opacity-0"
+              >
+                {lang === "en-US"
+                  ? "Click to copy email address"
+                  : "Click para copiar la dirección de correo electrónico"}
+              </p>
+              <motion.p
+                onMouseOver={() => {
+                  animate("#tooltip_email", { opacity: 1 }, { delay: 0.5 });
+                }}
+                onMouseLeave={() => {
+                  animate("#tooltip_email", { opacity: 0 }, { delay: 0.2 });
+                }}
+                className="cursor-pointer hover:underline"
+                onClick={() => {
+                  navigator.clipboard.writeText("contact@nicohorn.com");
+                  alert(
+                    lang === "en-US"
+                      ? "Copied! contact@nicohorn.com"
+                      : "Copiado! contact@nicohorn.com"
+                  );
+                }}
+                id="nico-email"
+              >
+                <IconMail
+                  className="hover:stroke-yellow-300 transition-all duration-75"
+                  width={30}
+                  height={30}
+                />
+              </motion.p>
+            </div>
           </div>
-          <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
-            <p
-              id="tooltip_email"
-              className="absolute translate-y-6 px-2 hidden md:block translate-x-4 rounded-sm bg-zinc-700  opacity-0"
-            >
-              {lang === "en-US"
-                ? "Click to copy email address"
-                : "Click para copiar la dirección de correo electrónico"}
-            </p>
-            <motion.p
-              onMouseOver={() => {
-                animate("#tooltip_email", { opacity: 1 }, { delay: 0.5 });
-              }}
-              onMouseLeave={() => {
-                animate("#tooltip_email", { opacity: 0 }, { delay: 0.2 });
-              }}
-              className="cursor-pointer hover:underline"
-              onClick={() => {
-                navigator.clipboard.writeText("contact@nicohorn.com");
-                alert(
-                  lang === "en-US"
-                    ? "Copied! contact@nicohorn.com"
-                    : "Copiado! contact@nicohorn.com"
-                );
-              }}
-              id="nico-email"
-            >
-              {lang === "en-US"
-                ? "Email me: contact@nicohorn.com"
-                : "Enviame un email: contact@nicohorn.com"}
-            </motion.p>
-            <button
-              aria-label={
-                lang === "en-US"
-                  ? "Button to send an email to Nico Horn"
-                  : "Botón para enviar un email Nico Horn"
-              }
-              className="px-2 border opacity-30 hover:opacity-100"
-              type="button"
-              onClick={() => router.push("mailto:contact@nicohorn.com")}
-            >
-              {lang === "en-US" ? "Click here" : "Click acá"}
-            </button>
+
+          <div className="text-lg font-normal flex gap-1">
+            {lang === "en-US" ? "Website by Nico Horn" : "Web por Nico Horn"}
+            <p className="font-semibold">{new Date().getFullYear()}</p>
           </div>
         </div>
       </div>
