@@ -33,7 +33,7 @@ export default async function RootLayout({
 
   return (
     <html
-      className=" bg-black pattern-graph-yellow-900/30 text-white overflow-x-hidden h-screen "
+      className=" bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen "
       lang={`${params.lang}`}
     >
       <body
