@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Nico Horn's blog</title>
-        <link>undefined</link>
+        <link>https://nicohorn.com</link>
         <description>Welcome to my blog! Here I post my own thoughts and views about tech, philosophy and pretty much anything that comes to my mind.</description>
-        <lastBuildDate>Thu, 14 Mar 2024 15:58:01 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 14 Mar 2024 16:34:49 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <image>
             <title>Nico Horn's blog</title>
-            <url>undefined/ms-icon-144x144.png</url>
-            <link>undefined</link>
+            <url>https://nicohorn.com/ms-icon-144x144.png</url>
+            <link>https://nicohorn.com</link>
         </image>
         <copyright>All rights reserved 2024, Nico Horn</copyright>
         <item>
             <title><![CDATA[A new entry]]></title>
-            <link>undefined/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8</link>
-            <guid>undefined/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8</guid>
+            <link>https://nicohorn.com/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8</link>
+            <guid>https://nicohorn.com/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8</guid>
             <pubDate>Thu, 14 Mar 2024 15:14:08 GMT</pubDate>
             <description><![CDATA[Hello, this is me trying a new blog entry!!!]]></description>
             <content:encoded><![CDATA[<h1>Hello World!</h1><p><br><br></p>]]></content:encoded>

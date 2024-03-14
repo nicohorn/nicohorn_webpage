@@ -7,12 +7,12 @@ const generateRssFeed = async () => {
 
     console.log("Creating RSS feed");
 
-    const postsFetch = await fetch(`https://nicohorn.com/api/blog_entry`, {
+    const postsFetch = await fetch(`http://localhost:3000/api/blog_entry`, {
         method: "GET",
     });
     const posts = await postsFetch.json();
     console.log(posts)
-    const siteURL = process.env.NEXTAUTH_URL;
+    const siteURL = "https://nicohorn.com";
     const date = new Date();
     const author = {
         name: "Nico Horn",
@@ -59,5 +59,6 @@ const generateRssFeed = async () => {
 
 }
 
+export { generateRssFeed }
 export default generateRssFeed();
 
