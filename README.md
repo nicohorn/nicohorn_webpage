@@ -1,4 +1,5 @@
 This is my personal webpage, made with Next.js
+
 Other technologies involved in this projects are: Prisma, PostgreSQL, Next-Auth, and many libraries.
 
 ## Getting Started
