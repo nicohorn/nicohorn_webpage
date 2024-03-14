@@ -25,7 +25,7 @@ const generateRssFeed = async () => {
         description: "Welcome to my blog! Here I post my own thoughts and views about tech, philosophy and pretty much anything that comes to my mind.",
         id: siteURL,
         link: siteURL,
-        image: `${siteURL}/ms-icon-144x144.png`,
+        image: `https://nicohorn.com/ms-icon-144x144.png`,
         copyright: `All rights reserved ${date.getFullYear()}, Nico Horn`,
         updated: date,
         generator: "Feed for Node.js",
@@ -46,9 +46,10 @@ const generateRssFeed = async () => {
             link: entryURL,
             description: post.description,
             content: post.content,
+            image: post.cover_image,
             author: [author],
             contributor: [author],
-            date: new Date(post.created_at)
+            date: new Date(post.created_at),
         })
     })
 
