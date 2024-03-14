@@ -8,12 +8,25 @@ import {
   IconRss,
 } from "@tabler/icons-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { animate, motion } from "framer-motion";
 import Stack from "./Stack";
 import { Notification } from "./Notification";
 
 export default function Footer({ lang }: { lang: string }) {
+  useEffect(() => {
+    if (localStorage.getItem("visited") == "true") return;
+    setTimeout(() => {
+      new Notification().props({
+        title: "This site uses cookies",
+        description:
+          "By navigating on this site, you're accepting the usage of cookies",
+        type: "info",
+        seconds: 5,
+      });
+    }, 1000);
+    localStorage.setItem("visited", "true");
+  }, []);
+
   return (
     <div
       id="footer_container"

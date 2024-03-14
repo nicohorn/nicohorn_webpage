@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nicohorn.com</id>
     <title>Nico Horn's blog</title>
-    <updated>2024-03-14T16:34:49.230Z</updated>
+    <updated>2024-03-14T23:35:32.253Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>Nico Horn</name>
@@ -15,12 +15,30 @@
     <logo>https://nicohorn.com/ms-icon-144x144.png</logo>
     <rights>All rights reserved 2024, Nico Horn</rights>
     <entry>
-        <title type="html"><![CDATA[A new entry]]></title>
-        <id>https://nicohorn.com/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8</id>
-        <link href="https://nicohorn.com/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8"/>
-        <updated>2024-03-14T15:14:08.841Z</updated>
-        <summary type="html"><![CDATA[Hello, this is me trying a new blog entry!!!]]></summary>
-        <content type="html"><![CDATA[<h1>Hello World!</h1><p><br><br></p>]]></content>
+        <title type="html"><![CDATA[Detect click outside HTML element]]></title>
+        <id>https://nicohorn.com/en-US/blog/154107f0-82c0-4a73-bfd4-b216df229821</id>
+        <link href="https://nicohorn.com/en-US/blog/154107f0-82c0-4a73-bfd4-b216df229821"/>
+        <updated>2024-03-03T09:12:18.989Z</updated>
+        <summary type="html"><![CDATA[This is a fairly easy thing to do, but I never found a concise and simple explanation for it. This is my attempt at doing that.]]></summary>
+        <content type="html"><![CDATA[<h2>Problem description:<strong> detect a click outside an HTML Element</strong></h2><p>Although there's many component libraries that solve this problem, it's always nice when building our own website to do all the little things by ourselves. In my case, I've always liked doing modals from scratch. Well, not so from scratch since I'm using React to manage the state, but otherwise, this approach works for plain HTML and JS. In my case, for a better user experiences, I like making my modals so that they close when the user click "outside" it, as shown in the image below.</p><p></p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/Untitled-2024-03-02-0056.png" alt="blog image"><p></p><p>So my approach was the following: when we attach an event listener to an element, such as the <code>#modal</code> we get an output with an object that contains all the info related to the event. In this case, the event listener would be an <code>onclick</code> so I went with the following solution, which is by far the simplest solution I know so far:<br><br></p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/clickoutside.png" alt="blog image"><p></p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/htmlstructure.png" alt="blog image"><p></p><p>That's it, try it out. Have fun!</p>]]></content>
+        <author>
+            <name>Nico Horn</name>
+            <email>contact@nicohorn.com</email>
+            <uri>https://nicohorn.com</uri>
+        </author>
+        <contributor>
+            <name>Nico Horn</name>
+            <email>contact@nicohorn.com</email>
+            <uri>https://nicohorn.com</uri>
+        </contributor>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hey there]]></title>
+        <id>https://nicohorn.com/en-US/blog/e6d998e8-a1e1-4288-beb8-597e0a39e70d</id>
+        <link href="https://nicohorn.com/en-US/blog/e6d998e8-a1e1-4288-beb8-597e0a39e70d"/>
+        <updated>2024-03-01T05:08:58.291Z</updated>
+        <summary type="html"><![CDATA[Welcome to my blog! This is the first entry (in english) I'm making. Let me introduce myself.]]></summary>
+        <content type="html"><![CDATA[<h1>Hello World</h1><p>Its been a long time since I wanted to craft and publish my own blog, been postponing it for more than 3 years actually. There are a lot of options out there for people who love to write but don't want to spend some serious hours coding their own blog, which I understand and respect, but in my case, I always wanted to do it my way, having to learn and try things out, the old fashioned way. The thing is, I love building stuff and I love sharing my thoughts and experiences, so that's a pretty good excuse for building this from scratch.</p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/nicolas.png" alt="blog image"><p>I'm Nico, I'm a software engineer, computer science graduate and I also teach at a local university. I have gathered some knowledge in the past few years as a developer but I can't stay put, I always feel that there's so much more to learn and, as the cliché goes, the more I learn, the less I know. This is my space to share that journey, to share what I learn and my thoughts on it. Knowledge should be shared and I'm here for it. </p>]]></content>
         <author>
             <name>Nico Horn</name>
             <email>contact@nicohorn.com</email>
