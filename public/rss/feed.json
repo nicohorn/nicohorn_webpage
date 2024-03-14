@@ -1,0 +1,25 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Nico Horn's blog",
+    "feed_url": "undefined/rss/feed.json",
+    "description": "Welcome to my blog! Here I post my own thoughts and views about tech, philosophy and pretty much anything that comes to my mind.",
+    "icon": "undefined/ms-icon-144x144.png",
+    "author": {
+        "name": "Nico Horn",
+        "url": "https://nicohorn.com"
+    },
+    "items": [
+        {
+            "id": "undefined/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8",
+            "content_html": "<h1>Hello World!</h1><p><br><br></p>",
+            "url": "undefined/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8",
+            "title": "A new entry",
+            "summary": "Hello, this is me trying a new blog entry!!!",
+            "date_modified": "2024-03-14T15:14:08.841Z",
+            "author": {
+                "name": "Nico Horn",
+                "url": "https://nicohorn.com"
+            }
+        }
+    ]
+}

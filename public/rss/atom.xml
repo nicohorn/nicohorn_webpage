@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id/>
+    <title>Nico Horn's blog</title>
+    <updated>2024-03-14T15:58:01.332Z</updated>
+    <generator>Feed for Node.js</generator>
+    <author>
+        <name>Nico Horn</name>
+        <email>contact@nicohorn.com</email>
+        <uri>https://nicohorn.com</uri>
+    </author>
+    <link rel="self" href="undefined/rss/atom.xml"/>
+    <subtitle>Welcome to my blog! Here I post my own thoughts and views about tech, philosophy and pretty much anything that comes to my mind.</subtitle>
+    <logo>undefined/ms-icon-144x144.png</logo>
+    <rights>All rights reserved 2024, Nico Horn</rights>
+    <entry>
+        <title type="html"><![CDATA[A new entry]]></title>
+        <id>undefined/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8</id>
+        <link href="undefined/en-US/blog/28661b3c-1a9c-4429-aa19-c9343d7ff4f8"/>
+        <updated>2024-03-14T15:14:08.841Z</updated>
+        <summary type="html"><![CDATA[Hello, this is me trying a new blog entry!!!]]></summary>
+        <content type="html"><![CDATA[<h1>Hello World!</h1><p><br><br></p>]]></content>
+        <author>
+            <name>Nico Horn</name>
+            <email>contact@nicohorn.com</email>
+            <uri>https://nicohorn.com</uri>
+        </author>
+        <contributor>
+            <name>Nico Horn</name>
+            <email>contact@nicohorn.com</email>
+            <uri>https://nicohorn.com</uri>
+        </contributor>
+    </entry>
+</feed>

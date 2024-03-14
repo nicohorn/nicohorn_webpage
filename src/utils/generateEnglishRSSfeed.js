@@ -1,9 +1,17 @@
-import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry"
+
 import { Feed } from "feed"
 import fs from "fs";
 
 const generateRssFeed = async () => {
-    const posts = await getAllBlogEntriesWithTags("", "en/US");
+
+
+    console.log("Creating RSS feed");
+
+    const postsFetch = await fetch(`https://nicohorn.com/api/blog_entry`, {
+        method: "GET",
+    });
+    const posts = await postsFetch.json();
+    console.log(posts)
     const siteURL = process.env.NEXTAUTH_URL;
     const date = new Date();
     const author = {
@@ -48,7 +56,8 @@ const generateRssFeed = async () => {
     fs.writeFileSync("./public/rss/feed.xml", feed.rss2());
     fs.writeFileSync("./public/rss/atom.xml", feed.atom1());
     fs.writeFileSync("./public/rss/feed.json", feed.json1());
+
 }
 
-export default generateRssFeed
+export default generateRssFeed();
 
