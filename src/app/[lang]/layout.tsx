@@ -41,7 +41,7 @@ export default async function RootLayout({
           oswald.className + "  z-0 relative scroll-smooth h-full flex flex-col"
         }
       >
-        <div id="notifications_container" className="relative" />
+        <div id="notifications_container" className="relative" />;
         <div className="mx-12 my-16 md:my-8">
           <VerticalNavbar
             lang={params.lang}
@@ -58,7 +58,6 @@ export default async function RootLayout({
           />
           {children}
         </div>
-
         <Footer lang={params.lang} />
       </body>
     </html>
