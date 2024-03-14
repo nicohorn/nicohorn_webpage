@@ -101,4 +101,17 @@ model blog_entries_on_tags{
 
 }
 
+model projects{
+  id                    String     @id @default(uuid()) @db.Uuid
+  created_at            DateTime
+  project_name          String
+  description           String
+  project_items         Json
+  cover_image           String
+
+  @@schema("public")
+}
+
+
+
 

@@ -45,8 +45,7 @@ export default function Hero({
         {description.split("").map((char, idx) => {
           return (
             <motion.span
-              whileHover={{ color: "yellow" }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ color: "yellow", scale: 1.2, rotate: 10 }}
               key={idx}
             >
               {char == " " ? <p>&nbsp;</p> : <p>{char}</p>}

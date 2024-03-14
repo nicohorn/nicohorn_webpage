@@ -1,4 +1,4 @@
-import { createBlogEntry } from "@/repositories/blog_entry";
+import { createBlogEntry, getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -13,4 +13,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(data)
 
+}
+
+export async function GET() {
+
+    const res = await getAllBlogEntriesWithTags("", "en-US");
+    return NextResponse.json(res);
 }

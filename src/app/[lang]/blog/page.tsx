@@ -24,7 +24,9 @@ export default async function Page({
   if (blog_entries!.length < 1)
     return (
       <div className="xl:-mt-20 -mt-12 text-5xl">
-        {params.lang === "en-US" ? "No entries found" : "No hay entradas"}
+        {params.lang === "en-US"
+          ? "No blog entries found 😔"
+          : "No hay entradas en el blog 😔"}
       </div>
     );
 

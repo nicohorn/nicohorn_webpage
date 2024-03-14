@@ -166,7 +166,8 @@ export default function VerticalNavbar({
     document.body.addEventListener("click", (e) => {
       if (
         e.target !== document.getElementById("nav_container") &&
-        e.target !== document.getElementById("nav_container_button")
+        e.target !== document.getElementById("nav_container_button") &&
+        e.target !== document.querySelector("px-12 py-5")
       ) {
         setOpen(false);
         animate(
