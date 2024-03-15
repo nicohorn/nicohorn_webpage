@@ -18,7 +18,6 @@ export default function SearchSidebar({
 
   const [selected, setSelected] = useState(-1);
 
-  console.log({ ...searchParams });
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
@@ -52,7 +51,6 @@ export default function SearchSidebar({
               href={`${path}?${createQueryString("tag", tag.name)}`}
               onClick={() => {
                 setSelected(idx);
-                console.log(createQueryString("tag", tag.name));
               }}
             >
               {lang === "en-US"

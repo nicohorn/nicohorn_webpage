@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Title from "@/components/Title";
 import TextEditor from "../components/TextEditor";
 import { blog_entries, blog_tags } from "@prisma/client";
@@ -40,7 +40,6 @@ export default function BlogEntryForm({
   const [selectedTags, setSelectedTags] = useState<
     { id: string; name: string }[]
   >([]);
-  console.log(selectedTags);
   const getLoggedInUser = async () => {
     const res = await fetch(`/api/auth/session`);
     return res.json().then((res) => {
