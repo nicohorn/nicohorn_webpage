@@ -63,8 +63,8 @@ export default function Footer({ lang }: { lang: string }) {
             >
               <IconBrandLinkedin
                 className="hover:stroke-yellow-300 transition-all duration-75"
-                width={30}
-                height={30}
+                width={31}
+                height={31}
               />
             </Link>
             <Link

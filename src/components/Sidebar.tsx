@@ -37,44 +37,7 @@ export default function VerticalNavbar({
         lang === "en-US" ? "Cambiar a español" : "Change language to english",
     };
   };
-  const files: {
-    [key: string]: { name: string; language: string; value: string };
-  } = {
-    "index.html": {
-      name: "index.html",
-      language: "html",
-      value:
-        lang === "en-US"
-          ? `<h1 id="titleId" class="title">Hello world!</h1>`
-          : `<h1 id="tituloId" class="titulo">Hola mundo!</h1>`,
-    },
-    "style.css": {
-      name: "style.css",
-      language: "css",
-      value:
-        lang === "en-US"
-          ? `.title{
-        color: red;
-        cursor: pointer
-    }`
-          : `.titulo{
-        color: red;
-        cursor: pointer
-    }`,
-    },
-    "script.js": {
-      name: "script.js",
-      language: "javascript",
-      value:
-        lang === "en-US"
-          ? `document.getElementById("titleId").addEventListener("click",(e)=>{
-            alert("You clicked the title!")
-        })`
-          : `document.getElementById("tituloId").addEventListener("click",(e)=>{
-            alert("Clickeaste el titulo!")
-        })`,
-    },
-  };
+
   //These buttons <loginButton and logoutButton> aren't meant to be reusable components, but since they're conditionally called (if there's an active session), it's easier to manage them having them defined as functions inside this component.
   const loginButton = () => {
     return (
@@ -86,7 +49,8 @@ export default function VerticalNavbar({
           className=" w-full text-left"
         >
           <motion.p
-            className="button py-5 px-12"
+            id="sign_in_button"
+            className=" py-5 px-12"
             whileTap={{ scale: 0.97 }}
             whileHover={{ x: 5 }}
           >
@@ -101,13 +65,14 @@ export default function VerticalNavbar({
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Disclosure.Panel className="text-lg">
+          <Disclosure.Panel className="text-lg hover:bg-white hover:text-black">
             <motion.button
               whileTap={{ scale: 0.95 }}
+              whileHover={{ x: 5 }}
               onClick={() => {
                 signIn("google");
               }}
-              className=" px-14 py-6 flex gap-2 items-center"
+              className="px-14 py-6 flex gap-2 items-center hover:bg-white hover:text-black"
             >
               {lang === "en-US" ? "Sign in with Google" : "Iniciar sesión con"}
               <IconBrandGoogleFilled />
@@ -165,9 +130,9 @@ export default function VerticalNavbar({
   const handleMouseOutsideSidebar = () =>
     document.body.addEventListener("click", (e) => {
       if (
+        e.target !== document.getElementById("sign_in_button") &&
         e.target !== document.getElementById("nav_container") &&
-        e.target !== document.getElementById("nav_container_button") &&
-        e.target !== document.querySelector("px-12 py-5")
+        e.target !== document.getElementById("nav_container_button")
       ) {
         setOpen(false);
         animate(
