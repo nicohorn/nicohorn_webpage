@@ -1,20 +1,35 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   IconBrandLinkedin,
   IconBrandX,
   IconBrandGithub,
   IconMail,
+  IconRss,
 } from "@tabler/icons-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { animate, motion } from "framer-motion";
 import Stack from "./Stack";
+import { Notification } from "./Notification";
 
 export default function Footer({ lang }: { lang: string }) {
-  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem("visited") == "true") return;
+    setTimeout(() => {
+      new Notification().props({
+        title: "This site uses cookies",
+        description:
+          "By navigating on this site, you're accepting the usage of cookies",
+        type: "info",
+        seconds: 5,
+      });
+    }, 1000);
+    localStorage.setItem("visited", "true");
+  }, []);
+
   return (
     <div
+      id="footer_container"
       className={` w-screen md:min-h-[12rem] bg-black shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-center`}
     >
       <div className="flex flex-col md:self-end items-center sm:items-start">
@@ -22,6 +37,21 @@ export default function Footer({ lang }: { lang: string }) {
         <div className="flex gap-1 flex-col items-center sm:items-start ">
           <p>{lang === "en-US" ? "Contact me" : "Contactame"}</p>
           <div className="flex gap-2">
+            <Link
+              aria-label={
+                lang === "en-US"
+                  ? "RSS feed for Nico Horn's blog"
+                  : "Feed RSS del blog de Nico Horn"
+              }
+              target="_blank"
+              href="https://nicohorn.com/rss/feed.xml"
+            >
+              <IconRss
+                className="hover:stroke-yellow-300 transition-all duration-75"
+                width={30}
+                height={30}
+              />
+            </Link>
             <Link
               aria-label={
                 lang === "en-US"
@@ -33,8 +63,8 @@ export default function Footer({ lang }: { lang: string }) {
             >
               <IconBrandLinkedin
                 className="hover:stroke-yellow-300 transition-all duration-75"
-                width={30}
-                height={30}
+                width={31}
+                height={31}
               />
             </Link>
             <Link

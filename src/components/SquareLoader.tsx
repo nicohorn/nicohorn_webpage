@@ -14,7 +14,7 @@ export default function SquareLoader() {
           x="2.5"
           y="2.5"
           fill="none"
-          stroke-width="5px"
+          strokeWidth="5px"
           width="50"
           height="50"
         />
@@ -23,7 +23,7 @@ export default function SquareLoader() {
           x="2.5"
           y="2.5"
           fill="none"
-          stroke-width="5px"
+          strokeWidth="5px"
           width="50"
           height="50"
           pathLength="100"

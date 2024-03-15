@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
+import { Notification } from './components/Notification';
 
 
 
@@ -44,6 +45,7 @@ export async function middleware(req: NextRequest) {
 
     else if (req.nextUrl.pathname == "/") {
         console.log(req.nextUrl.pathname)
+
         return NextResponse.redirect(new URL(`/${lang}/blog`, req.url))
     }
 

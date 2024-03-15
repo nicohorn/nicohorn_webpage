@@ -9,11 +9,11 @@ const jsonSchema: z.ZodType<Json> = z.lazy(() =>
 
 
 export const BlogEntrySchema = z.object({
-    title: z.string(),
-    description: z.string(),
+    title: z.string().min(5, { message: "Title must have at least 5 characters" }),
+    description: z.string().min(50, { message: "Description must have at least 50 characters" }),
     content: z.string(),
     cover_image: z.string(),
-    tags: z.array(z.object({ id: z.string(), name: z.string() })),
+    tags: z.array(z.object({ id: z.string(), name: z.string() })).min(1, { message: "At least one tag must be selected" }),
     node: z.string().nullable(),
     author_name: z.string(),
     author_id: z.string(),

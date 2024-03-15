@@ -1,4 +1,5 @@
-import BulletList from "@tiptap/extension-bullet-list";
+import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
+import { all, createLowlight } from "lowlight";
 import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
@@ -8,8 +9,8 @@ import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
 import { supabase } from "@/supabase";
-import { Roboto, Open_Sans } from "next/font/google";
 import { Montserrat } from "next/font/google";
+import javascript from "highlight.js";
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -45,7 +46,9 @@ export default function TextEditor({
         class: "tiptap_image",
       },
     }),
+    CodeBlockLowlight.configure({ lowlight: createLowlight(all) }),
     StarterKit.configure({
+      codeBlock: false,
       orderedList: {
         keepMarks: true,
         keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
@@ -376,11 +379,11 @@ export default function TextEditor({
             if (!contentSet)
               document
                 .getElementById("publish_entry_buton")
-                ?.classList.remove("opacity-50", "pointer-events-none");
+                ?.classList.remove("text-zinc-500", "pointer-events-none");
             else
               document
                 .getElementById("publish_entry_buton")
-                ?.classList.add("opacity-50", "pointer-events-none");
+                ?.classList.add("text-zinc-500", "pointer-events-none");
           }}
           className={`
             ${

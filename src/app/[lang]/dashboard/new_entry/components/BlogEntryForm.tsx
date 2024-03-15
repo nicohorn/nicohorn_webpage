@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Title from "@/components/Title";
 import TextEditor from "../components/TextEditor";
 import { blog_entries, blog_tags } from "@prisma/client";
@@ -98,6 +98,7 @@ export default function BlogEntryForm({
   const form = useForm<BlogEntry>({
     validate: zodResolver(BlogEntrySchema),
     validateInputOnBlur: true,
+    validateInputOnChange: true,
   });
 
   return (
@@ -128,11 +129,16 @@ export default function BlogEntryForm({
           rows={4}
           className="bg-black border border-zinc-600 focus:border-b-white  px-2 py-1 outline-none"
         />
+        {form.getInputProps("description").error && (
+          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+            *{form.getInputProps("description").error}
+          </p>
+        )}
       </div>
       <div className="flex gap-5">
         <label
           htmlFor="blog_entry_cover_image"
-          className="h-fit flex-grow self-center p-2 text-center border border-zinc-900/60 bg-zinc-900/60 cursor-pointer hover:bg-white hover:text-black transition"
+          className="h-fit flex-grow self-center p-2 text-center border border-zinc-600 bg-zinc-900 cursor-pointer hover:bg-white hover:text-black transition"
         >
           Imagen de portada
         </label>
@@ -250,6 +256,11 @@ export default function BlogEntryForm({
             </button>
           </div>
         </div>
+        {form.getInputProps("tags").error && (
+          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+            *{form.getInputProps("tags").error}
+          </p>
+        )}
       </div>
       <div className="flex flex-col gap-1">
         <label>Contenido</label>
@@ -261,7 +272,7 @@ export default function BlogEntryForm({
       </div>
       <button
         id="publish_entry_buton"
-        className="border border-white/50 bg-zinc-800 hover:bg-zinc-900 transition h-10 opacity-50 pointer-events-none"
+        className="border border-zinc-600 bg-zinc-900 transition h-10 hover:bg-white hover:text-black text-zinc-500 pointer-events-none"
         type="submit"
         onClick={async (e) => {
           e.preventDefault();
@@ -278,11 +289,18 @@ export default function BlogEntryForm({
             node: null,
           });
 
-          console.log("safe parse result", parseResult);
-
           if (parseResult.success) await createBlogEntry(parseResult.data);
           else {
-            console.log(parseResult.error.message);
+            new Notification().props({
+              title: "Error publicando entrada",
+              description: JSON.parse(parseResult.error.message).map(
+                (m: { path: any; message: any }) => {
+                  return `-${m.path} => ${m.message} \n`;
+                }
+              ),
+              type: "error",
+              seconds: 5,
+            });
           }
         }}
       >
