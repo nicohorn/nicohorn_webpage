@@ -36,7 +36,6 @@ export default function BlogEntry({
   };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log(latest);
     animate("#blog_date", { opacity: latest > 100 ? 0 : 1 }, { duration: 0.1 });
     animate(
       "#cover_background_image",
@@ -55,8 +54,6 @@ export default function BlogEntry({
   });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log(latest);
-
     animate(
       "#top_top_button",
       { opacity: latest > 200 ? 1 : 0 },

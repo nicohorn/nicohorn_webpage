@@ -1,4 +1,7 @@
 "use client";
+import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
+import { all, createLowlight } from "lowlight";
+import Link from "@tiptap/extension-link";
 import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
@@ -7,6 +10,7 @@ import { EditorProvider, JSONContent, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
 import { Montserrat } from "next/font/google";
+
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -20,8 +24,17 @@ export default function TipTapContent({
   const extensions = [
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
     TextStyle.configure({ types: [ListItem.name] } as any),
-    Image.configure({}),
+    Link.configure({ linkOnPaste: true }),
+    Image.configure({
+      HTMLAttributes: {
+        class: "tiptap_image",
+      },
+    }),
+    CodeBlockLowlight.configure({
+      lowlight: createLowlight(all),
+    }),
     StarterKit.configure({
+      codeBlock: false,
       orderedList: {
         keepMarks: true,
         keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
