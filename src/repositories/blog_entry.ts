@@ -1,4 +1,4 @@
-import { BlogEntryWithTagsForm } from "@/app/[lang]/dashboard/new_entry/components/BlogEntryForm";
+import { BlogEntryWithTagsForm } from "@/app/[lang]/dashboard/blog_entry/components/BlogEntryForm";
 import { prisma } from "@/utils/db";
 import { Prisma } from "@prisma/client";
 

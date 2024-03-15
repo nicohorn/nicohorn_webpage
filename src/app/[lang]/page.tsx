@@ -17,6 +17,10 @@ export default function Page({}) {
       </div>
 
       <Script async src="https://platform.twitter.com/widgets.js" />
+      <iframe
+        className="w-full aspect-video bg-white"
+        src="https://fastidious-lamington-ed3fd8.netlify.app/"
+      ></iframe>
     </main>
   );
 }

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import TipTapContent from "../components/TipTapContent";
-import { IconCalendar } from "@tabler/icons-react";
+import { IconCalendar, IconEdit } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import {
   animate,
@@ -18,10 +18,16 @@ import {
   IconPlus,
   IconMinus,
 } from "@tabler/icons-react";
+import Link from "next/link";
+import { users } from "@prisma/client";
 
 export default function BlogEntry({
+  user,
+  lang,
   blog_entry,
 }: {
+  user: users;
+  lang: string;
   blog_entry: BlogEntryWithTags;
 }) {
   const { scrollY, scrollYProgress } = useScroll();
@@ -116,6 +122,15 @@ export default function BlogEntry({
       <div
         className={`mt-[18rem] leading-relaxed relative ${textSizes[textSize]}`}
       >
+        {user.role === "admin" && (
+          <Link
+            className="flex gap-2 items-center opacity-75 hover:opacity-100 transition"
+            href={`/${lang}/dashboard/blog_entry/${blog_entry.id}`}
+          >
+            {lang === "en-US" ? "Edit blog entry" : "Editar entrada de blog"}{" "}
+            <IconEdit />
+          </Link>
+        )}
         <div className="flex my-6 items-center gap-3 ">
           <button
             className="opacity-40 hover:opacity-100 active:scale-90"
