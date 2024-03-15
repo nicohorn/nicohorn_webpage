@@ -4,14 +4,12 @@ import fs from "fs";
 
 const generateRssFeed = async () => {
 
-
+    //This console log will appear in the console at build time.
     console.log("Creating RSS feed");
-
     const postsFetch = await fetch(`https://nicohorn.com/api/blog_entry`, {
         method: "GET",
     });
     const posts = await postsFetch.json();
-    console.log(posts)
     const siteURL = "https://nicohorn.com";
     const date = new Date();
     const author = {
@@ -60,6 +58,8 @@ const generateRssFeed = async () => {
 
 }
 
+//This one I use it on the endpoint that the cron job runs.
 export { generateRssFeed }
+//It's exported like this, executed, because it'll be caled directly by a Node command in the CLI.
 export default generateRssFeed();
 

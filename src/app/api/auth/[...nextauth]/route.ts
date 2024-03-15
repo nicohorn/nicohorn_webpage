@@ -17,12 +17,21 @@ export const authOptions: NextAuthOptions = {
         Google({
             clientId: process.env.GOOGLE_CLIENT_ID ?? "",
             clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+            authorization: {
+                params: {
+                    prompt: "consent",
+                    access_type: "offline",
+                    response_type: "code"
+                }
+            }
         }),
     ],
     callbacks: {
         async signIn({ user }) {
+            console.log("SIGN IN USER", user);
             if (!user || !user.email) return false;
             const userExists = await getUserByEmail(user.email!);
+            console.log("USER EXISTS", userExists)
             if (userExists) {
                 //This is just to update the user last login datetime.
                 await updateUserByEmail(user.email, {

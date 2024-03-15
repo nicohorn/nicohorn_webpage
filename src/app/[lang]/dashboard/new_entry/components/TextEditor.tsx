@@ -10,7 +10,7 @@ import StarterKit from "@tiptap/starter-kit";
 import React, { useRef, useState } from "react";
 import { supabase } from "@/supabase";
 import { Montserrat } from "next/font/google";
-import javascript from "highlight.js";
+
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -46,7 +46,9 @@ export default function TextEditor({
         class: "tiptap_image",
       },
     }),
-    CodeBlockLowlight.configure({ lowlight: createLowlight(all) }),
+    CodeBlockLowlight.configure({
+      lowlight: createLowlight(all),
+    }),
     StarterKit.configure({
       codeBlock: false,
       orderedList: {
