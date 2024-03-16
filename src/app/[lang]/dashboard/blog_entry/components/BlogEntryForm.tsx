@@ -152,7 +152,7 @@ export default function BlogEntryForm({
   };
 
   return (
-    <form className="xl:w-[50%] w-fit flex flex-col gap-4">
+    <form className="xl:w-[50%] flex flex-col gap-4">
       <Title title="Entrada de blog" />
       <div className="flex flex-col gap-1">
         <label htmlFor="blog_entry_title">Título</label>
