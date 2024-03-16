@@ -30,6 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: blog_entry?.title,
     description: blog_entry?.description,
-    authors: { name: blog_entry?.author_name },
+    authors: { name: blog_entry?.author_name, url: "https://nicohorn.com" },
+    openGraph: {
+      images: blog_entry?.cover_image,
+    },
+    keywords: blog_entry?.tags.map((t) => {
+      return t.blog_tag.name;
+    }),
   };
 }

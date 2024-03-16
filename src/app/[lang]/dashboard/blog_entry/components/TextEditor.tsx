@@ -1,5 +1,5 @@
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
-import { all, createLowlight } from "lowlight";
+import { common, createLowlight } from "lowlight";
 import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
@@ -49,7 +49,7 @@ export default function TextEditor({
       },
     }),
     CodeBlockLowlight.configure({
-      lowlight: createLowlight(all),
+      lowlight: createLowlight(common),
     }),
     StarterKit.configure({
       codeBlock: false,
