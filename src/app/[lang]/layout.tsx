@@ -16,9 +16,13 @@ export const metadata: Metadata = {
   title: "Nico Horn ",
   description:
     "Welcome to my personal webpage, I'm Nico Horn, full stack developer, systems engineer and educator.",
-  other: {
-    "og:image": "/ms-icon-144x144.png",
+  openGraph: {
+    images:
+      "https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
+  keywords: [
+    "developer, engineer, educator, teacher, professor, nico, horn, nico horn, software, full stack, ingeniero, desarrollador, profesor, docente, universidad, university, cs graduate, computer science, networking",
+  ],
 };
 
 export default async function RootLayout({
