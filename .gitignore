@@ -38,7 +38,8 @@ next-env.d.ts
 
 
 
-public/rss/feed.xml
-public/rss/feed.json
-public/rss/atom.xml
+feed.xml
+feed.json
+atom.xml
 bun.lockb
+
