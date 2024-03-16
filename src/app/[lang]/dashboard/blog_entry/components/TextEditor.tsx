@@ -7,7 +7,7 @@ import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { supabase } from "@/supabase";
 import { Montserrat } from "next/font/google";
 
@@ -30,10 +30,12 @@ export default function TextEditor({
   setContent,
   imageSrcs,
   setImageSrcs,
+  content,
 }: {
-  setContent: React.Dispatch<string | undefined>;
+  setContent: React.Dispatch<string>;
   imageSrcs: string[];
   setImageSrcs: React.Dispatch<string[]>;
+  content?: string;
 }) {
   const [contentSet, setContentSet] = useState(false);
 
@@ -72,7 +74,7 @@ export default function TextEditor({
     }
 
     return (
-      <div className="flex gap-3 flex-wrap border-b border-zinc-600 pb-3 mb-3">
+      <div className="flex gap-3 flex-wrap border-b border-zinc-600 p-3 mb-3 bg-black z-50 sticky top-0 w-full">
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -377,7 +379,7 @@ export default function TextEditor({
           onClick={(e) => {
             e.preventDefault();
             setContentSet(!contentSet);
-            contentSet ? setContent(undefined) : setContent(editor.getHTML());
+            contentSet ? setContent("") : setContent(editor.getHTML());
             if (!contentSet)
               document
                 .getElementById("publish_entry_buton")
@@ -401,11 +403,11 @@ export default function TextEditor({
   };
 
   return (
-    <div className={`border border-zinc-600 p-3 ${montserrat.className} `}>
+    <div className={`border border-zinc-600 p-4 ${montserrat.className} `}>
       <EditorProvider
         slotBefore={<MenuBar />}
         extensions={extensions}
-        content={`<div><h1>Hello World!</h1></br></br><div>`}
+        content={content}
         // eslint-disable-next-line react/no-children-prop
         children={undefined}
       />

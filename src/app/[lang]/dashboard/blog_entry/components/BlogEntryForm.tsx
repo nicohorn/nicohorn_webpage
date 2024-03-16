@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Title from "@/components/Title";
 import TextEditor from "../components/TextEditor";
 import { blog_entries, blog_tags } from "@prisma/client";
@@ -11,6 +12,7 @@ import { PrismaClientErrors } from "@/utils/dictionaries/PrismaClientErrors";
 import { supabase } from "@/supabase";
 import { Notification } from "@/components/Notification";
 import { useRouter } from "next/navigation";
+import { BlogEntryWithTags, updateBlogEntry } from "@/repositories/blog_entry";
 
 //Had to create these two types here to make the createBlogEntry parameter type more readable.
 type BlogEntryWithoutIdCreatedAt = Omit<
@@ -24,9 +26,11 @@ export type BlogEntryWithTagsForm = BlogEntryWithoutIdCreatedAt & {
 export default function BlogEntryForm({
   tags,
   lang,
+  blog_entry,
 }: {
   tags: blog_tags[];
   lang: string;
+  blog_entry?: BlogEntryWithTags;
 }) {
   const blog_title = useRef<HTMLInputElement>(null);
   const blog_description = useRef<HTMLTextAreaElement>(null);
@@ -34,12 +38,14 @@ export default function BlogEntryForm({
   const [blog_entry_cover_image, setBlogEntryCoverImage] = useState<string>();
   const blog_entry_new_tag = useRef<HTMLInputElement>(null);
   const [imageSrcs, setImageSrcs] = useState<string[]>([]);
-  const [blog_entry_content, setContent] = useState<string>();
+  const [blog_entry_content, setContent] = useState<string>(
+    blog_entry?.content || "<h1>Hello world!</h1>"
+  );
   const [tagList, setTagList] = useState(tags);
-
   const [selectedTags, setSelectedTags] = useState<
     { id: string; name: string }[]
   >([]);
+
   const getLoggedInUser = async () => {
     const res = await fetch(`/api/auth/session`);
     return res.json().then((res) => {
@@ -49,6 +55,24 @@ export default function BlogEntryForm({
 
   const router = useRouter();
 
+  const form = useForm<BlogEntry>({
+    validate: zodResolver(BlogEntrySchema),
+    validateInputOnBlur: true,
+    validateInputOnChange: true,
+  });
+
+  useEffect(() => {
+    if (blog_entry) {
+      form.setValues({
+        title: blog_entry.title,
+        description: blog_entry.description,
+      });
+      setBlogEntryCoverImage(blog_entry.cover_image);
+      const transformedTags = blog_entry!.tags.map(({ blog_tag }) => blog_tag);
+      setSelectedTags(transformedTags);
+    }
+  }, [blog_entry]);
+
   const createBlogEntry = async (blog_entry: BlogEntryWithTagsForm) => {
     const res = await fetch("/api/blog_entry", {
       method: "POST",
@@ -56,10 +80,10 @@ export default function BlogEntryForm({
       body: JSON.stringify(blog_entry),
     });
 
-    if (res) {
+    if (res.status == 200) {
       new Notification().props({
         type: "success",
-        title: "New Blog Entry created",
+        title: "New blog entry created",
         description: "Created new blog entry. Redirecting...",
         seconds: 4,
       });
@@ -74,6 +98,39 @@ export default function BlogEntryForm({
         type: "error",
         title: "Erro creating blog post",
         description: "Couldn't create blog post. An error ocurred.",
+        seconds: 4,
+      });
+    }
+  };
+
+  const updateBlogEntry = async (
+    id: string,
+    blog_entry: BlogEntryWithTagsForm
+  ) => {
+    const res = await fetch("/api/blog_entry", {
+      method: "PUT",
+      mode: "cors",
+      body: JSON.stringify({ id, blog_entry }),
+    });
+
+    if (res.status == 200) {
+      new Notification().props({
+        type: "success",
+        title: "Blog entry updated",
+        description: "The entry was successfully updated. Redirecting...",
+        seconds: 4,
+      });
+
+      setTimeout(() => {
+        router.push(`/${lang}/blog`);
+      }, 2000);
+
+      return res.json();
+    } else {
+      new Notification().props({
+        type: "error",
+        title: "Erro updating blog entry",
+        description: "Couldn't update blog entry. An error ocurred.",
         seconds: 4,
       });
     }
@@ -94,17 +151,13 @@ export default function BlogEntryForm({
     }
   };
 
-  const form = useForm<BlogEntry>({
-    validate: zodResolver(BlogEntrySchema),
-    validateInputOnBlur: true,
-    validateInputOnChange: true,
-  });
-
   return (
-    <form className="xl:w-[50%] w-fit flex flex-col gap-4">
-      <Title title="Entrada de blog" />
+    <form className="xl:w-[50%] flex flex-col gap-4">
+      <Title title={lang === "en-US" ? "Blog entry" : "Entrada de blog"} />
       <div className="flex flex-col gap-1">
-        <label htmlFor="blog_entry_title">Título</label>
+        <label htmlFor="blog_entry_title">
+          {lang === "en-US" ? "Title" : "Título"}
+        </label>
         <input
           value={""}
           id="blog_entry_title"
@@ -120,7 +173,9 @@ export default function BlogEntryForm({
         )}
       </div>
       <div className="flex flex-col gap-1">
-        <label htmlFor="blog_entry_description">Descripción corta</label>
+        <label htmlFor="blog_entry_description">
+          {lang === "en-US" ? "Short description" : "Descripción corta"}
+        </label>
         <textarea
           {...form.getInputProps("description")}
           id="blog_entry_description"
@@ -139,7 +194,7 @@ export default function BlogEntryForm({
           htmlFor="blog_entry_cover_image"
           className="h-fit flex-grow self-center p-2 text-center border border-zinc-600 bg-zinc-900 cursor-pointer hover:bg-white hover:text-black transition"
         >
-          Imagen de portada
+          {lang === "en-US" ? "Cover image" : "Imagen de portada"}
         </label>
         <input
           onChange={async () => {
@@ -195,25 +250,29 @@ export default function BlogEntryForm({
         <p>Tags</p>
         <div className="flex gap-2 flex-wrap">
           {tagList.map((tag, idx) => {
+            const isTagSelected = selectedTags.some(
+              (selectedTag) => selectedTag.name === tag.name
+            );
+
             return (
               <button
                 onClick={(e) => {
                   e.preventDefault();
 
-                  if (!selectedTags.includes(tag)) {
+                  if (!isTagSelected) {
                     setSelectedTags([...selectedTags, tag]);
                   } else {
                     setSelectedTags([
-                      ...selectedTags.filter((tag_from_selected_list) => {
-                        return tag_from_selected_list.name !== tag.name;
-                      }),
+                      ...selectedTags.filter(
+                        (selectedTag) => selectedTag.name !== tag.name
+                      ),
                     ]);
                   }
                 }}
                 className={`${
-                  selectedTags.includes(tag)
+                  isTagSelected
                     ? "text-white"
-                    : " text-zinc-600 border-zinc-600 hover:border-zinc-400 hover:text-zinc-400"
+                    : "text-zinc-600 border-zinc-600 hover:border-zinc-400 hover:text-zinc-400"
                 } border px-2 py-1 rounded-md cursor-pointer`}
                 key={idx}
               >
@@ -261,9 +320,12 @@ export default function BlogEntryForm({
           </p>
         )}
       </div>
-      <div className="flex flex-col gap-1">
-        <label>Contenido</label>
+      <div className="flex flex-col gap-1 relative">
+        <label>
+          {lang === "en-US " ? "Blog content" : "Contenido del blog"}
+        </label>
         <TextEditor
+          content={blog_entry_content}
           imageSrcs={imageSrcs}
           setImageSrcs={setImageSrcs}
           setContent={setContent}
@@ -288,8 +350,13 @@ export default function BlogEntryForm({
             node: null,
           });
 
-          if (parseResult.success) await createBlogEntry(parseResult.data);
-          else {
+          if (parseResult.success) {
+            if (blog_entry) {
+              await updateBlogEntry(blog_entry.id, parseResult.data);
+            } else {
+              await createBlogEntry(parseResult.data);
+            }
+          } else {
             new Notification().props({
               title: "Error publicando entrada",
               description: JSON.parse(parseResult.error.message).map(
@@ -303,15 +370,14 @@ export default function BlogEntryForm({
           }
         }}
       >
-        Publicar entrada
+        {blog_entry
+          ? lang === "en-US"
+            ? "Save changes"
+            : "Guardar cambios"
+          : lang === "en-US"
+          ? "Publish new entry"
+          : "Publicar entrada"}
       </button>
     </form>
   );
 }
-
-/* 
-I'm retrieving the tags from the db on the ssr-ed page that is parent to this client side component. I'm leaving the option to add tags too, I know how to show the new added tags to the bd using useState.
--- hw -> investigate how to do that without using useState. Update: apparently this isn't needed at all.
-
--- hw -> set unique title and cover_image as a safeguard to not publish twice the same content, although this should be solved by redirecting to the blog entry once the response is sucessful.
- */

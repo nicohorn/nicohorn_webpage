@@ -1,4 +1,4 @@
-import { createBlogEntry, getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
+import { createBlogEntry, getAllBlogEntriesWithTags, updateBlogEntry } from "@/repositories/blog_entry";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -18,4 +18,14 @@ export async function GET() {
 
     const res = await getAllBlogEntriesWithTags("", "en-US");
     return NextResponse.json(res);
+}
+
+export async function PUT(req: NextRequest) {
+
+    const data = await req.json()
+    const res = await updateBlogEntry(data.id, data.blog_entry);
+
+    if (!res) return new Response("Error updating the blog entry", { status: 500, statusText: "Server error wachin" })
+    return NextResponse.json(data.blog_entry)
+
 }
