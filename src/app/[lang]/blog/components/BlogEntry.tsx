@@ -1,16 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TipTapContent from "../components/TipTapContent";
 import { IconCalendar, IconEdit } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
-import {
-  animate,
-  useMotionValueEvent,
-  useScroll,
-  motion,
-  delay,
-} from "framer-motion";
+import { animate, useMotionValueEvent, useScroll, motion } from "framer-motion";
 
 import {
   IconCircleArrowUpFilled,

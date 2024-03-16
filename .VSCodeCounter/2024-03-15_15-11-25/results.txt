@@ -1,0 +1,119 @@
+Date : 2024-03-15 15:11:25
+Directory : c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src
+Total : 53 files,  3865 codes, 109 comments, 386 blanks, all 4360 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript JSX |         31 |      3,123 |         73 |        190 |      3,386 |
+| TypeScript     |         19 |        407 |         25 |        133 |        565 |
+| CSS            |          2 |        283 |          8 |         52 |        343 |
+| JavaScript     |          1 |         52 |          3 |         11 |         66 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                          | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                             |         53 |      3,865 |        109 |        386 |      4,360 |
+| . (Files)                                                                                                                     |          3 |         49 |          9 |         41 |         99 |
+| app                                                                                                                           |         30 |      2,613 |         76 |        239 |      2,928 |
+| app (Files)                                                                                                                   |          2 |        261 |          9 |         51 |        321 |
+| app\[lang]                                                                                                                    |         23 |      2,303 |         67 |        162 |      2,532 |
+| app\[lang] (Files)                                                                                                            |          2 |         84 |          1 |          9 |         94 |
+| app\[lang]\about_me                                                                                                           |          3 |        722 |         15 |         25 |        762 |
+| app\[lang]\about_me (Files)                                                                                                   |          1 |         24 |          0 |          2 |         26 |
+| app\[lang]\about_me\components                                                                                                |          2 |        698 |         15 |         23 |        736 |
+| app\[lang]\blog                                                                                                               |          7 |        458 |         18 |         43 |        519 |
+| app\[lang]\blog (Files)                                                                                                       |          2 |         89 |         16 |          8 |        113 |
+| app\[lang]\blog\[id]                                                                                                          |          1 |         29 |          0 |          7 |         36 |
+| app\[lang]\blog\components                                                                                                    |          4 |        340 |          2 |         28 |        370 |
+| app\[lang]\dashboard                                                                                                          |          5 |        738 |         32 |         52 |        822 |
+| app\[lang]\dashboard (Files)                                                                                                  |          1 |         13 |          0 |          2 |         15 |
+| app\[lang]\dashboard\blog_entry                                                                                               |          4 |        725 |         32 |         50 |        807 |
+| app\[lang]\dashboard\blog_entry (Files)                                                                                       |          1 |         11 |         17 |          4 |         32 |
+| app\[lang]\dashboard\blog_entry\[id]                                                                                          |          1 |         18 |          1 |          2 |         21 |
+| app\[lang]\dashboard\blog_entry\components                                                                                    |          2 |        696 |         14 |         44 |        754 |
+| app\[lang]\landing                                                                                                            |          1 |         15 |          1 |          1 |         17 |
+| app\[lang]\playground                                                                                                         |          3 |        240 |          0 |         25 |        265 |
+| app\[lang]\playground (Files)                                                                                                 |          1 |          5 |          0 |          2 |          7 |
+| app\[lang]\playground\components                                                                                              |          2 |        235 |          0 |         23 |        258 |
+| app\[lang]\portfolio                                                                                                          |          2 |         46 |          0 |          7 |         53 |
+| app\[lang]\portfolio (Files)                                                                                                  |          1 |         21 |          0 |          3 |         24 |
+| app\[lang]\portfolio\components                                                                                               |          1 |         25 |          0 |          4 |         29 |
+| app\api                                                                                                                       |          5 |         49 |          0 |         26 |         75 |
+| app\api\auth                                                                                                                  |          1 |         12 |          0 |          1 |         13 |
+| app\api\auth\[...nextauth]                                                                                                    |          1 |         12 |          0 |          1 |         13 |
+| app\api\blog_entry                                                                                                            |          1 |         12 |          0 |          9 |         21 |
+| app\api\cron                                                                                                                  |          1 |         12 |          0 |          3 |         15 |
+| app\api\tag                                                                                                                   |          1 |          7 |          0 |          7 |         14 |
+| app\api\user                                                                                                                  |          1 |          6 |          0 |          6 |         12 |
+| app\api\user\[id]                                                                                                             |          1 |          6 |          0 |          6 |         12 |
+| components                                                                                                                    |          9 |        884 |          6 |         42 |        932 |
+| repositories                                                                                                                  |          4 |        163 |          1 |         34 |        198 |
+| types                                                                                                                         |          1 |         12 |          3 |          3 |         18 |
+| utils                                                                                                                         |          6 |        144 |         14 |         27 |        185 |
+| utils (Files)                                                                                                                 |          4 |        121 |         11 |         23 |        155 |
+| utils\dictionaries                                                                                                            |          2 |         23 |          3 |          4 |         30 |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                      | language       | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\Links.ts                                                 | TypeScript     |         42 |          1 |         13 |         56 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\about_me\components\AboutMeSection.tsx            | TypeScript JSX |        289 |          4 |         15 |        308 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\about_me\components\WorkExperience.tsx            | TypeScript JSX |        409 |         11 |          8 |        428 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\about_me\page.tsx                                 | TypeScript JSX |         24 |          0 |          2 |         26 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\[id]\page.tsx                                | TypeScript JSX |         29 |          0 |          7 |         36 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\BlogCard.tsx                      | TypeScript JSX |         78 |          1 |          6 |         85 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\BlogEntry.tsx                     | TypeScript JSX |        144 |          0 |         12 |        156 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\SearchSidebar.tsx                 | TypeScript JSX |         62 |          0 |          6 |         68 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\TipTapContent.tsx                 | TypeScript JSX |         56 |          1 |          4 |         61 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\loading.tsx                                  | TypeScript JSX |         10 |          0 |          2 |         12 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\page.tsx                                     | TypeScript JSX |         79 |         16 |          6 |        101 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\[id]\page.tsx                | TypeScript JSX |         18 |          1 |          2 |         21 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\components\BlogEntryForm.tsx | TypeScript JSX |        300 |         11 |         28 |        339 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\components\TextEditor.tsx    | TypeScript JSX |        396 |          3 |         16 |        415 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\page.tsx                     | TypeScript JSX |         11 |         17 |          4 |         32 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\page.tsx                                | TypeScript JSX |         13 |          0 |          2 |         15 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\landing\page.tsx                                  | TypeScript JSX |         15 |          1 |          1 |         17 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\layout.tsx                                        | TypeScript JSX |         60 |          1 |          6 |         67 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\page.tsx                                          | TypeScript JSX |         24 |          0 |          3 |         27 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\playground\components\CodeEditor.tsx              | TypeScript JSX |        171 |          0 |          9 |        180 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\playground\components\page.module.css             | CSS            |         64 |          0 |         14 |         78 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\playground\page.tsx                               | TypeScript JSX |          5 |          0 |          2 |          7 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\portfolio\components\ProjectCard.tsx              | TypeScript JSX |         25 |          0 |          4 |         29 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\portfolio\page.tsx                                | TypeScript JSX |         21 |          0 |          3 |         24 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\auth\[...nextauth]\route.ts                          | TypeScript     |         12 |          0 |          1 |         13 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\blog_entry\route.ts                                  | TypeScript     |         12 |          0 |          9 |         21 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\cron\route.ts                                        | TypeScript     |         12 |          0 |          3 |         15 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\tag\route.ts                                         | TypeScript     |          7 |          0 |          7 |         14 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\user\[id]\route.ts                                   | TypeScript     |          6 |          0 |          6 |         12 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\globals.css                                              | CSS            |        219 |          8 |         38 |        265 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Footer.tsx                                        | TypeScript JSX |        142 |          0 |          4 |        146 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Hero.tsx                                          | TypeScript JSX |         54 |          1 |          4 |         59 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\LanguagesListbox.tsx                              | TypeScript JSX |         82 |          0 |          3 |         85 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\ListboxComponent.tsx                              | TypeScript JSX |         87 |          0 |          2 |         89 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Notification.tsx                                  | TypeScript JSX |         71 |          0 |          9 |         80 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Sidebar.tsx                                       | TypeScript JSX |        250 |          3 |         11 |        264 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\SquareLoader.tsx                                  | TypeScript JSX |         34 |          0 |          3 |         37 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Stack.tsx                                         | TypeScript JSX |        144 |          2 |          4 |        150 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Title.tsx                                         | TypeScript JSX |         20 |          0 |          2 |         22 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\middleware.ts                                                | TypeScript     |         28 |          6 |         26 |         60 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\blog_entry.ts                                   | TypeScript     |         89 |          1 |         14 |        104 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\blog_tag.ts                                     | TypeScript     |         25 |          0 |          7 |         32 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\project.ts                                      | TypeScript     |          9 |          0 |          3 |         12 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\user.ts                                         | TypeScript     |         40 |          0 |         10 |         50 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\supabase.ts                                                  | TypeScript     |          2 |          1 |          5 |          8 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\types\next-auth.d.ts                                         | TypeScript     |         12 |          3 |          3 |         18 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\authOptions.ts                                         | TypeScript     |         54 |          5 |          5 |         64 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\db.ts                                                  | TypeScript     |          9 |          3 |          4 |         16 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\dictionaries\PrismaClientErrors.ts                     | TypeScript     |          6 |          3 |          3 |         12 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\dictionaries\Tags.ts                                   | TypeScript     |         17 |          0 |          1 |         18 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\generateEnglishRSSfeed.js                              | JavaScript     |         52 |          3 |         11 |         66 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\prismaClient.ts                                        | TypeScript     |          6 |          0 |          3 |          9 |
+| c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\zod.ts                                                       | TypeScript     |         19 |          2 |         10 |         31 |
+| Total                                                                                                                         |                |      3,865 |        109 |        386 |      4,360 |
++-------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

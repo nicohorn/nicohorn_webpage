@@ -23,7 +23,11 @@ export const getBlogEntryById = async (id: string) => {
         id,
       },
       include: {
-        tags: true,
+        tags: {
+          include: {
+            blog_tag: true
+          }
+        },
       }
     });
     return blog_entry;
@@ -34,7 +38,7 @@ export const getBlogEntryById = async (id: string) => {
 
 export const createBlogEntry = async (data: BlogEntryWithTagsForm) => {
   try {
-    const blog_entries = await prisma.blog_entries.create({
+    const blog_entry = await prisma.blog_entries.create({
       data: {
         ...data,
         created_at: new Date(),
@@ -53,12 +57,49 @@ export const createBlogEntry = async (data: BlogEntryWithTagsForm) => {
       },
     });
 
-    return blog_entries;
+    return blog_entry;
   } catch (error) {
 
     return null;
   }
 };
+
+export const updateBlogEntry = async (id: string, data: BlogEntryWithTagsForm) => {
+  try {
+    const blog_entry = await getBlogEntryById(id);
+    const blog_entry_updated = await prisma.blog_entries.update({
+      data: {
+        ...data,
+        created_at: blog_entry?.created_at,
+        edited_at: new Date(),
+        tags: {
+          connectOrCreate: data.tags.map((tag) => ({
+            where: {
+              blog_entry_id_blog_tag_id: {
+                blog_entry_id: id,
+                blog_tag_id: tag.id,
+              },
+            },
+            create: {
+              blog_tag: {
+                connect: { id: tag.id },
+              },
+            },
+          })),
+        },
+      },
+      where: {
+        id,
+      },
+    });
+    return blog_entry_updated;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
+
 
 export const getAllBlogEntriesWithTags = async (tag: string, lang: string) => {
 

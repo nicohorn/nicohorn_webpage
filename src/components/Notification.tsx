@@ -37,7 +37,7 @@ export class Notification {
     root.render(<NotificationComponent {...props} />);
     setTimeout(() => {
       root.unmount();
-    }, props.seconds * 1000 + 200);
+    }, props.seconds * 100000 + 200);
   }
 }
 
@@ -63,7 +63,7 @@ function NotificationComponent({
       id="notification"
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
-      className="fixed w-96 z-[100]  right-10 bottom-10 py-2 px-5 bg-zinc-900 shadow-lg  max-h-[80vh]"
+      className="fixed md:w-96 z-[100] w-screen  md:right-10 right-0 bottom-0 md:bottom-10 py-2 px-5 bg-zinc-900 shadow-lg  max-h-[80vh]"
     >
       <div className="flex justify-between items-center flex-grow max-h-full overflow-hidden relative">
         <h1 className="mb-2">{title}</h1>
