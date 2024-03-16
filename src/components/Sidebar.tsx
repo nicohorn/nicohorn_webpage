@@ -156,7 +156,9 @@ export default function VerticalNavbar({
     <>
       <div
         className={
-          path.includes("blog") && path.split("/").length > 3
+          path.includes("blog") &&
+          !path.includes("entry") &&
+          path.split("/").length > 3
             ? "hidden"
             : "md:top-6 md:right-12 top-2 right-4 fixed z-50 "
         }

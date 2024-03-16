@@ -153,9 +153,11 @@ export default function BlogEntryForm({
 
   return (
     <form className="xl:w-[50%] flex flex-col gap-4">
-      <Title title="Entrada de blog" />
+      <Title title={lang === "en-US" ? "Blog entry" : "Entrada de blog"} />
       <div className="flex flex-col gap-1">
-        <label htmlFor="blog_entry_title">Título</label>
+        <label htmlFor="blog_entry_title">
+          {lang === "en-US" ? "Title" : "Título"}
+        </label>
         <input
           value={""}
           id="blog_entry_title"
@@ -171,7 +173,9 @@ export default function BlogEntryForm({
         )}
       </div>
       <div className="flex flex-col gap-1">
-        <label htmlFor="blog_entry_description">Descripción corta</label>
+        <label htmlFor="blog_entry_description">
+          {lang === "en-US" ? "Short description" : "Descripción corta"}
+        </label>
         <textarea
           {...form.getInputProps("description")}
           id="blog_entry_description"
@@ -190,7 +194,7 @@ export default function BlogEntryForm({
           htmlFor="blog_entry_cover_image"
           className="h-fit flex-grow self-center p-2 text-center border border-zinc-600 bg-zinc-900 cursor-pointer hover:bg-white hover:text-black transition"
         >
-          Imagen de portada
+          {lang === "en-US" ? "Cover image" : "Imagen de portada"}
         </label>
         <input
           onChange={async () => {
@@ -316,8 +320,10 @@ export default function BlogEntryForm({
           </p>
         )}
       </div>
-      <div className="flex flex-col gap-1">
-        <label>Contenido</label>
+      <div className="flex flex-col gap-1 relative">
+        <label>
+          {lang === "en-US " ? "Blog content" : "Contenido del blog"}
+        </label>
         <TextEditor
           content={blog_entry_content}
           imageSrcs={imageSrcs}
@@ -364,7 +370,13 @@ export default function BlogEntryForm({
           }
         }}
       >
-        Publicar entrada
+        {blog_entry
+          ? lang === "en-US"
+            ? "Save changes"
+            : "Guardar cambios"
+          : lang === "en-US"
+          ? "Publish new entry"
+          : "Publicar entrada"}
       </button>
     </form>
   );
