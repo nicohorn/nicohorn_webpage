@@ -249,7 +249,7 @@ export default function BlogEntryForm({
       <div className="flex flex-col gap-1 ">
         <p>Tags</p>
         <div className="flex gap-2 flex-wrap">
-          {tagList.map((tag, idx) => {
+          {tagList?.map((tag, idx) => {
             const isTagSelected = selectedTags.some(
               (selectedTag) => selectedTag.name === tag.name
             );

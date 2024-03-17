@@ -30,14 +30,14 @@ export default function Footer({ lang }: { lang: string }) {
   return (
     <div
       id="footer_container"
-      className={` w-screen md:min-h-[12rem] bg-black shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-center`}
+      className={` w-screen md:min-h-[8rem] bg-black shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-start`}
     >
-      <div className="flex flex-col md:self-end items-center sm:items-start">
+      <div className="flex flex-col md:self-end items-center sm:items-end">
         {" "}
-        <div className="flex gap-1 flex-col items-center sm:items-start ">
-          <p>{lang === "en-US" ? "Contact me" : "Contactame"}</p>
+        <div className="flex gap-1 flex-col sm:flex-row items-start  ">
           <div className="flex gap-2">
             <Link
+              className="cursor-pointer transition hover:rotate-3 origin-top-left"
               aria-label={
                 lang === "en-US"
                   ? "RSS feed for Nico Horn's blog"
@@ -53,6 +53,7 @@ export default function Footer({ lang }: { lang: string }) {
               />
             </Link>
             <Link
+              className="cursor-pointer transition hover:rotate-3 origin-top-left"
               aria-label={
                 lang === "en-US"
                   ? "LinkedIn link to Nico Horn's profile"
@@ -68,6 +69,7 @@ export default function Footer({ lang }: { lang: string }) {
               />
             </Link>
             <Link
+              className="cursor-pointer transition hover:rotate-3 origin-top-left"
               aria-label={
                 lang === "en-US"
                   ? "Twitter link to Nico Horn's profile"
@@ -83,6 +85,7 @@ export default function Footer({ lang }: { lang: string }) {
               />
             </Link>
             <Link
+              className="cursor-pointer transition hover:rotate-3 origin-top-left"
               aria-label={
                 lang === "en-US"
                   ? "Github link to Nico Horn's profile"
@@ -113,7 +116,7 @@ export default function Footer({ lang }: { lang: string }) {
                 onMouseLeave={() => {
                   animate("#tooltip_email", { opacity: 0 }, { delay: 0.2 });
                 }}
-                className="cursor-pointer hover:underline"
+                className="cursor-pointer transition hover:rotate-3 origin-top-left"
                 onClick={() => {
                   navigator.clipboard.writeText("contact@nicohorn.com");
                   alert(
@@ -132,8 +135,7 @@ export default function Footer({ lang }: { lang: string }) {
               </motion.p>
             </div>
           </div>
-
-          <div className="text-lg font-normal flex gap-1">
+          <div className="text-md font-normal flex gap-1 sm:self-end sm:ml-2">
             {lang === "en-US" ? "Website by Nico Horn" : "Web por Nico Horn"}
             <p className="font-semibold">{new Date().getFullYear()}</p>
           </div>
