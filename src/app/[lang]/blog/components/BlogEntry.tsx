@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import TipTapContent from "../components/TipTapContent";
-import { IconCalendar, IconEdit } from "@tabler/icons-react";
+import { IconCalendar, IconEdit, IconRss } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { animate, useMotionValueEvent, useScroll, motion } from "framer-motion";
 
@@ -37,25 +37,6 @@ export default function BlogEntry({
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     console.log(latest);
-    animate("#blog_date", { opacity: latest > 100 ? 0 : 1 }, { duration: 0.1 });
-    animate(
-      "#cover_background_image",
-      { opacity: latest > 100 ? 0 : 1 },
-      { duration: 0.1 }
-    );
-    animate(
-      "#cover_background_opacity",
-      { opacity: latest > 100 ? 0 : 1 },
-      { duration: 0.1 }
-    );
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    animate("#progress_bar", { scaleX: latest }, { duration: 0.1 });
-  });
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log(latest);
 
     animate(
       "#top_top_button",
@@ -64,8 +45,13 @@ export default function BlogEntry({
     );
   });
 
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log(latest);
+    animate("#progress_bar", { scaleX: latest });
+  });
+
   return (
-    <main className="-mt-36 text-justify min-h-screen  my-20 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[70%] w-[100%] mx-auto gap-4 lg:text-xl">
+    <main className="lg:-mt-40 text-justify min-h-screen  mb-10  flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -82,40 +68,50 @@ export default function BlogEntry({
         <IconCircleArrowUpFilled
           width={50}
           height={50}
-          className="fixed bottom-28 right-0 mb-28 mr-20 lg:mr-28 z-50 "
+          className="fixed bottom-28 right-0 mb-28 mr-20 lg:mr-28 z-50"
         />
       </button>
+      <div
+        id="blog_hero"
+        className=" -rounded-b-xl  bg-cover bg-center  bg-zinc-900 shadow-lg md:sticky top-0 z-[99] rounded-b-lg"
+      >
+        {" "}
+        <div className="mx-auto flex flex-col gap-5 p-5">
+          <h1
+            id="blog_title"
+            className="md:text-5xl text-left font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
+          >
+            {blog_entry?.title}
+          </h1>
+          <p
+            id="blog_date"
+            className="flex gap-2 items-center font-thin justify-between"
+          >
+            <div className="flex gap-2">
+              <IconCalendar />
+              {lang === "en-US" ? "Date posted: " : "Fecha de publicación"}
+              {blog_entry?.created_at.toLocaleDateString()}
+            </div>
+            <Link target="_blank" href="https://nicohorn.com/rss/feed.xml">
+              <IconRss />
+            </Link>
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-2 ">
+          <p>{blog_entry?.description}</p>
+        </div>
+      </div>
       <div
         id="cover_background_image"
         style={{
           backgroundImage: `url("${blog_entry?.cover_image}")`,
         }}
-        className="bg-zinc-500 -z-10 h-[30vh] fixed left-[50%] rounded-b-xl -translate-x-[50%] top-0 xl:w-[80vw] w-screen 2xl:w-[60vw] bg-cover bg-center"
+        className="bg-zinc-500 -z-10 h-[30vh] bg-cover bg-center"
       ></div>
-      <div
-        id="cover_background_opacity"
-        className="bg-black/60 -z-10 h-[30vh] fixed left-[50%] rounded-b-xl -translate-x-[50%] top-0 xl:w-[80vw]  w-screen 2xl:w-[60vw] bg-cover bg-center"
-      >
-        {" "}
-        <div className="flex p-5">
-          <p id="blog_date" className="ml-auto flex gap-2 items-center">
-            <IconCalendar />
-            {blog_entry?.created_at.toLocaleDateString()}
-          </p>
-        </div>
-        <div className="mx-auto md:w-[85%] w-[70%]">
-          <h1 className="text-5xl drop-shadow-[0px_0px_3px_rgba(0,0,0,1)]">
-            {blog_entry?.title}
-          </h1>
-          <div className="flex flex-col gap-2 ">
-            <p>{blog_entry?.description}</p>
-          </div>
-        </div>
-      </div>
 
-      <div
-        className={`mt-[18rem] leading-relaxed relative ${textSizes[textSize]}`}
-      >
+      <div className={`leading-relaxed relative ${textSizes[textSize]}`}>
         {user.role === "admin" && (
           <Link
             className="flex gap-2 items-center opacity-75 hover:opacity-100 transition"
