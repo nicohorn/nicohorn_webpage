@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TipTapContent from "../components/TipTapContent";
 import { IconCalendar, IconEdit, IconRss } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
@@ -36,8 +36,6 @@ export default function BlogEntry({
   };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log(latest);
-
     animate(
       "#top_top_button",
       { opacity: latest > 200 ? 1 : 0 },
@@ -46,12 +44,35 @@ export default function BlogEntry({
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
     animate("#progress_bar", { scaleX: latest });
   });
 
+  useEffect(() => {
+    const scrollListener = () =>
+      window.addEventListener("scroll", () => {
+        console.log(window.scrollY);
+        if (window.scrollY > 100) {
+          document.getElementById("blog_title")?.classList.remove("text-7xl");
+          document.getElementById("blog_title")?.classList.add("text-2xl");
+          document.getElementById("blog_created_at")?.classList.add("text-sm");
+        } else {
+          document.getElementById("blog_title")?.classList.remove("text-2xl");
+          document.getElementById("blog_title")?.classList.add("text-7xl");
+          document
+            .getElementById("blog_created_at")
+            ?.classList.remove("text-sm");
+        }
+      });
+
+    scrollListener();
+
+    return () => {
+      window.removeEventListener("scroll", scrollListener);
+    };
+  }, []);
+
   return (
-    <main className="lg:-mt-40 text-justify min-h-screen  mb-10  flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl">
+    <main className="mt-40 text-justify min-h-screen  mb-10  flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -73,21 +94,21 @@ export default function BlogEntry({
       </button>
       <div
         id="blog_hero"
-        className=" -rounded-b-xl  bg-cover bg-center  bg-zinc-900 shadow-lg md:sticky top-0 z-[99] rounded-b-lg"
+        className=" -rounded-b-xl  bg-cover bg-center  bg-zinc-900 shadow-lg fixed  2xl:w-[45%] lg:w-[60%] w-[100%] left-1/2 -translate-x-1/2 top-0 z-[99] rounded-b-lg"
       >
         {" "}
-        <div className="mx-auto flex flex-col gap-5 p-5">
+        <div className="mx-auto flex flex-col gap-2 p-5">
           <h1
             id="blog_title"
-            className="md:text-5xl text-left font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
+            className="text-left text-7xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
           >
             {blog_entry?.title}
           </h1>
-          <p
+          <div
             id="blog_date"
             className="flex gap-2 items-center font-thin justify-between"
           >
-            <div className="flex gap-2">
+            <div id="blog_created_at" className="flex items-center gap-2">
               <IconCalendar />
               {lang === "en-US" ? "Date posted: " : "Fecha de publicación"}
               {blog_entry?.created_at.toLocaleDateString()}
@@ -95,7 +116,7 @@ export default function BlogEntry({
             <Link target="_blank" href="https://nicohorn.com/rss/feed.xml">
               <IconRss />
             </Link>
-          </p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-5">
