@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nicohorn.com</id>
     <title>Nico Horn's blog</title>
-    <updated>2024-03-15T19:56:28.853Z</updated>
+    <updated>2024-03-18T03:12:32.394Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>Nico Horn</name>
@@ -15,12 +15,12 @@
     <logo>https://nicohorn.com/ms-icon-144x144.png</logo>
     <rights>All rights reserved 2024, Nico Horn</rights>
     <entry>
-        <title type="html"><![CDATA[How to create an RSS feed from a Next.js website]]></title>
+        <title type="html"><![CDATA[Create an RSS feed from a Next.js website]]></title>
         <id>https://nicohorn.com/en-US/blog/b05b746b-2120-4a4f-8b38-4d06d3378dbc</id>
         <link href="https://nicohorn.com/en-US/blog/b05b746b-2120-4a4f-8b38-4d06d3378dbc"/>
         <updated>2024-03-15T06:59:10.487Z</updated>
-        <summary type="html"><![CDATA[It's been a while since I wanted to have my own RSS feed, so I got to work on it. Here I'm sharing how to do it with using Next.js App router. ]]></summary>
-        <content type="html"><![CDATA[<p>RSS feed are to me the original way to surf the web. Lately I've been feeling that the mainstream internet (social media such as Instagram, Tiktok, X , etc) is losing its spark. Some people adhere to the "dead internet theory", which might be part of the issue. What I do think is that back in the day, people used to connect and share more genuine stuff on the internet, and one of the most efficient ways is using an RSS feed. Here's how to do it using <code>Next.js</code></p><p>Before we get to it, don't forget to subscribe to mine! 😁</p><p></p><h1><strong>What we'll do:</strong></h1><ol><li><p>Get blog entries data.</p></li><li><p>Create a util function that writes XML and JSON files to our server file system (effectively creating the RSS feed).</p></li><li><p>Call the function at build time and making it run with a Vercel cron job.</p></li></ol><p></p><p></p><p>First of all, install the following dependency into your project</p><pre><code class="language-node">npm install feed</code></pre><h1><strong>Create a util function</strong></h1><p>First, I created a JavaScript file. This is where the whole logic to create the RSS feed resides.</p><pre><code class="language-javascript">/src/utils/generateRSSfeed.js
+        <summary type="html"><![CDATA[It's been a while since I wanted to have my own RSS feed, so I got to work on it. Here I'm sharing how to do it using Next.js App router. ]]></summary>
+        <content type="html"><![CDATA[<p>RSS feeds are to me the original way to surf the web. Lately I've been feeling that the mainstream internet (social media such as Instagram, Tiktok, X , etc) is losing its spark. Some people adhere to the "dead internet theory", which might be part of the issue. What I do think is that back in the day, people used to connect and share more genuine stuff on the internet, and one of the most efficient ways is using an RSS feed. Here's how to do it using <code>Next.js</code></p><p>Before we get to it, don't forget to subscribe to mine! 😁</p><p></p><h1><strong>What we'll do:</strong></h1><ol><li><p>Get blog entries data.</p></li><li><p>Create a util function that writes XML and JSON files to our server file system (effectively creating the RSS feed).</p></li><li><p>Call the function at build time and making it run with a Vercel cron job.</p></li></ol><p></p><p></p><p>First of all, install the following dependency into your project</p><pre><code class="language-node">npm install feed</code></pre><h1><strong>Create a util function</strong></h1><p>First, I created a JavaScript file. This is where the whole logic to create the RSS feed resides.</p><pre><code class="language-javascript">/src/utils/generateRSSfeed.js
 
 import { Feed } from "feed"
 
@@ -106,8 +106,7 @@ const generateRssFeed = async () =&gt; {
 
     const feed = new Feed({
         title: "Nico Horn's blog",
-        description: "Welcome to my blog! Here I post my own thoughts and views about tech, 
-        philosophy and pretty much anything that comes to my mind.",
+        description: "Welcome to my blog! Here I post my own thoughts and views about tech, philosophy and pretty much anything that comes to my mind.",
         id: siteURL,
         link: siteURL,
         image: `https://nicohorn.com/ms-icon-144x144.png`,
@@ -155,7 +154,7 @@ export default generateRssFeed();</code></pre><h1><strong>Call the function at b
     "build": "node ./src/utils/generateRSSfeed.js &amp;&amp; next build",
     "start": "next start",
     "lint": "next lint"
-  },</code></pre><p>Also, don't forget to add <code>"type": "module"</code> at the root level in the <code>package.json</code>. </p><p>That should be it. I ran into a few problems such as having to rename the <code>postcss.config.js</code> to <code>postcss.config.cjs</code> given that it's a CommonJS module.</p><h1><strong>Cron job</strong></h1><p>Now, what I did so far only works at build time, which is not all that useful if we want to keep our feed updated automatically. To solve this, I'm using a cron job that Vercel let us configure directly into the project. We could also call the function that creates the RSS feed into the POST endpoint where I create the blog post, but I had never used cron jobs in Vercel so I thought it would be nice to try it out.</p><p>Learn more about cron jobs in Vercel: <a target="_blank" rel="noopener noreferrer nofollow" href="https://vercel.com/docs/cron-jobs">Cron Jobs (</a><a target="_blank" rel="noopener noreferrer nofollow" href="http://vercel.com">vercel.com</a><a target="_blank" rel="noopener noreferrer nofollow" href="https://vercel.com/docs/cron-jobs">)</a></p><p>Create a route.ts into the api folder in the project. The structure should look like this:</p><blockquote><p>-/api</p><p>    -/cron</p><p>        -route.ts</p></blockquote><pre><code class="language-typescript">/api/cron/route.ts
+  },</code></pre><p>Also, don't forget to add <code>"type": "module"</code> at the root level in the <code>package.json</code>.</p><p>That should be it. I ran into a few problems such as having to rename the <code>postcss.config.js</code> to <code>postcss.config.cjs</code> given that it's a CommonJS module.</p><h1><strong>Cron job</strong></h1><p>Now, what I did so far only works at build time, which is not all that useful if we want to keep our feed updated automatically. To solve this, I'm using a cron job that Vercel let us configure directly into the project. We could also call the function that creates the RSS feed in the POST endpoint that I use to create the blog post, but I had never used cron jobs in Vercel so I thought it would be a cool opportunity to try it out.</p><p>Learn more about cron jobs in Vercel: <a target="_blank" rel="noopener noreferrer nofollow" href="https://vercel.com/docs/cron-jobs">Cron Jobs (</a><a target="_blank" rel="noopener noreferrer nofollow" href="http://vercel.com">vercel.com</a><a target="_blank" rel="noopener noreferrer nofollow" href="https://vercel.com/docs/cron-jobs">)</a></p><p>Create a route.ts into the api folder in the project. The structure should look like this:</p><blockquote><p>-/api</p><p>-/cron</p><p>-route.ts</p></blockquote><pre><code class="language-typescript">/api/cron/route.ts
 
 import { generateRssFeed } from '@/utils/generateEnglishRSSfeed';
 import type { NextRequest } from 'next/server';

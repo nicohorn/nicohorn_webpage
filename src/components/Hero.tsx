@@ -19,6 +19,7 @@ export default function Hero({
   if (pathname.includes("/dashboard")) return null;
   return (
     <motion.div
+      id="hero_component"
       whileTap={
         !pathname.includes("about_me") ? { scale: 0.495 } : { scale: 0.995 }
       }
