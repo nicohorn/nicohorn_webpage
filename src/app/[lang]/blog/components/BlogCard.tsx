@@ -58,13 +58,16 @@ export default function BlogCard({
         handleOnMouseMove(e);
       }}
       //Latest two entries show up with more height
-      className={`shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] border border-black hover:border-zinc-700 bg-zinc-900 transition group flex flex-col cursor-pointer relative`}
+      className={`shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] border border-black hover:border-zinc-700 bg-gradient-to-r from-zinc-800/30 to-black/60 transition group flex flex-col cursor-pointer relative`}
     >
       <div className="flex md:flex-row flex-col justify-between">
-        <div className="card flex-grow flex-wrap">
-          <h1 className="py-3 px-4 w-full border-b text-2xl font-extrabold border-zinc-800 shadow-lg">
-            {blog_entry.title}
-          </h1>
+        <div className=" card flex-grow flex-wrap">
+          <div className="py-3 px-4 w-full border-b border-zinc-700 shadow-lg">
+            <h1 className="text-5xl font-extrabold w-fit text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-red-500">
+              {blog_entry.title}
+            </h1>
+          </div>
+
           <p className={`${merriweather.className} px-4 py-5`}>
             {blog_entry.description}
           </p>
@@ -89,7 +92,7 @@ export default function BlogCard({
         </div>
         <img
           alt={`Cover image for blog entry ${blog_entry.title}`}
-          className="object-cover object-center md:w-52 h-40 md:h-52"
+          className="object-cover object-center md:w-52 "
           src={blog_entry.cover_image}
         ></img>
       </div>
