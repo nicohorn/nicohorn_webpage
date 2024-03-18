@@ -135,9 +135,9 @@ export default function Footer({ lang }: { lang: string }) {
               </motion.p>
             </div>
           </div>
-          <div className="text-md font-normal flex gap-1 sm:self-end sm:ml-2">
+          <div className="text-md font-thin flex gap-1 sm:self-end sm:ml-2">
             {lang === "en-US" ? "Website by Nico Horn" : "Web por Nico Horn"}
-            <p className="font-semibold">{new Date().getFullYear()}</p>
+            <p className="font-extrabold">{new Date().getFullYear()}</p>
           </div>
         </div>
       </div>
