@@ -149,7 +149,7 @@ export default function BlogEntry({
       ></div>
 
       <div className={`leading-relaxed relative ${textSizes[textSize]}`}>
-        {user.role === "admin" && (
+        {user?.role === "admin" && (
           <Link
             className="flex gap-2 items-center opacity-75 hover:opacity-100 transition"
             href={`/${lang}/dashboard/blog_entry/${blog_entry.id}`}
