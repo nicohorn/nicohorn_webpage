@@ -56,12 +56,12 @@ export default function BlogEntry({
     const scrollListener = () =>
       window.addEventListener("scroll", () => {
         if (window.scrollY > 100) {
-          document.getElementById("blog_title")?.classList.remove("text-7xl");
+          document.getElementById("blog_title")?.classList.remove("text-6xl");
           document.getElementById("blog_title")?.classList.add("text-2xl");
           document.getElementById("blog_created_at")?.classList.add("text-sm");
         } else {
           document.getElementById("blog_title")?.classList.remove("text-2xl");
-          document.getElementById("blog_title")?.classList.add("text-7xl");
+          document.getElementById("blog_title")?.classList.add("text-6xl");
           document
             .getElementById("blog_created_at")
             ?.classList.remove("text-sm");
@@ -116,7 +116,7 @@ export default function BlogEntry({
         <div id="blog_hero" className="mx-auto flex flex-col gap-2 p-5">
           <h1
             id="blog_title"
-            className="text-left md:text-7xl text-5xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
+            className="text-left text-6xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
           >
             {blog_entry?.title}
           </h1>

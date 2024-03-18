@@ -9,6 +9,7 @@ import { users } from "@prisma/client";
 import { guest_links, links } from "../Links";
 import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
+import LanguagesListbox from "@/components/LanguagesListbox";
 
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 
@@ -46,6 +47,19 @@ export default async function RootLayout({
         }
       >
         <div id="notifications_container" className="relative" />
+        <LanguagesListbox
+          languages={[
+            {
+              title: "Español 🇦🇷",
+              language: "es-AR",
+            },
+            {
+              title: "English 🇺🇸",
+              language: "en-US",
+            },
+          ]}
+          currentLang={params.lang!}
+        />
         <div className="mx-12 my-16 md:my-8">
           <VerticalNavbar
             lang={params.lang}

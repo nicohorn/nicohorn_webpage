@@ -9,9 +9,7 @@ import { Session } from "next-auth";
 import { IconArrowBadgeLeft, IconArrowBadgeRight } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { dictLinksToEnglish } from "@/app/Links";
-import { IconLanguage } from "@tabler/icons-react";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
-import ListboxComponent from "./LanguagesListbox";
 
 export default function VerticalNavbar({
   lang,
@@ -24,19 +22,6 @@ export default function VerticalNavbar({
 }) {
   const [open, setOpen] = useState(false);
   const path = usePathname();
-
-  const pathWithLanguage = () => {
-    let changedLang;
-    if (lang === "en-US") changedLang = "es-AR";
-    else changedLang = "en-US";
-    const pathArray = path.split("/");
-    pathArray[1] = changedLang;
-    return {
-      path: pathArray.join("/"),
-      title:
-        lang === "en-US" ? "Cambiar a español" : "Change language to english",
-    };
-  };
 
   //These buttons <loginButton and logoutButton> aren't meant to be reusable components, but since they're conditionally called (if there's an active session), it's easier to manage them having them defined as functions inside this component.
   const loginButton = () => {
@@ -154,32 +139,6 @@ export default function VerticalNavbar({
 
   return (
     <>
-      <div
-        className={
-          path.includes("blog") &&
-          !path.includes("entry") &&
-          path.split("/").length > 3
-            ? "hidden"
-            : "md:top-6 md:right-12 top-2 right-4 fixed z-[51] "
-        }
-      >
-        <ListboxComponent
-          icon={<IconLanguage />}
-          newPath={pathWithLanguage().path}
-          languages={[
-            {
-              title: "Español 🇦🇷",
-              language: "es-AR",
-            },
-            {
-              title: "English 🇺🇸",
-              language: "en-US",
-            },
-          ]}
-          currentLang={lang!}
-        />
-      </div>
-
       <motion.div
         onKeyDown={(e) => {
           if (e.key === "Escape") {
@@ -193,7 +152,12 @@ export default function VerticalNavbar({
         }}
         initial={open ? { x: 0, opacity: 1 } : { x: -368 + 32 }}
         animate={{ x: -368 + 32 }}
-        transition={{ delay: 0.5, duration: 0.5, bounce: 0.4, type: "spring" }}
+        transition={{
+          delay: 0.5,
+          duration: 0.5,
+          bounce: 0.4,
+          type: "spring",
+        }}
         id="nav_container"
         className="flex drop-shadow-lg fixed z-[51]"
       >
