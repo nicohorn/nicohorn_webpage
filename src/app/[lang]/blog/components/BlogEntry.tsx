@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TipTapContent from "../components/TipTapContent";
 import { IconCalendar, IconEdit, IconRss } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
@@ -26,6 +27,8 @@ export default function BlogEntry({
 }) {
   const { scrollY, scrollYProgress } = useScroll();
 
+  const [blog_hero_height_in_px, setBlogHeroHeight] = useState(0);
+
   const [textSize, setTextSize] = useState(1);
 
   const textSizes: { [key: number]: string } = {
@@ -36,8 +39,6 @@ export default function BlogEntry({
   };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log(latest);
-
     animate(
       "#top_top_button",
       { opacity: latest > 200 ? 1 : 0 },
@@ -46,12 +47,52 @@ export default function BlogEntry({
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
     animate("#progress_bar", { scaleX: latest });
   });
 
+  useEffect(() => {
+    window.scroll(0, 1);
+
+    const scrollListener = () =>
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          document.getElementById("blog_title")?.classList.remove("text-7xl");
+          document.getElementById("blog_title")?.classList.add("text-2xl");
+          document.getElementById("blog_created_at")?.classList.add("text-sm");
+        } else {
+          document.getElementById("blog_title")?.classList.remove("text-2xl");
+          document.getElementById("blog_title")?.classList.add("text-7xl");
+          document
+            .getElementById("blog_created_at")
+            ?.classList.remove("text-sm");
+        }
+      });
+
+    scrollListener();
+    document.getElementById("top_top_button")?.classList.add("lg:block");
+
+    return () => {
+      window.removeEventListener("scroll", scrollListener);
+    };
+  }, []);
+
+  useEffect(() => {
+    setBlogHeroHeight(
+      document.getElementById("blog_hero")?.getBoundingClientRect().height! -
+        document.getElementById("hero_component")?.getBoundingClientRect()
+          .height! *
+          2
+    );
+  });
+
   return (
-    <main className="lg:-mt-40 text-justify min-h-screen  mb-10  flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl">
+    <main
+      style={{
+        marginTop: blog_hero_height_in_px,
+      }}
+      id="blog_entry_component"
+      className="text-justify min-h-screen mb-10 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl"
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -59,7 +100,7 @@ export default function BlogEntry({
         className="h-2 w-screen origin-left bg-zinc-500 fixed bottom-0 left-0 z-50"
       ></motion.div>
       <button
-        className="hidden lg:block"
+        className="hidden"
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
@@ -71,31 +112,27 @@ export default function BlogEntry({
           className="fixed bottom-28 right-0 mb-28 mr-20 lg:mr-28 z-50"
         />
       </button>
-      <div
-        id="blog_hero"
-        className=" -rounded-b-xl  bg-cover bg-center  bg-zinc-900 shadow-lg md:sticky top-0 z-[99] rounded-b-lg"
-      >
-        {" "}
-        <div className="mx-auto flex flex-col gap-5 p-5">
+      <div className="-rounded-b-xl  bg-cover bg-center  bg-zinc-900 shadow-lg fixed  2xl:w-[45%] lg:w-[60%] w-[85%] left-1/2 -translate-x-1/2 top-0 z-[50] rounded-b-lg">
+        <div id="blog_hero" className="mx-auto flex flex-col gap-2 p-5">
           <h1
             id="blog_title"
-            className="md:text-5xl text-left font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
+            className="text-left text-7xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
           >
             {blog_entry?.title}
           </h1>
-          <p
+          <div
             id="blog_date"
             className="flex gap-2 items-center font-thin justify-between"
           >
-            <div className="flex gap-2">
+            <div id="blog_created_at" className="flex items-center gap-2">
               <IconCalendar />
-              {lang === "en-US" ? "Date posted: " : "Fecha de publicación"}
+              {lang === "en-US" ? "Date posted: " : "Fecha de publicación: "}
               {blog_entry?.created_at.toLocaleDateString()}
             </div>
             <Link target="_blank" href="https://nicohorn.com/rss/feed.xml">
               <IconRss />
             </Link>
-          </p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-5">

@@ -160,7 +160,7 @@ export default function VerticalNavbar({
           !path.includes("entry") &&
           path.split("/").length > 3
             ? "hidden"
-            : "md:top-6 md:right-12 top-2 right-4 fixed z-50 "
+            : "md:top-6 md:right-12 top-2 right-4 fixed z-[51] "
         }
       >
         <ListboxComponent
@@ -195,7 +195,7 @@ export default function VerticalNavbar({
         animate={{ x: -368 + 32 }}
         transition={{ delay: 0.5, duration: 0.5, bounce: 0.4, type: "spring" }}
         id="nav_container"
-        className="flex drop-shadow-lg fixed z-50"
+        className="flex drop-shadow-lg fixed z-[51]"
       >
         <motion.div className="flex flex-col text-4xl w-72  bg-zinc-950/95">
           {links.map((link, idx) => {
