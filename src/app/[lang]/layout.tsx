@@ -41,7 +41,20 @@ export default async function RootLayout({
       className={` ${oswald.className} bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen mt-5`}
       lang={`${params.lang}`}
     >
-      <body className={"z-0 relative scroll-smooth h-full flex flex-col"}>
+      <body
+        dangerouslySetInnerHTML={{
+          __html: `<!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FJK8CL5W8"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-5FJK8CL5W8');
+            </script>`,
+        }}
+        className={"z-0 relative scroll-smooth h-full flex flex-col"}
+      >
         <Navbar
           lang={params.lang}
           session={session!}
@@ -64,22 +77,6 @@ export default async function RootLayout({
         <div className="mx-12 my-16 md:my-8">{children}</div>
 
         <Footer lang={params.lang} />
-
-        <Script
-          id="gtm_script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `<!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FJK8CL5W8"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', 'G-5FJK8CL5W8');
-            </script>`,
-          }}
-        />
       </body>
     </html>
   );
