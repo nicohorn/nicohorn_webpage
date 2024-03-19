@@ -40,20 +40,7 @@ export default async function RootLayout({
       className={` ${oswald.className} bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen mt-5`}
       lang={`${params.lang}`}
     >
-      <body
-        dangerouslySetInnerHTML={{
-          __html: `<!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FJK8CL5W8"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', 'G-5FJK8CL5W8');
-            </script>`,
-        }}
-        className={"z-0 relative scroll-smooth h-full flex flex-col"}
-      >
+      <body className={"z-0 relative scroll-smooth h-full flex flex-col"}>
         <Navbar
           lang={params.lang}
           session={session!}
