@@ -64,19 +64,22 @@ export default async function RootLayout({
         <div className="mx-12 my-16 md:my-8">{children}</div>
 
         <Footer lang={params.lang} />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-5FJK8CL5W8" />
+
         <Script
           id="gtm_script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: ` window.dataLayer = window.dataLayer || [];
-           function gtag() {
-             dataLayer.push(arguments);
-           }
-           gtag('js', new Date());
-           gtag('config', 'G-5FJK8CL5W8');`,
+            __html: `<!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FJK8CL5W8"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-5FJK8CL5W8');
+            </script>`,
           }}
-        ></Script>
+        />
       </body>
     </html>
   );
