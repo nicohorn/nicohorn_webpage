@@ -74,7 +74,7 @@ export default function TextEditor({
     }
 
     return (
-      <div className="flex gap-3 flex-wrap border-b border-zinc-600 p-3 mb-3 bg-black z-50 sticky top-0 w-full">
+      <div className="flex gap-3 flex-wrap border-b border-zinc-600 p-3 mb-3 bg-black z-50 sticky top-8 w-full">
         <button
           onClick={(e) => {
             e.preventDefault();

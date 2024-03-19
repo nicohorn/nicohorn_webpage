@@ -15,23 +15,19 @@ export default function Hero({
 
   const pathname = usePathname();
 
-  if (pathname.includes("/landing")) return null;
-  if (pathname.includes("/dashboard")) return null;
   return (
     <motion.div
       id="hero_component"
-      whileTap={
-        !pathname.includes("about_me") ? { scale: 0.495 } : { scale: 0.995 }
-      }
+      whileTap={{ scale: 0.995 }}
       initial={{
         originX: 0,
         originY: 0,
-        scale: pathname.includes("/blog") ? 0.5 : 1,
+        scale: 1,
       }}
-      animate={pathname.includes("/blog") ? { scale: 0.5 } : { scale: 1 }}
-      className={"hidden flex-col pr-2 hover:cursor-pointer mb-8 w-fit lg:flex"}
+      animate={{ scale: 1 }}
+      className={" flex-col pr-2 hover:cursor-pointer w-fit flex -mt-4"}
     >
-      <motion.h1 className=" md:text-8xl text-5xl -ml-1">
+      <motion.h1 className=" md:text-8xl text-5xl -ml-1 uppercase">
         <Link href={`/${pathname.split("/")[1]}/about_me`}>{title}</Link>
       </motion.h1>
       <motion.div

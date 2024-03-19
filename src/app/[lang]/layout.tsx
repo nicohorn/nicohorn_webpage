@@ -1,15 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
-import VerticalNavbar from "@/components/Sidebar";
 import "./../globals.css";
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
-import Hero from "@/components/Hero";
 import { getServerSession } from "next-auth";
 import { users } from "@prisma/client";
 import { guest_links, links } from "../Links";
 import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
 import LanguagesListbox from "@/components/LanguagesListbox";
+import Navbar from "@/components/Navbar";
 
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 
@@ -38,14 +37,15 @@ export default async function RootLayout({
 
   return (
     <html
-      className=" bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen "
+      className={` ${oswald.className} bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen mt-5`}
       lang={`${params.lang}`}
     >
-      <body
-        className={
-          oswald.className + "  z-0 relative scroll-smooth h-full flex flex-col"
-        }
-      >
+      <body className={"z-0 relative scroll-smooth h-full flex flex-col"}>
+        <Navbar
+          lang={params.lang}
+          session={session!}
+          links={user ? links[user.role] : guest_links}
+        />
         <div id="notifications_container" className="relative" />
         <LanguagesListbox
           languages={[
@@ -60,22 +60,7 @@ export default async function RootLayout({
           ]}
           currentLang={params.lang!}
         />
-        <div className="mx-12 my-16 md:my-8">
-          <VerticalNavbar
-            lang={params.lang}
-            session={session!}
-            links={user ? links[user.role] : guest_links}
-          />
-          <Hero
-            title={"Nico Horn"}
-            description={
-              params.lang === "en-US"
-                ? "engineer, developer and educator"
-                : "ingeniero, desarrollador y docente"
-            }
-          />
-          {children}
-        </div>
+        <div className="mx-12 my-16 md:my-8">{children}</div>
 
         <Footer lang={params.lang} />
       </body>

@@ -22,7 +22,7 @@ export default async function Page({
   if (!blog_entries) return null;
   if (blog_entries!.length < 1)
     return (
-      <div className="xl:-mt-20 -mt-12 text-5xl">
+      <div className=" text-5xl">
         <div className="flex flex-col gap-2">
           <ComboboxComponent tags={tags!} lang={params.lang} />
         </div>
@@ -33,7 +33,8 @@ export default async function Page({
     );
 
   return (
-    <main className="xl:-mt-20 -mt-12">
+    <main className="flex flex-col gap-5">
+      <Title title="Blog" />
       <div className="flex flex-col gap-2">
         <ComboboxComponent tags={tags!} lang={params.lang} />
       </div>
