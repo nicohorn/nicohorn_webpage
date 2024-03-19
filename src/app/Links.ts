@@ -13,26 +13,26 @@ export interface LinksType {
 }
 
 export const admin_links = [
-    { title: "Inicio", link: "/about_me" },
+
     { title: "Acerca de mí", link: "/about_me" },
     { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/playground" },
-    { title: "Alumnos", link: "/about_me" },
+    { title: "Alumnos", link: "/students" },
     { title: "Dashboard", link: "/dashboard" },
 
 ];
 
 const user_links = [
-    { title: "Inicio", link: "/about_me" },
+
     { title: "Acerca de mí", link: "/about_me" },
     { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/playground" },
-    { title: "Alumnos", link: "/about_me" },
+    { title: "Alumnos", link: "/students" },
 
 ];
 
 export const guest_links = [
-    { title: "Inicio", link: "/about_me" },
+
     { title: "Acerca de mí", link: "/about_me" },
     { title: "Blog", link: "/blog" },
     { title: "Playground", link: "/playground" },

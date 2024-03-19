@@ -56,12 +56,12 @@ export default function BlogEntry({
     const scrollListener = () =>
       window.addEventListener("scroll", () => {
         if (window.scrollY > 100) {
-          document.getElementById("blog_title")?.classList.remove("text-7xl");
+          document.getElementById("blog_title")?.classList.remove("text-6xl");
           document.getElementById("blog_title")?.classList.add("text-2xl");
           document.getElementById("blog_created_at")?.classList.add("text-sm");
         } else {
           document.getElementById("blog_title")?.classList.remove("text-2xl");
-          document.getElementById("blog_title")?.classList.add("text-7xl");
+          document.getElementById("blog_title")?.classList.add("text-6xl");
           document
             .getElementById("blog_created_at")
             ?.classList.remove("text-sm");
@@ -78,10 +78,7 @@ export default function BlogEntry({
 
   useEffect(() => {
     setBlogHeroHeight(
-      document.getElementById("blog_hero")?.getBoundingClientRect().height! -
-        document.getElementById("hero_component")?.getBoundingClientRect()
-          .height! *
-          2
+      document.getElementById("blog_hero")?.getBoundingClientRect().height!
     );
   });
 
@@ -112,11 +109,11 @@ export default function BlogEntry({
           className="fixed bottom-28 right-0 mb-28 mr-20 lg:mr-28 z-50"
         />
       </button>
-      <div className="-rounded-b-xl  bg-cover bg-center  bg-zinc-900 shadow-lg fixed  2xl:w-[45%] lg:w-[60%] w-[85%] left-1/2 -translate-x-1/2 top-0 z-[50] rounded-b-lg">
+      <div className="fixed rounded-b-xl mt-5 bg-cover bg-center bg-zinc-900 shadow-lg   2xl:w-[45%] lg:w-[60%] w-[85%] left-1/2 -translate-x-1/2 top-0 z-[50]">
         <div id="blog_hero" className="mx-auto flex flex-col gap-2 p-5">
           <h1
             id="blog_title"
-            className="text-left text-7xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
+            className="text-left text-6xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
           >
             {blog_entry?.title}
           </h1>

@@ -1,0 +1,56 @@
+"filename", "language", "TypeScript", "JavaScript", "TypeScript JSX", "CSS", "comment", "blank", "total"
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\Links.ts", "TypeScript", 39, 0, 0, 0, 1, 16, 56
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\about_me\components\AboutMeSection.tsx", "TypeScript JSX", 0, 0, 289, 0, 4, 15, 308
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\about_me\components\WorkExperience.tsx", "TypeScript JSX", 0, 0, 409, 0, 1, 8, 418
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\about_me\page.tsx", "TypeScript JSX", 0, 0, 24, 0, 0, 2, 26
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\[id]\page.tsx", "TypeScript JSX", 0, 0, 35, 0, 0, 7, 42
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\BlogCard.tsx", "TypeScript JSX", 0, 0, 91, 0, 2, 9, 102
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\BlogEntry.tsx", "TypeScript JSX", 0, 0, 169, 0, 1, 16, 186
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\TipTapContent.tsx", "TypeScript JSX", 0, 0, 56, 0, 1, 4, 61
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\loading.tsx", "TypeScript JSX", 0, 0, 10, 0, 0, 2, 12
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\page.tsx", "TypeScript JSX", 0, 0, 56, 0, 16, 5, 77
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\[id]\page.tsx", "TypeScript JSX", 0, 0, 17, 0, 1, 2, 20
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\components\BlogEntryForm.tsx", "TypeScript JSX", 0, 0, 349, 0, 6, 29, 384
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\components\TextEditor.tsx", "TypeScript JSX", 0, 0, 398, 0, 3, 16, 417
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\page.tsx", "TypeScript JSX", 0, 0, 11, 0, 17, 4, 32
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\page.tsx", "TypeScript JSX", 0, 0, 13, 0, 0, 2, 15
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\landing\page.tsx", "TypeScript JSX", 0, 0, 15, 0, 1, 1, 17
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\layout.tsx", "TypeScript JSX", 0, 0, 63, 0, 1, 6, 70
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\page.tsx", "TypeScript JSX", 0, 0, 24, 0, 0, 3, 27
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\playground\components\CodeEditor.tsx", "TypeScript JSX", 0, 0, 171, 0, 0, 9, 180
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\playground\components\page.module.css", "CSS", 0, 0, 0, 64, 0, 14, 78
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\playground\page.tsx", "TypeScript JSX", 0, 0, 11, 0, 0, 2, 13
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\portfolio\components\ProjectCard.tsx", "TypeScript JSX", 0, 0, 25, 0, 0, 4, 29
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\portfolio\page.tsx", "TypeScript JSX", 0, 0, 21, 0, 0, 3, 24
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\auth\[...nextauth]\route.ts", "TypeScript", 12, 0, 0, 0, 0, 1, 13
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\blog_entry\route.ts", "TypeScript", 18, 0, 0, 0, 0, 14, 32
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\cron\route.ts", "TypeScript", 12, 0, 0, 0, 0, 3, 15
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\tag\route.ts", "TypeScript", 7, 0, 0, 0, 0, 7, 14
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\api\user\[id]\route.ts", "TypeScript", 6, 0, 0, 0, 0, 6, 12
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\globals.css", "CSS", 0, 0, 0, 233, 8, 39, 280
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\ComboboxComponent.tsx", "TypeScript JSX", 0, 0, 158, 0, 1, 6, 165
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Footer.tsx", "TypeScript JSX", 0, 0, 145, 0, 0, 3, 148
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Hero.tsx", "TypeScript JSX", 0, 0, 47, 0, 1, 4, 52
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\LanguagesListbox.tsx", "TypeScript JSX", 0, 0, 104, 0, 0, 5, 109
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\ListboxComponent.tsx", "TypeScript JSX", 0, 0, 87, 0, 0, 2, 89
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Navbar.tsx", "TypeScript JSX", 0, 0, 144, 0, 89, 14, 247
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Notification.tsx", "TypeScript JSX", 0, 0, 71, 0, 0, 9, 80
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\SquareLoader.tsx", "TypeScript JSX", 0, 0, 34, 0, 0, 3, 37
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Stack.tsx", "TypeScript JSX", 0, 0, 144, 0, 2, 4, 150
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Title.tsx", "TypeScript JSX", 0, 0, 20, 0, 0, 2, 22
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\middleware.ts", "TypeScript", 28, 0, 0, 0, 6, 26, 60
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\blog_entry.ts", "TypeScript", 123, 0, 0, 0, 1, 17, 141
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\blog_tag.ts", "TypeScript", 25, 0, 0, 0, 0, 7, 32
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\project.ts", "TypeScript", 9, 0, 0, 0, 0, 3, 12
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\user.ts", "TypeScript", 40, 0, 0, 0, 0, 10, 50
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\supabase.ts", "TypeScript", 2, 0, 0, 0, 1, 5, 8
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\types\next-auth.d.ts", "TypeScript", 12, 0, 0, 0, 3, 3, 18
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\authOptions.ts", "TypeScript", 54, 0, 0, 0, 5, 5, 64
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\createQuery.ts", "TypeScript", 0, 0, 0, 0, 0, 1, 1
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\db.ts", "TypeScript", 9, 0, 0, 0, 3, 4, 16
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\dictionaries\PrismaClientErrors.ts", "TypeScript", 6, 0, 0, 0, 3, 3, 12
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\dictionaries\Tags.ts", "TypeScript", 17, 0, 0, 0, 0, 1, 18
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\generateEnglishRSSfeed.js", "JavaScript", 0, 52, 0, 0, 53, 18, 123
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\prismaClient.ts", "TypeScript", 6, 0, 0, 0, 0, 3, 9
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\zod.ts", "TypeScript", 19, 0, 0, 0, 2, 10, 31
+"Total", "-", 444, 52, 3211, 297, 233, 417, 4654

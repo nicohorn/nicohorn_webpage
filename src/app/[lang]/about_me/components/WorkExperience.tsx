@@ -90,7 +90,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                 key={idx}
               >
                 <div className="py-2">
-                  <h1 className="text-lg font-bold mb-2 rounded-md md:-translate-x-10 -translate-x-4 bg-yellow-300 w-fit px-2 text-black ">
+                  <h1 className="text-lg font-bold mb-2 rounded-md md:-translate-x-10 -translate-x-4 mt-7  bg-yellow-300 w-fit px-2 text-black ">
                     {yearItem.year}
                   </h1>
                 </div>
@@ -412,16 +412,6 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
   return (
     <div className="lg:max-w-[60vw] md:pr-10 lg:pr-0">
       <Timeline yearsWithItems={yearItems({ lang: lang })} />
-      {/* <div>
-        <h1>Skills</h1>
-        <p>Web design</p>
-        <p>RESTful API's</p>
-        <p>Strong knowledge in UX/UI</p>
-        <p>Web development</p>
-        <p>JavaScript</p>
-        <p>Relational databases</p>
-        <p>Non relational databases</p>
-      </div> */}
     </div>
   );
 }
