@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
 import LanguagesListbox from "@/components/LanguagesListbox";
 import Navbar from "@/components/Navbar";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 
@@ -46,6 +47,7 @@ export default async function RootLayout({
           session={session!}
           links={user ? links[user.role] : guest_links}
         />
+
         <div id="notifications_container" className="relative" />
         <LanguagesListbox
           languages={[
@@ -60,9 +62,10 @@ export default async function RootLayout({
           ]}
           currentLang={params.lang!}
         />
-        <div className="mx-12 my-16 md:my-8">{children}</div>
+        <div className="md:mx-12 mx-5 my-16 md:my-8">{children}</div>
 
         <Footer lang={params.lang} />
+        <GoogleAnalytics gaId="G-5FJK8CL5W8" />
       </body>
     </html>
   );

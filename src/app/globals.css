@@ -183,13 +183,12 @@ div {
 }
 
 .loaderContainer {
-  --uib-size: 35px;
+  --uib-size: 50px;
   --uib-color: rgb(255, 232, 120);
   --uib-speed: 1.2s;
   --uib-bg-opacity: 0.1;
   height: var(--uib-size);
   width: var(--uib-size);
-  transform-origin: center;
   will-change: transform;
   overflow: visible;
 }

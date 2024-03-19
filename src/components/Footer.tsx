@@ -30,7 +30,7 @@ export default function Footer({ lang }: { lang: string }) {
   return (
     <div
       id="footer_container"
-      className={` w-screen md:min-h-[8rem] bg-black shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  px-12 py-8 sm:items-start items-start`}
+      className={` w-screen md:min-h-[8rem] bg-black shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] mt-auto flex flex-col md:flex-row md:gap-0 gap-6 md:justify-between  md:px-12 px-6 py-8 sm:items-start items-start`}
     >
       <div className="flex flex-col md:self-end items-center sm:items-end">
         {" "}

@@ -46,11 +46,11 @@ export default function ListboxComponent({
         !path.includes("entry") &&
         path.split("/").length > 3
           ? "hidden"
-          : "md:top-6 md:right-12 top-2 right-4 fixed z-[51] "
+          : "top-2 right-4 fixed z-[51] mt-[32px] sm:w-fit w-[90vw]"
       }
     >
       <Listbox value={selected} onChange={setSelected}>
-        <div className="relative mt-[32px] w-40">
+        <div className="relative  w-full">
           <Listbox.Button className="relative w-full cursor-default bg-zinc-800 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
             <div className="flex gap-2 items-center">
               <IconLanguage />

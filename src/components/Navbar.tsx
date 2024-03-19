@@ -80,7 +80,7 @@ export default function Navbar({
       id="nav_container"
       className="fixed top-0  left-0 w-screen h-96 bg-black/90 z-[90] flex items-center shadow-lg "
     >
-      <div className="px-12 flex md:flex-row flex-col gap-2 absolute items-start mb-[32px]">
+      <div className="md:px-12 px-6 flex md:flex-row flex-col gap-2 absolute items-start mb-[32px]">
         <Hero
           title={"Nico Horn"}
           description={
