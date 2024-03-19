@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
 import LanguagesListbox from "@/components/LanguagesListbox";
 import Navbar from "@/components/Navbar";
-import Script from "next/script";
 
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 

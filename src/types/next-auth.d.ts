@@ -15,9 +15,3 @@ declare module 'next-auth/jwt' {
         user: users & DefaultSession['user']
     }
 }
-
-declare global {
-    interface Window {
-        api?: any;
-    }
-}
