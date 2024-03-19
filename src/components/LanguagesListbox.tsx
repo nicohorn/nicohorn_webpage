@@ -46,7 +46,7 @@ export default function ListboxComponent({
         !path.includes("entry") &&
         path.split("/").length > 3
           ? "hidden"
-          : "top-2 right-4 fixed z-[51] mt-[32px] sm:w-fit w-[90vw]"
+          : "top-2  fixed z-[51] mt-[32px] left-1/2 sm:left-full -translate-x-1/2 sm:-translate-x-[110%] sm:w-fit w-[90vw]"
       }
     >
       <Listbox value={selected} onChange={setSelected}>

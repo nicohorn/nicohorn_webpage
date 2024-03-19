@@ -14,7 +14,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Nico Horn ",
+  title: "Nico Horn",
   description:
     "Welcome to my personal webpage, I'm Nico Horn, full stack developer, systems engineer and educator.",
   openGraph: {
