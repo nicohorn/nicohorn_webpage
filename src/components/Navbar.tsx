@@ -156,7 +156,7 @@ export default function Navbar({
               onMouseOver={() => {
                 setHoverLink("signin");
               }}
-              id="signin"
+              id="link_id_signin"
               className={`${
                 hoverLink === "signin" && "md:text-black"
               } z-10  w-fit text-xl py-1 md:py-0 uppercase transition`}
