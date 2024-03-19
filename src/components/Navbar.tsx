@@ -28,95 +28,6 @@ export default function Navbar({
   const path = usePathname();
   const navbarHeight = 352; //in pixels
 
-  //These buttons <loginButton and logoutButton> aren't meant to be reusable components, but since they're conditionally called (if there's an active session), it's easier to manage them having them defined as functions inside this component.
-  // const loginButton = ({ desktop }: { desktop: boolean }) => {
-  //   return (
-  //     <Disclosure>
-  //       <Disclosure.Button
-  //         as={motion.button}
-  //         transition={{ duration: desktop ? 1 : 0.1 }}
-  //         whileHover={{
-  //           backgroundColor: desktop ? "white" : "rgb(250 204 21)",
-  //           color: "black",
-  //         }}
-  //         className={`${!desktop && "p-5"} "w-full text-left "`}
-  //       >
-  //         <motion.p
-  //           id="sign_in_button"
-  //           className=" md:py-5 md:px-12"
-  //           whileTap={{ scale: 0.97 }}
-  //           whileHover={{ x: desktop ? 5 : 0 }}
-  //         >
-  //           {lang === "en-US" ? "Sign in" : "Iniciar sesión"}
-  //         </motion.p>
-  //       </Disclosure.Button>
-  //       <Transition
-  //         enter="transition duration-100 ease-out"
-  //         enterFrom="transform scale-95 opacity-0"
-  //         enterTo="transform scale-100 opacity-100"
-  //         leave="transition duration-75 ease-out"
-  //         leaveFrom="transform scale-100 opacity-100"
-  //         leaveTo="transform scale-95 opacity-0"
-  //       >
-  //         <Disclosure.Panel
-  //           className={` "text-left"  ${
-  //             desktop && "text-lg hover:bg-white hover:text-black"
-  //           }`}
-  //         >
-  //           <motion.button
-  //             whileTap={{ scale: 0.95 }}
-  //             whileHover={{ x: desktop ? 5 : 0 }}
-  //             onClick={() => {
-  //               signIn("google");
-  //             }}
-  //             className={` py-6 text-xl flex gap-2 items-center text-left ${
-  //               !desktop && " text-white mt-4 px-8"
-  //             } ${desktop && "hover:bg-white  hover:text-black px-14 "}`}
-  //           >
-  //             {lang === "en-US" ? "Sign in with Google" : "Iniciar sesión con"}
-  //             <IconBrandGoogleFilled />
-  //           </motion.button>
-  //         </Disclosure.Panel>
-  //       </Transition>
-  //     </Disclosure>
-  //   );
-  // };
-
-  // const logoutButton = ({ desktop }: { desktop: boolean }) => {
-  //   return (
-  //     <motion.div
-  //       className="md:px-12 md:py-5 cursor-pointer text-left flex gap-3 items-center justify-between "
-  //       onClick={() => {
-  //         setTimeout(() => {
-  //           setOpen(false);
-  //           animate(
-  //             "#nav_container",
-  //             { x: -320 - 48 + 32 },
-  //             { duration: 0.5, type: "spring", bounce: 0.2 }
-  //           );
-  //           animate(
-  //             "#nav_container",
-  //             { zIndex: 0 },
-  //             { duration: 0.5, type: "spring", bounce: 0.2 }
-  //           );
-  //         }, 250);
-  //         signOut({ callbackUrl: "/" });
-  //       }}
-  //       whileTap={{ scale: 0.97 }}
-  //       whileHover={{ x: desktop ? 5 : 0 }}
-  //     >
-  //       <button> {lang === "en-US" ? "Log out" : "Cerrar sesión"}</button>
-
-  //       <img
-  //         referrerPolicy="no-referrer"
-  //         alt="Profile picture"
-  //         className="rounded-full w-12"
-  //         src={session?.user?.image!}
-  //       ></img>
-  //     </motion.div>
-  //   );
-  // };
-
   useEffect(() => {
     /**Close sidebar when clicking outside */
 
@@ -181,7 +92,7 @@ export default function Navbar({
 
         <div className="md:flex-row flex-col flex md:gap-8  md:ml-10 relative flex-wrap">
           <div
-            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-400 z-0 transition-transform duration-150 hidden md:block border-yellow-400"
+            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-400 z-0 transition-transform duration-150 hidden md:block border-yellow-400 "
             style={{
               height:
                 document
@@ -211,7 +122,7 @@ export default function Navbar({
                 key={link.title}
                 href={`/${lang}${link.link}`}
                 className={`z-10  w-fit md:text-5xl py-1 md:py-0 text-3xl uppercase  ${
-                  link.link === hoverLink && "md:text-black"
+                  link.link === hoverLink && "md:text-black "
                 } transition ${
                   path === `/${lang + link.link}`
                     ? "font-bold border-b border-b-yellow-400"
@@ -222,6 +133,37 @@ export default function Navbar({
               </Link>
             );
           })}
+          {session ? (
+            <button
+              onClick={() => {
+                signOut({ callbackUrl: "/" });
+              }}
+              onMouseOver={() => {
+                setHoverLink("logout");
+              }}
+              id="link_id_logout"
+              className={`${
+                hoverLink === "logout" && "md:text-black"
+              } z-10  w-fit text-xl py-1 md:py-0 uppercase transition`}
+            >
+              {lang === "en-US" ? "Log out" : "Cerrar sesión"}
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                signIn("google");
+              }}
+              onMouseOver={() => {
+                setHoverLink("signin");
+              }}
+              id="signin"
+              className={`${
+                hoverLink === "signin" && "md:text-black"
+              } z-10  w-fit text-xl py-1 md:py-0 uppercase transition`}
+            >
+              {lang === "en-US" ? "Sign in" : "Iniciar sesión"}
+            </button>
+          )}
         </div>
       </div>
       <button

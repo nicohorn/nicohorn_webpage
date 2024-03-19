@@ -73,7 +73,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image0",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  y: cY - 120,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -115,7 +115,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image1",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  y: cY - 120,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -156,7 +156,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image2",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  y: cY - 120,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -198,7 +198,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image3",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  y: cY - 120,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -237,7 +237,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image4",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  y: cY - 120,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
