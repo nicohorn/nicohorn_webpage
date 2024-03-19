@@ -25,9 +25,9 @@ export default function Hero({
         scale: 1,
       }}
       animate={{ scale: 1 }}
-      className={" flex-col pr-2 hover:cursor-pointer w-fit flex -mt-4"}
+      className={" flex-col pr-2 hover:cursor-pointer  w-fit flex -mt-4"}
     >
-      <motion.h1 className=" md:text-8xl text-5xl -ml-1 uppercase">
+      <motion.h1 className=" md:text-8xl text-2xl uppercase">
         <Link href={`/${pathname.split("/")[1]}/about_me`}>{title}</Link>
       </motion.h1>
       <motion.div
