@@ -4,10 +4,9 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { animate, motion } from "framer-motion";
-import { Disclosure, Transition } from "@headlessui/react";
 import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
-import { IconArrowDown, IconArrowUp, IconMenu2 } from "@tabler/icons-react";
+import { IconArrowUp, IconMenu2 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { dictLinksToEnglish } from "@/app/Links";
 import Hero from "./Hero";
@@ -83,6 +82,7 @@ export default function Navbar({
     >
       <div className="lg:px-12 px-6 flex lg:flex-row flex-col gap-2 absolute items-start mb-[32px]">
         <Hero
+          lang={lang!}
           title={"Nico Horn"}
           description={
             lang === "en-US"

@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import Title from "@/components/Title";
 import Image from "next/image";
-import Script from "next/script";
+import Editor from "@monaco-editor/react";
+import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 
 export default function Page({}) {
   const shimmer = (w: number, h: number) => `
@@ -22,24 +24,39 @@ export default function Page({}) {
     typeof window === "undefined"
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
-  const description = `[ingeniero en sistemas, desarrollador full stack, docente universitario]`;
+  const description = `[
+    "ingeniero en sistemas",
+    "desarrollador full stack",
+    "docente universitario"
+]`;
 
   return (
-    <main className=" w-full flex justify-center flex-col items-center gap-3">
-      <h1 className="text-5xl">Nicolás Horn</h1>
-      <p className="font-thin text-xl whitespace-pre-wrap">{description}</p>
-      <div className=" relative w-[20rem] min-h-[40vh]">
-        <Image
-          placeholder={`data:image/svg+xml;base64,${toBase64(
-            shimmer(800, 800)
-          )}`}
-          layout="fill"
-          className="rounded-2xl border object-cover"
-          alt="Profile picture of Nico Horn"
-          src="https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ></Image>
+    <main className=" w-full flex flex-col gap-3">
+      <Title title="Nico Horn" />
+      <div className="flex gap-2">
+        <Editor
+          width="500px"
+          height="100px"
+          language="typescript"
+          theme="vs-dark"
+          value={description}
+        />
+        <div>
+          {" "}
+          <div className=" relative w-[20rem] min-h-[40vh]">
+            <Image
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                shimmer(800, 800)
+              )}`}
+              layout="fill"
+              className="rounded-2xl border object-cover"
+              alt="Profile picture of Nico Horn"
+              src="https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            ></Image>
+          </div>{" "}
+          <a href="mailto:contact@nicohorn.com">contact@nicohorn.com</a>
+        </div>
       </div>
-      <a href="mailto:contact@nicohorn.com">contact@nicohorn.com</a>
 
       {/* <div className="place-self-end shadow-lg">
         <a
