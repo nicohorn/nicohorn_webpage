@@ -2,12 +2,10 @@
 "use client";
 import React, { useCallback } from "react";
 import { motion } from "framer-motion";
-
-import { IconCalendar } from "@tabler/icons-react";
 import { Merriweather } from "next/font/google";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
-import { TagsToSpanish } from "@/utils/dictionaries/Tags";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { IconClock } from "@tabler/icons-react";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -15,9 +13,27 @@ const merriweather = Merriweather({
   weight: "300",
 });
 
+export const readTimeEstimates = {
+  "1 min": { min: 0, max: 300 },
+  "2 - 5 min": { min: 301, max: 1500 },
+  "10 min": { min: 1501, max: 3000 },
+  "15 + min": { min: 3001, max: Infinity },
+};
+
+export function estimateReadTime(blogContent: string) {
+  const characterCount = blogContent.replace(/<\/?[^>]+(>|$)/g, "").length;
+
+  for (const [readTime, { min, max }] of Object.entries(readTimeEstimates)) {
+    if (characterCount >= min && characterCount <= max) {
+      return readTime;
+    }
+  }
+
+  return null;
+}
+
 export default function BlogCard({
   blog_entry,
-  colSpan,
   idx,
 }: {
   blog_entry: BlogEntryWithTags;
@@ -58,12 +74,16 @@ export default function BlogCard({
         handleOnMouseMove(e);
       }}
       //Latest two entries show up with more height
-      className={`shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] border border-black hover:border-zinc-700 bg-gradient-to-r from-zinc-800/30 to-black/60 transition group flex flex-col cursor-pointer relative`}
+      className={`shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] border border-black hover:border-zinc-700 bg-gradient-to-r  from-zinc-800/30 to-black/60 transition group flex flex-col cursor-pointer relative`}
     >
-      <div className="flex md:flex-row flex-col justify-between">
-        <div className=" card flex-grow flex-wrap">
+      <div className="flex lg:flex-row flex-col justify-between">
+        <div className=" card flex-grow flex-wrap group">
           <div className="py-3 px-4 w-full border-b border-zinc-700 shadow-lg">
-            <h1 className="text-5xl font-extrabold w-fit text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-red-500">
+            <p className="flex gap-2 items-center text-sm px-2 bg-zinc-900 font-semibold rounded-lg w-fit absolute shadow-lg -translate-x-2 -translate-y-6 z-40">
+              {estimateReadTime(blog_entry.content)}{" "}
+              <IconClock className="w-4 h-4" />
+            </p>
+            <h1 className="md:text-5xl  py-1 text-3xl font-extrabold w-fit text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-red-500">
               {blog_entry.title}
             </h1>
           </div>
@@ -71,7 +91,7 @@ export default function BlogCard({
           <p className={`${merriweather.className} px-4 py-5`}>
             {blog_entry.description}
           </p>
-          <div className="flex gap-1 px-4 py-3 flex-wrap">
+          <div className="flex gap-1 px-4 py-3 flex-wrap lg:opacity-30 lg:group-hover:opacity-100 transition">
             {"Tags: "}
             {blog_entry.tags.map(({ blog_tag }) => {
               return (
@@ -92,7 +112,7 @@ export default function BlogCard({
         </div>
         <img
           alt={`Cover image for blog entry ${blog_entry.title}`}
-          className="object-cover object-center md:w-52 "
+          className="object-cover object-center lg:w-52 "
           src={blog_entry.cover_image}
         ></img>
       </div>

@@ -26,7 +26,7 @@ export default function Navbar({
 }) {
   const [open, setOpen] = useState(false);
   const path = usePathname();
-  const navbarHeight = 352; //in pixels
+  const navbarHeight = 468; //in pixels
 
   useEffect(() => {
     /**Close sidebar when clicking outside */
@@ -79,9 +79,9 @@ export default function Navbar({
       initial={{ y: !open ? -navbarHeight : 0 }}
       animate={open ? { y: 0 } : { y: -navbarHeight }}
       id="nav_container"
-      className="fixed top-0  left-0 w-screen h-96 bg-black/90 z-[90] flex items-center shadow-lg "
+      className="fixed top-0  left-0 w-screen h-[500px] bg-black/90 z-[90] flex items-center shadow-lg "
     >
-      <div className="md:px-12 px-6 flex md:flex-row flex-col gap-2 absolute items-start mb-[32px]">
+      <div className="lg:px-12 px-6 flex lg:flex-row flex-col gap-2 absolute items-start mb-[32px]">
         <Hero
           title={"Nico Horn"}
           description={
@@ -97,10 +97,10 @@ export default function Navbar({
               setLinkBgOpacity(0);
             }, 75);
           }}
-          className="md:flex-row flex-col flex md:gap-8  md:ml-10 relative flex-wrap"
+          className="lg:flex-row flex-col flex lg:gap-8  lg:ml-10 relative flex-wrap"
         >
           <div
-            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-600 z-0 duration-150 hidden md:block border-yellow-400"
+            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-600 z-0 duration-150 hidden lg:block border-yellow-400"
             style={{
               opacity: linkBgOpacity,
               height:
@@ -128,7 +128,7 @@ export default function Navbar({
                 id={`link_id_${link.link}`}
                 key={link.title}
                 href={`/${lang}${link.link}`}
-                className={`z-10  w-fit md:text-5xl duration-150 py-1 delay-75 md:py-0 text-3xl uppercase   transition ${
+                className={`z-10  w-fit lg:text-5xl duration-150 py-1 delay-75 lg:py-0 text-3xl uppercase   transition ${
                   path === `/${lang + link.link}`
                     ? "font-bold border-b border-b-yellow-400"
                     : "font-thin"
@@ -150,7 +150,7 @@ export default function Navbar({
               }}
               id="link_id_logout"
               className={`
-              } z-10  w-fit text-xl py-1 md:py-0 uppercase transition duration-150 delay-75`}
+              } z-10  w-fit text-xl py-1 lg:py-0 uppercase transition duration-150 delay-75`}
             >
               {lang === "en-US" ? "Log out" : "Cerrar sesión"}
             </button>
@@ -165,7 +165,7 @@ export default function Navbar({
                 setHoverLink("signin");
               }}
               id="link_id_signin"
-              className={`z-10  w-fit text-xl py-1 md:py-0 uppercase transition duration-150 delay-75`}
+              className={`z-10  w-fit text-xl py-1 lg:py-0 uppercase transition duration-150 delay-75`}
             >
               {lang === "en-US" ? "Sign in" : "Iniciar sesión"}
             </button>

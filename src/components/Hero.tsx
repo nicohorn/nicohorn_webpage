@@ -27,18 +27,19 @@ export default function Hero({
       animate={{ scale: 1 }}
       className={" flex-col pr-2 hover:cursor-pointer  w-fit flex -mt-4"}
     >
-      <motion.h1 className=" md:text-8xl text-2xl uppercase font-extrabold">
+      <motion.h1 className=" md:text-5xl lg:text-8xl text-2xl uppercase font-extrabold">
         <Link href={`/${pathname.split("/")[1]}/about_me`}>{title}</Link>
       </motion.h1>
       <motion.div
-        className=" font-thin flex text-xl "
+        className="flex text-xl font-semibold"
         initial="hidden"
         animate="visible"
       >
         {description.split("").map((char, idx) => {
           return (
             <motion.span
-              whileHover={{ color: "yellow", scale: 1.2, rotate: 10 }}
+              transition={{ duration: 0.1 }}
+              whileHover={{ color: "yellow", scale: 1.2 }}
               key={idx}
             >
               {char == " " ? <p>&nbsp;</p> : <p>{char}</p>}

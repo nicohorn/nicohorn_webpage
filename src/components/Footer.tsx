@@ -136,7 +136,7 @@ export default function Footer({ lang }: { lang: string }) {
             </div>
           </div>
           <div className="text-md font-thin flex gap-1 sm:self-end sm:ml-2">
-            {lang === "en-US" ? "Website by Nico Horn" : "Web por Nico Horn"}
+            Nico Horn
             <p className="font-extrabold">{new Date().getFullYear()}</p>
           </div>
         </div>

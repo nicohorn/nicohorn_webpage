@@ -231,7 +231,7 @@ div {
 
 .card::before {
   background: radial-gradient(
-    1000px circle at var(--mouse-x) var(--mouse-y),
+    1800px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.1),
     transparent 50%
   );
