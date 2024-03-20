@@ -322,7 +322,7 @@ export default function BlogEntryForm({
       </div>
       <div className="flex flex-col gap-1 relative">
         <label>
-          {lang === "en-US " ? "Blog content" : "Contenido del blog"}
+          {lang === "en-US" ? "Blog content" : "Contenido del blog"}
         </label>
         <TextEditor
           content={blog_entry_content}

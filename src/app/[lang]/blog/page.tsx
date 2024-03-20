@@ -5,6 +5,29 @@ import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 import Link from "next/link";
 import { getTags } from "@/repositories/blog_tag";
 import ComboboxComponent from "@/components/TagsCombobox";
+import type { Metadata } from "next";
+
+type Props = {
+  params: { id: string; lang: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    title: params.lang === "en_US" ? "Nico Horn's Blog" : "Blog de Nico Horn",
+    description:
+      params.lang === "en_US"
+        ? "Welcome to my blog, I'm Nico Horn, full stack developer, systems engineer and educator."
+        : "Bienvenido a mi blog, soy Nico Horn, ingeniero, desarrollador y profesor. Acá comparto cosas sobre tecnología, política y a veces filosofía.",
+    openGraph: {
+      images:
+        "https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    keywords: [
+      "developer, engineer, educator, teacher, professor, nico, horn, nico horn, software, full stack, ingeniero, desarrollador, profesor, docente, universidad, university, cs graduate, computer science, networking",
+    ],
+  };
+}
 
 export default async function Page({
   searchParams,
@@ -57,20 +80,3 @@ export default async function Page({
     </main>
   );
 }
-
-/* 
-Blog entry must have
-
--title
--short_description
--content/text
--cover_image
--tags
--publication_date
--edited_date
--author
-
--likes???
--comments?
-
-*/

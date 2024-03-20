@@ -1,6 +1,5 @@
 import { BlogEntryWithTags, getBlogEntryById } from "@/repositories/blog_entry";
 import React from "react";
-
 import type { Metadata } from "next";
 import BlogEntry from "../components/BlogEntry";
 import { getServerSession } from "next-auth";
