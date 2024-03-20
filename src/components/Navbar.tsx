@@ -72,6 +72,7 @@ export default function Navbar({
   }, [open]);
 
   const [hoverLink, setHoverLink] = useState(path);
+  const [linkBgOpacity, setLinkBgOpacity] = useState(0);
 
   return (
     <motion.div
@@ -90,10 +91,18 @@ export default function Navbar({
           }
         />
 
-        <div className="md:flex-row flex-col flex md:gap-8  md:ml-10 relative flex-wrap">
+        <div
+          onMouseLeave={() => {
+            setTimeout(() => {
+              setLinkBgOpacity(0);
+            }, 150);
+          }}
+          className="md:flex-row flex-col flex md:gap-8  md:ml-10 relative flex-wrap"
+        >
           <div
-            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-400 z-0 transition-transform duration-150 hidden md:block border-yellow-400 "
+            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-400 z-0 duration-150 hidden md:block border-yellow-400 "
             style={{
+              opacity: linkBgOpacity,
               height:
                 document
                   .getElementById(`link_id_${hoverLink}`)
@@ -113,6 +122,7 @@ export default function Navbar({
             return (
               <Link
                 onMouseOver={() => {
+                  setLinkBgOpacity(1);
                   setHoverLink(link.link);
                   console.log("path", path);
 
