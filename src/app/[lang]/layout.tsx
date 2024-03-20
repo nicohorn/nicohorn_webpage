@@ -10,8 +10,12 @@ import { authOptions } from "@/utils/authOptions";
 import LanguagesListbox from "@/components/LanguagesListbox";
 import Navbar from "@/components/Navbar";
 import { GoogleAnalytics } from "@next/third-parties/google";
-
+import { Montserrat } from "next/font/google";
 const oswald = Oswald({ subsets: ["latin"], display: "swap" });
+const montserrat = Montserrat({
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["cyrillic"],
+});
 
 export const metadata: Metadata = {
   title: "Nico Horn",
@@ -38,7 +42,7 @@ export default async function RootLayout({
 
   return (
     <html
-      className={` ${oswald.className} bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen mt-5`}
+      className={` ${montserrat.className} bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen mt-5`}
       lang={`${params.lang}`}
     >
       <body className={"z-0 relative scroll-smooth h-full flex flex-col"}>
