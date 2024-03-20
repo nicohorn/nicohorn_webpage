@@ -90,7 +90,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                 key={idx}
               >
                 <div className="py-2">
-                  <h1 className="text-lg font-bold mb-2 rounded-md md:-translate-x-10 -translate-x-4 mt-7  bg-yellow-300 w-fit px-2 text-black ">
+                  <h1 className="text-lg font-bold mb-2 rounded-md md:-translate-x-10 -translate-x-4 mt-7  from-yellow-500 to-yellow-300 active:bg-yellow-500 bg-gradient-to-r w-fit px-2 text-black ">
                     {yearItem.year}
                   </h1>
                 </div>

@@ -4,7 +4,7 @@ import BlogCard from "./components/BlogCard";
 import { getAllBlogEntriesWithTags } from "@/repositories/blog_entry";
 import Link from "next/link";
 import { getTags } from "@/repositories/blog_tag";
-import ComboboxComponent from "@/components/ComboboxComponent";
+import ComboboxComponent from "@/components/TagsCombobox";
 
 export default async function Page({
   searchParams,

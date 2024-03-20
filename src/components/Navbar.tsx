@@ -95,12 +95,12 @@ export default function Navbar({
           onMouseLeave={() => {
             setTimeout(() => {
               setLinkBgOpacity(0);
-            }, 150);
+            }, 75);
           }}
           className="md:flex-row flex-col flex md:gap-8  md:ml-10 relative flex-wrap"
         >
           <div
-            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-400 z-0 duration-150 hidden md:block border-yellow-400 "
+            className="absolute -left-2 -top-2 bottom-0 pointer-events-none bg-yellow-600 z-0 duration-150 hidden md:block border-yellow-400"
             style={{
               opacity: linkBgOpacity,
               height:
@@ -124,16 +124,11 @@ export default function Navbar({
                 onMouseOver={() => {
                   setLinkBgOpacity(1);
                   setHoverLink(link.link);
-                  console.log("path", path);
-
-                  console.log("lang + link = path", `/${lang + link.link}`);
                 }}
                 id={`link_id_${link.link}`}
                 key={link.title}
                 href={`/${lang}${link.link}`}
-                className={`z-10  w-fit md:text-5xl py-1 md:py-0 text-3xl uppercase  ${
-                  link.link === hoverLink && "md:text-black "
-                } transition ${
+                className={`z-10  w-fit md:text-5xl duration-150 py-1 delay-75 md:py-0 text-3xl uppercase   transition ${
                   path === `/${lang + link.link}`
                     ? "font-bold border-b border-b-yellow-400"
                     : "font-thin"
@@ -149,12 +144,13 @@ export default function Navbar({
                 signOut({ callbackUrl: "/" });
               }}
               onMouseOver={() => {
+                setLinkBgOpacity(1);
+
                 setHoverLink("logout");
               }}
               id="link_id_logout"
-              className={`${
-                hoverLink === "logout" && "md:text-black"
-              } z-10  w-fit text-xl py-1 md:py-0 uppercase transition`}
+              className={`
+              } z-10  w-fit text-xl py-1 md:py-0 uppercase transition duration-150 delay-75`}
             >
               {lang === "en-US" ? "Log out" : "Cerrar sesión"}
             </button>
@@ -164,12 +160,12 @@ export default function Navbar({
                 signIn("google");
               }}
               onMouseOver={() => {
+                setLinkBgOpacity(1);
+
                 setHoverLink("signin");
               }}
               id="link_id_signin"
-              className={`${
-                hoverLink === "signin" && "md:text-black"
-              } z-10  w-fit text-xl py-1 md:py-0 uppercase transition`}
+              className={`z-10  w-fit text-xl py-1 md:py-0 uppercase transition duration-150 delay-75`}
             >
               {lang === "en-US" ? "Sign in" : "Iniciar sesión"}
             </button>
