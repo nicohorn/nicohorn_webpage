@@ -14,9 +14,9 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
-    title: params.lang === "en_US" ? "Nico Horn's Blog" : "Blog de Nico Horn",
+    title: params.lang === "en-US" ? "Nico Horn's Blog" : "Blog de Nico Horn",
     description:
-      params.lang === "en_US"
+      params.lang === "en-US"
         ? "Welcome to my blog, I'm Nico Horn, full stack developer, systems engineer and educator."
         : "Bienvenido a mi blog, soy Nico Horn, ingeniero, desarrollador y profesor. Acá comparto cosas sobre tecnología, política y a veces filosofía.",
     openGraph: {
