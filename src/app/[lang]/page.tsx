@@ -3,6 +3,7 @@
 import Title from "@/components/Title";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { IconCopy } from "@tabler/icons-react";
 export default function Page({ params }: { params: { lang: string } }) {
   const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -29,23 +30,24 @@ export default function Page({ params }: { params: { lang: string } }) {
 
   return (
     <main className=" w-full flex flex-col gap-3">
-      <div className="flex gap-2 items-end">
-        <Title title="Nico Horn" />
-        <motion.a
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="-translate-y-5"
-          href="mailto:contact@nicohorn.com"
-        >
-          contact@nicohorn.com
-        </motion.a>
-      </div>
+      <Title title="Nico Horn" />
+
+      <motion.div
+        id="landing_page_email"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className=" hover:bg-zinc-700 transition-all text-xl flex gap-2 items-center -translate-y-5 px-3 py-1 bg-zinc-800 shadow-md w-fit rounded-lg "
+      >
+        <a href="mailto:contact@nicohorn.com"> contact@nicohorn.com</a>
+        <IconCopy />
+      </motion.div>
 
       <motion.div
         initial={{ x: -10, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
+        className="text-lg font-semibold"
       >
         {params.lang === "en-US" ? description["en"] : description["es"]}
       </motion.div>
