@@ -64,16 +64,17 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               const width = document.body.clientWidth;
               const cX = e.clientX;
               const cY = e.clientY;
+              const cHeight = e.currentTarget.getBoundingClientRect().height;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
               setTimeout(() => {
                 document.getElementById("image0")?.classList.remove("hidden");
-              }, 200);
+              }, 100);
 
               animate(
                 "#image0",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 120,
+                  y: cY - 250,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -90,7 +91,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
 
               setTimeout(() => {
                 document.getElementById("image0")?.classList.add("hidden");
-              }, 200);
+              }, 100);
             }}
           >
             {" "}
@@ -110,12 +111,12 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               const cWidth = e.currentTarget.getBoundingClientRect().width;
               setTimeout(() => {
                 document.getElementById("image1")?.classList.remove("hidden");
-              }, 200);
+              }, 100);
               animate(
                 "#image1",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 120,
+                  y: cY - 250,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -132,7 +133,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
 
               setTimeout(() => {
                 document.getElementById("image1")?.classList.add("hidden");
-              }, 200);
+              }, 100);
             }}
           >
             {lang === "en-US"
@@ -151,12 +152,12 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               const cWidth = e.currentTarget.getBoundingClientRect().width;
               setTimeout(() => {
                 document.getElementById("image2")?.classList.remove("hidden");
-              }, 200);
+              }, 100);
               animate(
                 "#image2",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 120,
+                  y: cY - 250,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -173,7 +174,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
 
               setTimeout(() => {
                 document.getElementById("image2")?.classList.add("hidden");
-              }, 200);
+              }, 100);
             }}
           >
             {lang === "en-US"
@@ -193,12 +194,12 @@ export default function AboutMeSection({ lang }: { lang: string }) {
 
               setTimeout(() => {
                 document.getElementById("image3")?.classList.remove("hidden");
-              }, 200);
+              }, 100);
               animate(
                 "#image3",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 120,
+                  y: cY - 250,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -215,7 +216,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
 
               setTimeout(() => {
                 document.getElementById("image3")?.classList.add("hidden");
-              }, 200);
+              }, 100);
             }}
           >
             {lang === "en-US"
@@ -232,12 +233,12 @@ export default function AboutMeSection({ lang }: { lang: string }) {
 
               setTimeout(() => {
                 document.getElementById("image4")?.classList.remove("hidden");
-              }, 200);
+              }, 100);
               animate(
                 "#image4",
                 {
                   x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 120,
+                  y: cY - 250,
                   scale: 1.03,
                   borderColor: "yellow",
                   opacity: 1,
@@ -254,7 +255,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
 
               setTimeout(() => {
                 document.getElementById("image4")?.classList.add("hidden");
-              }, 200);
+              }, 100);
             }}
           >
             {lang === "en-US"
