@@ -109,7 +109,7 @@ export default function BlogEntry({
           className="fixed bottom-28 right-0 mb-28 mr-20 lg:mr-28 z-50"
         />
       </button>
-      <div className="fixed rounded-b-xl mt-5 bg-cover bg-center bg-zinc-900 shadow-lg   2xl:w-[45%] lg:w-[60%] w-[85%] left-1/2 -translate-x-1/2 top-0 z-[50]">
+      <div className="fixed rounded-b-xl mt-5 bg-cover bg-center bg-zinc-900 shadow-lg   2xl:w-[45%] lg:w-[60%] w-[90%] left-1/2 -translate-x-1/2 top-0 z-[50]">
         <div id="blog_hero" className="mx-auto flex flex-col gap-2 p-5">
           <h1
             id="blog_title"
