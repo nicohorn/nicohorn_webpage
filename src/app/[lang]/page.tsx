@@ -4,7 +4,7 @@
 import Title from "@/components/Title";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Script from "next/script";
@@ -46,7 +46,7 @@ export default function Page({ params }: { params: { lang: string } }) {
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
   return (
-    <main>
+    <main className="min-h-[100vh]">
       <div className="flex flex-wrap items-end gap-4">
         <Title title="Nico Horn" />
         <div className="flex -translate-y-5 flex-col gap-2">
@@ -168,22 +168,24 @@ export default function Page({ params }: { params: { lang: string } }) {
                 shimmer(800, 800),
               )}`}
               layout="fill"
-              className="cursor-pointer object-cover"
+              className="cursor-pointer object-cover min-h-[500px] rounded-lg"
               alt="Profile picture of Nico Horn"
               src={images[selectedImage]}
             ></Image>
           </motion.div>
-          <div className="place-self-end shadow-lg">
+          <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay:0.6}} className="place-self-end shadow-lg">
             <a
+              aria-label="Tweets By Nico Horn link"
               className="twitter-timeline"
               data-width="350"
               data-height="500"
               data-theme="dark"
               href="https://twitter.com/NicoTheEngineer?ref_src=twsrc%5Etfw"
             >
-              Tweets by NicoTheEngineer
+              <div className="min-h-[500px] min-w-[350px] border bg-black/70 border-white/30 animate-pulse rounded-xl flex items-center justify-center">{params.lang === "en-US" ? "Loading..." : "Cargando..." }</div>
             </a>
-          </div>
+           
+          </motion.div>
 
           <Script async src="https://platform.twitter.com/widgets.js" />
         </div>

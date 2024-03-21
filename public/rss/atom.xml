@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nicohorn.com</id>
     <title>Nico Horn's blog</title>
-    <updated>2024-03-21T03:09:19.388Z</updated>
+    <updated>2024-03-21T23:10:51.896Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>Nico Horn</name>
@@ -195,7 +195,18 @@ export function GET(request: NextRequest) {
         <link href="https://nicohorn.com/en-US/blog/154107f0-82c0-4a73-bfd4-b216df229821"/>
         <updated>2024-03-03T09:12:18.989Z</updated>
         <summary type="html"><![CDATA[This is a fairly easy thing to do, but I never found a concise and simple explanation for it. This is my attempt at doing that.]]></summary>
-        <content type="html"><![CDATA[<h2>Problem description:<strong> detect a click outside an HTML Element</strong></h2><p>Although there's many component libraries that solve this problem, it's always nice when building our own website to do all the little things by ourselves. In my case, I've always liked doing modals from scratch. Well, not so from scratch since I'm using React to manage the state, but otherwise, this approach works for plain HTML and JS. In my case, for a better user experiences, I like making my modals so that they close when the user click "outside" it, as shown in the image below.</p><p></p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/Untitled-2024-03-02-0056.png" alt="blog image"><p></p><p>So my approach was the following: when we attach an event listener to an element, such as the <code>#modal</code> we get an output with an object that contains all the info related to the event. In this case, the event listener would be an <code>onclick</code> so I went with the following solution, which is by far the simplest solution I know so far:<br><br></p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/clickoutside.png" alt="blog image"><p></p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/htmlstructure.png" alt="blog image"><p></p><p>That's it, try it out. Have fun!</p>]]></content>
+        <content type="html"><![CDATA[<h2>Problem:<strong> detect a click outside an HTML Element</strong></h2><p>Although there's many component libraries that solve this problem, it's always nice when building our own website to do all the little things by ourselves. In my case, I've always liked doing modals from scratch. Well, not so from scratch since I'm using React to manage the state, but otherwise, this approach works for plain HTML and JS. In my case, for a better user experiences, I like making my modals so that they close when the user click "outside" it, as shown in the image below.</p><p></p><img class="tiptap_image" src="https://wfqmvtjbaiggzoiwhxjy.supabase.co/storage/v1/object/public/nicohorn_website/blog_images/Untitled-2024-03-02-0056.png" alt="blog image"><p></p><p>So my approach was the following: when we attach an event listener to an element, such as the <code>#modal</code> we get an output with an object that contains all the info related to the event. In this case, the event listener would be an <code>onclick</code> so I went with the following solution, which is by far the simplest solution I know so far:</p><p></p><pre><code>function closeModal(event){
+   if(event.target !== document.getElementById("background_modal")){
+      return //Do nothing, click is inside the modal.
+   }
+   //Code that closes the modal.
+   //The program only reaches this part if the previous condition isn't true.
+}</code></pre><pre><code>#This is the HTML structure
+&lt;div id="background_modal"&gt;
+   &lt;div onclick="closeModal"&gt;
+     #Modal content
+   &lt;/div&gt;
+&lt;/div&gt;</code></pre><p>That's it, try it out. Have fun!</p>]]></content>
         <author>
             <name>Nico Horn</name>
             <email>contact@nicohorn.com</email>
