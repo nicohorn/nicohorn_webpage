@@ -6,11 +6,11 @@ import { motion, animate } from "framer-motion";
 export default function Stack({ lang }: { lang: string }) {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const nextlogo = (
+  const nextlogo = ({ size }: { size?: number }) => (
     <svg
       className="fill-white"
       aria-label="Next.js logotype"
-      height="18"
+      height={size ? `${size}px` : "18px"}
       role="img"
       viewBox="0 0 394 79"
     >
@@ -76,13 +76,13 @@ export default function Stack({ lang }: { lang: string }) {
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed top-0 left-0 w-screen h-screen bg-black/80 z-[99] flex items-center justify-center"
+          className="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center bg-black/80"
         >
           <motion.div
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             id="stack_modal_content"
-            className=" bg-zinc-800 py-6 px-8 "
+            className=" bg-zinc-800 px-8 py-6 "
           >
             {children}
           </motion.div>
@@ -94,7 +94,7 @@ export default function Stack({ lang }: { lang: string }) {
   };
   return (
     <>
-      <div className="md:self-end">
+      <div className="w-fit">
         <div
           onClick={() => {
             setModalOpen(true);
@@ -103,16 +103,18 @@ export default function Stack({ lang }: { lang: string }) {
               document.getElementById("stack_modal")?.focus();
             }, 100);
           }}
-          className="flex gap-2 cursor-pointer border-b border-zinc-800 hover:border-white transition"
+          className="flex cursor-pointer items-baseline gap-2 border-b border-zinc-800 transition hover:border-white"
         >
-          <p>{lang === "en-US" ? "Made with" : "Hecho con"}</p>
-          {nextlogo}
+          <p className="text-xs">
+            {lang === "en-US" ? "Made with" : "Hecho con"}
+          </p>
+          <span>{nextlogo({ size: 12 })}</span>
         </div>
         <Modal>
           <div>
             <h1>Tech stack</h1>
-            <div className="flex gap-3 flex-col lg:flex-row">
-              <div>Framework: {nextlogo}</div>
+            <div className="flex flex-col gap-3 lg:flex-row">
+              <div>Framework: {nextlogo({ size: 18 })}</div>
               <div>
                 Database/Storage:{" "}
                 <img

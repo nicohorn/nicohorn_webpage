@@ -4,10 +4,11 @@
 import Title from "@/components/Title";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { IconCopy } from "@tabler/icons-react";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { dictLinksToEnglish } from "../Links";
+import Link from "next/link";
 export default function Page({ params }: { params: { lang: string } }) {
-  const [email, setEmail] = useState("contact@nicohorn.com");
   const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -31,59 +32,14 @@ export default function Page({ params }: { params: { lang: string } }) {
     es: "[ingeniero en sistemas, desarrollador full stack, docente universitario]",
   };
 
+  const path = usePathname();
+  const [hoverLink, setHoverLink] = useState(path);
+  const [linkBgOpacity, setLinkBgOpacity] = useState(0);
   return (
-    <main className="w-full flex flex-col">
-      <div className="flex gap-4 items-end flex-wrap ">
+    <main>
+      <div className="flex flex-wrap items-end gap-4">
         <Title title="Nico Horn" />
-        <div className="flex flex-col gap-2 -translate-y-5">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="  transition-all font-[500] text-lg flex items-center-translate-y-5  bg-zinc-800 shadow-md w-fit"
-          >
-            <a
-              id="landing_page_email"
-              className="hover:bg-zinc-700 px-2 transition py-1"
-              href="mailto:contact@nicohorn.com"
-            >
-              {email}
-            </a>
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(email);
-                document
-                  .getElementById("landing_page_email")
-                  ?.classList.remove("bg-zinc-800");
-                document
-                  .getElementById("landing_page_email")
-                  ?.classList.add("bg-green-800");
-                setEmail(
-                  params.lang === "en-US"
-                    ? "Copied email to clipboard!"
-                    : "Email copiado al portapapeles!"
-                );
-
-                setTimeout(() => {
-                  setEmail("contact@nicohorn.com");
-                  document
-                    .getElementById("landing_page_email")
-                    ?.classList.remove("bg-green-800");
-                  document
-                    .getElementById("landing_page_email")
-                    ?.classList.add("bg-zinc-800");
-                }, 2000);
-              }}
-              className="hover:bg-zinc-700  px-3 py-[6px]"
-              aria-label={
-                params.lang === "en-US"
-                  ? "Copy email button"
-                  : "Botón para copiar email"
-              }
-            >
-              <IconCopy />
-            </button>
-          </motion.div>
+        <div className="flex -translate-y-5 flex-col gap-2">
           <motion.div
             initial={{ x: -10, y: -3, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -112,23 +68,82 @@ export default function Page({ params }: { params: { lang: string } }) {
           I already made the whole about me section and have a whole blog so
           this is just me having some fun.`
             : `Agarrate fuerte que vamos a un viaje de locos en la mente de un programador apasionado que está redefiniendo lo que significa ser un renacentista de los modernos. Con habilidades de programacion que van a dejar dados vuelta hasta a los cracks de Silicon Valley y una sed insaciable de conocimiento que abarca desde los detalles más finos del machine learning hasta el arte del latte art, Nico Horn vino a sacudirte el mundo línea por línea de código (o shot de espresso tras shot de espresso). Esto lo escribí con IA porque ya hice toda la sección "acerca de mí" y tengo un blog entero, así que esto es solo para divertirme un poco.`}
+          <div
+            onMouseLeave={() => {
+              setTimeout(() => {
+                setLinkBgOpacity(0);
+              }, 75);
+            }}
+            className="relative flex gap-3 "
+          >
+            <div
+              className="pointer-events-none absolute -z-10 hidden border-yellow-400 bg-yellow-600 duration-150 lg:block"
+              style={{
+                opacity: linkBgOpacity,
+                height: document
+                  ?.getElementById(`link_${hoverLink}`)
+                  ?.getBoundingClientRect().height!,
+                width: document
+                  ?.getElementById(`link_${hoverLink}`)
+                  ?.getBoundingClientRect().width!,
+                transform: `translateX(${
+                  document.getElementById(`link_${hoverLink}`)?.offsetLeft
+                }px) translateY(${
+                  document.getElementById(`link_${hoverLink}`)?.offsetTop
+                }px)`,
+              }}
+            ></div>
+
+            <Link
+              onMouseOver={() => {
+                setLinkBgOpacity(1);
+                setHoverLink("about_me");
+              }}
+              id={`link_about_me`}
+              href={`/${params.lang}/about_me`}
+              className={`z-10 w-fit py-1 text-xl uppercase transition delay-75 duration-150 lg:py-0 ${
+                path === `/${params.lang}/about_me`
+                  ? "border-b border-b-yellow-400 font-bold"
+                  : " font-semibold"
+              }`}
+            >
+              {params.lang == "en-US" ? "More about me" : "Más acerca de mí"}
+            </Link>
+            <Link
+              onMouseOver={() => {
+                setLinkBgOpacity(1);
+                setHoverLink("blog");
+              }}
+              id={`link_blog`}
+              href={`/${params.lang}/blog`}
+              className={`z-10 w-fit py-1 text-xl uppercase transition delay-75 duration-150 lg:py-0 ${
+                path === `/${params.lang}/blog`
+                  ? "border-b border-b-yellow-400 font-bold"
+                  : " font-semibold"
+              }`}
+            >
+              {params.lang == "en-US" ? dictLinksToEnglish["Blog"] : "Blog"}
+            </Link>
+          </div>
         </motion.p>
-        <motion.div
-          initial={{ x: -10, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className=" relative w-[20rem] min-h-[40vh]"
-        >
-          <Image
-            placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(800, 800)
-            )}`}
-            layout="fill"
-            className="object-cover"
-            alt="Profile picture of Nico Horn"
-            src="https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          ></Image>
-        </motion.div>{" "}
+        <div className="flex gap-5">
+          <motion.div
+            initial={{ x: -10, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="relative min-h-[40vh] w-[20rem]"
+          >
+            <Image
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                shimmer(800, 800),
+              )}`}
+              layout="fill"
+              className="object-cover"
+              alt="Profile picture of Nico Horn"
+              src="https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            ></Image>
+          </motion.div>
+        </div>
       </div>
     </main>
   );
