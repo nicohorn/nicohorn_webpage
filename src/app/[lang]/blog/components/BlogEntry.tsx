@@ -88,7 +88,7 @@ export default function BlogEntry({
         marginTop: blog_hero_height_in_px,
       }}
       id="blog_entry_component"
-      className="text-justify min-h-screen mb-10 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl"
+      className="min-h-screen mb-10 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl"
     >
       <motion.div
         initial={{ opacity: 0 }}

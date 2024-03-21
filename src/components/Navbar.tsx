@@ -105,11 +105,11 @@ export default function Navbar({
               opacity: linkBgOpacity,
               height:
                 document
-                  .getElementById(`link_id_${hoverLink}`)
+                  ?.getElementById(`link_id_${hoverLink}`)
                   ?.getBoundingClientRect().height! + 20,
               width:
                 document
-                  .getElementById(`link_id_${hoverLink}`)
+                  ?.getElementById(`link_id_${hoverLink}`)
                   ?.getBoundingClientRect().width! + 20,
               transform: `translateX(${
                 document.getElementById(`link_id_${hoverLink}`)?.offsetLeft
