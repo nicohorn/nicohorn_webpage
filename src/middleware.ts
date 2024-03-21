@@ -46,7 +46,7 @@ export async function middleware(req: NextRequest) {
     else if (req.nextUrl.pathname == "/") {
 
 
-        return NextResponse.redirect(new URL(`/${lang}/blog`, req.url))
+        return NextResponse.redirect(new URL(`/${lang}/`, req.url))
     }
 
 
