@@ -111,7 +111,7 @@ export default function Page({ params }: { params: { lang: string } }) {
           code (or one shot of espresso) at a time.I wrote this with AI because
           I already made the whole about me section and have a whole blog so
           this is just me having some fun.`
-            : `Agarrate fuerte que vamos a un viaje de locos en la mente de un programador apasionado que está redefiniendo lo que significa ser un renacentista de los modernos. Con habilidades de programacion que van a dejar dados vuelta hasta a los cracks de Silicon Valley y una sed insaciable de conocimiento que abarca desde los detalles más finos del machine learning hasta el arte del latte art, Nico Horn vino a sacudirte el mundo línea por línea de código (o shot de espresso tras shot de espresso). Esto lo escribí con IA porque ya hice toda la sección "sobre mí" y tengo un blog entero, así que esto es solo para divertirme un poco.`}
+            : `Agarrate fuerte que vamos a un viaje de locos en la mente de un programador apasionado que está redefiniendo lo que significa ser un renacentista de los modernos. Con habilidades de programacion que van a dejar dados vuelta hasta a los cracks de Silicon Valley y una sed insaciable de conocimiento que abarca desde los detalles más finos del machine learning hasta el arte del latte art, Nico Horn vino a sacudirte el mundo línea por línea de código (o shot de espresso tras shot de espresso). Esto lo escribí con IA porque ya hice toda la sección "acerca de mí" y tengo un blog entero, así que esto es solo para divertirme un poco.`}
         </motion.p>
         <motion.div
           initial={{ x: -10, opacity: 0 }}
