@@ -2,10 +2,8 @@
 "use client";
 import Title from "@/components/Title";
 import Image from "next/image";
-import Editor from "@monaco-editor/react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-export default function Page({}) {
+export default function Page({ params }: { params: { lang: string } }) {
   const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -24,11 +22,10 @@ export default function Page({}) {
     typeof window === "undefined"
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
-  const description = `[
-    "ingeniero en sistemas",
-    "desarrollador full stack",
-    "docente universitario"
-]`;
+  const description = {
+    en: "[systems engineer, full stack developer, professor]",
+    es: "[ingeniero en sistemas, desarrollador full stack, docente universitario]",
+  };
 
   return (
     <main className=" w-full flex flex-col gap-3">
@@ -50,13 +47,7 @@ export default function Page({}) {
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        <Editor
-          width="500px"
-          height="100px"
-          language="typescript"
-          theme="vs-dark"
-          value={description}
-        />
+        {params.lang === "en-US" ? description["en"] : description["es"]}
       </motion.div>
       <div>
         {" "}
