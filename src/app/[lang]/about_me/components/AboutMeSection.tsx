@@ -100,7 +100,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               : "Me llamo Nicolás Horn"}
           </span>
           {lang === "en-US"
-            ? ", I'm a Systems Engineer graduate (similar to a CS degree), born in Buenos Aires, I'm 26 years old. I"
+            ? ", I'm a Systems Engineer graduate (similar to a CS degree), born in Buenos Aires, and I'm 26 years old. I"
             : ", soy ingeniero en sistemas, nací en Buenos Aires, tengo 26 años, y"}{" "}
           <span
             className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  hover:bg-yellow-400 hover:text-black transition"
