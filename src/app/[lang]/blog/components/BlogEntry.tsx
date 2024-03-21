@@ -113,7 +113,7 @@ export default function BlogEntry({
         <div id="blog_hero" className="mx-auto flex flex-col gap-2 p-5">
           <h1
             id="blog_title"
-            className="text-left text-6xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
+            className="text-left pb-1 text-6xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
           >
             {blog_entry?.title}
           </h1>

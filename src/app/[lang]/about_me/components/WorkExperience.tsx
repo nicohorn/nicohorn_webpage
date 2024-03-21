@@ -117,7 +117,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                             </h3>
                           </div>
                           <p
-                            className={`${merriweather.className} font-bold ml-5 mb-3 text-zinc-300`}
+                            className={`${merriweather.className} font-thin ml-5 mb-3 text-zinc-300`}
                           >
                             {item.description}
                           </p>

@@ -14,10 +14,10 @@ const merriweather = Merriweather({
 });
 
 export const readTimeEstimates = {
-  "1 min": { min: 0, max: 300 },
-  "2 - 5 min": { min: 301, max: 1500 },
-  "10 min": { min: 1501, max: 3000 },
-  "15 + min": { min: 3001, max: Infinity },
+  "1 min": { min: 0, max: 1000 },
+  "2 min": { min: 1001, max: 2000 },
+  "5 min": { min: 2001, max: 5000 },
+  "10 + min": { min: 5001, max: Infinity },
 };
 
 export function estimateReadTime(blogContent: string) {

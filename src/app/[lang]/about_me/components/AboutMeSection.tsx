@@ -57,14 +57,13 @@ export default function AboutMeSection({ lang }: { lang: string }) {
   const Content = ({ lang }: { lang: string }) => {
     return (
       <div className={`${merriweather.className} lg:max-w-[60vw]`}>
-        <p className="text-[1.05rem] leading-relaxed mt-2 font-semibold">
+        <p className="text-[1.05rem] leading-relaxed mt-2 font-normal">
           <span
             className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500 hover:bg-yellow-400 hover:text-black transition"
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
               const cX = e.clientX;
               const cY = e.clientY;
-              const cHeight = e.currentTarget.getBoundingClientRect().height;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
               setTimeout(() => {
                 document.getElementById("image0")?.classList.remove("hidden");

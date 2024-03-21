@@ -1,10 +1,13 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Title from "@/components/Title";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { IconCopy } from "@tabler/icons-react";
+import { useState } from "react";
 export default function Page({ params }: { params: { lang: string } }) {
+  const [email, setEmail] = useState("contact@nicohorn.com");
   const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -29,34 +32,91 @@ export default function Page({ params }: { params: { lang: string } }) {
   };
 
   return (
-    <main className=" w-full flex flex-col gap-3">
-      <Title title="Nico Horn" />
+    <main className="w-full flex flex-col">
+      <div className="flex gap-4 items-end flex-wrap ">
+        <Title title="Nico Horn" />
+        <div className="flex flex-col gap-2 -translate-y-5">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="  transition-all font-[500] text-lg flex items-center-translate-y-5  bg-zinc-800 shadow-md w-fit"
+          >
+            <a
+              id="landing_page_email"
+              className="hover:bg-zinc-700 px-2 transition py-1"
+              href="mailto:contact@nicohorn.com"
+            >
+              {email}
+            </a>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(email);
+                document
+                  .getElementById("landing_page_email")
+                  ?.classList.remove("bg-zinc-800");
+                document
+                  .getElementById("landing_page_email")
+                  ?.classList.add("bg-green-800");
+                setEmail(
+                  params.lang === "en-US"
+                    ? "Copied email to clipboard!"
+                    : "Email copiado al portapapeles!"
+                );
 
-      <motion.div
-        id="landing_page_email"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className=" hover:bg-zinc-700 transition-all text-xl flex gap-2 items-center -translate-y-5 px-3 py-1 bg-zinc-800 shadow-md w-fit rounded-lg "
-      >
-        <a href="mailto:contact@nicohorn.com"> contact@nicohorn.com</a>
-        <IconCopy />
-      </motion.div>
+                setTimeout(() => {
+                  setEmail("contact@nicohorn.com");
+                  document
+                    .getElementById("landing_page_email")
+                    ?.classList.remove("bg-green-800");
+                  document
+                    .getElementById("landing_page_email")
+                    ?.classList.add("bg-zinc-800");
+                }, 2000);
+              }}
+              className="hover:bg-zinc-700  px-3 py-[6px]"
+              aria-label={
+                params.lang === "en-US"
+                  ? "Copy email button"
+                  : "Botón para copiar email"
+              }
+            >
+              <IconCopy />
+            </button>
+          </motion.div>
+          <motion.div
+            initial={{ x: -10, y: -3, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-xl font-semibold"
+          >
+            {params.lang === "en-US" ? description["en"] : description["es"]}
+          </motion.div>
+        </div>
+      </div>
 
-      <motion.div
-        initial={{ x: -10, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-lg font-semibold"
-      >
-        {params.lang === "en-US" ? description["en"] : description["es"]}
-      </motion.div>
-      <div>
-        {" "}
+      <div className="flex flex-col gap-5">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          {params.lang === "en-US"
+            ? `Buckle up and get ready for a wild ride into the mind of a passionate
+          programmer who's redefining what it means to be a modern-day
+          Renaissance man. With coding skills that would make Silicon Valley's
+          finest green with envy and an insatiable thirst for knowledge that
+          spans everything from the intricacies of machine learning to the art
+          of latte art, Nico Horn is here to shake up your world one line of
+          code (or one shot of espresso) at a time.I wrote this with AI because
+          I already made the whole about me section and have a whole blog so
+          this is just me having some fun.`
+            : `Agarrate fuerte que vamos a un viaje de locos en la mente de un programador apasionado que está redefiniendo lo que significa ser un renacentista de los modernos. Con habilidades de programacion que van a dejar dados vuelta hasta a los cracks de Silicon Valley y una sed insaciable de conocimiento que abarca desde los detalles más finos del machine learning hasta el arte del latte art, Nico Horn vino a sacudirte el mundo línea por línea de código (o shot de espresso tras shot de espresso). Esto lo escribí con IA porque ya hice toda la sección "sobre mí" y tengo un blog entero, así que esto es solo para divertirme un poco.`}
+        </motion.p>
         <motion.div
           initial={{ x: -10, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.6 }}
           className=" relative w-[20rem] min-h-[40vh]"
         >
           <Image
