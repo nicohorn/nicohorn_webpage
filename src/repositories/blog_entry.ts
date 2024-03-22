@@ -2,19 +2,16 @@ import { BlogEntryWithTagsForm } from "@/app/[lang]/dashboard/blog_entry/compone
 import { prisma } from "@/utils/db";
 import { Prisma } from "@prisma/client";
 
-
 //This type is for the frontend. I have yet to investigate a little more of this.
 export type BlogEntryWithTags = Prisma.blog_entriesGetPayload<{
   include: {
     tags: {
       include: {
-        blog_tag: true
-      }
-    }
-  }
-
+        blog_tag: true;
+      };
+    };
+  };
 }>;
-
 
 export const getBlogEntryById = async (id: string) => {
   try {
@@ -25,10 +22,10 @@ export const getBlogEntryById = async (id: string) => {
       include: {
         tags: {
           include: {
-            blog_tag: true
-          }
+            blog_tag: true,
+          },
         },
-      }
+      },
     });
     return blog_entry;
   } catch (error) {
@@ -59,12 +56,14 @@ export const createBlogEntry = async (data: BlogEntryWithTagsForm) => {
 
     return blog_entry;
   } catch (error) {
-
     return null;
   }
 };
 
-export const updateBlogEntry = async (id: string, data: BlogEntryWithTagsForm) => {
+export const updateBlogEntry = async (
+  id: string,
+  data: BlogEntryWithTagsForm,
+) => {
   try {
     const blog_entry = await getBlogEntryById(id);
     const blog_entry_updated = await prisma.blog_entries.update({
@@ -99,26 +98,22 @@ export const updateBlogEntry = async (id: string, data: BlogEntryWithTagsForm) =
   }
 };
 
-
-
 export const getAllBlogEntriesWithTags = async (tag: string, lang: string) => {
-
   try {
-
     const blog_entries = await prisma.blog_entries.findMany({
       where: {
         tags: {
           some: {
             blog_tag: {
               name: {
-                contains: tag
-              }
-            }
-          }
+                contains: tag,
+              },
+            },
+          },
         },
         lang: {
-          equals: lang
-        }
+          equals: lang,
+        },
       },
       include: {
         tags: {
@@ -126,15 +121,40 @@ export const getAllBlogEntriesWithTags = async (tag: string, lang: string) => {
             blog_tag: true,
           },
         },
-
       },
       orderBy: {
-        created_at: "desc"
-
-      }
+        created_at: "desc",
+      },
     });
     return blog_entries;
   } catch (error) {
+    return null;
+  }
+};
+
+export const getLatest3BlogEntries = async (lang: string) => {
+  try {
+    const blog_entries = await prisma.blog_entries.findMany({
+      where: {
+        lang: {
+          equals: lang,
+        },
+      },
+      orderBy: {
+        created_at: "desc",
+      },
+      include: {
+        tags: {
+          include: {
+            blog_tag: true,
+          },
+        },
+      },
+
+      take: 3,
+    });
+    return blog_entries;
+  } catch (e) {
     return null;
   }
 };

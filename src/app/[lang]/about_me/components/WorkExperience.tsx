@@ -49,7 +49,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
       >
-        <div className="flex gap-2 mt-2 flex-wrap">
+        <div className="mt-2 flex flex-wrap gap-2">
           {yearsWithItems.map((yearItem, idx) => {
             return (
               <button
@@ -69,7 +69,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                       ?.classList.remove("translate-x-16");
                   }, 800);
                 }}
-                className="opacity-40 cursor-pointer hover:text-yellow-300 hover:opacity-100"
+                className="cursor-pointer opacity-40 hover:text-yellow-300 hover:opacity-100"
                 key={idx}
               >
                 {yearItem.year}
@@ -77,7 +77,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
             );
           })}
         </div>
-        <div className="flex flex-col md:ml-6 mt-4 border-b-2 border-yellow-300 border-dashed  ">
+        <div className="mt-4 flex flex-col border-b-2 border-dashed border-yellow-300 md:ml-6  ">
           {yearsWithItems.map((yearItem, idx) => {
             return (
               <motion.div
@@ -86,15 +86,15 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="border-dashed border-l-2 border-yellow-300 md:px-4 relative pb-6 transition"
+                className="relative border-l-2 border-dashed border-yellow-300 pb-6 transition md:px-4"
                 key={idx}
               >
                 <div className="py-2">
-                  <h1 className="text-lg font-bold mb-2 rounded-md md:-translate-x-10 -translate-x-4 mt-7  from-yellow-500 to-yellow-300 active:bg-yellow-500 bg-gradient-to-r w-fit px-2 text-black ">
+                  <h1 className="mb-2 mt-7 w-fit -translate-x-4 rounded-md bg-gradient-to-r from-yellow-500  to-yellow-300 px-2 text-lg font-bold text-black active:bg-yellow-500 md:-translate-x-10 ">
                     {yearItem.year}
                   </h1>
                 </div>
-                <div className="absolute border-b w-full -translate-y-4 translate-x-2 border-white/20"></div>
+                <div className="absolute w-full -translate-y-4 translate-x-2 border-b border-white/20"></div>
                 <div>
                   {yearItem.items.map((item, idx) => {
                     return (
@@ -103,21 +103,21 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                         initial={{ y: 10 }}
                         whileInView={{ y: 0 }}
                         viewport={{ once: true }}
-                        className="flex flex-col md:flex-row justify-between items-center"
+                        className="flex flex-col items-center justify-between md:flex-row"
                         key={idx}
                       >
                         <div>
                           {" "}
                           <div className="flex items-center">
-                            <span className="md:ml-4 -ml-1">
+                            <span className="-ml-1 md:ml-4">
                               <IconArrowMoveRight />
                             </span>
-                            <h3 className=" ml-6 my-1 px-2 font-bold -translate-x-4 mb-2 bg-white w-fit text-black">
+                            <h3 className=" my-1 mb-2 ml-6 w-fit -translate-x-4 bg-white px-2 font-bold text-black">
                               {item.title}
                             </h3>
                           </div>
                           <p
-                            className={`${merriweather.className} font-thin ml-5 mb-3 text-zinc-300`}
+                            className={`${merriweather.className} mb-3 ml-5 font-thin text-zinc-300`}
                           >
                             {item.description}
                           </p>
@@ -127,7 +127,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
                           viewport={{ once: true }}
-                          className="px-5 mb-3 md:mb-0"
+                          className="mb-3 px-5 md:mb-0"
                         >
                           {item.icon}
                         </motion.div>
@@ -147,7 +147,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
     const langIsEnglish = lang === "en-US";
     return [
       {
-        year: "Present",
+        year: langIsEnglish ? "Present" : "Presente",
         items: [
           {
             title: langIsEnglish
@@ -410,7 +410,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
   };
 
   return (
-    <div className="lg:max-w-[60vw] md:pr-10 lg:pr-0">
+    <div className="md:pr-10 lg:max-w-[60vw] lg:pr-0">
       <Timeline yearsWithItems={yearItems({ lang: lang })} />
     </div>
   );
