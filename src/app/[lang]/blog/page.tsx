@@ -38,7 +38,7 @@ export default async function Page({
 }) {
   const blog_entries = await getAllBlogEntriesWithTags(
     searchParams.tag,
-    params.lang
+    params.lang,
   );
   const tags = await getTags();
 

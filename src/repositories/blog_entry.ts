@@ -128,6 +128,7 @@ export const getAllBlogEntriesWithTags = async (tag: string, lang: string) => {
     });
     return blog_entries;
   } catch (error) {
+    console.log(error);
     return null;
   }
 };
