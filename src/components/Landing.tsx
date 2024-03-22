@@ -74,13 +74,17 @@ export default function Landing({
       );
     });
   };
+  const langIsEnglish = lang === "en-US";
   const path = usePathname();
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
   return (
     <main className="main-y mx-auto flex w-[90vw] flex-col items-center md:w-[700px]">
       <div className="flex flex-col ">
-        <Title size="md" title="Hi, I'm Nico!" />
+        <Title
+          size="md"
+          title={langIsEnglish ? "Hi, I'm Nico!" : "¡Hola!, soy Nico."}
+        />
         <div className="flex flex-col gap-3">
           <motion.div
             initial={{ opacity: 0 }}
@@ -88,186 +92,177 @@ export default function Landing({
             transition={{ delay: 0.5 }}
             className="text-lg font-[500]"
           >
-            {lang === "en-US" ? (
+            <div
+              onMouseLeave={() => {
+                setTimeout(() => {
+                  setLinkBgOpacity(0);
+                }, 75);
+              }}
+              className="relative flex flex-col flex-wrap gap-2 text-[1rem]"
+            >
               <div
-                onMouseLeave={() => {
-                  setTimeout(() => {
-                    setLinkBgOpacity(0);
-                  }, 75);
+                className="pointer-events-none absolute -z-10 hidden rounded-lg  bg-yellow-900 duration-150 lg:block"
+                style={{
+                  opacity: linkBgOpacity,
+                  height: document
+                    ?.getElementById(`link_${hoverLink}`)
+                    ?.getBoundingClientRect().height!,
+                  width: document
+                    ?.getElementById(`link_${hoverLink}`)
+                    ?.getBoundingClientRect().width!,
+                  transform: `translateX(${
+                    document.getElementById(`link_${hoverLink}`)?.offsetLeft
+                  }px) translateY(${
+                    document.getElementById(`link_${hoverLink}`)?.offsetTop
+                  }px)`,
                 }}
-                className="relative flex flex-col flex-wrap gap-2 text-[1rem]"
-              >
-                <div
-                  className="pointer-events-none absolute -z-10 hidden rounded-lg  bg-yellow-900 duration-150 lg:block"
-                  style={{
-                    opacity: linkBgOpacity,
-                    height: document
-                      ?.getElementById(`link_${hoverLink}`)
-                      ?.getBoundingClientRect().height!,
-                    width: document
-                      ?.getElementById(`link_${hoverLink}`)
-                      ?.getBoundingClientRect().width!,
-                    transform: `translateX(${
-                      document.getElementById(`link_${hoverLink}`)?.offsetLeft
-                    }px) translateY(${
-                      document.getElementById(`link_${hoverLink}`)?.offsetTop
-                    }px)`,
-                  }}
-                ></div>
-                <div>
-                  <span className="mr-1 text-3xl font-bold">I'm</span>a systems
-                  engineer and professor, welcome to my website! 😁This is my
-                  online place, here you can:
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("blog");
-                    }}
-                    id={`link_blog`}
-                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition hover:border-yellow-600"
-                    href={`/${lang}/blog`}
-                  >
-                    Visit my blog 📝
-                  </Link>
-                  <p className="text-sm">
-                    where I share thoughts and educational content.
-                  </p>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("about_me");
-                    }}
-                    id={`link_about_me`}
-                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
-                    hover:border-yellow-600"
-                    href={`/${lang}/about_me`}
-                  >
-                    Know more about me and my work 💡
-                  </Link>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("mailto");
-                    }}
-                    id={`link_mailto`}
-                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
-                    hover:border-yellow-600"
-                    href="mailto:contact@nicohorn.com"
-                  >
-                    Contact me through my email ✉️
-                  </Link>
-                  <p id="nico_email" className="text-sm">
-                    contact@nicohorn.com
-                  </p>
-                  <button
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("copy_email");
-                    }}
-                    onClick={() => {
-                      navigator.clipboard.writeText("contact@nicohorn.com");
-                      lang === "en-US"
-                        ? alert("Copied email!")
-                        : alert("¡Email copiado!");
-                    }}
-                    className="p-1 active:scale-95"
-                    id="link_copy_email"
-                    aria-label={
-                      lang === "en-US" ? "Copy email" : "Copiar email"
-                    }
-                  >
-                    <IconCopy />
-                  </button>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("cool_stuff");
-                    }}
-                    id={`link_cool_stuff`}
-                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
-                    hover:border-yellow-600"
-                    href={`/${lang}/cool_stuff`}
-                  >
-                    Checkout cool stuff I'm doing 👽
-                  </Link>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
-                  <p>Checkout my socials 📱</p>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("linkedin");
-                    }}
-                    target="_blank"
-                    id={`link_linkedin`}
-                    className="w-fit rounded-lg  p-1 text-yellow-100"
-                    href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
-                  >
-                    <IconBrandLinkedin />
-                  </Link>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("twitter");
-                    }}
-                    id={`link_twitter`}
-                    className="w-fit rounded-lg  p-1 text-yellow-100"
-                    href={`/${lang}/about_me`}
-                  >
-                    <IconBrandX />
-                  </Link>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("github");
-                    }}
-                    id={`link_github`}
-                    className="w-fit rounded-lg p-1 text-yellow-100"
-                    href="https://github.com/nicohorn"
-                  >
-                    <IconBrandGithub />
-                  </Link>
-                  <Link
-                    onMouseOver={() => {
-                      setLinkBgOpacity(1);
-                      setHoverLink("instagram");
-                    }}
-                    id={`link_instagram`}
-                    className="w-fit rounded-lg p-1 text-yellow-100"
-                    href="https://www.instagram.com/nic0horn/"
-                  >
-                    <IconBrandInstagram />
-                  </Link>
-                </div>
+              ></div>
+              <div>
+                <span className="mr-1 text-3xl font-bold">
+                  {langIsEnglish ? "I'm" : "Soy"}
+                </span>
+                {langIsEnglish
+                  ? "a systems engineer and professor, welcome to my website! 😁This is my online place, here you can: "
+                  : "ingeniero en sistemas y profesor, bienvenido a mi página 😁 Este es mi espacio online, acá podés:"}
               </div>
-            ) : (
-              <p>
-                Agarrate fuerte que vamos a un viaje de locos en la mente de un
-                programador apasionado que está redefiniendo lo que significa
-                ser un renacentista de los modernos. Con habilidades de
-                programacion que van a dejar dados vuelta hasta a los cracks de
-                Silicon Valley y una sed insaciable de conocimiento que abarca
-                desde los detalles más finos del machine learning hasta el arte
-                del latte art, Nico Horn vino a sacudirte el mundo línea por
-                línea de código (o shot de espresso tras shot de espresso). Esto
-                lo escribí con IA porque ya hice toda la sección 'acerca de mí'
-                y tengo un blog entero, así que esto es solo para divertirme un
-                poco.
-              </p>
-            )}
+              <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("blog");
+                  }}
+                  id={`link_blog`}
+                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition hover:border-yellow-600"
+                  href={`/${lang}/blog`}
+                >
+                  {langIsEnglish ? "Visit my blog 📝" : "Visitar mi blog 📝"}
+                </Link>
+                <p className="text-sm">
+                  {langIsEnglish
+                    ? "where I share thoughts and educational content."
+                    : "donde comparto pensamientos y contenido educativo."}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("about_me");
+                  }}
+                  id={`link_about_me`}
+                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
+                    hover:border-yellow-600"
+                  href={`/${lang}/about_me`}
+                >
+                  {langIsEnglish
+                    ? "Know more about me and my work 💡"
+                    : "Conocer más sobre mí y mi trabajo 💡"}
+                </Link>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("mailto");
+                  }}
+                  id={`link_mailto`}
+                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
+                    hover:border-yellow-600"
+                  href="mailto:contact@nicohorn.com"
+                >
+                  {langIsEnglish
+                    ? "Contact me through my email ✉️"
+                    : "Contactarme a través de mi email ✉️"}
+                </Link>
+                <p id="nico_email" className="text-sm">
+                  contact@nicohorn.com
+                </p>
+                <button
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("copy_email");
+                  }}
+                  onClick={() => {
+                    navigator.clipboard.writeText("contact@nicohorn.com");
+                    lang === "en-US"
+                      ? alert("Copied email!")
+                      : alert("¡Email copiado!");
+                  }}
+                  className="p-1 active:scale-95"
+                  id="link_copy_email"
+                  aria-label={lang === "en-US" ? "Copy email" : "Copiar email"}
+                >
+                  <IconCopy />
+                </button>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("cool_stuff");
+                  }}
+                  id={`link_cool_stuff`}
+                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
+                    hover:border-yellow-600"
+                  href={`/${lang}/cool_stuff`}
+                >
+                  {langIsEnglish
+                    ? "Checkout cool stuff I'm doing 👽"
+                    : "Conocer las cosas copadas que estoy haciendo 👽"}
+                </Link>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <p>{langIsEnglish ? "My socials" : "Mis redes"}</p>
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("linkedin");
+                  }}
+                  target="_blank"
+                  id={`link_linkedin`}
+                  className="w-fit rounded-lg  p-1 text-yellow-100"
+                  href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
+                >
+                  <IconBrandLinkedin />
+                </Link>
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("twitter");
+                  }}
+                  target="_blank"
+                  id={`link_twitter`}
+                  className="w-fit rounded-lg  p-1 text-yellow-100"
+                  href={`/${lang}/about_me`}
+                >
+                  <IconBrandX />
+                </Link>
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("github");
+                  }}
+                  target="_blank"
+                  id={`link_github`}
+                  className="w-fit rounded-lg p-1 text-yellow-100"
+                  href="https://github.com/nicohorn"
+                >
+                  <IconBrandGithub />
+                </Link>
+                <Link
+                  onMouseOver={() => {
+                    setLinkBgOpacity(1);
+                    setHoverLink("instagram");
+                  }}
+                  target="_blank"
+                  id={`link_instagram`}
+                  className="w-fit rounded-lg p-1 text-yellow-100"
+                  href="https://www.instagram.com/nic0horn/"
+                >
+                  <IconBrandInstagram />
+                </Link>
+              </div>
+            </div>
           </motion.div>
           <motion.div
             initial={{ x: -10, opacity: 0 }}

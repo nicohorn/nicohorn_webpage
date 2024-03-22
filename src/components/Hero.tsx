@@ -24,13 +24,13 @@ export default function Hero({
         scale: 1,
       }}
       animate={{ scale: 1 }}
-      className={" flex-col pr-2 hover:cursor-pointer  w-fit flex -mt-4"}
+      className={" -mt-4 flex w-fit  flex-col pr-2 hover:cursor-pointer"}
     >
-      <motion.h1 className=" md:text-5xl lg:text-8xl text-2xl uppercase font-extrabold">
+      <motion.h1 className=" text-2xl font-extrabold uppercase md:text-5xl lg:text-8xl">
         <Link href={`/${lang}/`}>{title}</Link>
       </motion.h1>
       <motion.div
-        className="flex text-xl font-semibold"
+        className="flex font-semibold md:text-xl"
         initial="hidden"
         animate="visible"
       >
