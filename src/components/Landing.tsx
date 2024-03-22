@@ -218,14 +218,18 @@ export default function Landing({
             transition={{ delay: 0.7 }}
             className="flex-grow"
           >
-            <h1 className="font-bold uppercase">
+            <h1 className="w-fit bg-gradient-to-r from-yellow-100 to-yellow-200 bg-clip-text font-extrabold uppercase text-transparent ">
               {lang === "en-US"
                 ? "Latest entries on my blog"
                 : "Últimas entradas en mi blog"}
             </h1>
             {latest_blog_entries?.map((entry) => {
               return (
-                <Link key={entry.id} href={`/${lang}/blog/${entry.id}`}>
+                <Link
+                  prefetch
+                  key={entry.id}
+                  href={`/${lang}/blog/${entry.id}`}
+                >
                   <p className="my-2 flex justify-between gap-2 border-b border-zinc-800 py-1 transition hover:border-b-yellow-300">
                     {entry.title}
                     <p className="flex flex-wrap justify-end gap-2">

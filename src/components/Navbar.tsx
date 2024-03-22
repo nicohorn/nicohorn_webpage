@@ -180,8 +180,7 @@ export default function Navbar({
         aria-label={
           lang === "en-US" ? "Close navbar" : "Cerrar barra de navegación"
         }
-        className="animate-gradient absolute bottom-0 w-full bg-gradient-to-r from-yellow-800/80
-        via-pink-800/80 to-red-950/80 py-1 transition active:bg-yellow-500"
+        className="animate-gradient absolute bottom-0 w-full bg-gradient-to-r from-yellow-500/60 to-red-700/60 py-1 transition active:bg-yellow-500"
       >
         {open ? (
           <IconArrowUp className="mx-auto" />

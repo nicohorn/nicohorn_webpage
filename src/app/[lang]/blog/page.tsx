@@ -62,7 +62,7 @@ export default async function Page({
         <ComboboxComponent tags={tags!} lang={params.lang} />
       </div>
       <div className="my-4 w-full">
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col flex-wrap items-stretch gap-5 lg:flex-row">
           {blog_entries.map((entry, idx) => {
             return (
               <Link

@@ -112,7 +112,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                             <span className="-ml-1 md:ml-4">
                               <IconArrowMoveRight />
                             </span>
-                            <h3 className=" my-1 mb-2 ml-6 w-fit -translate-x-4 bg-white px-2 font-bold text-black">
+                            <h3 className=" my-1 mb-2 ml-6 w-fit -translate-x-4 bg-gradient-to-r from-yellow-50 to-yellow-100 px-2 font-bold text-black">
                               {item.title}
                             </h3>
                           </div>
