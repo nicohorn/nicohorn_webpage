@@ -25,7 +25,6 @@ export default function Landing({
   ];
 
   const [selectedImage, setSelectedImage] = useState(0);
-  const [twitter_widget_message, setTwitterWidgetMessage] = useState("");
 
   const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -57,7 +56,7 @@ export default function Landing({
     <main className="min-h-[100vh]">
       <div className="flex flex-wrap items-end gap-4">
         <Title title="Nico Horn" />
-        <div className="flex -translate-y-5 flex-col gap-8">
+        <div className="flex -translate-y-5 flex-col">
           <motion.div
             initial={{ x: -10, y: -3, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -69,7 +68,7 @@ export default function Landing({
         </div>
       </div>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-10">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -92,7 +91,7 @@ export default function Landing({
                 setLinkBgOpacity(0);
               }, 75);
             }}
-            className="relative flex gap-6"
+            className="relative mt-5 flex flex-col gap-2 md:flex-row md:gap-6"
           >
             <div
               className="pointer-events-none absolute -z-10 hidden border-yellow-400 bg-yellow-600 duration-150 lg:block"
@@ -159,79 +158,84 @@ export default function Landing({
             </Link>
           </div>
         </motion.p>
-        <div className="flex gap-5">
-          <motion.div
-            initial={{ x: -10, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="relative min-h-[40vh] w-[20rem]"
-          >
-            <Image
-              onClick={() => {
-                selectedImage == images.length - 1
-                  ? setSelectedImage(0)
-                  : setSelectedImage(selectedImage + 1);
-              }}
-              placeholder={`data:image/svg+xml;base64,${toBase64(
-                shimmer(800, 800),
-              )}`}
-              layout="fill"
-              className="min-h-[500px] cursor-pointer rounded-lg object-cover"
-              alt="Profile picture of Nico Horn"
-              src={images[selectedImage]}
-            ></Image>
-          </motion.div>
+        <div className="flex flex-col items-center gap-5 lg:flex-row lg:items-start">
+          <div className="flex flex-col gap-5 md:flex-row">
+            <motion.div
+              initial={{ x: -10, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="relative min-h-[40vh] min-w-[20rem]"
+            >
+              <Image
+                onClick={() => {
+                  selectedImage == images.length - 1
+                    ? setSelectedImage(0)
+                    : setSelectedImage(selectedImage + 1);
+                }}
+                placeholder={`data:image/svg+xml;base64,${toBase64(
+                  shimmer(800, 800),
+                )}`}
+                layout="fill"
+                className="flex-grow cursor-pointer rounded-lg object-cover lg:min-h-[500px]"
+                alt="Profile picture of Nico Horn"
+                src={images[selectedImage]}
+              ></Image>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="shadow-lg"
+            >
+              <a
+                aria-label="Tweets By Nico Horn link"
+                className="twitter-timeline"
+                data-width="350"
+                data-height="500"
+                data-theme="dark"
+                href="https://twitter.com/NicoTheEngineer?ref_src=twsrc%5Etfw"
+              >
+                <div className="flex min-h-[500px] min-w-[350px] animate-pulse items-center justify-center rounded-xl border border-white/30 bg-black/70">
+                  <span className="h-5 w-5 animate-spin rounded-full border-b"></span>
+                </div>
+              </a>
+            </motion.div>
+          </div>
+
+          <Script async src="https://platform.twitter.com/widgets.js" />
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="place-self-end shadow-lg"
+            transition={{ delay: 0.7 }}
+            className="flex-grow"
           >
-            <a
-              aria-label="Tweets By Nico Horn link"
-              className="twitter-timeline"
-              data-width="350"
-              data-height="500"
-              data-theme="dark"
-              href="https://twitter.com/NicoTheEngineer?ref_src=twsrc%5Etfw"
-            >
-              <div className="flex min-h-[500px] min-w-[350px] animate-pulse items-center justify-center rounded-xl border border-white/30 bg-black/70">
-                <span
-                  id="twitter_widget_loader"
-                  onLoad={() => {
-                    console.log("asdads");
-                    setTimeout(() => {
-                      setTwitterWidgetMessage(
-                        "Sorry about this, sometimes the Twitter widget does't load",
-                      );
-                    }, 3000);
-                  }}
-                  className={`${!twitter_widget_message && "h-5 w-5 animate-spin rounded-full border-b"}`}
-                >
-                  {twitter_widget_message ? twitter_widget_message : null}
-                </span>
-              </div>
-            </a>
-          </motion.div>
-
-          <Script async src="https://platform.twitter.com/widgets.js" />
-          <div className="flex-grow">
-            <h1>
+            <h1 className="font-bold uppercase">
               {lang === "en-US"
                 ? "Latest entries on my blog"
-                : "Últimas entradas de mi blog"}
+                : "Últimas entradas en mi blog"}
             </h1>
             {latest_blog_entries?.map((entry) => {
               return (
-                <div
-                  className="flex flex-col border-b  border-zinc-600"
-                  key={entry.id}
-                >
-                  <Link href={`/${lang}/blog/${entry.id}`}>{entry.title}</Link>
-                </div>
+                <Link key={entry.id} href={`/${lang}/blog/${entry.id}`}>
+                  <p className="my-2 flex justify-between gap-2 border-b border-zinc-800 py-1 transition hover:border-b-yellow-300">
+                    {entry.title}
+                    <p className="flex flex-wrap justify-end gap-2">
+                      {entry.tags.map((t) => {
+                        return (
+                          <span
+                            className="rounded-full bg-zinc-900 px-2 py-1 text-xs"
+                            key={t.blog_tag_id}
+                          >
+                            {t.blog_tag.name}
+                          </span>
+                        );
+                      })}
+                    </p>
+                  </p>
+                </Link>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </main>
