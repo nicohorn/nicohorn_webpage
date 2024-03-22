@@ -118,7 +118,7 @@ export default function Landing({
               }}
               id={`link_about_me`}
               href={`/${lang}/about_me`}
-              className={`z-10 w-fit py-1 text-xl uppercase transition delay-75 duration-150 lg:py-0 ${
+              className={`z-10 w-fit py-1 text-2xl uppercase transition delay-75 duration-150 lg:py-0 ${
                 path === `/${lang}/about_me`
                   ? "border-b border-b-yellow-400 font-bold"
                   : " font-semibold"
@@ -133,7 +133,7 @@ export default function Landing({
               }}
               id={`link_blog`}
               href={`/${lang}/blog`}
-              className={`z-10 w-fit py-1 text-xl uppercase transition delay-75 duration-150 lg:py-0 ${
+              className={`z-10 w-fit py-1 text-2xl uppercase transition delay-75 duration-150 lg:py-0 ${
                 path === `/${lang}/blog`
                   ? "border-b border-b-yellow-400 font-bold"
                   : " font-semibold"
@@ -148,7 +148,7 @@ export default function Landing({
               }}
               id={`link_cool_stuff`}
               href={`/${lang}/cool_stuff`}
-              className={`z-10 w-fit py-1 text-xl uppercase transition delay-75 duration-150 lg:py-0 ${
+              className={`z-10 w-fit py-1 text-2xl uppercase transition delay-75 duration-150 lg:py-0 ${
                 path === `/${lang}/blog`
                   ? "border-b border-b-yellow-400 font-bold"
                   : " font-semibold"

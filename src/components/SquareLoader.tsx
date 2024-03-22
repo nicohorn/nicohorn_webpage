@@ -3,7 +3,7 @@ import React from "react";
 export default function SquareLoader() {
   return (
     <svg
-      className="loaderContainer fixed left-1/2 mt-[35vh] -translate-x-[69px]"
+      className="loaderContainer -translate-x-[96px]"
       height="150"
       width="150"
     >

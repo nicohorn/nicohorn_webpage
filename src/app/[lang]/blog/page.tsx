@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getTags } from "@/repositories/blog_tag";
 import ComboboxComponent from "@/components/TagsCombobox";
 import type { Metadata } from "next";
+import SquareLoader from "@/components/SquareLoader";
 
 type Props = {
   params: { id: string; lang: string };
