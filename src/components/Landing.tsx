@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Script from "next/script";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
+import { TagsToSpanish } from "@/utils/dictionaries/Tags";
 export default function Landing({
   lang,
   latest_blog_entries,
@@ -49,6 +50,27 @@ export default function Landing({
     es: "[ingeniero en sistemas, desarrollador full stack, docente universitario]",
   };
 
+  const ImagesComponent = () => {
+    return images.map((image, idx) => {
+      return (
+        <Image
+          key={idx}
+          onClick={() => {
+            selectedImage == images.length - 1
+              ? setSelectedImage(0)
+              : setSelectedImage(selectedImage + 1);
+          }}
+          placeholder={`data:image/svg+xml;base64,${toBase64(
+            shimmer(800, 800),
+          )}`}
+          layout="fill"
+          className="flex-grow cursor-pointer rounded-lg object-cover lg:min-h-[500px]"
+          alt="Profile picture of Nico Horn"
+          src={image}
+        ></Image>
+      );
+    });
+  };
   const path = usePathname();
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
@@ -166,20 +188,7 @@ export default function Landing({
               transition={{ delay: 0.6 }}
               className="relative min-h-[40vh] min-w-[20rem]"
             >
-              <Image
-                onClick={() => {
-                  selectedImage == images.length - 1
-                    ? setSelectedImage(0)
-                    : setSelectedImage(selectedImage + 1);
-                }}
-                placeholder={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(800, 800),
-                )}`}
-                layout="fill"
-                className="flex-grow cursor-pointer rounded-lg object-cover lg:min-h-[500px]"
-                alt="Profile picture of Nico Horn"
-                src={images[selectedImage]}
-              ></Image>
+              {ImagesComponent()[selectedImage]}
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
@@ -226,7 +235,9 @@ export default function Landing({
                             className="rounded-full bg-zinc-900 px-2 py-1 text-xs"
                             key={t.blog_tag_id}
                           >
-                            {t.blog_tag.name}
+                            {lang === "en-US"
+                              ? t.blog_tag.name
+                              : TagsToSpanish[t.blog_tag.name]}
                           </span>
                         );
                       })}

@@ -6,6 +6,7 @@ import { Merriweather } from "next/font/google";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IconClock } from "@tabler/icons-react";
+import { TagsToSpanish } from "@/utils/dictionaries/Tags";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -33,9 +34,11 @@ export function estimateReadTime(blogContent: string) {
 }
 
 export default function BlogCard({
+  lang,
   blog_entry,
   idx,
 }: {
+  lang: string;
   blog_entry: BlogEntryWithTags;
   colSpan?: boolean;
   idx: number;
@@ -50,7 +53,7 @@ export default function BlogCard({
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   const handleOnMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -74,16 +77,16 @@ export default function BlogCard({
         handleOnMouseMove(e);
       }}
       //Latest two entries show up with more height
-      className={`shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] border border-black hover:border-zinc-700 bg-gradient-to-r  from-zinc-800/30 to-black/60 transition group flex flex-col cursor-pointer relative`}
+      className={`group relative flex cursor-pointer flex-col  border border-black bg-gradient-to-r from-zinc-800/30 to-black/60 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] transition hover:border-zinc-700`}
     >
-      <div className="flex lg:flex-row flex-col justify-between">
-        <div className=" card flex-grow flex-wrap group">
-          <div className="py-3 px-4 w-full border-b border-zinc-700 shadow-lg">
-            <p className="flex gap-2 items-center text-sm px-2 bg-zinc-900 font-semibold rounded-lg w-fit absolute shadow-lg -translate-x-2 -translate-y-6 z-40">
+      <div className="flex flex-col justify-between lg:flex-row">
+        <div className=" card group flex-grow flex-wrap">
+          <div className="w-full border-b border-zinc-700 px-4 py-3 shadow-lg">
+            <p className="absolute z-40 flex w-fit -translate-x-2 -translate-y-6 items-center gap-2 rounded-lg bg-zinc-900 px-2 text-sm font-semibold shadow-lg">
               {estimateReadTime(blog_entry.content)}{" "}
-              <IconClock className="w-4 h-4" />
+              <IconClock className="h-4 w-4" />
             </p>
-            <h1 className="md:text-5xl  py-1 text-3xl font-extrabold w-fit text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-red-500">
+            <h1 className="w-fit  bg-gradient-to-r from-yellow-300 to-red-500 bg-clip-text py-1 text-3xl font-extrabold text-transparent md:text-5xl">
               {blog_entry.title}
             </h1>
           </div>
@@ -91,20 +94,22 @@ export default function BlogCard({
           <p className={`${merriweather.className} px-4 py-5`}>
             {blog_entry.description}
           </p>
-          <div className="flex gap-1 px-4 py-3 flex-wrap lg:opacity-30 lg:group-hover:opacity-100 transition">
+          <div className="flex flex-wrap gap-1 px-4 py-3 transition lg:opacity-30 lg:group-hover:opacity-100">
             {"Tags: "}
             {blog_entry.tags.map(({ blog_tag }) => {
               return (
                 <span
-                  className="font-extrabold bg-black px-2 text-zinc-400 text-xs py-1 rounded-full border border-zinc-700"
+                  className="rounded-full border border-zinc-700 bg-black px-2 py-1 text-xs font-extrabold text-zinc-400"
                   key={blog_tag.name}
                   onClick={() => {
                     router.push(
-                      `${path}?${createQueryString("tag", blog_tag.name)}`
+                      `${path}?${createQueryString("tag", blog_tag.name)}`,
                     );
                   }}
                 >
-                  {blog_tag.name}
+                  {lang === "en-US"
+                    ? blog_tag.name
+                    : TagsToSpanish[blog_tag.name]}
                 </span>
               );
             })}

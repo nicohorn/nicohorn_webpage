@@ -6,7 +6,6 @@ import Link from "next/link";
 import { getTags } from "@/repositories/blog_tag";
 import ComboboxComponent from "@/components/TagsCombobox";
 import type { Metadata } from "next";
-import SquareLoader from "@/components/SquareLoader";
 
 type Props = {
   params: { id: string; lang: string };
@@ -72,7 +71,7 @@ export default async function Page({
                 scroll={false}
                 href={`/${params.lang}/blog/${entry.id}`}
               >
-                <BlogCard blog_entry={entry} idx={idx} />
+                <BlogCard lang={params.lang} blog_entry={entry} idx={idx} />
               </Link>
             );
           })}
