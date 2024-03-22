@@ -56,8 +56,8 @@ export default async function Page({
     );
 
   return (
-    <main className="flex flex-col gap-5">
-      <Title title="Blog" />
+    <main className="main-y main-x flex flex-col gap-5">
+      <Title size="lg" title="Blog" />
       <div className="flex flex-col gap-2">
         <ComboboxComponent tags={tags!} lang={params.lang} />
       </div>

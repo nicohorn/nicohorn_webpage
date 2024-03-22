@@ -276,3 +276,11 @@ div {
     background-position: 0% 50%;
   }
 }
+
+.main-y {
+  @apply my-16;
+}
+
+.main-x {
+  @apply mx-5 md:mx-12;
+}

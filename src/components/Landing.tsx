@@ -10,6 +10,13 @@ import Link from "next/link";
 import Script from "next/script";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { TagsToSpanish } from "@/utils/dictionaries/Tags";
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandX,
+  IconCopy,
+} from "@tabler/icons-react";
 export default function Landing({
   lang,
   latest_blog_entries,
@@ -18,11 +25,11 @@ export default function Landing({
   latest_blog_entries: BlogEntryWithTags[];
 }) {
   const images = [
+    "https://images.unsplash.com/photo-1711139274733-9aa07e413d18?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://scontent-eze1-1.xx.fbcdn.net/v/t39.30808-6/292958230_10209333234045073_9217687885836746361_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGUY8VnGOB9GTCuu6KaJYkNupO4-4YEv2m6k7j7hgS_aWwBjaOSWoOeKvRmoenj7NY&_nc_ohc=snRsaM4BtSMAX-HzXaT&_nc_ht=scontent-eze1-1.xx&oh=00_AfC5a768EFzPH0Tz_jgeIe2uAuvC176Ik8SfdVtdj6gipQ&oe=66024FC6",
     "https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1625241189662-2980453ebffc?q=80&w=2081&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1711058968007-a4386478129e?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://scontent-eze1-1.xx.fbcdn.net/v/t39.30808-6/322938186_516788973777185_6854656873251529764_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHdjQJOSP6RW9k13PJ-p_cU5cHe0mXLuaLlwd7SZcu5om5yiXOqf6gfJVOI9YkHfQU&_nc_ohc=0ZLrCzRMTpIAX-vwv2z&_nc_ht=scontent-eze1-1.xx&oh=00_AfC_9giEBUFbffOGSu-hb2xLcCjXm8iB0uWDlGRfz_XSkw&oe=6601988B",
   ];
 
   const [selectedImage, setSelectedImage] = useState(0);
@@ -45,10 +52,6 @@ export default function Landing({
     typeof window === "undefined"
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
-  const description = {
-    en: "[systems engineer, full stack developer, professor]",
-    es: "[ingeniero en sistemas, desarrollador full stack, docente universitario]",
-  };
 
   const ImagesComponent = () => {
     return images.map((image, idx) => {
@@ -64,7 +67,7 @@ export default function Landing({
             shimmer(800, 800),
           )}`}
           layout="fill"
-          className="flex-grow cursor-pointer rounded-lg object-cover lg:min-h-[500px]"
+          className=" flex-grow cursor-pointer rounded-lg object-cover"
           alt="Profile picture of Nico Horn"
           src={image}
         ></Image>
@@ -75,190 +78,248 @@ export default function Landing({
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
   return (
-    <main className="min-h-[100vh]">
-      <div className="flex flex-wrap items-end gap-4">
-        <Title title="Nico Horn" />
-        <div className="flex -translate-y-5 flex-col">
-          <motion.div
-            initial={{ x: -10, y: -3, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl font-semibold"
-          >
-            {lang === "en-US" ? description["en"] : description["es"]}
-          </motion.div>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-10">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          {lang === "en-US"
-            ? `Buckle up and get ready for a wild ride into the mind of a passionate
-          programmer who's redefining what it means to be a modern-day
-          Renaissance man. With coding skills that would make Silicon Valley's
-          finest green with envy and an insatiable thirst for knowledge that
-          spans everything from the intricacies of machine learning to the art
-          of latte art, Nico Horn is here to shake up your world one line of
-          code (or one shot of espresso) at a time. I wrote this with AI because
-          I already made the whole about me section and have a whole blog so
-          this is just me having some fun.`
-            : `Agarrate fuerte que vamos a un viaje de locos en la mente de un programador apasionado que está redefiniendo lo que significa ser un renacentista de los modernos. Con habilidades de programacion que van a dejar dados vuelta hasta a los cracks de Silicon Valley y una sed insaciable de conocimiento que abarca desde los detalles más finos del machine learning hasta el arte del latte art, Nico Horn vino a sacudirte el mundo línea por línea de código (o shot de espresso tras shot de espresso). Esto lo escribí con IA porque ya hice toda la sección "acerca de mí" y tengo un blog entero, así que esto es solo para divertirme un poco.`}
-          <div
-            onMouseLeave={() => {
-              setTimeout(() => {
-                setLinkBgOpacity(0);
-              }, 75);
-            }}
-            className="relative mt-5 flex flex-col gap-2 md:flex-row md:gap-6"
-          >
-            <div
-              className="pointer-events-none absolute -z-10 hidden border-yellow-400 bg-yellow-600 duration-150 lg:block"
-              style={{
-                opacity: linkBgOpacity,
-                height: document
-                  ?.getElementById(`link_${hoverLink}`)
-                  ?.getBoundingClientRect().height!,
-                width: document
-                  ?.getElementById(`link_${hoverLink}`)
-                  ?.getBoundingClientRect().width!,
-                transform: `translateX(${
-                  document.getElementById(`link_${hoverLink}`)?.offsetLeft
-                }px) translateY(${
-                  document.getElementById(`link_${hoverLink}`)?.offsetTop
-                }px)`,
-              }}
-            ></div>
-
-            <Link
-              onMouseOver={() => {
-                setLinkBgOpacity(1);
-                setHoverLink("about_me");
-              }}
-              id={`link_about_me`}
-              href={`/${lang}/about_me`}
-              className={`z-10 w-fit py-1 text-2xl uppercase transition delay-75 duration-150 lg:py-0 ${
-                path === `/${lang}/about_me`
-                  ? "border-b border-b-yellow-400 font-bold"
-                  : " font-semibold"
-              }`}
-            >
-              {lang == "en-US" ? "More about me" : "Más acerca de mí"}
-            </Link>
-            <Link
-              onMouseOver={() => {
-                setLinkBgOpacity(1);
-                setHoverLink("blog");
-              }}
-              id={`link_blog`}
-              href={`/${lang}/blog`}
-              className={`z-10 w-fit py-1 text-2xl uppercase transition delay-75 duration-150 lg:py-0 ${
-                path === `/${lang}/blog`
-                  ? "border-b border-b-yellow-400 font-bold"
-                  : " font-semibold"
-              }`}
-            >
-              Blog
-            </Link>
-            <Link
-              onMouseOver={() => {
-                setLinkBgOpacity(1);
-                setHoverLink("cool_stuff");
-              }}
-              id={`link_cool_stuff`}
-              href={`/${lang}/cool_stuff`}
-              className={`z-10 w-fit py-1 text-2xl uppercase transition delay-75 duration-150 lg:py-0 ${
-                path === `/${lang}/blog`
-                  ? "border-b border-b-yellow-400 font-bold"
-                  : " font-semibold"
-              }`}
-            >
-              {lang == "en-US" ? "Cool stuff" : "Cosas copadas"}
-            </Link>
-          </div>
-        </motion.p>
-        <div className="flex flex-col items-center gap-5 lg:flex-row lg:items-start">
-          <div className="flex flex-col gap-5 md:flex-row">
-            <motion.div
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="relative min-h-[40vh] min-w-[20rem]"
-            >
-              {ImagesComponent()[selectedImage]}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="shadow-lg"
-            >
-              <a
-                aria-label="Tweets By Nico Horn link"
-                className="twitter-timeline"
-                data-width="350"
-                data-height="500"
-                data-theme="dark"
-                href="https://twitter.com/NicoTheEngineer?ref_src=twsrc%5Etfw"
-              >
-                <div className="flex min-h-[500px] min-w-[350px] animate-pulse items-center justify-center rounded-xl border border-white/30 bg-black/70">
-                  <span className="h-5 w-5 animate-spin rounded-full border-b"></span>
-                </div>
-              </a>
-            </motion.div>
-          </div>
-
-          <Script async src="https://platform.twitter.com/widgets.js" />
+    <main className="main-y mx-auto flex w-[90vw] flex-col items-center md:w-[700px]">
+      <div className="flex flex-col ">
+        <Title size="md" title="Hi, I'm Nico!" />
+        <div className="flex flex-col gap-3">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="flex-grow"
+            transition={{ delay: 0.5 }}
+            className="text-lg font-[500]"
           >
-            <h1 className="w-fit bg-gradient-to-r from-yellow-100 to-yellow-200 bg-clip-text font-extrabold uppercase text-transparent ">
-              {lang === "en-US"
-                ? "Latest entries on my blog"
-                : "Últimas entradas en mi blog"}
-            </h1>
-            {latest_blog_entries?.map((entry) => {
-              return (
-                <Link
-                  prefetch
-                  key={entry.id}
-                  href={`/${lang}/blog/${entry.id}`}
-                >
-                  <p className="my-2 flex justify-between gap-2 border-b border-zinc-800 py-1 transition hover:border-b-yellow-300">
-                    {entry.title}
-                    <p className="flex flex-wrap justify-end gap-2">
-                      {entry.tags.map((t) => {
-                        return (
-                          <span
-                            className="rounded-full bg-zinc-900 px-2 py-1 text-xs"
-                            key={t.blog_tag_id}
-                          >
-                            {lang === "en-US"
-                              ? t.blog_tag.name
-                              : TagsToSpanish[t.blog_tag.name]}
-                          </span>
-                        );
-                      })}
-                    </p>
+            {lang === "en-US" ? (
+              <div
+                onMouseLeave={() => {
+                  setTimeout(() => {
+                    setLinkBgOpacity(0);
+                  }, 75);
+                }}
+                className="relative flex flex-col flex-wrap gap-2 text-[1rem]"
+              >
+                <div
+                  className="pointer-events-none absolute -z-10 hidden rounded-lg  bg-yellow-900 duration-150 lg:block"
+                  style={{
+                    opacity: linkBgOpacity,
+                    height: document
+                      ?.getElementById(`link_${hoverLink}`)
+                      ?.getBoundingClientRect().height!,
+                    width: document
+                      ?.getElementById(`link_${hoverLink}`)
+                      ?.getBoundingClientRect().width!,
+                    transform: `translateX(${
+                      document.getElementById(`link_${hoverLink}`)?.offsetLeft
+                    }px) translateY(${
+                      document.getElementById(`link_${hoverLink}`)?.offsetTop
+                    }px)`,
+                  }}
+                ></div>
+                <div>
+                  <span className="mr-1 text-3xl font-bold">I'm</span>a systems
+                  engineer and professor, welcome to my website! 😁This is my
+                  online place, here you can:
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("blog");
+                    }}
+                    id={`link_blog`}
+                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition hover:border-yellow-600"
+                    href={`/${lang}/blog`}
+                  >
+                    Visit my blog 📝
+                  </Link>
+                  <p className="text-sm">
+                    where I share thoughts and educational content.
                   </p>
-                </Link>
-              );
-            })}
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("about_me");
+                    }}
+                    id={`link_about_me`}
+                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
+                    hover:border-yellow-600"
+                    href={`/${lang}/about_me`}
+                  >
+                    Know more about me and my work 💡
+                  </Link>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("mailto");
+                    }}
+                    id={`link_mailto`}
+                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
+                    hover:border-yellow-600"
+                    href="mailto:contact@nicohorn.com"
+                  >
+                    Contact me through my email ✉️
+                  </Link>
+                  <p id="nico_email" className="text-sm">
+                    contact@nicohorn.com
+                  </p>
+                  <button
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("copy_email");
+                    }}
+                    onClick={() => {
+                      navigator.clipboard.writeText("contact@nicohorn.com");
+                      lang === "en-US"
+                        ? alert("Copied email!")
+                        : alert("¡Email copiado!");
+                    }}
+                    className="p-1 active:scale-95"
+                    id="link_copy_email"
+                    aria-label={
+                      lang === "en-US" ? "Copy email" : "Copiar email"
+                    }
+                  >
+                    <IconCopy />
+                  </button>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("cool_stuff");
+                    }}
+                    id={`link_cool_stuff`}
+                    className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
+                    hover:border-yellow-600"
+                    href={`/${lang}/cool_stuff`}
+                  >
+                    Checkout cool stuff I'm doing 👽
+                  </Link>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
+                  <p>Checkout my socials 📱</p>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("linkedin");
+                    }}
+                    target="_blank"
+                    id={`link_linkedin`}
+                    className="w-fit rounded-lg  p-1 text-yellow-100"
+                    href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
+                  >
+                    <IconBrandLinkedin />
+                  </Link>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("twitter");
+                    }}
+                    id={`link_twitter`}
+                    className="w-fit rounded-lg  p-1 text-yellow-100"
+                    href={`/${lang}/about_me`}
+                  >
+                    <IconBrandX />
+                  </Link>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("github");
+                    }}
+                    id={`link_github`}
+                    className="w-fit rounded-lg p-1 text-yellow-100"
+                    href="https://github.com/nicohorn"
+                  >
+                    <IconBrandGithub />
+                  </Link>
+                  <Link
+                    onMouseOver={() => {
+                      setLinkBgOpacity(1);
+                      setHoverLink("instagram");
+                    }}
+                    id={`link_instagram`}
+                    className="w-fit rounded-lg p-1 text-yellow-100"
+                    href="https://www.instagram.com/nic0horn/"
+                  >
+                    <IconBrandInstagram />
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <p>
+                Agarrate fuerte que vamos a un viaje de locos en la mente de un
+                programador apasionado que está redefiniendo lo que significa
+                ser un renacentista de los modernos. Con habilidades de
+                programacion que van a dejar dados vuelta hasta a los cracks de
+                Silicon Valley y una sed insaciable de conocimiento que abarca
+                desde los detalles más finos del machine learning hasta el arte
+                del latte art, Nico Horn vino a sacudirte el mundo línea por
+                línea de código (o shot de espresso tras shot de espresso). Esto
+                lo escribí con IA porque ya hice toda la sección 'acerca de mí'
+                y tengo un blog entero, así que esto es solo para divertirme un
+                poco.
+              </p>
+            )}
           </motion.div>
+          <motion.div
+            initial={{ x: -10, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="relative h-[450px]  max-w-[400px]"
+          >
+            {ImagesComponent()[selectedImage]}
+          </motion.div>
+          <div className="flex flex-col gap-5">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="flex-grow"
+            >
+              <h1 className="w-fit bg-gradient-to-r from-yellow-100 to-yellow-200 bg-clip-text font-extrabold uppercase text-transparent ">
+                {lang === "en-US"
+                  ? "Latest entries on my blog"
+                  : "Últimas entradas en mi blog"}
+              </h1>
+              {latest_blog_entries?.map((entry) => {
+                return (
+                  <Link
+                    prefetch
+                    key={entry.id}
+                    href={`/${lang}/blog/${entry.id}`}
+                  >
+                    <p className="my-2 flex justify-between gap-2 border-b border-zinc-800 py-1 transition hover:border-b-yellow-300">
+                      {entry.title}
+                      <p className="flex flex-wrap justify-end gap-2">
+                        {entry.tags.map((t) => {
+                          return (
+                            <span
+                              className="rounded-full bg-zinc-900 px-2 py-1 text-xs"
+                              key={t.blog_tag_id}
+                            >
+                              {lang === "en-US"
+                                ? t.blog_tag.name
+                                : TagsToSpanish[t.blog_tag.name]}
+                            </span>
+                          );
+                        })}
+                      </p>
+                    </p>
+                  </Link>
+                );
+              })}
+            </motion.div>
+          </div>
         </div>
       </div>
     </main>
   );
 }
-
-/* 
-      <iframe
-        className="w-full aspect-video bg-white"
-        src="https://fastidious-lamington-ed3fd8.netlify.app/"
-      ></iframe> */

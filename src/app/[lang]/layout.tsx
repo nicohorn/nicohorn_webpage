@@ -42,10 +42,10 @@ export default async function RootLayout({
 
   return (
     <html
-      className={` ${montserrat.className} bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen mt-5`}
+      className={` ${montserrat.className} mt-5 h-screen overflow-x-hidden bg-black bg-fixed text-white pattern-graph-yellow-900/30`}
       lang={`${params.lang}`}
     >
-      <body className={"z-0 relative scroll-smooth h-full flex flex-col"}>
+      <body className={"relative z-0 flex h-full flex-col scroll-smooth"}>
         <Navbar
           lang={params.lang}
           session={session!}
@@ -66,7 +66,7 @@ export default async function RootLayout({
           ]}
           currentLang={params.lang!}
         />
-        <div className="md:mx-12 mx-5 my-16 md:my-8">{children}</div>
+        {children}
 
         <Footer lang={params.lang} />
         <GoogleAnalytics gaId="G-5FJK8CL5W8" />
