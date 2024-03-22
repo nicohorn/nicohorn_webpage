@@ -19,7 +19,7 @@ export default function Footer({ lang }: { lang: string }) {
       new Notification().props({
         title: "This site uses cookies",
         description:
-          "By navigating on this site, you're accepting the usage of cookies",
+          "By navigating on this site, you're accepting the usage of cookies.",
         type: "info",
         seconds: 5,
       });
