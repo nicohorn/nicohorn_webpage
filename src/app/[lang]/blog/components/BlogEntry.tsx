@@ -114,10 +114,12 @@ export default function BlogEntry({
           className="fixed bottom-28 right-0 z-50 mb-28 mr-20 lg:mr-28"
         />
       </button>
-      <div className="fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2  bg-zinc-900 bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
+      <div className="fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2 rounded-b   bg-zinc-900 bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
         <div
           id="blog_hero"
-          className={"mx-auto flex flex-col gap-2 p-5 " + roboto_slab.className}
+          className={
+            "mx-auto flex flex-col gap-2  p-5 " + roboto_slab.className
+          }
         >
           <h1
             id="blog_title"
@@ -150,7 +152,7 @@ export default function BlogEntry({
         style={{
           backgroundImage: `url("${blog_entry?.cover_image}")`,
         }}
-        className="z-10 h-[30vh] bg-zinc-500 bg-cover bg-center shadow-md"
+        className="z-10 h-[30vh] rounded bg-zinc-500 bg-cover bg-center shadow-md"
       ></div>
 
       <div className={`relative leading-relaxed ${textSizes[textSize]}`}>

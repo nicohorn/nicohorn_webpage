@@ -87,7 +87,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                     <Title title={yearItem.year} size="xs" />
                   </h1>
                 </div>
-                <div className="absolute w-full -translate-y-4 translate-x-2  border-b border-white/20"></div>
+                <div className="border-accent absolute w-full -translate-x-4  -translate-y-4 border-b"></div>
                 <div>
                   {yearItem.items.map((item, idx) => {
                     return (

@@ -22,15 +22,15 @@ export default function Title({
     lg: "md:text-7xl lg:text-9xl",
     md: "md:text-6xl lg:text-7xl",
     sm: "md:text-4xl lg:text-5xl",
-    xs: "md:text-xl lg:text-xl",
+    xs: "md:text-2xl lg:text-2xl",
   };
   return (
     <motion.h1
       id={id}
       initial={anim ? { opacity: 0, x: -7 } : {}}
       animate={anim ? { opacity: 1, x: 0 } : {}}
-      className={`${sizes[size]} ${roboto_slab.className} lg:text-9xl" bg-neutral bg-clip-text ${size !== "xs" && "pb-3"} text-5xl
-      font-extrabold text-transparent md:text-7xl`}
+      className={`${sizes[size]} ${roboto_slab.className} " text-neutral ${size !== "xs" && "pb-3"} 
+      font-extrabold`}
     >
       {title}
     </motion.h1>

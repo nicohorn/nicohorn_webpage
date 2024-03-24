@@ -173,10 +173,12 @@ export default function Stack({ lang }: { lang: string }) {
                         : alert(`Color copiado! ${color.code}`);
                     }}
                     id={`button_id_${color.color}`}
-                    className={`w-36 py-1 bg-${color.color} flex-grow rounded capitalize`}
+                    className={`w-36 bg-${color.color} flex flex-grow rounded capitalize shadow-lg`}
                     key={color.code}
                   >
-                    <span className="mix-blend-difference">{color.color}</span>
+                    <span className="flex-grow rounded py-1 mix-blend-difference">
+                      {color.color}
+                    </span>
                   </button>
                 );
               })}

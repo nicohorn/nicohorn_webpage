@@ -132,7 +132,7 @@ export default function Navbar({
                 id={`link_id_${link.link}`}
                 key={link.title}
                 href={`/${lang}${link.link}`}
-                className={`z-10  w-fit py-1 text-3xl  transition delay-75 duration-150 md:text-4xl lg:py-0   lg:text-7xl ${
+                className={`z-10  w-fit py-1 text-3xl  transition delay-75 duration-150 md:text-4xl lg:py-0 lg:text-6xl  xl:text-7xl ${
                   path === `/${lang + link.link}`
                     ? "border-b-accent border-b font-bold"
                     : "font-thin"

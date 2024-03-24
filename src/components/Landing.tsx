@@ -3,7 +3,7 @@
 "use client";
 import Title from "@/components/Title";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { animate, motion } from "framer-motion";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -16,6 +16,7 @@ import {
   IconBrandX,
   IconCopy,
 } from "@tabler/icons-react";
+import Sidebar from "./Sidebar";
 export default function Landing({
   lang,
   latest_blog_entries,
@@ -32,6 +33,7 @@ export default function Landing({
   ];
 
   const [selectedImage, setSelectedImage] = useState(0);
+  const [sidebar, setSidebar] = useState(false);
 
   const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -127,7 +129,7 @@ export default function Landing({
                   setHoverLink("blog");
                 }}
                 id={`link_blog`}
-                className="border-accent hover:border-secondary w-fit rounded border-b px-1 pt-[6px]  transition"
+                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded border-b   px-1 pt-[6px]  transition"
                 href={`/${lang}/blog`}
               >
                 {langIsEnglish
@@ -147,7 +149,7 @@ export default function Landing({
                   setHoverLink("about_me");
                 }}
                 id={`link_about_me`}
-                className="border-accent hover:border-secondary w-fit rounded  border-b  px-1 pt-[6px]
+                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded  border-b   px-1 pt-[6px]
                     transition"
                 href={`/${lang}/about_me`}
               >
@@ -163,7 +165,7 @@ export default function Landing({
                   setHoverLink("mailto");
                 }}
                 id={`link_mailto`}
-                className="border-accent hover:border-secondary w-fit rounded  border-b  px-1 pt-[6px]
+                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded  border-b   px-1 pt-[6px]
                     transition"
                 href="mailto:contact@nicohorn.com"
               >
@@ -185,7 +187,7 @@ export default function Landing({
                     ? alert("Copied email!")
                     : alert("¡Email copiado!");
                 }}
-                className="p-1 active:scale-95"
+                className="active:text-accent hover:text-neutral p-1 active:scale-95"
                 id="link_copy_email"
                 aria-label={lang === "en-US" ? "Copy email" : "Copiar email"}
               >
@@ -193,20 +195,31 @@ export default function Landing({
               </button>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <Link
+              <button
+                onClick={() => {
+                  if (sidebar) {
+                    animate("#sidebar", { x: "100%" });
+                    setTimeout(() => {
+                      setSidebar(false);
+                    }, 500);
+                    return;
+                  } else {
+                    setSidebar(true);
+                    return;
+                  }
+                }}
                 onMouseOver={() => {
                   setLinkBgOpacity(1);
                   setHoverLink("cool_stuff");
                 }}
                 id={`link_cool_stuff`}
-                className="border-accent hover:border-secondary w-fit rounded  border-b  px-1 pt-[6px]
+                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded  border-b   px-1 pt-[6px]
                     transition"
-                href={`/${lang}/cool_stuff`}
               >
                 {langIsEnglish
                   ? "▪️ Checkout cool stuff I'm doing 👽"
                   : "▪️ Conocer las cosas copadas que estoy haciendo 👽"}
-              </Link>
+              </button>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <p>{langIsEnglish ? "My socials" : "Mis redes"}</p>
@@ -291,7 +304,7 @@ export default function Landing({
                   key={entry.id}
                   href={`/${lang}/blog/${entry.id}`}
                 >
-                  <p className="hover:border-b-neutral border-accent my-2 flex justify-between gap-2 border-b py-1 transition">
+                  <p className="hover:active:text-accent border-accent active:text-accent hover:text-neutral  my-2 flex  justify-between gap-2 border-b  py-1 transition">
                     {entry.title}
                     <p className="flex flex-wrap justify-end gap-2">
                       {entry.tags.map((t) => {
@@ -312,6 +325,7 @@ export default function Landing({
               );
             })}
           </motion.div>
+          {sidebar && <Sidebar title="Cool stuff">Hola hola</Sidebar>}
         </div>
       </div>
     </main>

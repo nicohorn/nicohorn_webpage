@@ -28,7 +28,7 @@ export default function Hero({
       className={" -mt-4 flex w-fit  flex-col pr-2 hover:cursor-pointer"}
     >
       <motion.h1 className="  text-neutral text-2xl font-extrabold uppercase md:text-5xl lg:text-8xl ">
-        <Link href={`/${lang}/`}>
+        <Link className="flex" href={`/${lang}/`}>
           <Title size="lg" title={title} />
         </Link>
       </motion.h1>
@@ -41,7 +41,7 @@ export default function Hero({
           return (
             <motion.span
               transition={{ duration: 0.1 }}
-              whileHover={{ color: "yellow", scale: 1.2 }}
+              whileHover={{ color: "#9E3333", scale: 1.2 }}
               key={idx}
             >
               {char == " " ? <p>&nbsp;</p> : <p>{char}</p>}

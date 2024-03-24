@@ -53,7 +53,7 @@ export default function ComboboxComponent({
       <>
         <Combobox value={selected} onChange={setSelected}>
           <div className="relative mt-1">
-            <div className="border-accent relative w-full cursor-default overflow-hidden text-left  shadow-md sm:text-sm">
+            <div className="border-accent relative w-full cursor-default overflow-hidden rounded text-left  shadow-md sm:text-sm">
               <Combobox.Input
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -80,7 +80,7 @@ export default function ComboboxComponent({
               leaveTo="opacity-0"
               afterLeave={() => setQuery("")}
             >
-              <Combobox.Options className="bg-background absolute z-[52] ml-0 mt-1  max-h-60 w-full overflow-auto py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+              <Combobox.Options className="bg-background combobox-container absolute z-[52] ml-0 mt-1  max-h-60 w-full overflow-auto rounded py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
                 {filteredTags.length === 0 && query !== "" ? (
                   <div className="relative cursor-default select-none px-4 py-2 text-white">
                     {lang === "en-US" ? "Nothing found 😔" : "Nada che 😔"}
