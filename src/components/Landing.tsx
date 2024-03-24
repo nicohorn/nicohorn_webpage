@@ -325,7 +325,38 @@ export default function Landing({
               );
             })}
           </motion.div>
-          {sidebar && <Sidebar title="Cool stuff">Hola hola</Sidebar>}
+          {sidebar && (
+            <Sidebar
+              closeSidebar={() => setSidebar(false)}
+              title={lang === "en-US" ? "Cool stuff" : "Cosas copadas"}
+            >
+              <div className="bg-background mr-14 rounded p-4 shadow-md">
+                {lang === "en-US"
+                  ? "Still building this part 🛠️ I'm currently diving deep into C (again) and the fundamentals of computer architecture, so I'm a bit busy."
+                  : "Esta sección está en construcción todavía 🛠️ Estoy adentrándome mucho en C y los fundamentos de la arquitectura de computadoras últimamente así que ando bastante ocupado."}
+                <br /> <br />
+                {lang === "en-US"
+                  ? "This section will contain:"
+                  : "En esta sección vas a encontrar:"}
+                <ul>
+                  <li>
+                    {lang === "en-US"
+                      ? "Projects or parts of my projects."
+                      : "Proyectos o partes de mis proyectos."}
+                  </li>
+                  <li>{lang === "en-US" ? "UI libraries." : "Librerías UI"}</li>
+                  <li>
+                    {lang === "en-US" ? "Case studies." : "Casos de estudio."}
+                  </li>
+                  <li>
+                    {lang === "en-US"
+                      ? "Riddles and quizes."
+                      : "Acertijos y cuestionarios."}
+                  </li>
+                </ul>
+              </div>
+            </Sidebar>
+          )}
         </div>
       </div>
     </main>
