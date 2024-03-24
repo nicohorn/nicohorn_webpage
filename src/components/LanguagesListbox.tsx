@@ -46,12 +46,12 @@ export default function ListboxComponent({
         !path.includes("entry") &&
         path.split("/").length > 3
           ? "hidden"
-          : "fixed  left-1/2 top-2 z-[51] mt-[32px] w-[90vw] -translate-x-1/2 sm:left-full sm:w-fit sm:-translate-x-[110%]"
+          : "fixed  left-1/2 top-2 z-[51] mt-[32px] w-[91vw] -translate-x-1/2 sm:left-full sm:w-fit sm:-translate-x-[110%]"
       }
     >
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative  w-full">
-          <Listbox.Button className="bg-background relative w-full cursor-default py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm ">
+          <Listbox.Button className="bg-background relative w-full cursor-default rounded py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm">
             <div className="flex items-center gap-2">
               <IconLanguage />
               <span className="block truncate ">{selected.title}</span>
@@ -69,7 +69,7 @@ export default function ListboxComponent({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="bg-background absolute ml-0 mt-1 max-h-60  w-full overflow-auto py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="bg-background absolute ml-0 mt-1 max-h-60 w-full  overflow-auto rounded py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {languages.map((lang, langIdx) => (
                 <Link key={langIdx} href={pathWithLanguage().path}>
                   <Listbox.Option

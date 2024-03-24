@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion, animate } from "framer-motion";
 import Title from "./Title";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 export default function Stack({ lang }: { lang: string }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -52,8 +53,6 @@ export default function Stack({ lang }: { lang: string }) {
     </svg>
   );
 
-  const [activeColor, setActiveColor] = useState("");
-
   const color_palette = [
     { color: "black", code: "#0D0D0D", before: "Black" },
     { color: "background", code: "#191919" },
@@ -95,7 +94,7 @@ export default function Stack({ lang }: { lang: string }) {
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             id="stack_modal_content"
-            className=" bg-background px-8 py-6 "
+            className=" bg-background absolute rounded px-8 py-6 md:top-[30%]"
           >
             {children}
           </motion.div>
@@ -107,7 +106,7 @@ export default function Stack({ lang }: { lang: string }) {
   };
   return (
     <>
-      <div className=" w-fit ">
+      <div className=" w-fit">
         <div
           onClick={() => {
             setModalOpen(true);
@@ -116,15 +115,20 @@ export default function Stack({ lang }: { lang: string }) {
               document.getElementById("stack_modal")?.focus();
             }, 100);
           }}
-          className="border-accent hover:border-neutral flex cursor-pointer items-baseline gap-2 border-b transition"
+          className="border-accent hover:border-neutral flex cursor-pointer items-baseline gap-2 border-b transition "
         >
-          <p className="text-xs">
-            {lang === "en-US" ? "Made with Next.js" : "Hecho con Next.js"}
+          <p className="flex items-center gap-2 py-1 text-xs">
+            {" "}
+            <IconInfoCircle width={15} height={15} />
+            {lang === "en-US" ? "Site info" : "Información del sitio"}
           </p>
         </div>
         <Modal>
           <div className="flex flex-col">
-            <Title title="Site info" size="md" />
+            <Title
+              title={lang === "en-US" ? "Site info" : "Información del sitio"}
+              size="md"
+            />
             <div className="flex flex-col gap-3 lg:flex-row">
               <div>Framework: {nextlogo({ size: 18 })}</div>
               <div>
@@ -157,20 +161,36 @@ export default function Stack({ lang }: { lang: string }) {
             </div>
           </div>
           <div className="mt-4">
-            Color palette
-            <div className="flex flex-wrap gap-2 ">
+            {lang === "en-US" ? "Color palette" : "Paleta de colores"}
+            <div className="flex flex-wrap gap-2">
               {color_palette.map((color) => {
                 return (
                   <button
+                    onClick={async () => {
+                      await navigator.clipboard.writeText(color.code);
+                      lang === "en-US"
+                        ? alert(`Copied color! ${color.code}`)
+                        : alert(`Color copiado! ${color.code}`);
+                    }}
                     id={`button_id_${color.color}`}
-                    className={`w-36 py-1 bg-${color.color} capitalize`}
+                    className={`w-36 py-1 bg-${color.color} flex-grow rounded capitalize`}
                     key={color.code}
                   >
-                    {color.color}
+                    <span className="mix-blend-difference">{color.color}</span>
                   </button>
                 );
               })}
             </div>
+            <p className="mt-2 text-xs text-white">
+              {lang === "en-US"
+                ? "Click on color to copy the hex code."
+                : "Click en el color para copiar el código hexadecimal."}
+            </p>
+            <h3 className="mt-2">
+              {lang === "en-US"
+                ? "©️ Designed and built by Nico Horn"
+                : "©️ Diseñado e implementado por Nico Horn"}
+            </h3>
           </div>
         </Modal>
       </div>

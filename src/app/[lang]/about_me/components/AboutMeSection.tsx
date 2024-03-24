@@ -280,7 +280,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             >
               <Image
                 style={{ objectFit: "cover" }}
-                className="pointer-events-none"
+                className="pointer-events-none rounded"
                 layout="fill"
                 alt={image.alt}
                 src={image.src}

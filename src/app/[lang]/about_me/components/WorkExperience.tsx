@@ -83,11 +83,11 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                 key={idx}
               >
                 <div className="py-2">
-                  <h1 className="bg-accent text-neutral mb-2  mt-7 w-fit -translate-x-4 px-2 py-1 md:-translate-x-10 md:text-2xl ">
+                  <h1 className="bg-accent text-neutral mb-2  mt-7 w-fit -translate-x-4 rounded px-2 py-1 md:-translate-x-10 md:text-2xl ">
                     <Title title={yearItem.year} size="xs" />
                   </h1>
                 </div>
-                <div className="absolute w-full -translate-y-4 translate-x-2 border-b border-white/20"></div>
+                <div className="absolute w-full -translate-y-4 translate-x-2  border-b border-white/20"></div>
                 <div>
                   {yearItem.items.map((item, idx) => {
                     return (
@@ -105,7 +105,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                             <span className="text-neutral -ml-1 md:ml-4">
                               <IconArrowMoveRight />
                             </span>
-                            <div className="bg-secondary my-1 mb-2  ml-6 w-fit -translate-x-4 px-4 py-1 ">
+                            <div className="bg-secondary my-1 mb-2 ml-6 w-fit -translate-x-4 rounded px-4 py-1 ">
                               <Title size="xs" title={item.title} />
                             </div>
                           </div>

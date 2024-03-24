@@ -66,7 +66,7 @@ export default function Landing({
             shimmer(800, 800),
           )}`}
           layout="fill"
-          className=" flex-grow cursor-pointer  object-cover"
+          className=" flex-grow cursor-pointer rounded object-cover"
           alt="Profile picture of Nico Horn"
           src={image}
         ></Image>
@@ -78,240 +78,240 @@ export default function Landing({
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
   return (
-    <main className="main-y main-x flex w-[90vw] flex-col items-center md:w-[700px]">
-      <div className="flex flex-col ">
-        <Title
-          size="md"
-          title={langIsEnglish ? "Hi, I'm Nico!" : "¡Hola!, soy Nico."}
-        />
-        <div className="flex flex-col gap-3">
+    <main className="main-y main-x w-[90vw] md:w-[700px]">
+      <Title
+        size="md"
+        title={langIsEnglish ? "Hi, I'm Nico!" : "¡Hola!, soy Nico."}
+      />
+      <div className="flex flex-col gap-12">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-4 text-lg font-[500]"
+        >
+          <div
+            onMouseLeave={() => {
+              setTimeout(() => {
+                setLinkBgOpacity(0);
+              }, 75);
+            }}
+            className="relative flex flex-col flex-wrap gap-5 text-xl"
+          >
+            <div
+              className="bg-secondary pointer-events-none absolute -z-10 hidden rounded py-3 duration-150 lg:block"
+              style={{
+                opacity: linkBgOpacity,
+                height: document
+                  ?.getElementById(`link_${hoverLink}`)
+                  ?.getBoundingClientRect().height!,
+                width: document
+                  ?.getElementById(`link_${hoverLink}`)
+                  ?.getBoundingClientRect().width!,
+                transform: `translateX(${
+                  document.getElementById(`link_${hoverLink}`)?.offsetLeft
+                }px) translateY(${document.getElementById(`link_${hoverLink}`)
+                  ?.offsetTop!}px)`,
+              }}
+            ></div>
+            <div>
+              <span className="text-4xl">{langIsEnglish ? "I" : "S"}</span>
+              {langIsEnglish
+                ? "'m a systems engineer and professor, welcome to my website! 😁 This is my online place, here you can: "
+                : "oy ingeniero en sistemas y profesor, bienvenido/a a mi página 😁 Este es mi espacio online, acá podés:"}
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("blog");
+                }}
+                id={`link_blog`}
+                className="border-accent hover:border-secondary w-fit rounded border-b px-1 pt-[6px]  transition"
+                href={`/${lang}/blog`}
+              >
+                {langIsEnglish
+                  ? "▪️ Visit my blog 📝"
+                  : "▪️ Visitar mi blog 📝"}
+              </Link>
+              <p className="text-sm">
+                {langIsEnglish
+                  ? "where I share thoughts and educational content."
+                  : "donde comparto pensamientos y contenido educativo."}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("about_me");
+                }}
+                id={`link_about_me`}
+                className="border-accent hover:border-secondary w-fit rounded  border-b  px-1 pt-[6px]
+                    transition"
+                href={`/${lang}/about_me`}
+              >
+                {langIsEnglish
+                  ? "▪️ Know more about me and my work 💡"
+                  : "▪️ Conocer más sobre mí y mi trabajo 💡"}
+              </Link>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("mailto");
+                }}
+                id={`link_mailto`}
+                className="border-accent hover:border-secondary w-fit rounded  border-b  px-1 pt-[6px]
+                    transition"
+                href="mailto:contact@nicohorn.com"
+              >
+                {langIsEnglish
+                  ? "▪️ Contact me through my email ✉️"
+                  : "▪️ Contactarme a través de mi email ✉️"}
+              </Link>
+              <p id="nico_email" className="text-sm">
+                contact@nicohorn.com
+              </p>
+              <button
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("copy_email");
+                }}
+                onClick={() => {
+                  navigator.clipboard.writeText("contact@nicohorn.com");
+                  lang === "en-US"
+                    ? alert("Copied email!")
+                    : alert("¡Email copiado!");
+                }}
+                className="p-1 active:scale-95"
+                id="link_copy_email"
+                aria-label={lang === "en-US" ? "Copy email" : "Copiar email"}
+              >
+                <IconCopy />
+              </button>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("cool_stuff");
+                }}
+                id={`link_cool_stuff`}
+                className="border-accent hover:border-secondary w-fit rounded  border-b  px-1 pt-[6px]
+                    transition"
+                href={`/${lang}/cool_stuff`}
+              >
+                {langIsEnglish
+                  ? "▪️ Checkout cool stuff I'm doing 👽"
+                  : "▪️ Conocer las cosas copadas que estoy haciendo 👽"}
+              </Link>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <p>{langIsEnglish ? "My socials" : "Mis redes"}</p>
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("linkedin");
+                }}
+                target="_blank"
+                id={`link_linkedin`}
+                className="text-neutral w-fit   p-1"
+                href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
+              >
+                <IconBrandLinkedin />
+              </Link>
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("twitter");
+                }}
+                target="_blank"
+                id={`link_twitter`}
+                className="text-neutral w-fit   p-1"
+                href={`/${lang}/about_me`}
+              >
+                <IconBrandX />
+              </Link>
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("github");
+                }}
+                target="_blank"
+                id={`link_github`}
+                className="text-neutral w-fit  p-1"
+                href="https://github.com/nicohorn"
+              >
+                <IconBrandGithub />
+              </Link>
+              <Link
+                onMouseOver={() => {
+                  setLinkBgOpacity(1);
+                  setHoverLink("instagram");
+                }}
+                target="_blank"
+                id={`link_instagram`}
+                className="text-neutral w-fit  p-1"
+                href="https://www.instagram.com/nic0horn/"
+              >
+                <IconBrandInstagram />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ x: -10, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="relative h-[450px]  max-w-[400px]"
+        >
+          {ImagesComponent()[selectedImage]}
+        </motion.div>
+        <div className="flex flex-col gap-5">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-lg font-[500]"
+            transition={{ delay: 0.7 }}
+            className="flex-grow"
           >
-            <div
-              onMouseLeave={() => {
-                setTimeout(() => {
-                  setLinkBgOpacity(0);
-                }, 75);
-              }}
-              className="relative flex flex-col flex-wrap gap-2 text-[1rem]"
-            >
-              <div
-                className="bg-secondary pointer-events-none absolute -z-10 hidden  duration-150 lg:block"
-                style={{
-                  opacity: linkBgOpacity,
-                  height: document
-                    ?.getElementById(`link_${hoverLink}`)
-                    ?.getBoundingClientRect().height!,
-                  width: document
-                    ?.getElementById(`link_${hoverLink}`)
-                    ?.getBoundingClientRect().width!,
-                  transform: `translateX(${
-                    document.getElementById(`link_${hoverLink}`)?.offsetLeft
-                  }px) translateY(${
-                    document.getElementById(`link_${hoverLink}`)?.offsetTop
-                  }px)`,
-                }}
-              ></div>
-              <div>
-                <span className="mr-2 text-3xl font-bold">
-                  {langIsEnglish ? "I'm" : "Soy"}
-                </span>
-                {langIsEnglish
-                  ? "a systems engineer and professor, welcome to my website! 😁 This is my online place, here you can: "
-                  : "ingeniero en sistemas y profesor, bienvenido a mi página 😁 Este es mi espacio online, acá podés:"}
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("blog");
-                  }}
-                  id={`link_blog`}
-                  className="border-accent hover:border-secondary w-fit  border-b px-1 transition"
-                  href={`/${lang}/blog`}
-                >
-                  {langIsEnglish ? "Visit my blog 📝" : "Visitar mi blog 📝"}
-                </Link>
-                <p className="text-sm">
-                  {langIsEnglish
-                    ? "where I share thoughts and educational content."
-                    : "donde comparto pensamientos y contenido educativo."}
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("about_me");
-                  }}
-                  id={`link_about_me`}
-                  className="border-accent hover:border-secondary w-fit  border-b px-1
-                    transition"
-                  href={`/${lang}/about_me`}
-                >
-                  {langIsEnglish
-                    ? "Know more about me and my work 💡"
-                    : "Conocer más sobre mí y mi trabajo 💡"}
-                </Link>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("mailto");
-                  }}
-                  id={`link_mailto`}
-                  className="border-accent hover:border-secondary w-fit  border-b px-1
-                    transition"
-                  href="mailto:contact@nicohorn.com"
-                >
-                  {langIsEnglish
-                    ? "Contact me through my email ✉️"
-                    : "Contactarme a través de mi email ✉️"}
-                </Link>
-                <p id="nico_email" className="text-sm">
-                  contact@nicohorn.com
-                </p>
-                <button
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("copy_email");
-                  }}
-                  onClick={() => {
-                    navigator.clipboard.writeText("contact@nicohorn.com");
-                    lang === "en-US"
-                      ? alert("Copied email!")
-                      : alert("¡Email copiado!");
-                  }}
-                  className="p-1 active:scale-95"
-                  id="link_copy_email"
-                  aria-label={lang === "en-US" ? "Copy email" : "Copiar email"}
-                >
-                  <IconCopy />
-                </button>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("cool_stuff");
-                  }}
-                  id={`link_cool_stuff`}
-                  className="border-accent hover:border-secondary w-fit  border-b px-1
-                    transition"
-                  href={`/${lang}/cool_stuff`}
-                >
-                  {langIsEnglish
-                    ? "Checkout cool stuff I'm doing 👽"
-                    : "Conocer las cosas copadas que estoy haciendo 👽"}
-                </Link>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <p>{langIsEnglish ? "My socials" : "Mis redes"}</p>
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("linkedin");
-                  }}
-                  target="_blank"
-                  id={`link_linkedin`}
-                  className="text-neutral w-fit   p-1"
-                  href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
-                >
-                  <IconBrandLinkedin />
-                </Link>
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("twitter");
-                  }}
-                  target="_blank"
-                  id={`link_twitter`}
-                  className="text-neutral w-fit   p-1"
-                  href={`/${lang}/about_me`}
-                >
-                  <IconBrandX />
-                </Link>
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("github");
-                  }}
-                  target="_blank"
-                  id={`link_github`}
-                  className="text-neutral w-fit  p-1"
-                  href="https://github.com/nicohorn"
-                >
-                  <IconBrandGithub />
-                </Link>
-                <Link
-                  onMouseOver={() => {
-                    setLinkBgOpacity(1);
-                    setHoverLink("instagram");
-                  }}
-                  target="_blank"
-                  id={`link_instagram`}
-                  className="text-neutral w-fit  p-1"
-                  href="https://www.instagram.com/nic0horn/"
-                >
-                  <IconBrandInstagram />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ x: -10, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="relative h-[450px]  max-w-[400px]"
-          >
-            {ImagesComponent()[selectedImage]}
-          </motion.div>
-          <div className="flex flex-col gap-5">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex-grow"
-            >
-              <h1 className="text-neutral w-fit font-extrabold">
-                {lang === "en-US"
+            <Title
+              size="sm"
+              title={
+                lang === "en-US"
                   ? "Latest entries on my blog"
-                  : "Últimas entradas en mi blog"}
-              </h1>
-              {latest_blog_entries?.map((entry) => {
-                return (
-                  <Link
-                    prefetch
-                    key={entry.id}
-                    href={`/${lang}/blog/${entry.id}`}
-                  >
-                    <p className="hover:border-b-neutral border-accent my-2 flex justify-between gap-2 border-b py-1 transition">
-                      {entry.title}
-                      <p className="flex flex-wrap justify-end gap-2">
-                        {entry.tags.map((t) => {
-                          return (
-                            <span
-                              className="h-fit bg-zinc-900 px-2 pt-[2px] text-xs"
-                              key={t.blog_tag_id}
-                            >
-                              {lang === "en-US"
-                                ? t.blog_tag.name
-                                : TagsToSpanish[t.blog_tag.name]}
-                            </span>
-                          );
-                        })}
-                      </p>
+                  : "Últimas entradas en mi blog"
+              }
+            />
+            {latest_blog_entries?.map((entry) => {
+              return (
+                <Link
+                  prefetch
+                  key={entry.id}
+                  href={`/${lang}/blog/${entry.id}`}
+                >
+                  <p className="hover:border-b-neutral border-accent my-2 flex justify-between gap-2 border-b py-1 transition">
+                    {entry.title}
+                    <p className="flex flex-wrap justify-end gap-2">
+                      {entry.tags.map((t) => {
+                        return (
+                          <span
+                            className="h-fit rounded bg-zinc-900 px-2 pt-[2px] text-xs"
+                            key={t.blog_tag_id}
+                          >
+                            {lang === "en-US"
+                              ? t.blog_tag.name
+                              : TagsToSpanish[t.blog_tag.name]}
+                          </span>
+                        );
+                      })}
                     </p>
-                  </Link>
-                );
-              })}
-            </motion.div>
-          </div>
+                  </p>
+                </Link>
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </main>

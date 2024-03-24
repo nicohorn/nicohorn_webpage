@@ -104,7 +104,7 @@ export default function Navbar({
           className="relative flex flex-col flex-wrap  lg:ml-10 lg:flex-row lg:gap-14"
         >
           <div
-            className="bg-accent pointer-events-none absolute -left-2 -top-2 bottom-0 z-0 hidden duration-150 lg:block"
+            className="bg-accent pointer-events-none absolute -left-2 -top-2 bottom-0 z-0 hidden rounded duration-150 lg:block"
             style={{
               opacity: linkBgOpacity,
               height:
