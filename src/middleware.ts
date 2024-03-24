@@ -5,10 +5,17 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req });
   let lang;
-  const locales = ["es-AR", "en-US"];
+  const locales: { [key: string]: string } = {
+    "es-AR": "es-AR",
+    "en-US": "en-US",
+    "es": "es-AR",
+    "en": "en-US"
+  }
   const headerLang = req.headers.get("Accept-Language")?.split(",")[0];
 
-  if (locales.includes(headerLang!)) lang = headerLang;
+  console.log(headerLang)
+
+  if (Object.keys(locales).includes(headerLang!)) lang = locales[headerLang!];
   //Defaults language to english if it detects any language that's not in the locales supported.
   else {
     lang = "en-US";

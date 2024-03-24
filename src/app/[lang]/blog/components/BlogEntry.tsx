@@ -6,6 +6,11 @@ import TipTapContent from "../components/TipTapContent";
 import { IconCalendar, IconEdit, IconRss } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { animate, useMotionValueEvent, useScroll, motion } from "framer-motion";
+import { Roboto_Slab } from "next/font/google";
+const roboto_slab = Roboto_Slab({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["cyrillic"],
+});
 
 import {
   IconCircleArrowUpFilled,
@@ -88,13 +93,13 @@ export default function BlogEntry({
         marginTop: blog_hero_height_in_px,
       }}
       id="blog_entry_component"
-      className="mx-auto mb-10 flex w-[90%] flex-col gap-4 lg:w-[60%] lg:text-xl xl:w-[60%] 2xl:w-[45%]"
+      className="bg-primary/40 mx-auto flex w-[90%] flex-col gap-4 px-3 pb-12 lg:w-[60%] lg:text-xl xl:w-[60%] 2xl:w-[45%]"
     >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         id="progress_bar"
-        className="fixed bottom-0 left-0 z-50 h-2 w-screen origin-left bg-zinc-500"
+        className="bg-accent fixed bottom-0 left-0 z-50 h-2 w-screen origin-left"
       ></motion.div>
       <button
         className="hidden"
@@ -109,11 +114,14 @@ export default function BlogEntry({
           className="fixed bottom-28 right-0 z-50 mb-28 mr-20 lg:mr-28"
         />
       </button>
-      <div className="fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2   rounded-b-xl bg-zinc-900 bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
-        <div id="blog_hero" className="mx-auto flex flex-col gap-2 p-5">
+      <div className="fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2  bg-zinc-900 bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
+        <div
+          id="blog_hero"
+          className={"mx-auto flex flex-col gap-2 p-5 " + roboto_slab.className}
+        >
           <h1
             id="blog_title"
-            className="bg-gradient-to-r from-yellow-300 to-red-500 bg-clip-text pb-1 text-left text-6xl font-extrabold text-transparent transition"
+            className="text-neutral pb-1 text-left text-6xl font-extrabold transition"
           >
             {blog_entry?.title}
           </h1>
@@ -142,7 +150,7 @@ export default function BlogEntry({
         style={{
           backgroundImage: `url("${blog_entry?.cover_image}")`,
         }}
-        className="-z-10 h-[30vh] bg-zinc-500 bg-cover bg-center"
+        className="z-10 h-[30vh] bg-zinc-500 bg-cover bg-center shadow-md"
       ></div>
 
       <div className={`relative leading-relaxed ${textSizes[textSize]}`}>

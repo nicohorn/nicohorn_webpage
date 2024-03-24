@@ -12,8 +12,17 @@ const config: Config = {
         bg_texture: "url('/dark-concrete-texture-background.jpg')",
       },
       colors: {
-        white: "#E5E5E5",
-        black: "#0d0d0d"
+        //Color palette here https://colorhunt.co/palette/a212321a183120615bdece9c
+
+        black: "#0d0d0d",
+        background: "#191919",
+        primary: "#151328",
+        secondary: "#1F2544",
+        accent: "#9E3333",
+        neutral: "#F4DFC8",
+        white: "#D9ECF2",
+
+
       }
     },
   },

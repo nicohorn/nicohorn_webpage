@@ -2,6 +2,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion, animate } from "framer-motion";
+import Title from "./Title";
 
 export default function Stack({ lang }: { lang: string }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -51,6 +52,18 @@ export default function Stack({ lang }: { lang: string }) {
     </svg>
   );
 
+  const [activeColor, setActiveColor] = useState("");
+
+  const color_palette = [
+    { color: "black", code: "#0D0D0D", before: "Black" },
+    { color: "background", code: "#191919" },
+    { color: "primary", code: "#151328" },
+    { color: "secondary", code: "#1F2544" },
+    { color: "accent", code: "#9E3333" },
+    { color: "neutral", code: "#F4DFC8" },
+    { color: "white", code: "#D9ECF2" },
+  ];
+
   const Modal = ({ children }: { children: React.ReactNode }) => {
     if (modalOpen)
       return (
@@ -76,13 +89,13 @@ export default function Stack({ lang }: { lang: string }) {
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center bg-black/80"
+          className="text-neutral fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center bg-black/80"
         >
           <motion.div
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             id="stack_modal_content"
-            className=" bg-zinc-800 px-8 py-6 "
+            className=" bg-background px-8 py-6 "
           >
             {children}
           </motion.div>
@@ -94,7 +107,7 @@ export default function Stack({ lang }: { lang: string }) {
   };
   return (
     <>
-      <div className="w-fit">
+      <div className=" w-fit ">
         <div
           onClick={() => {
             setModalOpen(true);
@@ -103,16 +116,15 @@ export default function Stack({ lang }: { lang: string }) {
               document.getElementById("stack_modal")?.focus();
             }, 100);
           }}
-          className="flex cursor-pointer items-baseline gap-2 border-b border-zinc-800 transition hover:border-white"
+          className="border-accent hover:border-neutral flex cursor-pointer items-baseline gap-2 border-b transition"
         >
           <p className="text-xs">
-            {lang === "en-US" ? "Made with" : "Hecho con"}
+            {lang === "en-US" ? "Made with Next.js" : "Hecho con Next.js"}
           </p>
-          <span>{nextlogo({ size: 12 })}</span>
         </div>
         <Modal>
-          <div>
-            <h1>Tech stack</h1>
+          <div className="flex flex-col">
+            <Title title="Site info" size="md" />
             <div className="flex flex-col gap-3 lg:flex-row">
               <div>Framework: {nextlogo({ size: 18 })}</div>
               <div>
@@ -142,6 +154,22 @@ export default function Stack({ lang }: { lang: string }) {
                   src="https://prismalens.vercel.app/header/logo-white.svg"
                 ></img>
               </div>
+            </div>
+          </div>
+          <div className="mt-4">
+            Color palette
+            <div className="flex flex-wrap gap-2 ">
+              {color_palette.map((color) => {
+                return (
+                  <button
+                    id={`button_id_${color.color}`}
+                    className={`w-36 py-1 bg-${color.color} capitalize`}
+                    key={color.code}
+                  >
+                    {color.color}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </Modal>

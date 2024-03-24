@@ -5,7 +5,7 @@ import ProfessionalExperience from "./components/WorkExperience";
 
 export default function AboutMe({ params }: { params: { lang: string } }) {
   return (
-    <main className="main-y main-x flex flex-col gap-8">
+    <main className="main-y main-x flex flex-col gap-8 lg:max-w-[700px]">
       <div>
         <Title
           size="md"

@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import "./../globals.css";
 import type { Metadata } from "next";
-import { Oswald } from "next/font/google";
 import { getServerSession } from "next-auth";
 import { users } from "@prisma/client";
 import { guest_links, links } from "../Links";
@@ -10,10 +9,15 @@ import { authOptions } from "@/utils/authOptions";
 import LanguagesListbox from "@/components/LanguagesListbox";
 import Navbar from "@/components/Navbar";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Montserrat } from "next/font/google";
-const oswald = Oswald({ subsets: ["latin"], display: "swap" });
-const montserrat = Montserrat({
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+import { Courier_Prime } from "next/font/google";
+import { Press_Start_2P } from "next/font/google";
+
+const courier_prime = Courier_Prime({
+  weight: ["400", "700"],
+  subsets: ["latin-ext"],
+});
+const press_start = Press_Start_2P({
+  weight: ["400"],
   subsets: ["cyrillic"],
 });
 
@@ -42,7 +46,7 @@ export default async function RootLayout({
 
   return (
     <html
-      className={` ${montserrat.className} mt-5 h-screen overflow-x-hidden bg-black bg-fixed text-white pattern-graph-yellow-900/30`}
+      className={`${courier_prime.className} selection:bg-accent mt-5 h-screen overflow-x-hidden bg-black bg-fixed text-white selection:text-white`}
       lang={`${params.lang}`}
     >
       <body className={"relative z-0 flex h-full flex-col scroll-smooth"}>

@@ -1,10 +1,9 @@
 import React from "react";
-import SquareLoader from "@/components/SquareLoader";
 
 export default function Loading() {
   return (
-    <main className="flex h-[50vh] w-screen items-center justify-center">
-      <SquareLoader />
+    <main className="fixed left-0 top-0 -z-50 mx-auto my-auto flex h-screen w-screen justify-center bg-black">
+      <div className="border-accent mt-[45vh] h-10 w-10 animate-spin rounded-full border-b"></div>
     </main>
   );
 }

@@ -9,11 +9,11 @@ import Image from "@tiptap/extension-image";
 import { EditorProvider } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React from "react";
-import { Montserrat } from "next/font/google";
+import { Courier_Prime } from "next/font/google";
 
-const montserrat = Montserrat({
-  subsets: ["cyrillic"],
-  weight: ["100", "300", "400", "500", "700", "900"],
+const courier_prime = Courier_Prime({
+  weight: ["400", "700"],
+  subsets: ["latin-ext"],
 });
 
 export default function TipTapContent({
@@ -47,7 +47,7 @@ export default function TipTapContent({
   ];
 
   return (
-    <div className={montserrat.className}>
+    <div className={courier_prime.className}>
       <EditorProvider
         editable={false}
         extensions={extensions}

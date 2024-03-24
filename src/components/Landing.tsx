@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Script from "next/script";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { TagsToSpanish } from "@/utils/dictionaries/Tags";
 import {
@@ -67,7 +66,7 @@ export default function Landing({
             shimmer(800, 800),
           )}`}
           layout="fill"
-          className=" flex-grow cursor-pointer rounded-lg object-cover"
+          className=" flex-grow cursor-pointer  object-cover"
           alt="Profile picture of Nico Horn"
           src={image}
         ></Image>
@@ -79,7 +78,7 @@ export default function Landing({
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
   return (
-    <main className="main-y mx-auto flex w-[90vw] flex-col items-center md:w-[700px]">
+    <main className="main-y main-x flex w-[90vw] flex-col items-center md:w-[700px]">
       <div className="flex flex-col ">
         <Title
           size="md"
@@ -101,7 +100,7 @@ export default function Landing({
               className="relative flex flex-col flex-wrap gap-2 text-[1rem]"
             >
               <div
-                className="pointer-events-none absolute -z-10 hidden rounded-lg  bg-yellow-900 duration-150 lg:block"
+                className="bg-secondary pointer-events-none absolute -z-10 hidden  duration-150 lg:block"
                 style={{
                   opacity: linkBgOpacity,
                   height: document
@@ -118,11 +117,11 @@ export default function Landing({
                 }}
               ></div>
               <div>
-                <span className="mr-1 text-3xl font-bold">
+                <span className="mr-2 text-3xl font-bold">
                   {langIsEnglish ? "I'm" : "Soy"}
                 </span>
                 {langIsEnglish
-                  ? "a systems engineer and professor, welcome to my website! 😁This is my online place, here you can: "
+                  ? "a systems engineer and professor, welcome to my website! 😁 This is my online place, here you can: "
                   : "ingeniero en sistemas y profesor, bienvenido a mi página 😁 Este es mi espacio online, acá podés:"}
               </div>
               <div className="flex flex-wrap items-center gap-2">
@@ -132,7 +131,7 @@ export default function Landing({
                     setHoverLink("blog");
                   }}
                   id={`link_blog`}
-                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition hover:border-yellow-600"
+                  className="border-accent hover:border-secondary w-fit  border-b px-1 transition"
                   href={`/${lang}/blog`}
                 >
                   {langIsEnglish ? "Visit my blog 📝" : "Visitar mi blog 📝"}
@@ -150,8 +149,8 @@ export default function Landing({
                     setHoverLink("about_me");
                   }}
                   id={`link_about_me`}
-                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
-                    hover:border-yellow-600"
+                  className="border-accent hover:border-secondary w-fit  border-b px-1
+                    transition"
                   href={`/${lang}/about_me`}
                 >
                   {langIsEnglish
@@ -166,8 +165,8 @@ export default function Landing({
                     setHoverLink("mailto");
                   }}
                   id={`link_mailto`}
-                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
-                    hover:border-yellow-600"
+                  className="border-accent hover:border-secondary w-fit  border-b px-1
+                    transition"
                   href="mailto:contact@nicohorn.com"
                 >
                   {langIsEnglish
@@ -202,8 +201,8 @@ export default function Landing({
                     setHoverLink("cool_stuff");
                   }}
                   id={`link_cool_stuff`}
-                  className="w-fit rounded-lg border border-yellow-600/50 px-1 transition
-                    hover:border-yellow-600"
+                  className="border-accent hover:border-secondary w-fit  border-b px-1
+                    transition"
                   href={`/${lang}/cool_stuff`}
                 >
                   {langIsEnglish
@@ -220,7 +219,7 @@ export default function Landing({
                   }}
                   target="_blank"
                   id={`link_linkedin`}
-                  className="w-fit rounded-lg  p-1 text-yellow-100"
+                  className="text-neutral w-fit   p-1"
                   href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
                 >
                   <IconBrandLinkedin />
@@ -232,7 +231,7 @@ export default function Landing({
                   }}
                   target="_blank"
                   id={`link_twitter`}
-                  className="w-fit rounded-lg  p-1 text-yellow-100"
+                  className="text-neutral w-fit   p-1"
                   href={`/${lang}/about_me`}
                 >
                   <IconBrandX />
@@ -244,7 +243,7 @@ export default function Landing({
                   }}
                   target="_blank"
                   id={`link_github`}
-                  className="w-fit rounded-lg p-1 text-yellow-100"
+                  className="text-neutral w-fit  p-1"
                   href="https://github.com/nicohorn"
                 >
                   <IconBrandGithub />
@@ -256,7 +255,7 @@ export default function Landing({
                   }}
                   target="_blank"
                   id={`link_instagram`}
-                  className="w-fit rounded-lg p-1 text-yellow-100"
+                  className="text-neutral w-fit  p-1"
                   href="https://www.instagram.com/nic0horn/"
                 >
                   <IconBrandInstagram />
@@ -279,7 +278,7 @@ export default function Landing({
               transition={{ delay: 0.7 }}
               className="flex-grow"
             >
-              <h1 className="w-fit bg-gradient-to-r from-yellow-100 to-yellow-200 bg-clip-text font-extrabold uppercase text-transparent ">
+              <h1 className="text-neutral w-fit font-extrabold">
                 {lang === "en-US"
                   ? "Latest entries on my blog"
                   : "Últimas entradas en mi blog"}
@@ -291,13 +290,13 @@ export default function Landing({
                     key={entry.id}
                     href={`/${lang}/blog/${entry.id}`}
                   >
-                    <p className="my-2 flex justify-between gap-2 border-b border-zinc-800 py-1 transition hover:border-b-yellow-300">
+                    <p className="hover:border-b-neutral border-accent my-2 flex justify-between gap-2 border-b py-1 transition">
                       {entry.title}
                       <p className="flex flex-wrap justify-end gap-2">
                         {entry.tags.map((t) => {
                           return (
                             <span
-                              className="rounded-full bg-zinc-900 px-2 py-1 text-xs"
+                              className="h-fit bg-zinc-900 px-2 pt-[2px] text-xs"
                               key={t.blog_tag_id}
                             >
                               {lang === "en-US"

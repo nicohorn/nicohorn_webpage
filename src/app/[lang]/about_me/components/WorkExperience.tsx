@@ -17,15 +17,8 @@ import {
   IconBrandCodesandbox,
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import { Merriweather } from "next/font/google";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "700", "900"],
-});
+import Title from "@/components/Title";
 
 export default function ProfessionalExperience({ lang }: { lang: string }) {
   const pathname = usePathname();
@@ -69,7 +62,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                       ?.classList.remove("translate-x-16");
                   }, 800);
                 }}
-                className="cursor-pointer opacity-40 hover:text-yellow-300 hover:opacity-100"
+                className="hover:text-neutral cursor-pointer opacity-40 hover:opacity-100"
                 key={idx}
               >
                 {yearItem.year}
@@ -77,7 +70,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
             );
           })}
         </div>
-        <div className="mt-4 flex flex-col border-b-2 border-dashed border-yellow-300 md:ml-6  ">
+        <div className="border-neutral mt-4 flex flex-col border-b-2 border-dashed md:ml-6  ">
           {yearsWithItems.map((yearItem, idx) => {
             return (
               <motion.div
@@ -86,12 +79,12 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="relative border-l-2 border-dashed border-yellow-300 pb-6 transition md:px-4"
+                className="border-neutral relative border-l-2 border-dashed pb-6 transition md:px-4"
                 key={idx}
               >
                 <div className="py-2">
-                  <h1 className="mb-2 mt-7 w-fit -translate-x-4 rounded-md bg-gradient-to-r from-yellow-500  to-yellow-300 px-2 text-lg font-bold text-black active:bg-yellow-500 md:-translate-x-10 ">
-                    {yearItem.year}
+                  <h1 className="bg-accent text-neutral mb-2  mt-7 w-fit -translate-x-4 px-2 py-1 md:-translate-x-10 md:text-2xl ">
+                    <Title title={yearItem.year} size="xs" />
                   </h1>
                 </div>
                 <div className="absolute w-full -translate-y-4 translate-x-2 border-b border-white/20"></div>
@@ -109,16 +102,14 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                         <div>
                           {" "}
                           <div className="flex items-center">
-                            <span className="-ml-1 md:ml-4">
+                            <span className="text-neutral -ml-1 md:ml-4">
                               <IconArrowMoveRight />
                             </span>
-                            <h3 className=" my-1 mb-2 ml-6 w-fit -translate-x-4 bg-gradient-to-r from-yellow-50 to-yellow-100 px-2 font-bold text-black">
-                              {item.title}
-                            </h3>
+                            <div className="bg-secondary my-1 mb-2  ml-6 w-fit -translate-x-4 px-4 py-1 ">
+                              <Title size="xs" title={item.title} />
+                            </div>
                           </div>
-                          <p
-                            className={`${merriweather.className} mb-3 ml-5 font-thin text-zinc-300`}
-                          >
+                          <p className={`mb-3 ml-5  font-thin text-zinc-300`}>
                             {item.description}
                           </p>
                         </div>
@@ -127,7 +118,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
                           viewport={{ once: true }}
-                          className="mb-3 px-5 md:mb-0"
+                          className="text-neutral mb-3 px-5 md:mb-0"
                         >
                           {item.icon}
                         </motion.div>

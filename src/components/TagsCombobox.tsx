@@ -20,7 +20,7 @@ export default function ComboboxComponent({
   const [selected, setSelected] = useState(
     tags.find((tag) => {
       return tag.name === searchParams.get("tag");
-    }) || tags[0]
+    }) || tags[0],
   );
   const [query, setQuery] = useState("");
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function ComboboxComponent({
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   const filteredTags =
@@ -42,33 +42,33 @@ export default function ComboboxComponent({
           tag.name
             .toLowerCase()
             .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
+            .includes(query.toLowerCase().replace(/\s+/g, "")),
         );
 
   return (
-    <div className="flex gap-2 items-center flex-wrap">
+    <div className="flex flex-wrap items-center gap-2">
       <p className="text-lg">
         {lang === "en-US" ? "Search by tag" : "Buscar por tag"}
       </p>
       <>
         <Combobox value={selected} onChange={setSelected}>
           <div className="relative mt-1">
-            <div className="relative w-full cursor-default overflow-hidden  bg-black text-left shadow-md  sm:text-sm">
+            <div className="border-accent relative w-full cursor-default overflow-hidden text-left  shadow-md sm:text-sm">
               <Combobox.Input
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     router.push(
-                      `/${lang}/blog?${createQueryString("tag", selected.name)}`
+                      `/${lang}/blog?${createQueryString("tag", selected.name)}`,
                     );
                   }
                 }}
-                className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-white bg-zinc-700  focus:ring-0"
+                className="bg-background w-full  border-none py-2 pl-3 pr-10 text-sm leading-5 text-white  focus:ring-0"
                 displayValue={(tag: blog_tags) => tag.name}
                 onChange={(event) => setQuery(event.target.value)}
               />
-              <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+              <Combobox.Button className="border-accent absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon
-                  className="h-5 w-5 text-gray-400"
+                  className="text-neutral h-5 w-5"
                   aria-hidden="true"
                 />
               </Combobox.Button>
@@ -80,7 +80,7 @@ export default function ComboboxComponent({
               leaveTo="opacity-0"
               afterLeave={() => setQuery("")}
             >
-              <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto  bg-zinc-800 py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm ml-0 z-[52]">
+              <Combobox.Options className="bg-background absolute z-[52] ml-0 mt-1  max-h-60 w-full overflow-auto py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
                 {filteredTags.length === 0 && query !== "" ? (
                   <div className="relative cursor-default select-none px-4 py-2 text-white">
                     {lang === "en-US" ? "Nothing found 😔" : "Nada che 😔"}
@@ -91,7 +91,7 @@ export default function ComboboxComponent({
                       key={tag.id}
                       className={({ active }) =>
                         `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                          active ? "bg-teal-600 text-black" : "text-white"
+                          active ? "bg-accent" : "text-white"
                         }`
                       }
                       value={tag}
@@ -103,14 +103,14 @@ export default function ComboboxComponent({
                               router.push(
                                 `/${lang}/blog?${createQueryString(
                                   "tag",
-                                  tag.name
-                                )}`
+                                  tag.name,
+                                )}`,
                               );
                             }
                           }}
                           href={`/${lang}/blog?${createQueryString(
                             "tag",
-                            tag.name
+                            tag.name,
                           )}`}
                         >
                           <span
@@ -122,13 +122,13 @@ export default function ComboboxComponent({
                             {lang === "en-US"
                               ? tag.name
                               : TagsToSpanish[tag.name]
-                              ? TagsToSpanish[tag.name]
-                              : tag.name}
+                                ? TagsToSpanish[tag.name]
+                                : tag.name}
                           </span>
                           {selected ? (
                             <span
                               className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                active ? "text-white" : "text-teal-600"
+                                active ? "text-white" : "text-neutral"
                               }`}
                             >
                               <CheckIcon
@@ -155,7 +155,7 @@ export default function ComboboxComponent({
             }
             href={`/${lang}/blog`}
           >
-            <IconTrash className="active:scale-[95%] transition" />
+            <IconTrash className="text-neutral transition active:scale-[95%]" />
           </Link>
         </span>
       </>

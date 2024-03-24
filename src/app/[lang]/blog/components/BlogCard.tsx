@@ -2,12 +2,11 @@
 "use client";
 import React, { useCallback } from "react";
 import { motion } from "framer-motion";
-import { Merriweather } from "next/font/google";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IconClock } from "@tabler/icons-react";
 import { TagsToSpanish } from "@/utils/dictionaries/Tags";
-import Image from "next/image";
+import Title from "@/components/Title";
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -31,12 +30,6 @@ const description = {
   en: "[systems engineer, full stack developer, professor]",
   es: "[ingeniero en sistemas, desarrollador full stack, docente universitario]",
 };
-
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "300",
-});
 
 export const readTimeEstimates = {
   "1 min": { min: 0, max: 1000 },
@@ -101,28 +94,24 @@ export default function BlogCard({
         handleOnMouseMove(e);
       }}
       //Latest two entries show up with more height
-      className="group relative flex h-full min-h-[300px] cursor-pointer border border-black bg-gradient-to-r from-zinc-800/30 to-black/60 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] transition hover:border-zinc-700 lg:w-[30vw]"
+      className="hover:border-accent bg-primary group relative flex h-full min-h-[300px] cursor-pointer border border-black shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] transition lg:w-[30vw]"
     >
       <div className="card group flex-grow flex-wrap">
-        <div className="w-full border-b border-zinc-700 px-4 py-3 shadow-lg">
-          <p className="absolute z-40 flex w-fit -translate-x-2 -translate-y-6 items-center gap-2 rounded-lg bg-zinc-900 px-2 text-sm font-semibold shadow-lg">
+        <div className="border-accent w-full border-b px-4 py-3 shadow-lg">
+          <p className="bg-secondary absolute z-40 flex w-fit -translate-x-2 -translate-y-[26px] items-center gap-2 px-2 text-sm font-semibold shadow-lg">
             {estimateReadTime(blog_entry.content)}{" "}
             <IconClock className="h-4 w-4" />
           </p>
-          <h1 className="w-fit bg-gradient-to-br from-yellow-50 to-yellow-100 bg-clip-text py-1 text-xl font-extrabold text-transparent md:text-xl">
-            {blog_entry.title}
-          </h1>
+          <Title title={blog_entry.title} size="sm" />
         </div>
 
-        <p className={`${merriweather.className} px-4 py-5`}>
-          {blog_entry.description}
-        </p>
+        <p className="px-4 py-5">{blog_entry.description}</p>
         <div className="flex flex-wrap items-end gap-1 px-4 py-3 transition lg:opacity-30 lg:group-hover:opacity-100">
           {"Tags: "}
           {blog_entry.tags.map(({ blog_tag }) => {
             return (
               <span
-                className="rounded-full border border-zinc-700 bg-black px-2 py-1 text-xs font-extrabold text-zinc-400"
+                className="border-neutral/40  border bg-black px-2 pt-[2px] text-xs font-extrabold text-white"
                 key={blog_tag.name}
                 onClick={() => {
                   router.push(

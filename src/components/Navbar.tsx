@@ -10,10 +10,11 @@ import { IconArrowUp, IconMenu2 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { dictLinksToEnglish } from "@/app/Links";
 import Hero from "./Hero";
-import { Oswald } from "next/font/google";
-
-const oswald = Oswald({ subsets: ["latin"], display: "swap" });
-
+import { Roboto_Slab } from "next/font/google";
+const roboto_slab = Roboto_Slab({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["cyrillic"],
+});
 export default function Navbar({
   lang,
   links,
@@ -78,7 +79,10 @@ export default function Navbar({
       initial={{ y: !open ? -navbarHeight : 0 }}
       animate={open ? { y: 0 } : { y: -navbarHeight }}
       id="nav_container"
-      className="fixed left-0  top-0 z-[90] flex h-[500px] w-screen items-center bg-black/90 shadow-lg "
+      className={
+        "bg-background/90 fixed  left-0 top-0 z-[90] flex h-[500px] w-screen items-center text-white shadow-lg " +
+        roboto_slab.className
+      }
     >
       <div className="absolute mb-[32px] flex flex-col items-start gap-2 px-6 lg:flex-row lg:px-12">
         <Hero
@@ -97,10 +101,10 @@ export default function Navbar({
               setLinkBgOpacity(0);
             }, 75);
           }}
-          className="relative flex flex-col flex-wrap  lg:ml-10 lg:flex-row lg:gap-8"
+          className="relative flex flex-col flex-wrap  lg:ml-10 lg:flex-row lg:gap-14"
         >
           <div
-            className="pointer-events-none absolute -left-2 -top-2 bottom-0 z-0 hidden border-yellow-400 bg-yellow-600 duration-150 lg:block"
+            className="bg-accent pointer-events-none absolute -left-2 -top-2 bottom-0 z-0 hidden duration-150 lg:block"
             style={{
               opacity: linkBgOpacity,
               height:
@@ -128,9 +132,9 @@ export default function Navbar({
                 id={`link_id_${link.link}`}
                 key={link.title}
                 href={`/${lang}${link.link}`}
-                className={`z-10  w-fit py-1 text-3xl uppercase transition delay-75 duration-150 lg:py-0   lg:text-5xl ${
+                className={`z-10  w-fit py-1 text-3xl  transition delay-75 duration-150 md:text-4xl lg:py-0   lg:text-7xl ${
                   path === `/${lang + link.link}`
-                    ? "border-b border-b-yellow-400 font-bold"
+                    ? "border-b-accent border-b font-bold"
                     : "font-thin"
                 }`}
               >
@@ -150,7 +154,7 @@ export default function Navbar({
               }}
               id="link_id_logout"
               className={`
-              } z-10  w-fit py-1 text-xl uppercase transition delay-75 duration-150 lg:py-0`}
+              } z-10  w-fit py-1 text-xl  transition delay-75 duration-150 lg:py-0`}
             >
               {lang === "en-US" ? "Log out" : "Cerrar sesión"}
             </button>
@@ -165,7 +169,7 @@ export default function Navbar({
                 setHoverLink("signin");
               }}
               id="link_id_signin"
-              className={`z-10  w-fit py-1 text-xl uppercase transition delay-75 duration-150 lg:py-0`}
+              className={`z-10  w-fit py-1 text-xl  transition delay-75 duration-150 lg:py-0`}
             >
               {lang === "en-US" ? "Sign in" : "Iniciar sesión"}
             </button>
@@ -180,7 +184,7 @@ export default function Navbar({
         aria-label={
           lang === "en-US" ? "Close navbar" : "Cerrar barra de navegación"
         }
-        className="animate-gradient absolute bottom-0 w-full bg-gradient-to-r from-yellow-500/60 to-red-700/60 py-1 transition active:bg-yellow-500"
+        className="bg-primary active:bg-accent absolute bottom-0  w-full py-1 transition"
       >
         {open ? (
           <IconArrowUp className="mx-auto" />

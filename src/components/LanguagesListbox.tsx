@@ -19,7 +19,7 @@ export default function ListboxComponent({
   const [selected, setSelected] = useState(
     languages.find((lang) => {
       return lang.language === currentLang;
-    })!
+    })!,
   );
 
   const path = usePathname();
@@ -46,18 +46,18 @@ export default function ListboxComponent({
         !path.includes("entry") &&
         path.split("/").length > 3
           ? "hidden"
-          : "top-2  fixed z-[51] mt-[32px] left-1/2 sm:left-full -translate-x-1/2 sm:-translate-x-[110%] sm:w-fit w-[90vw]"
+          : "fixed  left-1/2 top-2 z-[51] mt-[32px] w-[90vw] -translate-x-1/2 sm:left-full sm:w-fit sm:-translate-x-[110%]"
       }
     >
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative  w-full">
-          <Listbox.Button className="relative w-full cursor-default bg-zinc-800 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
-            <div className="flex gap-2 items-center">
+          <Listbox.Button className="bg-background relative w-full cursor-default py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm ">
+            <div className="flex items-center gap-2">
               <IconLanguage />
               <span className="block truncate ">{selected.title}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon
-                  className="h-5 w-5 text-gray-400"
+                  className="text-neutral h-5 w-5"
                   aria-hidden="true"
                 />
               </span>
@@ -69,13 +69,13 @@ export default function ListboxComponent({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto  bg-zinc-800 py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm ml-0">
+            <Listbox.Options className="bg-background absolute ml-0 mt-1 max-h-60  w-full overflow-auto py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {languages.map((lang, langIdx) => (
                 <Link key={langIdx} href={pathWithLanguage().path}>
                   <Listbox.Option
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-amber-100 text-amber-900" : "text-white"
+                      `relative cursor-default select-none py-2 pl-10 pr-4 focus-visible:ring-white/75 ${
+                        active ? "bg-accent" : "text-white"
                       }`
                     }
                     value={lang}
@@ -90,7 +90,7 @@ export default function ListboxComponent({
                           {lang.title}
                         </span>
                         {selected ? (
-                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600 ">
+                          <span className="text-neutral absolute inset-y-0 left-0 flex items-center pl-3 ">
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>
                         ) : null}
