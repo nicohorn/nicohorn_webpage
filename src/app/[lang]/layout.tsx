@@ -1,19 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
 import "./../globals.css";
 import type { Metadata } from "next";
-import { Oswald } from "next/font/google";
 import { getServerSession } from "next-auth";
 import { users } from "@prisma/client";
 import { guest_links, links } from "../Links";
 import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
-import LanguagesListbox from "@/components/LanguagesListbox";
+import LanguagesListbox from "@/components/SiteConfig";
 import Navbar from "@/components/Navbar";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Montserrat } from "next/font/google";
-const oswald = Oswald({ subsets: ["latin"], display: "swap" });
-const montserrat = Montserrat({
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+import { Courier_Prime } from "next/font/google";
+import { Press_Start_2P } from "next/font/google";
+
+const courier_prime = Courier_Prime({
+  weight: ["400", "700"],
+  subsets: ["latin-ext"],
+});
+const press_start = Press_Start_2P({
+  weight: ["400"],
   subsets: ["cyrillic"],
 });
 
@@ -42,10 +46,19 @@ export default async function RootLayout({
 
   return (
     <html
-      className={` ${montserrat.className} bg-black pattern-graph-yellow-900/30 bg-fixed text-white overflow-x-hidden h-screen mt-5`}
+      data-theme="theme-dark"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1646488438698-2d5f8bd732e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      }}
+      className={`${courier_prime.className} selection:bg-accent theme-dark mt-5 h-screen overflow-x-hidden bg-cover bg-fixed bg-center selection:text-white`}
       lang={`${params.lang}`}
     >
-      <body className={"z-0 relative scroll-smooth h-full flex flex-col"}>
+      <body
+        className={
+          "relative z-0 flex min-h-screen min-w-[100vw] flex-col scroll-smooth bg-black"
+        }
+      >
         <Navbar
           lang={params.lang}
           session={session!}
@@ -66,7 +79,7 @@ export default async function RootLayout({
           ]}
           currentLang={params.lang!}
         />
-        <div className="md:mx-12 mx-5 my-16 md:my-8">{children}</div>
+        {children}
 
         <Footer lang={params.lang} />
         <GoogleAnalytics gaId="G-5FJK8CL5W8" />

@@ -74,7 +74,7 @@ export default function TextEditor({
     }
 
     return (
-      <div className="flex gap-3 flex-wrap border-b border-zinc-600 p-3 mb-3 bg-black z-50 sticky top-8 w-full">
+      <div className="border-secondary sticky top-8 z-50 mb-3 flex w-full flex-wrap gap-3 border-b bg-black p-3">
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -83,8 +83,8 @@ export default function TextEditor({
           disabled={!editor.can().chain().focus().toggleBold().run()}
           className={
             editor.isActive("bold")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           <IconBold />
@@ -97,8 +97,8 @@ export default function TextEditor({
           disabled={!editor.can().chain().focus().toggleItalic().run()}
           className={
             editor.isActive("italic")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           <IconItalic />
@@ -111,8 +111,8 @@ export default function TextEditor({
           disabled={!editor.can().chain().focus().toggleStrike().run()}
           className={
             editor.isActive("strike")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           <IconStrikethrough />
@@ -125,14 +125,14 @@ export default function TextEditor({
           disabled={!editor.can().chain().focus().toggleCode().run()}
           className={
             editor.isActive("code")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           <IconCode />
         </button>
         <button
-          className="opacity-60 hover:opacity-100 transition"
+          className="opacity-60 transition hover:opacity-100"
           onClick={(e) => {
             e.preventDefault();
             editor.chain().focus().unsetAllMarks().run();
@@ -141,7 +141,7 @@ export default function TextEditor({
           clear marks
         </button>
         <button
-          className="opacity-60 hover:opacity-100 transition"
+          className="opacity-60 transition hover:opacity-100"
           onClick={(e) => {
             e.preventDefault();
             editor.chain().focus().clearNodes().run();
@@ -156,8 +156,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("paragraph")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           paragraph
@@ -169,8 +169,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("heading", { level: 1 })
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           h1
@@ -182,8 +182,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("heading", { level: 2 })
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           h2
@@ -195,8 +195,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("heading", { level: 3 })
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           h3
@@ -208,8 +208,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("heading", { level: 4 })
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           h4
@@ -222,8 +222,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("bulletList")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           bullet list
@@ -235,8 +235,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("orderedList")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           ordered list
@@ -248,8 +248,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("codeBlock")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           code block
@@ -261,8 +261,8 @@ export default function TextEditor({
           }}
           className={
             editor.isActive("blockquote")
-              ? "bg-white text-black rounded-sm px-1 border"
-              : "text-white rounded-sm px-1 border opacity-60 hover:opacity-100 transition"
+              ? "rounded-sm border bg-white px-1 text-black"
+              : "rounded-sm border px-1 text-white opacity-60 transition hover:opacity-100"
           }
         >
           blockquote
@@ -337,7 +337,7 @@ export default function TextEditor({
             });
           }}
           htmlFor="text_editor_image"
-          className={"text-white rounded-sm px-1 cursor-pointer"}
+          className={"cursor-pointer rounded-sm px-1 text-white"}
         >
           <IconPhoto />
         </label>
@@ -392,9 +392,9 @@ export default function TextEditor({
           className={`
             ${
               !contentSet
-                ? " bg-zinc-900 px-2 hover:bg-zinc-800"
+                ? " bg-background hover:bg-accent px-2"
                 : " bg-green-700 px-2 hover:bg-green-800"
-            } mx-auto transition rounded-sm active:scale-[99%]`}
+            } mx-auto rounded-sm text-white transition active:scale-[99%]`}
         >
           {contentSet ? "content set ✅" : "set content"}
         </button>
@@ -403,7 +403,9 @@ export default function TextEditor({
   };
 
   return (
-    <div className={`border border-zinc-600 p-4 ${montserrat.className} `}>
+    <div
+      className={`border-secondary rounded border p-4 ${montserrat.className} `}
+    >
       <EditorProvider
         slotBefore={<MenuBar />}
         extensions={extensions}

@@ -39,7 +39,7 @@ export default function BlogEntryForm({
   const blog_entry_new_tag = useRef<HTMLInputElement>(null);
   const [imageSrcs, setImageSrcs] = useState<string[]>([]);
   const [blog_entry_content, setContent] = useState<string>(
-    blog_entry?.content || "<h1>Hello world!</h1>"
+    blog_entry?.content || "<h1>Hello world!</h1>",
   );
   const [tagList, setTagList] = useState(tags);
   const [selectedTags, setSelectedTags] = useState<
@@ -105,7 +105,7 @@ export default function BlogEntryForm({
 
   const updateBlogEntry = async (
     id: string,
-    blog_entry: BlogEntryWithTagsForm
+    blog_entry: BlogEntryWithTagsForm,
   ) => {
     const res = await fetch("/api/blog_entry", {
       method: "PUT",
@@ -152,8 +152,11 @@ export default function BlogEntryForm({
   };
 
   return (
-    <form className="xl:w-[50%] flex flex-col gap-4">
-      <Title title={lang === "en-US" ? "Blog entry" : "Entrada de blog"} />
+    <form className="flex flex-col gap-4 text-white xl:w-[50%]">
+      <Title
+        size="md"
+        title={lang === "en-US" ? "Blog entry" : "Entrada de blog"}
+      />
       <div className="flex flex-col gap-1">
         <label htmlFor="blog_entry_title">
           {lang === "en-US" ? "Title" : "Título"}
@@ -162,12 +165,12 @@ export default function BlogEntryForm({
           value={""}
           id="blog_entry_title"
           ref={blog_title}
-          className="bg-black border border-zinc-600 focus:border-b-white transition px-2 h-14  outline-none text-4xl"
+          className="border-secondary h-14 rounded border bg-black px-2 text-4xl outline-none  transition focus:border-b-white"
           //== hw => fix the warning "A component is changing an uncontrolled input to be controlled" https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
           {...form.getInputProps("title")}
         />
         {form.getInputProps("title").error && (
-          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+          <p className=" text-neutral pl-3 pt-1 text-xs  saturate-[80%]">
             *{form.getInputProps("title").error}
           </p>
         )}
@@ -181,10 +184,10 @@ export default function BlogEntryForm({
           id="blog_entry_description"
           ref={blog_description}
           rows={4}
-          className="bg-black border border-zinc-600 focus:border-b-white  px-2 py-1 outline-none"
+          className="border-secondary rounded border bg-black px-2  py-1 outline-none focus:border-b-white"
         />
         {form.getInputProps("description").error && (
-          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+          <p className=" text-neutral pl-3 pt-1 text-xs  saturate-[80%]">
             *{form.getInputProps("description").error}
           </p>
         )}
@@ -192,7 +195,7 @@ export default function BlogEntryForm({
       <div className="flex gap-5">
         <label
           htmlFor="blog_entry_cover_image"
-          className="h-fit flex-grow self-center p-2 text-center border border-zinc-600 bg-zinc-900 cursor-pointer hover:bg-white hover:text-black transition"
+          className="border-secondary bg-background h-fit flex-grow cursor-pointer self-center rounded border p-2 text-center transition hover:bg-white hover:text-black"
         >
           {lang === "en-US" ? "Cover image" : "Imagen de portada"}
         </label>
@@ -226,7 +229,7 @@ export default function BlogEntryForm({
           id="blog_entry_cover_image"
           type="file"
         ></input>
-        <div className={blog_entry_cover_image ? "w-40 relative " : "hidden"}>
+        <div className={blog_entry_cover_image ? "relative w-40 " : "hidden"}>
           <button
             onClick={async (e) => {
               e.preventDefault();
@@ -239,7 +242,7 @@ export default function BlogEntryForm({
               if (data) setBlogEntryCoverImage(undefined);
               else console.log(error);
             }}
-            className="bg-white rounded-full w-6 -right-1 -top-1 text-center pb-1 absolute text-black opacity-50 hover:opacity-100 transition"
+            className="absolute -right-1 -top-1 w-6 rounded-full bg-white pb-1 text-center text-black opacity-50 transition hover:opacity-100"
           >
             x
           </button>
@@ -248,10 +251,10 @@ export default function BlogEntryForm({
       </div>
       <div className="flex flex-col gap-1 ">
         <p>Tags</p>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex flex-wrap gap-2">
           {tagList?.map((tag, idx) => {
             const isTagSelected = selectedTags.some(
-              (selectedTag) => selectedTag.name === tag.name
+              (selectedTag) => selectedTag.name === tag.name,
             );
 
             return (
@@ -264,16 +267,16 @@ export default function BlogEntryForm({
                   } else {
                     setSelectedTags([
                       ...selectedTags.filter(
-                        (selectedTag) => selectedTag.name !== tag.name
+                        (selectedTag) => selectedTag.name !== tag.name,
                       ),
                     ]);
                   }
                 }}
                 className={`${
                   isTagSelected
-                    ? "text-white"
-                    : "text-zinc-600 border-zinc-600 hover:border-zinc-400 hover:text-zinc-400"
-                } border px-2 py-1 rounded-md cursor-pointer`}
+                    ? "bg-primary border-primary text-white"
+                    : "border-secondary  text-neutral hover:border-secondary hover:text-zinc-400"
+                } cursor-pointer rounded border px-2 py-1`}
                 key={idx}
               >
                 {tag.name}
@@ -284,10 +287,10 @@ export default function BlogEntryForm({
             <input
               id="blog_entry_new_tag"
               ref={blog_entry_new_tag}
-              className="bg-black border active:border-b-white border-zinc-600 focus:border-b-white w-fit  px-2 py-1 outline-none"
+              className="border-secondary w-fit rounded-l  border bg-black px-2 py-1  outline-none focus:border-b-white active:border-b-white"
             />
             <button
-              className="text-3xl hover:bg-zinc-800 border-y border-r border-zinc-800 w-8 transition"
+              className="border-secondary hover:text-neutral hover:bg-background w-8 rounded-r border-y border-r text-3xl transition"
               onClick={async (e) => {
                 e.preventDefault();
 
@@ -315,12 +318,12 @@ export default function BlogEntryForm({
           </div>
         </div>
         {form.getInputProps("tags").error && (
-          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+          <p className=" text-neutral pl-3 pt-1 text-xs  saturate-[80%]">
             *{form.getInputProps("tags").error}
           </p>
         )}
       </div>
-      <div className="flex flex-col gap-1 relative">
+      <div className="relative flex flex-col gap-1">
         <label>
           {lang === "en-US" ? "Blog content" : "Contenido del blog"}
         </label>
@@ -333,7 +336,7 @@ export default function BlogEntryForm({
       </div>
       <button
         id="publish_entry_buton"
-        className="border border-zinc-600 bg-zinc-900 transition h-10 hover:bg-white hover:text-black text-zinc-500 pointer-events-none"
+        className="border-secondary bg-background pointer-events-none h-10 rounded border text-white transition hover:bg-white hover:text-black"
         type="submit"
         onClick={async (e) => {
           e.preventDefault();
@@ -362,7 +365,7 @@ export default function BlogEntryForm({
               description: JSON.parse(parseResult.error.message).map(
                 (m: { path: any; message: any }) => {
                   return `-${m.path} => ${m.message} \n`;
-                }
+                },
               ),
               type: "error",
               seconds: 5,
@@ -375,8 +378,8 @@ export default function BlogEntryForm({
             ? "Save changes"
             : "Guardar cambios"
           : lang === "en-US"
-          ? "Publish new entry"
-          : "Publicar entrada"}
+            ? "Publish new entry"
+            : "Publicar entrada"}
       </button>
     </form>
   );

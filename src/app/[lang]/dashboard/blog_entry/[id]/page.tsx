@@ -12,7 +12,7 @@ export default async function Page({
   const tags = await getTags();
 
   return (
-    <main>
+    <main className="main-x main-y">
       <BlogEntryForm blog_entry={blog_entry} tags={tags!} lang={params.lang} />
     </main>
   );

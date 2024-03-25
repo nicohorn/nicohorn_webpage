@@ -6,6 +6,11 @@ import TipTapContent from "../components/TipTapContent";
 import { IconCalendar, IconEdit, IconRss } from "@tabler/icons-react";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
 import { animate, useMotionValueEvent, useScroll, motion } from "framer-motion";
+import { Roboto_Slab } from "next/font/google";
+const roboto_slab = Roboto_Slab({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["cyrillic"],
+});
 
 import {
   IconCircleArrowUpFilled,
@@ -42,7 +47,7 @@ export default function BlogEntry({
     animate(
       "#top_top_button",
       { opacity: latest > 200 ? 1 : 0 },
-      { duration: 0.1 }
+      { duration: 0.1 },
     );
   });
 
@@ -78,7 +83,7 @@ export default function BlogEntry({
 
   useEffect(() => {
     setBlogHeroHeight(
-      document.getElementById("blog_hero")?.getBoundingClientRect().height!
+      document.getElementById("blog_hero")?.getBoundingClientRect().height!,
     );
   });
 
@@ -88,13 +93,13 @@ export default function BlogEntry({
         marginTop: blog_hero_height_in_px,
       }}
       id="blog_entry_component"
-      className="text-justify min-h-screen mb-10 flex flex-col 2xl:w-[45%] xl:w-[60%] lg:w-[60%] w-[100%] mx-auto gap-4 lg:text-xl"
+      className="bg-primary mx-auto flex w-[90%] flex-col gap-4 px-3 pb-12 text-white lg:w-[60%] lg:text-xl xl:w-[60%] 2xl:w-[45%]"
     >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         id="progress_bar"
-        className="h-2 w-screen origin-left bg-zinc-500 fixed bottom-0 left-0 z-50"
+        className="bg-accent fixed bottom-0 left-0 z-50 h-2 w-screen origin-left"
       ></motion.div>
       <button
         className="hidden"
@@ -106,20 +111,25 @@ export default function BlogEntry({
         <IconCircleArrowUpFilled
           width={50}
           height={50}
-          className="fixed bottom-28 right-0 mb-28 mr-20 lg:mr-28 z-50"
+          className="fixed bottom-28 right-0 z-50 mb-28 mr-20 lg:mr-28"
         />
       </button>
-      <div className="fixed rounded-b-xl mt-5 bg-cover bg-center bg-zinc-900 shadow-lg   2xl:w-[45%] lg:w-[60%] w-[90%] left-1/2 -translate-x-1/2 top-0 z-[50]">
-        <div id="blog_hero" className="mx-auto flex flex-col gap-2 p-5">
+      <div className="bg-background fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2   rounded-b bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
+        <div
+          id="blog_hero"
+          className={
+            "mx-auto flex flex-col gap-2  p-5 " + roboto_slab.className
+          }
+        >
           <h1
             id="blog_title"
-            className="text-left pb-1 text-6xl font-extrabold transition text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-600"
+            className="text-neutral pb-1 text-left text-6xl font-extrabold transition"
           >
             {blog_entry?.title}
           </h1>
           <div
             id="blog_date"
-            className="flex gap-2 items-center font-thin justify-between"
+            className="flex items-center justify-between gap-2 font-thin"
           >
             <div id="blog_created_at" className="flex items-center gap-2">
               <IconCalendar />
@@ -142,20 +152,20 @@ export default function BlogEntry({
         style={{
           backgroundImage: `url("${blog_entry?.cover_image}")`,
         }}
-        className="bg-zinc-500 -z-10 h-[30vh] bg-cover bg-center"
+        className="z-10 h-[30vh] rounded bg-zinc-500 bg-cover bg-center shadow-md"
       ></div>
 
-      <div className={`leading-relaxed relative ${textSizes[textSize]}`}>
+      <div className={`relative leading-relaxed ${textSizes[textSize]}`}>
         {user?.role === "admin" && (
           <Link
-            className="flex gap-2 items-center opacity-75 hover:opacity-100 transition"
+            className="flex items-center gap-2 opacity-75 transition hover:opacity-100"
             href={`/${lang}/dashboard/blog_entry/${blog_entry.id}`}
           >
             {lang === "en-US" ? "Edit blog entry" : "Editar entrada de blog"}{" "}
             <IconEdit />
           </Link>
         )}
-        <div className="flex my-6 items-center gap-3 ">
+        <div className="my-6 flex items-center gap-3 ">
           <button
             className="opacity-40 hover:opacity-100 active:scale-90"
             aria-label="Decrease text size"
@@ -166,7 +176,7 @@ export default function BlogEntry({
           >
             <IconMinus />
           </button>
-          <IconTextSize className="w-8 h-8" />
+          <IconTextSize className="h-8 w-8" />
           <button
             className="opacity-40 hover:opacity-100 active:scale-90"
             aria-label="Increase text size"

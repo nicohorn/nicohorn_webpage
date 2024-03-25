@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Title from "./Title";
 
 export default function Hero({
   title,
@@ -24,13 +25,15 @@ export default function Hero({
         scale: 1,
       }}
       animate={{ scale: 1 }}
-      className={" flex-col pr-2 hover:cursor-pointer  w-fit flex -mt-4"}
+      className={" -mt-4 flex w-fit  flex-col pr-2 hover:cursor-pointer"}
     >
-      <motion.h1 className=" md:text-5xl lg:text-8xl text-2xl uppercase font-extrabold">
-        <Link href={`/${lang}/`}>{title}</Link>
+      <motion.h1 className="  text-neutral text-2xl font-extrabold uppercase md:text-5xl lg:text-8xl ">
+        <Link className="flex" href={`/${lang}/`}>
+          <Title size="lg" title={title} />
+        </Link>
       </motion.h1>
       <motion.div
-        className="flex text-xl font-semibold"
+        className="flex font-semibold md:text-xl"
         initial="hidden"
         animate="visible"
       >
@@ -38,7 +41,7 @@ export default function Hero({
           return (
             <motion.span
               transition={{ duration: 0.1 }}
-              whileHover={{ color: "yellow", scale: 1.2 }}
+              whileHover={{ color: "#9E3333", scale: 1.2 }}
               key={idx}
             >
               {char == " " ? <p>&nbsp;</p> : <p>{char}</p>}

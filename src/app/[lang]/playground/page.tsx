@@ -4,8 +4,8 @@ import Title from "@/components/Title";
 
 export default function Page({ params }: { params: { lang: string } }) {
   return (
-    <main className="flex flex-col gap-5">
-      <Title title="Playground" />
+    <main className="main-y main-x flex flex-col gap-5">
+      <Title size="lg" title="Playground" />
       <CodeEditor lang={params.lang} />
     </main>
   );

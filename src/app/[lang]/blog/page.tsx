@@ -38,7 +38,7 @@ export default async function Page({
 }) {
   const blog_entries = await getAllBlogEntriesWithTags(
     searchParams.tag,
-    params.lang
+    params.lang,
   );
   const tags = await getTags();
 
@@ -56,13 +56,13 @@ export default async function Page({
     );
 
   return (
-    <main className="flex flex-col gap-5">
-      <Title title="Blog" />
+    <main className="main-y main-x flex flex-col gap-5">
+      <Title size="lg" title="Blog" />
       <div className="flex flex-col gap-2">
         <ComboboxComponent tags={tags!} lang={params.lang} />
       </div>
       <div className="my-4 w-full">
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col flex-wrap items-stretch gap-5 lg:flex-row">
           {blog_entries.map((entry, idx) => {
             return (
               <Link
@@ -71,7 +71,7 @@ export default async function Page({
                 scroll={false}
                 href={`/${params.lang}/blog/${entry.id}`}
               >
-                <BlogCard blog_entry={entry} idx={idx} />
+                <BlogCard lang={params.lang} blog_entry={entry} idx={idx} />
               </Link>
             );
           })}

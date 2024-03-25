@@ -1,0 +1,25 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "CSS", "comment", "blank", "total"
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\about_me\page.tsx", "TypeScript JSX", 0, 4, 0, 0, 0, 4
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\[id]\page.tsx", "TypeScript JSX", 0, 0, 0, 0, -1, -1
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\components\BlogCard.tsx", "TypeScript JSX", 0, 37, 0, 0, 5, 42
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\loading.tsx", "TypeScript JSX", 0, -1, 0, 0, 0, -1
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\blog\page.tsx", "TypeScript JSX", 0, 21, 0, -16, 1, 6
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\blog_entry\components\BlogEntryForm.tsx", "TypeScript JSX", 0, 3, 0, 0, 0, 3
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\dashboard\page.tsx", "TypeScript JSX", 0, 2, 0, 0, 0, 2
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\layout.tsx", "TypeScript JSX", 0, 7, 0, 0, 0, 7
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\[lang]\page.tsx", "TypeScript JSX", 0, -15, 0, 0, 0, -15
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\app\globals.css", "CSS", 0, 0, 5, 0, 2, 7
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\ComboboxComponent.tsx", "TypeScript JSX", 0, -158, 0, -1, -6, -165
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Footer.tsx", "TypeScript JSX", 0, -1, 0, 0, 0, -1
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Hero.tsx", "TypeScript JSX", 0, 1, 0, 0, -1, 0
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Landing.tsx", "TypeScript JSX", 0, 314, 0, 2, 5, 321
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\ListboxComponent.tsx", "TypeScript JSX", 0, -87, 0, 0, -2, -89
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Navbar.tsx", "TypeScript JSX", 0, 35, 0, -86, -2, -53
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\SquareLoader.tsx", "TypeScript JSX", 0, -10, 0, 0, -1, -11
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Stack.tsx", "TypeScript JSX", 0, 2, 0, 0, 0, 2
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\TagsCombobox.tsx", "TypeScript JSX", 0, 158, 0, 1, 6, 165
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\components\Title.tsx", "TypeScript JSX", 0, 8, 0, 0, 0, 8
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\middleware.ts", "TypeScript", 10, 0, 0, 0, -20, -10
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\repositories\blog_entry.ts", "TypeScript", 29, 0, 0, 0, -8, 21
+"c:\Users\User\Documents\dev\web_development\nicohorn_webpage\src\utils\db.ts", "TypeScript", -1, 0, 0, 1, 0, 0
+"Total", "-", 38, 320, 5, -99, -22, 242

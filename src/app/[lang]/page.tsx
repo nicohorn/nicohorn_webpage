@@ -1,27 +1,11 @@
 import Landing from "@/components/Landing";
+import { getLatest3BlogEntries } from "@/repositories/blog_entry";
+import React from "react";
 
-export default function Page({ params }: { params: { lang: string } }) {
+export default async function Page({ params }: { params: { lang: string } }) {
+  const latest_blog_entries = await getLatest3BlogEntries(params.lang);
+
   return (
-    <main className="w-full flex flex-col">
-      <Landing lang={params.lang} />
-    </main>
+    <Landing latest_blog_entries={latest_blog_entries!} lang={params.lang} />
   );
 }
-
-/* <div className="place-self-end shadow-lg">
-        <a
-          className="twitter-timeline"
-          data-width="350"
-          data-height="500"
-          data-theme="dark"
-          href="https://twitter.com/NicoTheEngineer?ref_src=twsrc%5Etfw"
-        >
-          Tweets by NicoTheEngineer
-        </a>
-      </div>
-
-      <Script async src="https://platform.twitter.com/widgets.js" />
-      <iframe
-        className="w-full aspect-video bg-white"
-        src="https://fastidious-lamington-ed3fd8.netlify.app/"
-      ></iframe> */

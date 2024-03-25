@@ -28,12 +28,6 @@ const images = [
   },
 ];
 
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "300",
-});
-
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -56,15 +50,16 @@ const toBase64 = (str: string) =>
 export default function AboutMeSection({ lang }: { lang: string }) {
   const Content = ({ lang }: { lang: string }) => {
     return (
-      <div className={`${merriweather.className} lg:max-w-[60vw]`}>
-        <p className="text-[1.05rem] leading-relaxed mt-2 font-normal">
+      <div>
+        <p className="mt-2 text-[1.05rem] font-normal leading-relaxed text-white">
           <span
-            className="border-b border-yellow-500/50 cursor-pointer hover:border-yellow-500 hover:bg-yellow-400 hover:text-black transition"
+            className="border-accent hover:border-accent hover:text-neutral hover:bg-accent cursor-pointer border-b  transition"
             onMouseMove={(e) => {
-              const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+              const width = document.body.clientWidth;
+              const cX = e.clientX - cWidth - cWidth * 3;
+              const cY = e.clientY;
+
               setTimeout(() => {
                 document.getElementById("image0")?.classList.remove("hidden");
               }, 100);
@@ -72,20 +67,20 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               animate(
                 "#image0",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  x: cX,
+                  y: cY - 320,
                   scale: 1.03,
-                  borderColor: "yellow",
+
                   opacity: 1,
                 },
-                { duration: 0 }
+                { duration: 0 },
               );
             }}
             onMouseLeave={() => {
               animate(
                 "#image0",
                 { scale: 1, borderColor: "black", opacity: 0 },
-                { delay: 0.1 }
+                { delay: 0.1 },
               );
 
               setTimeout(() => {
@@ -102,32 +97,34 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             ? ", I'm a Systems Engineer graduate (similar to a CS degree), born in Buenos Aires, and I'm 26 years old. I"
             : ", soy ingeniero en sistemas, nací en Buenos Aires, tengo 26 años, y"}{" "}
           <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  hover:bg-yellow-400 hover:text-black transition"
+            className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent  cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
+
               setTimeout(() => {
                 document.getElementById("image1")?.classList.remove("hidden");
               }, 100);
               animate(
                 "#image1",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  x: cX,
+                  y: cY - 320,
                   scale: 1.03,
-                  borderColor: "yellow",
+
                   opacity: 1,
                 },
-                { duration: 0 }
+                { duration: 0 },
               );
             }}
             onMouseLeave={() => {
               animate(
                 "#image1",
                 { scale: 1, borderColor: "black", opacity: 0 },
-                { delay: 0.1 }
+                { delay: 0.1 },
               );
 
               setTimeout(() => {
@@ -143,32 +140,34 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             ? " I'm currently specializing in computer networks and machine learning."
             : "Actualmente estoy especializándome en redes de telecomunicaciones y machine learning.  "}{" "}
           <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  hover:bg-yellow-400 hover:text-black transition"
+            className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent  cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
+
               setTimeout(() => {
                 document.getElementById("image2")?.classList.remove("hidden");
               }, 100);
               animate(
                 "#image2",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  x: cX,
+                  y: cY - 320,
                   scale: 1.03,
-                  borderColor: "yellow",
+
                   opacity: 1,
                 },
-                { duration: 0 }
+                { duration: 0 },
               );
             }}
             onMouseLeave={() => {
               animate(
                 "#image2",
                 { scale: 1, borderColor: "black", opacity: 0 },
-                { delay: 0.1 }
+                { delay: 0.1 },
               );
 
               setTimeout(() => {
@@ -184,12 +183,13 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             ? ", but I also worked as a"
             : ", pero también trabajé como"}{" "}
           <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500  hover:bg-yellow-400 hover:text-black transition"
+            className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent  cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
 
               setTimeout(() => {
                 document.getElementById("image3")?.classList.remove("hidden");
@@ -197,20 +197,20 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               animate(
                 "#image3",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  x: cX,
+                  y: cY - 320,
                   scale: 1.03,
-                  borderColor: "yellow",
+
                   opacity: 1,
                 },
-                { duration: 0 }
+                { duration: 0 },
               );
             }}
             onMouseLeave={() => {
               animate(
                 "#image3",
                 { scale: 1, borderColor: "black", opacity: 0 },
-                { delay: 0.1 }
+                { delay: 0.1 },
               );
 
               setTimeout(() => {
@@ -223,12 +223,13 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               : "fotógrafo, editor de videos"}
           </span>
           <span
-            className="border-b border-yellow-500/50  cursor-pointer hover:border-yellow-500 hover:bg-yellow-400 hover:text-black transition"
+            className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
 
               setTimeout(() => {
                 document.getElementById("image4")?.classList.remove("hidden");
@@ -236,20 +237,20 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               animate(
                 "#image4",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
-                  y: cY - 250,
+                  x: cX,
+                  y: cY - 320,
                   scale: 1.03,
-                  borderColor: "yellow",
+
                   opacity: 1,
                 },
-                { duration: 0 }
+                { duration: 0 },
               );
             }}
             onMouseLeave={() => {
               animate(
                 "#image4",
                 { scale: 1, borderColor: "black", opacity: 0 },
-                { delay: 0.1 }
+                { delay: 0.1 },
               );
 
               setTimeout(() => {
@@ -279,19 +280,19 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               initial={{ opacity: 0, borderColor: "black" }}
               animate={{ opacity: 1 }}
               whileHover={{
-                borderColor: "yellow",
+                borderColor: "neutral",
               }}
               key={idx}
-              className=" w-[20rem] min-h-[50vh] object-cover border border-black relative hidden"
+              className=" relative hidden min-h-[50vh] w-[20rem] rounded border object-cover"
             >
               <Image
                 style={{ objectFit: "cover" }}
-                className="pointer-events-none"
+                className="pointer-events-none rounded"
                 layout="fill"
                 alt={image.alt}
                 src={image.src}
                 placeholder={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(800, 800)
+                  shimmer(800, 800),
                 )}`}
               ></Image>
             </motion.div>
