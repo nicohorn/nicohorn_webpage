@@ -42,7 +42,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
       >
-        <div className="mt-2 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-2 ">
           {yearsWithItems.map((yearItem, idx) => {
             return (
               <button
@@ -70,7 +70,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
             );
           })}
         </div>
-        <div className="border-neutral mt-4 flex flex-col border-b-2 border-dashed md:ml-6  ">
+        <div className="border-neutral mt-4 flex flex-col border-b-2 border-dashed md:ml-6">
           {yearsWithItems.map((yearItem, idx) => {
             return (
               <motion.div
@@ -79,11 +79,11 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="border-neutral relative border-l-2 border-dashed pb-6 transition md:px-4"
+                className="border-neutral relative border-l-2 border-dashed pb-6 text-white transition md:px-4"
                 key={idx}
               >
                 <div className="py-2">
-                  <h1 className="bg-accent text-neutral mb-2  mt-7 w-fit -translate-x-4 rounded px-2 py-1 md:-translate-x-10 md:text-2xl ">
+                  <h1 className="bg-accent mb-2 mt-7  w-fit -translate-x-4 rounded px-2 py-1 text-white md:-translate-x-10 md:text-2xl ">
                     <Title title={yearItem.year} size="xs" />
                   </h1>
                 </div>
@@ -109,7 +109,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                               <Title size="xs" title={item.title} />
                             </div>
                           </div>
-                          <p className={`mb-3 ml-5  font-thin text-zinc-300`}>
+                          <p className={`mb-3 ml-5  font-thin text-white`}>
                             {item.description}
                           </p>
                         </div>

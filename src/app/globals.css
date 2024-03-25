@@ -276,3 +276,19 @@ div {
 .main-x {
   @apply mx-5 md:mx-12;
 }
+
+@keyframes rotateTheme {
+  0% {
+    transform: rotate3d(0, 1, 1, 0deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 1, 180deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 1, 360deg);
+  }
+}
+
+.rotate {
+  animation: rotateTheme 1s ease-in-out;
+}

@@ -14,7 +14,17 @@ import { Notification } from "./Notification";
 
 export default function Footer({ lang }: { lang: string }) {
   useEffect(() => {
+    //Persist theme
+    if (localStorage.getItem("site-theme")) {
+      if (localStorage.getItem("site-theme") === "theme-light") {
+        console.log("segundo if");
+        document.documentElement.classList.replace("theme-dark", "theme-light");
+      } else {
+        document.documentElement.classList.replace("theme-light", "theme-dark");
+      }
+    }
     if (localStorage.getItem("visited") == "true") return;
+
     setTimeout(() => {
       new Notification().props({
         title: "This site uses cookies",
@@ -30,14 +40,17 @@ export default function Footer({ lang }: { lang: string }) {
   return (
     <div
       id="footer_container"
-      className={` bg-primary mt-auto flex w-screen flex-col bg-opacity-40 px-6 py-8 shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] md:min-h-[8rem] md:justify-between md:gap-0 md:px-12`}
+      style={{
+        fillOpacity: 0.1,
+      }}
+      className="bg-primary mt-auto flex w-screen flex-col px-6 py-8 shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] md:min-h-[8rem] md:justify-between md:gap-0 md:px-12"
     >
       <div className="flex flex-col">
         {" "}
         <div className="flex flex-col items-start gap-1 sm:flex-row  ">
           <div className="flex gap-2">
             <Link
-              className="origin-top-left cursor-pointer transition hover:shadow-md"
+              className="origin-top-left cursor-pointer transition "
               aria-label={
                 lang === "en-US"
                   ? "RSS feed for Nico Horn's blog"
@@ -47,13 +60,13 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://nicohorn.com/rss/feed.xml"
             >
               <IconRss
-                className="hover:stroke-neutral transition-all duration-75"
+                className="hover:text-neutral text-white  transition-all duration-75"
                 width={20}
                 height={20}
               />
             </Link>
             <Link
-              className="origin-top-left cursor-pointer transition hover:shadow-md"
+              className="origin-top-left cursor-pointer transition "
               aria-label={
                 lang === "en-US"
                   ? "LinkedIn link to Nico Horn's profile"
@@ -63,13 +76,13 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
             >
               <IconBrandLinkedin
-                className="hover:stroke-neutral transition-all duration-75"
+                className="hover:text-neutral text-white  transition-all duration-75"
                 width={21}
                 height={21}
               />
             </Link>
             <Link
-              className="origin-top-left cursor-pointer transition hover:shadow-md"
+              className="origin-top-left cursor-pointer transition "
               aria-label={
                 lang === "en-US"
                   ? "Twitter link to Nico Horn's profile"
@@ -79,13 +92,13 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://twitter.com/NicoTheEngineer"
             >
               <IconBrandX
-                className="hover:stroke-neutral transition-all duration-75"
+                className="hover:text-neutral text-white  transition-all duration-75"
                 width={20}
                 height={20}
               />
             </Link>
             <Link
-              className="origin-top-left cursor-pointer transition hover:shadow-md"
+              className="origin-top-left cursor-pointer transition "
               aria-label={
                 lang === "en-US"
                   ? "Github link to Nico Horn's profile"
@@ -95,7 +108,7 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://github.com/nicohorn/nicohorn_webpage"
             >
               <IconBrandGithub
-                className="hover:stroke-neutral transition-all duration-75"
+                className="hover:text-neutral text-white  transition-all duration-75"
                 width={20}
                 height={20}
               />
@@ -103,7 +116,7 @@ export default function Footer({ lang }: { lang: string }) {
             <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
               <p
                 id="tooltip_email"
-                className="absolute hidden translate-x-4 translate-y-6 rounded-sm bg-zinc-700 px-2 opacity-0  md:block"
+                className="bg-background absolute hidden translate-x-4 translate-y-6 rounded-sm px-2 opacity-0  md:block"
               >
                 {lang === "en-US"
                   ? "Click to copy email address"
@@ -116,7 +129,7 @@ export default function Footer({ lang }: { lang: string }) {
                 onMouseLeave={() => {
                   animate("#tooltip_email", { opacity: 0 }, { delay: 0.2 });
                 }}
-                className="origin-top-left cursor-pointer transition hover:shadow-md"
+                className="origin-top-left cursor-pointer transition "
                 onClick={() => {
                   navigator.clipboard.writeText("contact@nicohorn.com");
                   alert(
@@ -128,7 +141,7 @@ export default function Footer({ lang }: { lang: string }) {
                 id="nico-email"
               >
                 <IconMail
-                  className="hover:stroke-neutral transition-all duration-75"
+                  className="hover:text-neutral text-white  transition-all duration-75"
                   width={20}
                   height={20}
                 />

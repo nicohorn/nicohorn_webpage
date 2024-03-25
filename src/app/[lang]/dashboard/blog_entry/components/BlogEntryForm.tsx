@@ -152,7 +152,7 @@ export default function BlogEntryForm({
   };
 
   return (
-    <form className="flex flex-col gap-4 xl:w-[50%]">
+    <form className="flex flex-col gap-4 text-white xl:w-[50%]">
       <Title
         size="md"
         title={lang === "en-US" ? "Blog entry" : "Entrada de blog"}
@@ -165,12 +165,12 @@ export default function BlogEntryForm({
           value={""}
           id="blog_entry_title"
           ref={blog_title}
-          className="h-14 border border-zinc-600 bg-black px-2 text-4xl outline-none  transition focus:border-b-white"
+          className="border-secondary h-14 rounded border bg-black px-2 text-4xl outline-none  transition focus:border-b-white"
           //== hw => fix the warning "A component is changing an uncontrolled input to be controlled" https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
           {...form.getInputProps("title")}
         />
         {form.getInputProps("title").error && (
-          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+          <p className=" text-neutral pl-3 pt-1 text-xs  saturate-[80%]">
             *{form.getInputProps("title").error}
           </p>
         )}
@@ -184,10 +184,10 @@ export default function BlogEntryForm({
           id="blog_entry_description"
           ref={blog_description}
           rows={4}
-          className="border border-zinc-600 bg-black px-2  py-1 outline-none focus:border-b-white"
+          className="border-secondary rounded border bg-black px-2  py-1 outline-none focus:border-b-white"
         />
         {form.getInputProps("description").error && (
-          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+          <p className=" text-neutral pl-3 pt-1 text-xs  saturate-[80%]">
             *{form.getInputProps("description").error}
           </p>
         )}
@@ -195,7 +195,7 @@ export default function BlogEntryForm({
       <div className="flex gap-5">
         <label
           htmlFor="blog_entry_cover_image"
-          className="h-fit flex-grow cursor-pointer self-center border border-zinc-600 bg-zinc-900 p-2 text-center transition hover:bg-white hover:text-black"
+          className="border-secondary bg-background h-fit flex-grow cursor-pointer self-center rounded border p-2 text-center transition hover:bg-white hover:text-black"
         >
           {lang === "en-US" ? "Cover image" : "Imagen de portada"}
         </label>
@@ -274,9 +274,9 @@ export default function BlogEntryForm({
                 }}
                 className={`${
                   isTagSelected
-                    ? "text-white"
-                    : "border-zinc-600 text-zinc-600 hover:border-zinc-400 hover:text-zinc-400"
-                } cursor-pointer rounded-md border px-2 py-1`}
+                    ? "bg-primary border-primary text-white"
+                    : "border-secondary  text-neutral hover:border-secondary hover:text-zinc-400"
+                } cursor-pointer rounded border px-2 py-1`}
                 key={idx}
               >
                 {tag.name}
@@ -287,10 +287,10 @@ export default function BlogEntryForm({
             <input
               id="blog_entry_new_tag"
               ref={blog_entry_new_tag}
-              className="w-fit border border-zinc-600 bg-black px-2 py-1  outline-none focus:border-b-white active:border-b-white"
+              className="border-secondary w-fit rounded-l  border bg-black px-2 py-1  outline-none focus:border-b-white active:border-b-white"
             />
             <button
-              className="w-8 border-y border-r border-zinc-800 text-3xl transition hover:bg-zinc-800"
+              className="border-secondary hover:text-neutral hover:bg-background w-8 rounded-r border-y border-r text-3xl transition"
               onClick={async (e) => {
                 e.preventDefault();
 
@@ -318,7 +318,7 @@ export default function BlogEntryForm({
           </div>
         </div>
         {form.getInputProps("tags").error && (
-          <p className=" pl-3 pt-1 text-xs text-gray-600 saturate-[80%]">
+          <p className=" text-neutral pl-3 pt-1 text-xs  saturate-[80%]">
             *{form.getInputProps("tags").error}
           </p>
         )}
@@ -336,7 +336,7 @@ export default function BlogEntryForm({
       </div>
       <button
         id="publish_entry_buton"
-        className="pointer-events-none h-10 border border-zinc-600 bg-zinc-900 text-zinc-500 transition hover:bg-white hover:text-black"
+        className="border-secondary bg-background pointer-events-none h-10 rounded border text-white transition hover:bg-white hover:text-black"
         type="submit"
         onClick={async (e) => {
           e.preventDefault();

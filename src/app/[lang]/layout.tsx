@@ -6,7 +6,7 @@ import { users } from "@prisma/client";
 import { guest_links, links } from "../Links";
 import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
-import LanguagesListbox from "@/components/LanguagesListbox";
+import LanguagesListbox from "@/components/SiteConfig";
 import Navbar from "@/components/Navbar";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Courier_Prime } from "next/font/google";
@@ -46,10 +46,18 @@ export default async function RootLayout({
 
   return (
     <html
-      className={`${courier_prime.className} selection:bg-accent mt-5 h-screen overflow-x-hidden bg-black bg-fixed text-white selection:text-white`}
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1646488438698-2d5f8bd732e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      }}
+      className={`${courier_prime.className} selection:bg-accent theme-dark mt-5 h-screen overflow-x-hidden bg-cover bg-fixed bg-center selection:text-white`}
       lang={`${params.lang}`}
     >
-      <body className={"relative z-0 flex h-full flex-col scroll-smooth"}>
+      <body
+        className={
+          "relative z-0 flex min-h-screen flex-col scroll-smooth bg-black"
+        }
+      >
         <Navbar
           lang={params.lang}
           session={session!}

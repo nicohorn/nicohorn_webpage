@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, animate } from "framer-motion";
 import Title from "./Title";
 import { IconInfoCircle } from "@tabler/icons-react";
@@ -10,7 +11,7 @@ export default function Stack({ lang }: { lang: string }) {
 
   const nextlogo = ({ size }: { size?: number }) => (
     <svg
-      className="fill-white"
+      className="fill-white drop-shadow"
       aria-label="Next.js logotype"
       height={size ? `${size}px` : "18px"}
       role="img"
@@ -53,15 +54,37 @@ export default function Stack({ lang }: { lang: string }) {
     </svg>
   );
 
-  const color_palette = [
-    { color: "black", code: "#0D0D0D", before: "Black" },
-    { color: "background", code: "#191919" },
-    { color: "primary", code: "#151328" },
-    { color: "secondary", code: "#1F2544" },
-    { color: "accent", code: "#9E3333" },
-    { color: "neutral", code: "#F4DFC8" },
-    { color: "white", code: "#D9ECF2" },
-  ];
+  const dark_color_palette: { [key: string]: string } = {
+    black: "#0D0D0D",
+    background: "#191919",
+    primary: "#151328",
+    secondary: "#1F2544",
+    accent: "#9E3333",
+    neutral: "#F4DFC8",
+    white: "#D9ECF2",
+  };
+
+  const light_color_palette: { [key: string]: string } = {
+    black: "#D9ECF2",
+    background: "#F4DFC8",
+    primary: "#E7D9C9",
+    secondary: "#C9C2B8",
+    accent: "#B28E7B",
+    neutral: "#5C5957",
+    white: "#0D0D0D",
+  };
+
+  const [color_palette, setColorPalette] = useState<{ [key: string]: string }>(
+    dark_color_palette,
+  );
+
+  useEffect(() => {
+    if (document.documentElement.classList.contains("theme-dark")) {
+      setColorPalette(dark_color_palette);
+    } else {
+      setColorPalette(light_color_palette);
+    }
+  }, []);
 
   const Modal = ({ children }: { children: React.ReactNode }) => {
     if (modalOpen)
@@ -94,7 +117,7 @@ export default function Stack({ lang }: { lang: string }) {
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             id="stack_modal_content"
-            className=" bg-background absolute rounded px-8 py-6 md:top-[30%]"
+            className=" bg-primary absolute rounded px-8 py-6 md:top-[30%]"
           >
             {children}
           </motion.div>
@@ -115,7 +138,7 @@ export default function Stack({ lang }: { lang: string }) {
               document.getElementById("stack_modal")?.focus();
             }, 100);
           }}
-          className="border-accent hover:border-neutral flex cursor-pointer items-baseline gap-2 border-b transition "
+          className="border-accent hover:border-neutral flex cursor-pointer items-baseline gap-2 border-b text-white transition "
         >
           <p className="flex items-center gap-2 py-1 text-xs">
             {" "}
@@ -134,16 +157,16 @@ export default function Stack({ lang }: { lang: string }) {
               <div>
                 Database/Storage:{" "}
                 <img
-                  className="h-6"
+                  className="h-6 drop-shadow"
                   alt="Supabase logo"
                   src="/supabase-logo-wordmark--dark.png"
                 ></img>
               </div>
               <div>
                 Authentication:{" "}
-                <span className="flex gap-2 text-[#FFFFFF]">
+                <span className="flex gap-2 text-[#FFFFFF] drop-shadow">
                   <img
-                    className="h-6"
+                    className="h-6  drop-shadow"
                     alt="NextAuth logo"
                     src="/nextauthlogo.png"
                   ></img>
@@ -153,7 +176,7 @@ export default function Stack({ lang }: { lang: string }) {
               <div>
                 ORM:{" "}
                 <img
-                  className="h-6"
+                  className="h-6 drop-shadow"
                   alt="Prisma logo"
                   src="https://prismalens.vercel.app/header/logo-white.svg"
                 ></img>
@@ -163,21 +186,21 @@ export default function Stack({ lang }: { lang: string }) {
           <div className="mt-4">
             {lang === "en-US" ? "Color palette" : "Paleta de colores"}
             <div className="flex flex-wrap gap-2">
-              {color_palette.map((color) => {
+              {Object.keys(color_palette).map((color) => {
                 return (
                   <button
                     onClick={async () => {
-                      await navigator.clipboard.writeText(color.code);
+                      await navigator.clipboard.writeText(color_palette[color]);
                       lang === "en-US"
-                        ? alert(`Copied color! ${color.code}`)
-                        : alert(`Color copiado! ${color.code}`);
+                        ? alert(`Copied color! ${color_palette[color]}`)
+                        : alert(`Color copiado! ${color_palette[color]}`);
                     }}
-                    id={`button_id_${color.color}`}
-                    className={`w-36 bg-${color.color} flex flex-grow rounded capitalize shadow-lg`}
-                    key={color.code}
+                    id={`button_id_${color}`}
+                    className={`w-36 bg-${color} flex flex-grow rounded capitalize shadow-lg`}
+                    key={color}
                   >
                     <span className="flex-grow rounded py-1 mix-blend-difference">
-                      {color.color}
+                      {color}
                     </span>
                   </button>
                 );
@@ -185,8 +208,8 @@ export default function Stack({ lang }: { lang: string }) {
             </div>
             <p className="mt-2 text-xs text-white">
               {lang === "en-US"
-                ? "Click on color to copy the hex code."
-                : "Click en el color para copiar el código hexadecimal."}
+                ? "Click on color to copy the hex code. Colors in light theme are inverted."
+                : "Click en el color para copiar el código hexadecimal. Los colores del light theme están invertidos"}
             </p>
             <h3 className="mt-2">
               {lang === "en-US"

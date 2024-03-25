@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { animate, motion } from "framer-motion";
 import Title from "./Title";
+import { IconX } from "@tabler/icons-react";
 
 export default function Sidebar({
   children,
@@ -27,9 +28,21 @@ export default function Sidebar({
       initial={{ x: "100%" }}
       animate={{ x: "0%" }}
       id="sidebar"
-      className="bg-primary fixed right-0 top-0 z-[80] h-screen w-[40vw] p-10"
+      className="bg-primary fixed right-0 top-0 z-[80] h-screen w-full flex-col p-10 md:w-[40vw]"
     >
       <Title size="md" title={title} />
+      <button
+        aria-label="Close sidebar"
+        onClick={() => {
+          animate("#sidebar", { x: "100%" });
+          setTimeout(() => {
+            closeSidebar();
+          }, 500);
+        }}
+        className="bg-background absolute right-10 top-12 rounded-full p-2 text-xl shadow-md active:scale-90"
+      >
+        <IconX />
+      </button>
       {children}
     </motion.div>
   );

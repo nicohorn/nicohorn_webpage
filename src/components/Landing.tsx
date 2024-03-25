@@ -68,7 +68,7 @@ export default function Landing({
             shimmer(800, 800),
           )}`}
           layout="fill"
-          className=" flex-grow cursor-pointer rounded object-cover"
+          className=" flex-grow cursor-pointer rounded object-cover shadow-md"
           alt="Profile picture of Nico Horn"
           src={image}
         ></Image>
@@ -80,7 +80,7 @@ export default function Landing({
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
   return (
-    <main className="main-y main-x w-[90vw] md:w-[700px]">
+    <main className="main-y main-x w-[90vw] text-white md:w-[700px]">
       <Title
         size="md"
         title={langIsEnglish ? "Hi, I'm Nico!" : "¡Hola!, soy Nico."}
@@ -194,7 +194,7 @@ export default function Landing({
                 <IconCopy />
               </button>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => {
                   if (sidebar) {
@@ -214,7 +214,7 @@ export default function Landing({
                 }}
                 id={`link_cool_stuff`}
                 className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded  border-b   px-1 pt-[6px]
-                    transition"
+                transition"
               >
                 {langIsEnglish
                   ? "▪️ Checkout cool stuff I'm doing 👽"
@@ -304,13 +304,13 @@ export default function Landing({
                   key={entry.id}
                   href={`/${lang}/blog/${entry.id}`}
                 >
-                  <p className="hover:active:text-accent border-accent active:text-accent hover:text-neutral  my-2 flex  justify-between gap-2 border-b  py-1 transition">
+                  <p className="hover:active:text-accent border-accent hover:border-neutral active:text-accent hover:text-neutral  my-2 flex  justify-between gap-2 border-b  py-1 transition">
                     {entry.title}
                     <p className="flex flex-wrap justify-end gap-2">
                       {entry.tags.map((t) => {
                         return (
                           <span
-                            className="h-fit rounded bg-zinc-900 px-2 pt-[2px] text-xs"
+                            className="bg-accent h-fit rounded px-2 pt-[2px] text-xs"
                             key={t.blog_tag_id}
                           >
                             {lang === "en-US"
@@ -330,7 +330,7 @@ export default function Landing({
               closeSidebar={() => setSidebar(false)}
               title={lang === "en-US" ? "Cool stuff" : "Cosas copadas"}
             >
-              <div className="bg-background mr-14 rounded p-4 shadow-md">
+              <div className="bg-background rounded p-4 shadow-md">
                 {lang === "en-US"
                   ? "Still building this part 🛠️ I'm currently diving deep into C (again) and the fundamentals of computer architecture, so I'm a bit busy."
                   : "Esta sección está en construcción todavía 🛠️ Estoy adentrándome mucho en C y los fundamentos de la arquitectura de computadoras últimamente así que ando bastante ocupado."}

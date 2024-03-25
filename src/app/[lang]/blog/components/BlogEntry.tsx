@@ -93,7 +93,7 @@ export default function BlogEntry({
         marginTop: blog_hero_height_in_px,
       }}
       id="blog_entry_component"
-      className="bg-primary/40 mx-auto flex w-[90%] flex-col gap-4 px-3 pb-12 lg:w-[60%] lg:text-xl xl:w-[60%] 2xl:w-[45%]"
+      className="bg-primary mx-auto flex w-[90%] flex-col gap-4 px-3 pb-12 text-white lg:w-[60%] lg:text-xl xl:w-[60%] 2xl:w-[45%]"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -114,7 +114,7 @@ export default function BlogEntry({
           className="fixed bottom-28 right-0 z-50 mb-28 mr-20 lg:mr-28"
         />
       </button>
-      <div className="fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2 rounded-b   bg-zinc-900 bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
+      <div className="bg-background fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2   rounded-b bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
         <div
           id="blog_hero"
           className={

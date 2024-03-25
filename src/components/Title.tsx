@@ -29,7 +29,7 @@ export default function Title({
       id={id}
       initial={anim ? { opacity: 0, x: -7 } : {}}
       animate={anim ? { opacity: 1, x: 0 } : {}}
-      className={`${sizes[size]} ${roboto_slab.className} " text-neutral ${size !== "xs" && "pb-3"} 
+      className={`${sizes[size]} ${roboto_slab.className} " text-neutral drop-shadow-md ${size !== "xs" && "pb-3"} 
       font-extrabold`}
     >
       {title}

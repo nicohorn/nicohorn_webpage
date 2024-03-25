@@ -47,7 +47,7 @@ export default function ComboboxComponent({
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <p className="text-lg">
+      <p className="text-lg text-white">
         {lang === "en-US" ? "Search by tag" : "Buscar por tag"}
       </p>
       <>

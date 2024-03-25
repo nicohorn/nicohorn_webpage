@@ -4,9 +4,9 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconLanguage } from "@tabler/icons-react";
+import { IconLanguage, IconSun } from "@tabler/icons-react";
 
-export default function ListboxComponent({
+export default function SiteConfig({
   currentLang,
   languages,
 }: {
@@ -46,12 +46,12 @@ export default function ListboxComponent({
         !path.includes("entry") &&
         path.split("/").length > 3
           ? "hidden"
-          : "fixed  left-1/2 top-2 z-[51] mt-[32px] w-[91vw] -translate-x-1/2 sm:left-full sm:w-fit sm:-translate-x-[110%]"
+          : "fixed left-1/2 top-4 z-[51] mt-[32px] flex w-[91vw] -translate-x-1/2 items-center gap-2 sm:left-full sm:w-fit sm:-translate-x-[110%]"
       }
     >
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative  w-full">
-          <Listbox.Button className="bg-background relative w-full cursor-default rounded py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm">
+          <Listbox.Button className="bg-background relative w-full cursor-default rounded py-2 pl-3 pr-10 text-left text-white shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm">
             <div className="flex items-center gap-2">
               <IconLanguage />
               <span className="block truncate ">{selected.title}</span>
@@ -103,6 +103,37 @@ export default function ListboxComponent({
           </Transition>
         </div>
       </Listbox>
+      <button
+        onClick={() => {
+          document.documentElement.classList.add("rotate");
+
+          setTimeout(() => {
+            if (document.documentElement.classList.contains("theme-dark")) {
+              localStorage.setItem("site-theme", "theme-light");
+              document.documentElement.classList.replace(
+                "theme-dark",
+                "theme-light",
+              );
+            } else {
+              localStorage.setItem("site-theme", "theme-dark");
+              document.documentElement.classList.replace(
+                "theme-light",
+                "theme-dark",
+              );
+            }
+          }, 500); // Change this value to match the animation duration
+
+          setTimeout(() => {
+            document.documentElement.classList.remove("rotate");
+          }, 1000); // Change this value to match the animation duration
+        }}
+        className="bg-background rounded-full p-2 text-white shadow-md active:scale-90"
+        aria-label={
+          currentLang === "en-US" ? "Theme switcher" : "Cambiador de tema"
+        }
+      >
+        <IconSun />
+      </button>
     </div>
   );
 }

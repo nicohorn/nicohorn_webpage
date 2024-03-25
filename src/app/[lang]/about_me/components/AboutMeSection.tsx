@@ -51,9 +51,9 @@ export default function AboutMeSection({ lang }: { lang: string }) {
   const Content = ({ lang }: { lang: string }) => {
     return (
       <div>
-        <p className="mt-2 text-[1.05rem] font-normal leading-relaxed">
+        <p className="mt-2 text-[1.05rem] font-normal leading-relaxed text-white">
           <span
-            className="border-accent hover:border-accent hover:text-neutral hover:bg-accent cursor-pointer border-b  transition  "
+            className="border-accent hover:border-accent hover:text-neutral hover:bg-accent cursor-pointer border-b  transition"
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
               const cX = e.clientX;
@@ -276,7 +276,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 borderColor: "neutral",
               }}
               key={idx}
-              className=" relative hidden min-h-[50vh] w-[20rem] border object-cover"
+              className=" relative hidden min-h-[50vh] w-[20rem] rounded border object-cover"
             >
               <Image
                 style={{ objectFit: "cover" }}

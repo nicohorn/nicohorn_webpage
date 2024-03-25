@@ -94,7 +94,7 @@ export default function BlogCard({
         handleOnMouseMove(e);
       }}
       //Latest two entries show up with more height
-      className="hover:border-accent bg-primary group relative flex h-full min-h-[300px] cursor-pointer rounded border border-black shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] transition lg:w-[30vw]"
+      className="hover:border-accent bg-primary group relative flex h-full min-h-[300px] cursor-pointer rounded border border-black text-white shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] transition lg:w-[30vw]"
     >
       <div className="card group flex-grow flex-wrap">
         <div className="border-accent w-full border-b px-4 py-3 shadow-lg">
@@ -111,7 +111,7 @@ export default function BlogCard({
           {blog_entry.tags.map(({ blog_tag }) => {
             return (
               <span
-                className="border-neutral/40  rounded border bg-black px-2 pt-[2px] text-xs font-extrabold text-white"
+                className="border-neutral/40  rounded border bg-black px-2 pt-[2px] text-xs font-extrabold "
                 key={blog_tag.name}
                 onClick={() => {
                   router.push(

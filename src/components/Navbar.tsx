@@ -80,7 +80,7 @@ export default function Navbar({
       animate={open ? { y: 0 } : { y: -navbarHeight }}
       id="nav_container"
       className={
-        "bg-background/90 fixed  left-0 top-0 z-[90] flex h-[500px] w-screen items-center text-white shadow-lg " +
+        "bg-background fixed left-0  top-0 z-[90] flex h-[500px] w-screen items-center text-white shadow-lg " +
         roboto_slab.className
       }
     >
