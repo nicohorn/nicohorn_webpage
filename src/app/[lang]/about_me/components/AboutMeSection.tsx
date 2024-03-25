@@ -55,10 +55,11 @@ export default function AboutMeSection({ lang }: { lang: string }) {
           <span
             className="border-accent hover:border-accent hover:text-neutral hover:bg-accent cursor-pointer border-b  transition"
             onMouseMove={(e) => {
-              const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+              const width = document.body.clientWidth;
+              const cX = e.clientX - cWidth - cWidth * 3;
+              const cY = e.clientY;
+
               setTimeout(() => {
                 document.getElementById("image0")?.classList.remove("hidden");
               }, 100);
@@ -66,7 +67,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               animate(
                 "#image0",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  x: cX,
                   y: cY - 250,
                   scale: 1.03,
 
@@ -99,16 +100,18 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent  cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
+
               setTimeout(() => {
                 document.getElementById("image1")?.classList.remove("hidden");
               }, 100);
               animate(
                 "#image1",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  x: cX,
                   y: cY - 250,
                   scale: 1.03,
 
@@ -140,16 +143,18 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent  cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
+
               setTimeout(() => {
                 document.getElementById("image2")?.classList.remove("hidden");
               }, 100);
               animate(
                 "#image2",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  x: cX,
                   y: cY - 250,
                   scale: 1.03,
 
@@ -181,9 +186,10 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent  cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
 
               setTimeout(() => {
                 document.getElementById("image3")?.classList.remove("hidden");
@@ -191,7 +197,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               animate(
                 "#image3",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  x: cX,
                   y: cY - 250,
                   scale: 1.03,
 
@@ -220,9 +226,10 @@ export default function AboutMeSection({ lang }: { lang: string }) {
             className="border-accent hover:border-accent  hover:text-neutral hover:bg-accent cursor-pointer border-b  transition  "
             onMouseMove={(e) => {
               const width = document.body.clientWidth;
-              const cX = e.clientX;
-              const cY = e.clientY;
               const cWidth = e.currentTarget.getBoundingClientRect().width;
+
+              const cX = e.clientX - cWidth;
+              const cY = e.clientY;
 
               setTimeout(() => {
                 document.getElementById("image4")?.classList.remove("hidden");
@@ -230,7 +237,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
               animate(
                 "#image4",
                 {
-                  x: cX + cWidth < width ? cX - 100 : cX - 300,
+                  x: cX,
                   y: cY - 250,
                   scale: 1.03,
 

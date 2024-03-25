@@ -17,6 +17,7 @@ import {
   IconCopy,
 } from "@tabler/icons-react";
 import Sidebar from "./Sidebar";
+import { Notification } from "./Notification";
 export default function Landing({
   lang,
   latest_blog_entries,
@@ -90,7 +91,7 @@ export default function Landing({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="mt-4 text-lg font-[500]"
+          className="mt-4 font-[500]"
         >
           <div
             onMouseLeave={() => {
@@ -98,7 +99,7 @@ export default function Landing({
                 setLinkBgOpacity(0);
               }, 75);
             }}
-            className="relative flex flex-col flex-wrap gap-5 text-xl"
+            className="relative flex flex-col flex-wrap gap-5"
           >
             <div
               className="bg-secondary pointer-events-none absolute -z-10 hidden rounded py-3 duration-150 lg:block"

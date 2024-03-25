@@ -20,6 +20,7 @@ const config: Config = {
         accent: "#9E3333",
         neutral: "#F4DFC8",
         white: "#D9ECF2",
+
       },
     },
     themes: {
@@ -30,7 +31,12 @@ const config: Config = {
         secondary: "#C9C2B8",
         accent: "#B28E7B",
         neutral: "#4A4745",
-        white: "#0D0D0D"
+        white: "#0D0D0D",
+        error: "#FF7070",
+        success: "#3BBF86",
+        info: "#809FCD",
+
+
       },
       dark: {
         black: "#0D0D0D",
@@ -40,6 +46,10 @@ const config: Config = {
         accent: "#9E3333",
         neutral: "#F4DFC8",
         white: "#D9ECF2",
+        error: "#A73232",
+        success: "#067444",
+        info: "#31507F",
+
       }
     }
   },

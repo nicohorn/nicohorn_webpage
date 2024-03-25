@@ -17,9 +17,10 @@ export default function Footer({ lang }: { lang: string }) {
     //Persist theme
     if (localStorage.getItem("site-theme")) {
       if (localStorage.getItem("site-theme") === "theme-light") {
-        console.log("segundo if");
+        document.documentElement.setAttribute("data-theme", "theme-light");
         document.documentElement.classList.replace("theme-dark", "theme-light");
       } else {
+        document.documentElement.setAttribute("data-theme", "theme-dark");
         document.documentElement.classList.replace("theme-light", "theme-dark");
       }
     }

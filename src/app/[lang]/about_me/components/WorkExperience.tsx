@@ -62,7 +62,7 @@ export default function ProfessionalExperience({ lang }: { lang: string }) {
                       ?.classList.remove("translate-x-16");
                   }, 800);
                 }}
-                className="hover:text-neutral cursor-pointer opacity-40 hover:opacity-100"
+                className="hover:text-neutral cursor-pointer text-white opacity-40 hover:opacity-100"
                 key={idx}
               >
                 {yearItem.year}

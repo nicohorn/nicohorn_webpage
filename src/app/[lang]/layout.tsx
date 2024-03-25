@@ -46,6 +46,7 @@ export default async function RootLayout({
 
   return (
     <html
+      data-theme="theme-dark"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1646488438698-2d5f8bd732e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
@@ -55,7 +56,7 @@ export default async function RootLayout({
     >
       <body
         className={
-          "relative z-0 flex min-h-screen flex-col scroll-smooth bg-black"
+          "relative z-0 flex min-h-screen min-w-[100vw] flex-col scroll-smooth bg-black"
         }
       >
         <Navbar

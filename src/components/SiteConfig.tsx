@@ -110,17 +110,23 @@ export default function SiteConfig({
           setTimeout(() => {
             if (document.documentElement.classList.contains("theme-dark")) {
               localStorage.setItem("site-theme", "theme-light");
+              document.documentElement.setAttribute(
+                "data-theme",
+                "theme-light",
+              );
               document.documentElement.classList.replace(
                 "theme-dark",
                 "theme-light",
               );
             } else {
               localStorage.setItem("site-theme", "theme-dark");
+              document.documentElement.setAttribute("data-theme", "theme-dark");
               document.documentElement.classList.replace(
                 "theme-light",
                 "theme-dark",
               );
             }
+            console.log(document.documentElement.getAttribute("data-theme"));
           }, 500); // Change this value to match the animation duration
 
           setTimeout(() => {
