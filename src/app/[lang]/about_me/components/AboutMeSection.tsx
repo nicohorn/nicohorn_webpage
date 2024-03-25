@@ -68,7 +68,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image0",
                 {
                   x: cX,
-                  y: cY - 250,
+                  y: cY - 320,
                   scale: 1.03,
 
                   opacity: 1,
@@ -112,7 +112,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image1",
                 {
                   x: cX,
-                  y: cY - 250,
+                  y: cY - 320,
                   scale: 1.03,
 
                   opacity: 1,
@@ -155,7 +155,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image2",
                 {
                   x: cX,
-                  y: cY - 250,
+                  y: cY - 320,
                   scale: 1.03,
 
                   opacity: 1,
@@ -198,7 +198,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image3",
                 {
                   x: cX,
-                  y: cY - 250,
+                  y: cY - 320,
                   scale: 1.03,
 
                   opacity: 1,
@@ -238,7 +238,7 @@ export default function AboutMeSection({ lang }: { lang: string }) {
                 "#image4",
                 {
                   x: cX,
-                  y: cY - 250,
+                  y: cY - 320,
                   scale: 1.03,
 
                   opacity: 1,
