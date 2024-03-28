@@ -59,6 +59,26 @@ export default function Landing({
     return images.map((image, idx) => {
       return (
         <Image
+          onMouseMove={(e: any) => {
+            const image = document.getElementById("landing_image")!;
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+
+            const rotateX =
+              yPercent <= 50
+                ? 2 - yPercent * 0.05
+                : -2 + (100 - yPercent) * 0.05;
+            const rotateY =
+              xPercent <= 50
+                ? -2 + xPercent * 0.05
+                : 2 - (xPercent - 50) * 0.05;
+
+            image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(-5px)`;
+          }}
+          id="landing_image"
           key={idx}
           onClick={() => {
             selectedImage == images.length - 1
@@ -69,7 +89,7 @@ export default function Landing({
             shimmer(800, 800),
           )}`}
           layout="fill"
-          className=" flex-grow cursor-pointer rounded object-cover shadow-md"
+          className="flex-grow cursor-pointer rounded object-cover shadow-[rgba(0,_0,_0,_0.32)_0px_3px_8px]"
           alt="Profile picture of Nico Horn"
           src={image}
         ></Image>

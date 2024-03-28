@@ -40,12 +40,9 @@ export class Notification {
     if (document.getElementById("notification")) return;
 
     root.render(<NotificationComponent {...props} />);
-    setTimeout(
-      () => {
-        root.unmount();
-      },
-      props.seconds * 100000 + 200,
-    );
+    setTimeout(() => {
+      root.unmount();
+    }, props.seconds * 1000);
   }
 }
 
@@ -72,7 +69,7 @@ function NotificationComponent({
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
       className={
-        "bg-background fixed bottom-0 right-0 z-[100]  max-h-[80vh] w-screen rounded px-5 py-2 shadow-lg md:bottom-10 md:right-10  md:w-96 " +
+        "fixed bottom-0 right-0 z-[100] max-h-[80vh]  w-screen rounded bg-background px-5 py-2 shadow-lg md:bottom-10 md:right-10  md:w-96 " +
         roboto_slab.className
       }
     >

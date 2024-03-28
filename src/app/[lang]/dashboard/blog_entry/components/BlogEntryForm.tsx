@@ -152,7 +152,7 @@ export default function BlogEntryForm({
   };
 
   return (
-    <form className="flex flex-col gap-4 text-white xl:w-[50%]">
+    <form className="mx-auto flex flex-col gap-4 text-white xl:w-[50%]">
       <Title
         size="md"
         title={lang === "en-US" ? "Blog entry" : "Entrada de blog"}
