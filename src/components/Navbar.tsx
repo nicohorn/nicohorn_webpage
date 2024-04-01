@@ -31,23 +31,23 @@ export default function Navbar({
   useEffect(() => {
     /**Close sidebar when clicking outside */
 
-    const handleMouseOutsideNavbar = () => console.log("Handle click outside");
-    document.body.addEventListener("click", (e) => {
-      if (
-        e.target !== document.getElementById("sign_in_button") &&
-        e.target !== document.getElementById("nav_container") &&
-        e.target !== document.getElementById("nav_container_button")
-      ) {
-        animate(
-          "#nav_container",
-          { y: -navbarHeight },
-          { duration: 0.5, type: "spring", bounce: 0.2 },
-        );
-        setOpen(false);
-      } else {
-        return;
-      }
-    });
+    const handleMouseOutsideNavbar = () =>
+      document.body.addEventListener("click", (e) => {
+        if (
+          e.target !== document.getElementById("sign_in_button") &&
+          e.target !== document.getElementById("nav_container") &&
+          e.target !== document.getElementById("nav_container_button")
+        ) {
+          animate(
+            "#nav_container",
+            { y: -navbarHeight },
+            { duration: 0.5, type: "spring", bounce: 0.2 },
+          );
+          setOpen(false);
+        } else {
+          return;
+        }
+      });
 
     const handleEscapeKeyNavbar = () =>
       document.body.addEventListener("keydown", (e) => {
@@ -80,7 +80,7 @@ export default function Navbar({
       animate={open ? { y: 0 } : { y: -navbarHeight }}
       id="nav_container"
       className={
-        "bg-background fixed left-0  top-0 z-[90] flex h-[500px] w-screen items-center text-white shadow-lg " +
+        "fixed left-0 top-0  z-[90] flex h-[500px] w-screen items-center bg-background text-white shadow-lg " +
         roboto_slab.className
       }
     >
@@ -104,7 +104,7 @@ export default function Navbar({
           className="relative flex flex-col flex-wrap  lg:ml-10 lg:flex-row lg:gap-14"
         >
           <div
-            className="bg-accent pointer-events-none absolute -left-2 -top-2 bottom-0 z-0 hidden rounded duration-150 lg:block"
+            className="pointer-events-none absolute -left-2 -top-2 bottom-0 z-0 hidden rounded bg-accent duration-150 lg:block"
             style={{
               opacity: linkBgOpacity,
               height:
@@ -134,7 +134,7 @@ export default function Navbar({
                 href={`/${lang}${link.link}`}
                 className={`z-10  w-fit py-1 text-3xl  transition delay-75 duration-150 md:text-4xl lg:py-0 lg:text-6xl  xl:text-7xl ${
                   path === `/${lang + link.link}`
-                    ? "border-b-accent border-b font-bold"
+                    ? "border-b border-b-accent font-bold"
                     : "font-thin"
                 }`}
               >
@@ -184,7 +184,7 @@ export default function Navbar({
         aria-label={
           lang === "en-US" ? "Close navbar" : "Cerrar barra de navegación"
         }
-        className="bg-primary active:bg-accent absolute bottom-0  w-full py-1 transition"
+        className="absolute bottom-0 w-full bg-primary  py-1 transition active:bg-accent"
       >
         {open ? (
           <IconArrowUp className="mx-auto" />

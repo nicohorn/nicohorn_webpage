@@ -27,7 +27,7 @@ export default function Hero({
       animate={{ scale: 1 }}
       className={" -mt-4 flex w-fit  flex-col pr-2 hover:cursor-pointer"}
     >
-      <motion.h1 className="  text-neutral text-2xl font-extrabold uppercase md:text-5xl lg:text-8xl ">
+      <motion.h1 className="  text-2xl font-extrabold uppercase text-neutral md:text-5xl lg:text-8xl ">
         <Link className="flex" href={`/${lang}/`}>
           <Title size="lg" title={title} />
         </Link>
@@ -39,13 +39,13 @@ export default function Hero({
       >
         {description.split("").map((char, idx) => {
           return (
-            <motion.span
+            <motion.div
               transition={{ duration: 0.1 }}
               whileHover={{ color: "#9E3333", scale: 1.2 }}
               key={idx}
             >
               {char == " " ? <p>&nbsp;</p> : <p>{char}</p>}
-            </motion.span>
+            </motion.div>
           );
         })}
       </motion.div>

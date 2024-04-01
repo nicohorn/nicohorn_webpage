@@ -25,10 +25,9 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ user }) {
-            console.log("SIGN IN USER", user);
+
             if (!user || !user.email) return false;
             const userExists = await getUserByEmail(user.email!);
-            console.log("USER EXISTS", userExists)
             if (userExists) {
                 //This is just to update the user last login datetime.
                 await updateUserByEmail(user.email, {
