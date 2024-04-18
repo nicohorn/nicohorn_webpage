@@ -14,5 +14,9 @@ export const TagsToSpanish: TagToSpanishType = {
     "politics": "política",
     "game development": "desarrollo de videojuegos",
     "gaming": "gaming",
-    "entertainment": "entretenimiento"
+    "entertainment": "entretenimiento",
+    "array": "array",
+    "java": "java",
+    "proessing": "processing",
+    "programming fundamentals": "fundamentos de programación"
 }
