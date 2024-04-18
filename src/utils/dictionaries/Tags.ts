@@ -17,6 +17,6 @@ export const TagsToSpanish: TagToSpanishType = {
     "entertainment": "entretenimiento",
     "array": "array",
     "java": "java",
-    "proessing": "processing",
+    "processing": "processing",
     "programming fundamentals": "fundamentos de programación"
 }
