@@ -99,7 +99,7 @@ export default function BlogEntry({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         id="progress_bar"
-        className="bg-accent fixed bottom-0 left-0 z-50 h-2 w-screen origin-left"
+        className="fixed bottom-0 left-0 z-50 h-2 w-screen origin-left bg-accent"
       ></motion.div>
       <button
         className="hidden"
@@ -114,7 +114,7 @@ export default function BlogEntry({
           className="fixed bottom-28 right-0 z-50 mb-28 mr-20 lg:mr-28"
         />
       </button>
-      <div className="bg-background fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2   rounded-b bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
+      <div className="fixed left-1/2 top-0 z-[50] mt-5 w-[90%] -translate-x-1/2 rounded-b   bg-background bg-cover bg-center shadow-lg lg:w-[60%] 2xl:w-[45%]">
         <div
           id="blog_hero"
           className={
@@ -123,7 +123,7 @@ export default function BlogEntry({
         >
           <h1
             id="blog_title"
-            className="text-neutral pb-1 text-left text-6xl font-extrabold transition"
+            className="pb-1 text-left text-6xl font-extrabold text-neutral transition"
           >
             {blog_entry?.title}
           </h1>
@@ -143,7 +143,7 @@ export default function BlogEntry({
         </div>
       </div>
       <div className="flex flex-col gap-5">
-        <div className="flex flex-col gap-2 ">
+        <div className={"flex flex-col gap-2 " + roboto_slab.className}>
           <p>{blog_entry?.description}</p>
         </div>
       </div>

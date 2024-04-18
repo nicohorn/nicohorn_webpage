@@ -9,11 +9,10 @@ import Image from "@tiptap/extension-image";
 import { EditorProvider } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React from "react";
-import { Courier_Prime } from "next/font/google";
-
-const courier_prime = Courier_Prime({
-  weight: ["400", "700"],
-  subsets: ["latin-ext"],
+import { Roboto_Slab } from "next/font/google";
+const roboto_slab = Roboto_Slab({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["cyrillic"],
 });
 
 export default function TipTapContent({
@@ -47,7 +46,7 @@ export default function TipTapContent({
   ];
 
   return (
-    <div className={courier_prime.className}>
+    <div className={roboto_slab.className}>
       <EditorProvider
         editable={false}
         extensions={extensions}
