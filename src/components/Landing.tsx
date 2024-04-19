@@ -27,7 +27,6 @@ export default function Landing({
 }) {
   const images = [
     "https://images.unsplash.com/photo-1711139274733-9aa07e413d18?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://scontent-eze1-1.xx.fbcdn.net/v/t39.30808-6/292958230_10209333234045073_9217687885836746361_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGUY8VnGOB9GTCuu6KaJYkNupO4-4YEv2m6k7j7hgS_aWwBjaOSWoOeKvRmoenj7NY&_nc_ohc=snRsaM4BtSMAX-HzXaT&_nc_ht=scontent-eze1-1.xx&oh=00_AfC5a768EFzPH0Tz_jgeIe2uAuvC176Ik8SfdVtdj6gipQ&oe=66024FC6",
     "https://images.unsplash.com/photo-1708461901625-4fb5aa1e9265?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1711058968007-a4386478129e?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -122,7 +121,7 @@ export default function Landing({
             className="relative flex flex-col flex-wrap gap-5"
           >
             <div
-              className="bg-secondary pointer-events-none absolute -z-10 hidden rounded py-3 duration-150 lg:block"
+              className="pointer-events-none absolute -z-10 hidden rounded bg-secondary py-3 duration-150 lg:block"
               style={{
                 opacity: linkBgOpacity,
                 height: document
@@ -150,7 +149,7 @@ export default function Landing({
                   setHoverLink("blog");
                 }}
                 id={`link_blog`}
-                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded border-b   px-1 pt-[6px]  transition"
+                className="w-fit rounded border-b border-accent  px-1  pt-[6px] transition   hover:border-secondary hover:text-neutral  active:text-accent"
                 href={`/${lang}/blog`}
               >
                 {langIsEnglish
@@ -170,8 +169,8 @@ export default function Landing({
                   setHoverLink("about_me");
                 }}
                 id={`link_about_me`}
-                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded  border-b   px-1 pt-[6px]
-                    transition"
+                className="w-fit rounded border-b border-accent  px-1  pt-[6px]  transition   hover:border-secondary hover:text-neutral
+                    active:text-accent"
                 href={`/${lang}/about_me`}
               >
                 {langIsEnglish
@@ -186,8 +185,8 @@ export default function Landing({
                   setHoverLink("mailto");
                 }}
                 id={`link_mailto`}
-                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded  border-b   px-1 pt-[6px]
-                    transition"
+                className="w-fit rounded border-b border-accent  px-1  pt-[6px]  transition   hover:border-secondary hover:text-neutral
+                    active:text-accent"
                 href="mailto:contact@nicohorn.com"
               >
                 {langIsEnglish
@@ -208,7 +207,7 @@ export default function Landing({
                     ? alert("Copied email!")
                     : alert("¡Email copiado!");
                 }}
-                className="active:text-accent hover:text-neutral p-1 active:scale-95"
+                className="p-1 hover:text-neutral active:scale-95 active:text-accent"
                 id="link_copy_email"
                 aria-label={lang === "en-US" ? "Copy email" : "Copiar email"}
               >
@@ -218,6 +217,7 @@ export default function Landing({
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => {
+                  console.log(sidebar);
                   if (sidebar) {
                     animate("#sidebar", { x: "100%" });
                     setTimeout(() => {
@@ -234,8 +234,8 @@ export default function Landing({
                   setHoverLink("cool_stuff");
                 }}
                 id={`link_cool_stuff`}
-                className="border-accent hover:border-secondary active:text-accent hover:text-neutral  w-fit  rounded  border-b   px-1 pt-[6px]
-                transition"
+                className="w-fit rounded border-b border-accent  px-1  pt-[6px]  transition   hover:border-secondary hover:text-neutral
+                active:text-accent"
               >
                 {langIsEnglish
                   ? "▪️ Checkout cool stuff I'm doing 👽"
@@ -251,7 +251,7 @@ export default function Landing({
                 }}
                 target="_blank"
                 id={`link_linkedin`}
-                className="text-neutral w-fit   p-1"
+                className="w-fit p-1   text-neutral"
                 href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
               >
                 <IconBrandLinkedin />
@@ -263,7 +263,7 @@ export default function Landing({
                 }}
                 target="_blank"
                 id={`link_twitter`}
-                className="text-neutral w-fit   p-1"
+                className="w-fit p-1   text-neutral"
                 href={`/${lang}/about_me`}
               >
                 <IconBrandX />
@@ -275,7 +275,7 @@ export default function Landing({
                 }}
                 target="_blank"
                 id={`link_github`}
-                className="text-neutral w-fit  p-1"
+                className="w-fit p-1  text-neutral"
                 href="https://github.com/nicohorn"
               >
                 <IconBrandGithub />
@@ -287,7 +287,7 @@ export default function Landing({
                 }}
                 target="_blank"
                 id={`link_instagram`}
-                className="text-neutral w-fit  p-1"
+                className="w-fit p-1  text-neutral"
                 href="https://www.instagram.com/nic0horn/"
               >
                 <IconBrandInstagram />
@@ -325,13 +325,13 @@ export default function Landing({
                   key={entry.id}
                   href={`/${lang}/blog/${entry.id}`}
                 >
-                  <p className="hover:active:text-accent border-accent hover:border-neutral active:text-accent hover:text-neutral  my-2 flex  justify-between gap-2 border-b  py-1 transition">
+                  <p className="my-2 flex justify-between gap-2 border-b  border-accent py-1  transition hover:border-neutral hover:text-neutral  active:text-accent hover:active:text-accent">
                     {entry.title}
                     <p className="flex flex-wrap justify-end gap-2">
                       {entry.tags.map((t) => {
                         return (
                           <span
-                            className="bg-accent h-fit rounded px-2 pt-[2px] text-xs"
+                            className="h-fit rounded bg-accent px-2 pt-[2px] text-xs"
                             key={t.blog_tag_id}
                           >
                             {lang === "en-US"
@@ -348,10 +348,10 @@ export default function Landing({
           </motion.div>
           {sidebar && (
             <Sidebar
-              closeSidebar={() => setSidebar(false)}
+              setSidebar={setSidebar}
               title={lang === "en-US" ? "Cool stuff" : "Cosas copadas"}
             >
-              <div className="bg-background rounded p-4 shadow-md">
+              <div className="rounded bg-background p-4 shadow-md">
                 {lang === "en-US"
                   ? "Still building this part 🛠️ I'm currently diving deep into C (again) and the fundamentals of computer architecture, so I'm a bit busy."
                   : "Esta sección está en construcción todavía 🛠️ Estoy adentrándome mucho en C y los fundamentos de la arquitectura de computadoras últimamente así que ando bastante ocupado."}
