@@ -44,7 +44,7 @@ export default function Footer({ lang }: { lang: string }) {
       style={{
         fillOpacity: 0.1,
       }}
-      className="bg-primary mt-auto flex w-screen flex-col px-6 py-8 shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] md:min-h-[8rem] md:justify-between md:gap-0 md:px-12"
+      className="mt-auto flex w-screen flex-col bg-primary px-6 py-8 shadow-[rgba(0,_0,_0,_0.25)_0px_-25px_50px_-12px] md:min-h-[8rem] md:justify-between md:gap-0 md:px-12"
     >
       <div className="flex flex-col">
         {" "}
@@ -61,7 +61,7 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://nicohorn.com/rss/feed.xml"
             >
               <IconRss
-                className="hover:text-neutral text-white  transition-all duration-75"
+                className="text-white transition-all  duration-75 hover:text-neutral"
                 width={20}
                 height={20}
               />
@@ -77,7 +77,7 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://www.linkedin.com/in/nicol%C3%A1s-horn-7578741b4/"
             >
               <IconBrandLinkedin
-                className="hover:text-neutral text-white  transition-all duration-75"
+                className="text-white transition-all  duration-75 hover:text-neutral"
                 width={21}
                 height={21}
               />
@@ -93,7 +93,7 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://twitter.com/NicoTheEngineer"
             >
               <IconBrandX
-                className="hover:text-neutral text-white  transition-all duration-75"
+                className="text-white transition-all  duration-75 hover:text-neutral"
                 width={20}
                 height={20}
               />
@@ -109,7 +109,7 @@ export default function Footer({ lang }: { lang: string }) {
               href="https://github.com/nicohorn/nicohorn_webpage"
             >
               <IconBrandGithub
-                className="hover:text-neutral text-white  transition-all duration-75"
+                className="text-white transition-all  duration-75 hover:text-neutral"
                 width={20}
                 height={20}
               />
@@ -117,7 +117,7 @@ export default function Footer({ lang }: { lang: string }) {
             <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
               <p
                 id="tooltip_email"
-                className="bg-background absolute hidden translate-x-4 translate-y-6 rounded-sm px-2 opacity-0  md:block"
+                className="absolute hidden translate-x-4 translate-y-6 rounded-sm bg-background px-2 text-neutral opacity-0  md:block"
               >
                 {lang === "en-US"
                   ? "Click to copy email address"
@@ -142,14 +142,14 @@ export default function Footer({ lang }: { lang: string }) {
                 id="nico-email"
               >
                 <IconMail
-                  className="hover:text-neutral text-white  transition-all duration-75"
+                  className="text-white transition-all  duration-75 hover:text-neutral"
                   width={20}
                   height={20}
                 />
               </motion.p>
             </div>
           </div>
-          <div className="text-md text-neutral flex gap-1 font-thin sm:ml-2 sm:self-end">
+          <div className="text-md flex gap-1 font-thin text-neutral sm:ml-2 sm:self-end">
             <p className="font-extrabold">{new Date().getFullYear()}</p>
           </div>
         </div>
