@@ -46,14 +46,12 @@ export default function TipTapContent({
   ];
 
   return (
-    <div className={roboto_slab.className}>
-      <EditorProvider
-        editable={false}
-        extensions={extensions}
-        content={blog_entry_content}
-        // eslint-disable-next-line react/no-children-prop
-        children={undefined}
-      />
-    </div>
+    <EditorProvider
+      editable={false}
+      extensions={extensions}
+      content={blog_entry_content}
+      // eslint-disable-next-line react/no-children-prop
+      children={undefined}
+    />
   );
 }
