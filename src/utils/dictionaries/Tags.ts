@@ -18,5 +18,6 @@ export const TagsToSpanish: TagToSpanishType = {
     "array": "array",
     "java": "java",
     "processing": "processing",
-    "programming fundamentals": "fundamentos de programación"
+    "programming fundamentals": "fundamentos de programación",
+    "software engineering": "ingeniería de software"
 }
