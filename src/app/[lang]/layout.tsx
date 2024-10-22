@@ -10,15 +10,15 @@ import LanguagesListbox from "@/components/SiteConfig";
 import Navbar from "@/components/Navbar";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Courier_Prime } from "next/font/google";
-import { Press_Start_2P } from "next/font/google";
+import { Prompt } from "next/font/google";
 
-const courier_prime = Courier_Prime({
-  weight: ["400", "700"],
-  subsets: ["latin-ext"],
-});
-const press_start = Press_Start_2P({
+// const courier_prime = Courier_Prime({
+//   weight: ["400", "700"],
+//   subsets: ["latin-ext"],
+// });
+const press_start = Prompt({
   weight: ["400"],
-  subsets: ["cyrillic"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default async function RootLayout({
         backgroundImage:
           "url('https://images.unsplash.com/photo-1646488438698-2d5f8bd732e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
       }}
-      className={`${courier_prime.className} selection:bg-accent theme-dark mt-5 h-screen overflow-x-hidden bg-cover bg-fixed bg-center selection:text-white`}
+      className={`${press_start.className} mt-5 h-screen overflow-x-hidden bg-cover bg-fixed bg-center theme-dark selection:bg-accent selection:text-white`}
       lang={`${params.lang}`}
     >
       <body

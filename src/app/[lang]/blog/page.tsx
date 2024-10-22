@@ -45,14 +45,16 @@ export default async function Page({
   if (!blog_entries) return null;
   if (blog_entries!.length < 1)
     return (
-      <div className=" text-5xl">
-        <div className="flex flex-col gap-2">
-          <ComboboxComponent tags={tags!} lang={params.lang} />
+      <main className="main-y main-x flex flex-col gap-5">
+        <div className="text-5xl text-white">
+          <div className="flex flex-col gap-2">
+            <ComboboxComponent tags={tags!} lang={params.lang} />
+          </div>
+          {params.lang === "en-US"
+            ? "No blog entries found 😔"
+            : "No se encontraron entradas 😔"}
         </div>
-        {params.lang === "en-US"
-          ? "No blog entries found 😔"
-          : "No se encontraron entradas 😔"}
-      </div>
+      </main>
     );
 
   return (

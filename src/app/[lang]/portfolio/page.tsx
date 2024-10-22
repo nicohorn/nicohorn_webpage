@@ -7,16 +7,8 @@ export default async function Page() {
 
   return (
     <main className=" w-screen md:fixed md:left-0 ">
-      <div className="no-scrollbar relative flex flex-col gap-4 overflow-scroll py-4 md:flex-row md:px-12">
-        {projects?.map((p) => {
-          return (
-            <>
-              <ProjectCard project={p} key={p.id} />{" "}
-              <ProjectCard project={p} key={p.id} />
-              <ProjectCard project={p} key={p.id} />
-            </>
-          );
-        })}
+      <div className="no-scrollbar relative flex flex-col gap-4 py-4 md:flex-row md:px-12">
+        <ProjectCard title="React component: multiple select" />
       </div>
     </main>
   );
