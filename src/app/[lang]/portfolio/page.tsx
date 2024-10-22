@@ -7,7 +7,7 @@ export default async function Page() {
 
   return (
     <main className=" w-screen md:fixed md:left-0 ">
-      <div className="flex gap-4 overflow-scroll no-scrollbar relative py-4 md:px-12 flex-col md:flex-row">
+      <div className="no-scrollbar relative flex flex-col gap-4 overflow-scroll py-4 md:flex-row md:px-12">
         {projects?.map((p) => {
           return (
             <>

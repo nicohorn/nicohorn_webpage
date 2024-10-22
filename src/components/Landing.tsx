@@ -4,7 +4,7 @@
 import Title from "@/components/Title";
 import Image from "next/image";
 import { animate, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { BlogEntryWithTags } from "@/repositories/blog_entry";
@@ -17,7 +17,7 @@ import {
   IconCopy,
 } from "@tabler/icons-react";
 import Sidebar from "./Sidebar";
-import { Notification } from "./Notification";
+
 export default function Landing({
   lang,
   latest_blog_entries,
@@ -80,6 +80,38 @@ export default function Landing({
   const path = usePathname();
   const [hoverLink, setHoverLink] = useState(path);
   const [linkBgOpacity, setLinkBgOpacity] = useState(0);
+  const [linkDimensions, setLinkDimensions] = useState({
+    height: 0,
+    width: 0,
+    offsetLeft: 0,
+    offsetTop: 0,
+  });
+
+  // Update dimensions when hoverLink changes
+  useEffect(() => {
+    const updateDimensions = () => {
+      const element = document.getElementById(`link_${hoverLink}`);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        setLinkDimensions({
+          height: rect.height,
+          width: rect.width,
+          offsetLeft: element.offsetLeft,
+          offsetTop: element.offsetTop,
+        });
+      }
+    };
+
+    updateDimensions();
+
+    // Add resize listener to update dimensions when window size changes
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, [hoverLink]);
+
   return (
     <main className="main-y main-x w-[90vw] text-white md:w-[700px]">
       <Title
@@ -105,16 +137,9 @@ export default function Landing({
               className="pointer-events-none absolute -z-10 hidden rounded bg-secondary py-3 duration-150 lg:block"
               style={{
                 opacity: linkBgOpacity,
-                height: document
-                  ?.getElementById(`link_${hoverLink}`)
-                  ?.getBoundingClientRect().height!,
-                width: document
-                  ?.getElementById(`link_${hoverLink}`)
-                  ?.getBoundingClientRect().width!,
-                transform: `translateX(${
-                  document.getElementById(`link_${hoverLink}`)?.offsetLeft
-                }px) translateY(${document.getElementById(`link_${hoverLink}`)
-                  ?.offsetTop!}px)`,
+                height: linkDimensions.height,
+                width: linkDimensions.width,
+                transform: `translateX(${linkDimensions.offsetLeft}px) translateY(${linkDimensions.offsetTop}px)`,
               }}
             ></div>
             <div>
@@ -224,7 +249,7 @@ export default function Landing({
               </button>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <p>{langIsEnglish ? "My socials" : "Mis redes"}</p>
+              <h1>{langIsEnglish ? "My socials" : "Mis redes"}</h1>
               <Link
                 onMouseOver={() => {
                   setLinkBgOpacity(1);
@@ -306,8 +331,8 @@ export default function Landing({
                   key={entry.id}
                   href={`/${lang}/blog/${entry.id}`}
                 >
-                  <p className="my-2 flex justify-between gap-2 border-b  border-accent py-1  transition hover:border-neutral hover:text-neutral  active:text-accent hover:active:text-accent">
-                    {entry.title}
+                  <div className="my-2 flex justify-between gap-2 border-b  border-accent py-1  transition hover:border-neutral hover:text-neutral  active:text-accent hover:active:text-accent">
+                    <h1>{entry.title}</h1>
                     <p className="flex flex-wrap justify-end gap-2">
                       {entry.tags.map((t) => {
                         return (
@@ -322,7 +347,7 @@ export default function Landing({
                         );
                       })}
                     </p>
-                  </p>
+                  </div>
                 </Link>
               );
             })}

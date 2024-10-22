@@ -18,7 +18,7 @@ export default function ProjectCard({ project }: { project: projects }) {
       onMouseMove={(e) => {
         handleOnMouseMove(e);
       }}
-      className="flex flex-col gap-3 md:min-w-[40rem] card px-7 py-3 md:min-h-[30rem] cursor-pointer border rounded-lg bg-black border-white border-opacity-20 active:border-opacity-70 absolute shadow-md"
+      className="absolute flex cursor-pointer flex-col gap-3 rounded-lg border border-white border-opacity-20 bg-black px-7 py-3 shadow-md active:border-opacity-70 md:min-h-[30rem] md:min-w-[40rem]"
       key={project.id}
     >
       <h1>{project.project_name}</h1>
