@@ -17,9 +17,7 @@ export default function SiteConfig({
   }[];
 }) {
   const [selected, setSelected] = useState(
-    languages.find((lang) => {
-      return lang.language === currentLang;
-    })!,
+    languages.find((lang) => lang.language === currentLang) || languages[0],
   );
 
   const path = usePathname();
@@ -51,13 +49,13 @@ export default function SiteConfig({
     >
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative  w-full">
-          <Listbox.Button className="bg-background relative w-full cursor-default rounded py-2 pl-3 pr-10 text-left text-white shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm">
+          <Listbox.Button className="relative w-full cursor-default rounded bg-background py-2 pl-3 pr-10 text-left text-white shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 sm:text-sm">
             <div className="flex items-center gap-2">
               <IconLanguage />
               <span className="block truncate ">{selected.title}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon
-                  className="text-neutral h-5 w-5"
+                  className="h-5 w-5 text-neutral"
                   aria-hidden="true"
                 />
               </span>
@@ -69,7 +67,7 @@ export default function SiteConfig({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="bg-background absolute ml-0 mt-1 max-h-60 w-full  overflow-auto rounded py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute ml-0 mt-1 max-h-60 w-full overflow-auto  rounded bg-background py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {languages.map((lang, langIdx) => (
                 <Link key={langIdx} href={pathWithLanguage().path}>
                   <Listbox.Option
@@ -90,7 +88,7 @@ export default function SiteConfig({
                           {lang.title}
                         </span>
                         {selected ? (
-                          <span className="text-neutral absolute inset-y-0 left-0 flex items-center pl-3 ">
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-neutral ">
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>
                         ) : null}
@@ -133,7 +131,7 @@ export default function SiteConfig({
             document.documentElement.classList.remove("rotate");
           }, 1000); // Change this value to match the animation duration
         }}
-        className="bg-background rounded-full p-2 text-white shadow-md active:scale-90"
+        className="rounded-full bg-background p-2 text-white shadow-md active:scale-90"
         aria-label={
           currentLang === "en-US" ? "Theme switcher" : "Cambiador de tema"
         }

@@ -56,7 +56,7 @@ export default async function RootLayout({
     >
       <body
         className={
-          "relative z-0 flex min-h-screen min-w-[100vw] flex-col scroll-smooth bg-black"
+          "relative z-0 flex min-h-screen min-w-[100vw] flex-col scroll-smooth bg-black text-white"
         }
       >
         <Navbar

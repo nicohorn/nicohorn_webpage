@@ -1,0 +1,147 @@
+[
+  {
+    "title": "Real-time WebSocket Chat System",
+    "description": "Secure WebSocket-based chat application with real-time messaging and unread message tracking",
+    "features": [
+      "Real-time messaging via WebSocket",
+      "Unread message tracking",
+      "Message history loading",
+      "User-specific chat rooms",
+      "Persistent chat storage",
+      "Message timestamps",
+      "Secure SSL/TLS communication",
+      "Responsive design",
+      "Dark mode support"
+    ],
+    "date": "03/06/2024",
+    "extended_description": "A comprehensive chat system built with WebSocket for real-time communication, featuring secure SSL/TLS encryption, room-based messaging, message persistence, and an intuitive UI with unread message notifications and infinite scrolling capabilities.",
+    "technologies": [
+      "React",
+      "WebSocket",
+      "TanStack Query",
+      "MongoDB",
+      "Prisma",
+      "Headless UI",
+      "Node.js",
+      "HTTPS",
+      "Tailwind CSS"
+    ],
+    "images": [
+      {
+        "image": "/portfolio/chat_dark.png",
+        "description": "Chat interface with message bubbles and timestamp display"
+      },
+      {
+        "image": "/portfolio/chat_light.png",
+        "description": "Floating chat popover with unread message indicator"
+      },
+      {
+        "image": "/portfolio/empty_chat_dark.png",
+        "description": "Floating chat popover with unread message indicator"
+      },
+      {
+        "image": "/portfolio/empty_chat_light.png",
+        "description": "Floating chat popover with unread message indicator"
+      },
+      {
+        "image": "/portfolio/chat_notification_dark.png",
+        "description": "Floating chat popover with unread message indicator"
+      },
+      {
+        "image": "/portfolio/chat_notification_light.png",
+        "description": "Floating chat popover with unread message indicator"
+      }
+    ],
+    "total_lines_of_code": "450",
+    "hours_worked": "40",
+    "featured": true,
+    "technical_details": {
+      "frontend_features": [
+        "WebSocket message handling",
+        "Real-time message updates",
+        "Message persistence",
+        "Infinite scrolling",
+        "Unread message tracking",
+        "Responsive layout",
+        "Dark mode theming"
+      ],
+      "backend_features": [
+        "Secure WebSocket server",
+        "SSL/TLS encryption",
+        "Room-based message routing",
+        "Message persistence",
+        "Client connection management"
+      ],
+      "security": [
+        "SSL/TLS encryption",
+        "Secure WebSocket protocol",
+        "User authentication",
+        "Room-based access control"
+      ]
+    },
+    "github": "https://github.com/bojkomatias/uap-vid",
+    "live_demo": "https://testvidonline.uap.edu.ar/"
+  },
+  {
+    "title": "Dynamic Checkbox Selector Component",
+    "description": "Interactive checkbox selector component with intelligent state management and all-pages selection capability",
+    "features": [
+      "Dynamic checkbox state management",
+      "All-pages selector functionality",
+      "Individual page selection",
+      "Responsive design",
+      "Custom checkbox styling",
+      "Hover effects and animations",
+      "SVG checkmark integration",
+      "State persistence"
+    ],
+    "date": "10/23/2024",
+    "extended_description": "A sophisticated checkbox selector component built with React and Tailwind CSS, featuring an intelligent state management system, custom styling, and special 'select all' functionality. The component includes hover effects, smooth transitions, and SVG integration for a polished user experience.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "SVG",
+      "React Hooks"
+    ],
+    "images": [
+      {
+        "image": "/portfolio/multiple_select.png",
+        "description": "Default state of the selector component"
+      },
+      {
+        "image": "/portfolio/multiple_select_all.png",
+        "description": "All pages selected state"
+      },
+      {
+        "image": "/portfolio/multiple_select_partial.png",
+        "description": "Partial selection"
+      }
+    ],
+    "total_lines_of_code": "150",
+    "hours_worked": "1",
+    "featured": false,
+    "technical_details": {
+      "frontend_features": [
+        "Custom checkbox component",
+        "Dynamic state management",
+        "Typescript type safety",
+        "Responsive layout",
+        "Custom hover animations",
+        "SVG integration",
+        "State persistence",
+        "Main App component structure",
+        "Selector container component implementation",
+        "Individual ItemSelect components",
+        "Type-safe props interface",
+        "Tailwind utility classes integration",
+        "Custom checkbox appearance styling",
+        "Hover state animations",
+        "SVG checkmark transitions",
+        "Responsive design adaptations"
+      ]
+    },
+    "github": "https://github.com/nicohorn/ellty_test",
+    "live_demo": "https://fastidious-lamington-ed3fd8.netlify.app/"
+  }
+]
