@@ -22,8 +22,8 @@ interface Project {
   featured: boolean;
   technical_details: {
     frontend_features: string[];
-    backend_features: string[];
-    security: string[];
+    backend_features?: string[];
+    security?: string[];
   };
   github: string;
   live_demo: string;
