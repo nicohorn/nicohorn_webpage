@@ -149,7 +149,9 @@ export default function Navbar({
           />
           {links.map((link) => (
             <Link
-              ref={(el) => (elementRefs.current[`link_id_${link.link}`] = el)}
+              ref={(el) => {
+                elementRefs.current[`link_id_${link.link}`] = el;
+              }}
               onMouseOver={() => {
                 setLinkBgOpacity(1);
                 setHoverLink(link.link);
@@ -168,7 +170,9 @@ export default function Navbar({
           ))}
           {session ? (
             <button
-              ref={(el) => (elementRefs.current["link_id_logout"] = el)}
+              ref={(el) => {
+                elementRefs.current["link_id_logout"] = el;
+              }}
               onClick={() => signOut({ callbackUrl: "/" })}
               onMouseOver={() => {
                 setLinkBgOpacity(1);
@@ -181,7 +185,9 @@ export default function Navbar({
             </button>
           ) : (
             <button
-              ref={(el) => (elementRefs.current["link_id_signin"] = el)}
+              ref={(el) => {
+                elementRefs.current["link_id_signin"] = el;
+              }}
               onClick={() => signIn("google")}
               onMouseOver={() => {
                 setLinkBgOpacity(1);
