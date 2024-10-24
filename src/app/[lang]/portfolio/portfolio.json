@@ -143,5 +143,60 @@
     },
     "github": "https://github.com/nicohorn/ellty_test",
     "live_demo": "https://fastidious-lamington-ed3fd8.netlify.app/"
+  },
+  {
+    "title": "Animated Dropdown Navigation Bar",
+    "description": "A modern, animated navigation bar with smooth transitions, hover effects, and responsive design",
+    "features": [
+      "Animated dropdown navigation panel",
+      "Interactive hover effects with background highlighting",
+      "Responsive mobile and desktop layouts",
+      "Click-outside detection for closing",
+      "Keyboard accessibility",
+      "Dynamic link highlighting for active routes",
+      "Smooth spring animations"
+    ],
+    "date": "2024",
+    "extended_description": "A sophisticated navigation component that provides an enhanced user experience with smooth animations and interactive elements. The navbar features a full-screen dropdown panel that animates smoothly, with intelligent hover states that highlight the current selection using a floating background effect.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Framer Motion",
+      "Tailwind CSS"
+    ],
+    "images": [
+      {
+        "image": "/portfolio/navbar.gif",
+        "description": "Full-screen navigation panel with hover effects"
+      },
+      {
+        "image": "/portfolio/navbar_active.png",
+        "description": "Navbar when a user visits one of its links"
+      },
+      {
+        "image": "/portfolio/navbar_dark.png",
+        "description": "Navbar default state"
+      }
+    ],
+    "total_lines_of_code": "165",
+    "hours_worked": "12",
+    "featured": true,
+    "technical_details": {
+      "frontend_features": [
+        "Real-time link dimension tracking using useRef",
+        "Dynamic background positioning based on hover state",
+        "Framer Motion spring animations for smooth transitions",
+        "Event listener management for click-outside detection",
+        "Responsive layout using Tailwind breakpoints",
+        "State management for navbar open/close and hover effects",
+        "Active route highlighting using Next.js usePathname",
+        "Floating background effect for hover states",
+        "Toggle button with animated icon transition",
+        "Safe event listener cleanup"
+      ]
+    },
+    "github": "https://github.com/nicohorn/nicohorn_webpage",
+    "live_demo": "/"
   }
 ]

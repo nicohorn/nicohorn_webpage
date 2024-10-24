@@ -143,10 +143,9 @@ export default function Landing({
               }}
             ></div>
             <div>
-              <span className="text-4xl">{langIsEnglish ? "I" : "S"}</span>
               {langIsEnglish
-                ? "'m a systems engineer and professor, welcome to my website! 😁 This is my online place, here you can: "
-                : "oy ingeniero en sistemas y profesor, bienvenido/a a mi página 😁 Este es mi espacio online, acá podés:"}
+                ? "I'm a systems engineer and professor, welcome to my website! 😁 This is my online place, here you can: "
+                : "Soy ingeniero en sistemas y profesor, bienvenido/a a mi página 😁 Este es mi espacio online, acá podés:"}
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <Link
@@ -331,13 +330,13 @@ export default function Landing({
                   key={entry.id}
                   href={`/${lang}/blog/${entry.id}`}
                 >
-                  <div className="my-2 flex justify-between gap-2 border-b  border-accent py-1  transition hover:border-neutral hover:text-neutral  active:text-accent hover:active:text-accent">
-                    <h1>{entry.title}</h1>
+                  <div className="my-2 flex justify-between gap-2 border-b  border-accent py-3  transition hover:text-neutral  active:text-accent hover:active:text-accent">
+                    <h1 className="text-lg">{entry.title}</h1>
                     <p className="flex flex-wrap justify-end gap-2">
                       {entry.tags.map((t) => {
                         return (
                           <span
-                            className="h-fit rounded bg-accent px-2 pt-[2px] text-xs"
+                            className="h-fit rounded bg-accent px-1  text-xs"
                             key={t.blog_tag_id}
                           >
                             {lang === "en-US"

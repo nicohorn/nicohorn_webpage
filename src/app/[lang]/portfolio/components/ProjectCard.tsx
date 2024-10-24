@@ -101,29 +101,33 @@ export default function ProjectCard({
           >
             {project.technical_details && (
               <div className="mt-4 grid gap-4 text-sm text-gray-300 md:grid-cols-2">
-                <div>
-                  <h3 className="font-bold text-white">Frontend Features</h3>
-                  <ul className="ml-4 mt-2 list-disc">
-                    {project.technical_details.frontend_features
-                      .slice(0, 3)
-                      .map((feature) => (
-                        <li key={feature}>{feature}</li>
-                      ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-bold text-white">Backend Features</h3>
-                  <ul className="ml-4 mt-2 list-disc">
-                    {project.technical_details.backend_features
-                      ?.slice(0, 3)
-                      .map((feature) => <li key={feature}>{feature}</li>)}
-                  </ul>
-                </div>
+                {project.technical_details.frontend_features && (
+                  <div>
+                    <h3 className="font-bold text-white">Frontend Features</h3>
+                    <ul className="ml-4 mt-2 list-disc">
+                      {project.technical_details.frontend_features
+                        .slice(0, 3)
+                        .map((feature) => (
+                          <li key={feature}>{feature}</li>
+                        ))}
+                    </ul>
+                  </div>
+                )}
+                {project.technical_details.backend_features && (
+                  <div>
+                    <h3 className="font-bold text-white">Backend Features</h3>
+                    <ul className="ml-4 mt-2 list-disc">
+                      {project.technical_details.backend_features
+                        ?.slice(0, 3)
+                        .map((feature) => <li key={feature}>{feature}</li>)}
+                    </ul>
+                  </div>
+                )}
               </div>
             )}
 
-            {project.images.length > 0 && (
-              <div className="mt-4 flex gap-2 overflow-x-auto">
+            {project.featured && project.images.length > 0 && (
+              <div className="z-50 mt-4 flex gap-2 overflow-x-auto">
                 {project.images.slice(0, 4).map((image, index) => (
                   <img
                     key={index}

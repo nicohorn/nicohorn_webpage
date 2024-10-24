@@ -14,6 +14,12 @@ import {
 } from "lucide-react";
 import projects from "../portfolio.json";
 import { ImageModal } from "../components/ImageModal";
+import { Roboto_Slab } from "next/font/google";
+
+const roboto_slab = Roboto_Slab({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["cyrillic"],
+});
 
 const createSlug = (title: string) =>
   title
@@ -21,7 +27,11 @@ const createSlug = (title: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function Page({
+  params,
+}: {
+  params: { id: string; lang: string };
+}) {
   const project = projects.find((p) => createSlug(p.title) === params.id);
 
   const [selectedImage, setSelectedImage] = useState<{
@@ -65,11 +75,15 @@ export default function Page({ params }: { params: { id: string } }) {
             </span>
           </div>
 
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          <h1
+            className={`${roboto_slab.className} text-4xl font-bold tracking-tight text-white sm:text-6xl`}
+          >
             {project.title}
           </h1>
 
-          <p className="max-w-4xl text-xl text-neutral">
+          <p
+            className={`max-w-4xl text-xl text-neutral ${roboto_slab.className}`}
+          >
             {project.description}
           </p>
 
