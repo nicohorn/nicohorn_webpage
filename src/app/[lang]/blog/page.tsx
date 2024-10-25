@@ -46,6 +46,7 @@ export default async function Page({
   if (blog_entries!.length < 1)
     return (
       <main className="main-y main-x flex flex-col gap-5">
+        <Title size="lg" title="Blog" />
         <div className="text-5xl text-white">
           <div className="flex flex-col gap-2">
             <ComboboxComponent tags={tags!} lang={params.lang} />
@@ -58,13 +59,13 @@ export default async function Page({
     );
 
   return (
-    <main className="main-y main-x flex flex-col gap-5">
+    <main className="main-y main-x flex flex-col items-center gap-5">
       <Title size="lg" title="Blog" />
       <div className="flex flex-col gap-2">
         <ComboboxComponent tags={tags!} lang={params.lang} />
       </div>
-      <div className="my-4 w-full">
-        <div className="flex flex-col flex-wrap items-stretch gap-5 lg:flex-row">
+      <div className="my-4">
+        <div className="grid w-fit grid-cols-1 gap-5 lg:grid-cols-3">
           {blog_entries.map((entry, idx) => {
             return (
               <Link

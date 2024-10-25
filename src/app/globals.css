@@ -12,7 +12,7 @@ html[data-theme="theme-dark"] {
 html[data-theme="theme-light"] {
   --color-background: #d1c5b6;
   --color-track: #b28e7b;
-  --color-tracking-hover: rgba(109, 91, 91, 0.384);
+  --color-tracking-hover: rgba(173, 166, 166, 0.384);
 }
 
 .hljs-comment,

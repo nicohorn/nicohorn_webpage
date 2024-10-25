@@ -6,6 +6,13 @@ import { Calendar, Code2, ChevronRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { Roboto_Slab } from "next/font/google";
+
+const roboto_slab = Roboto_Slab({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["cyrillic"],
+});
+
 interface Project {
   title: string;
   description: string;
@@ -76,7 +83,11 @@ export default function ProjectCard({
             <Calendar className="h-4 w-4" />
             <span>{project.date}</span>
           </div>
-          <h1>{project.title}</h1>
+          <h1
+            className={`${roboto_slab.className} ${!project.featured && "text-2xl"} font-bold text-neutral`}
+          >
+            {project.title}
+          </h1>
         </div>
 
         <div className="flex flex-grow flex-col px-4">
@@ -154,7 +165,7 @@ export default function ProjectCard({
 
             <Link
               href={`${pathname}/${createSlug(project.title)}`}
-              className=" flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300"
+              className=" hover:text-info/40 flex items-center gap-1 text-sm text-info"
             >
               View Details <ExternalLink size={14} />
             </Link>

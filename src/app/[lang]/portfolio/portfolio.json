@@ -181,7 +181,7 @@
     ],
     "total_lines_of_code": "165",
     "hours_worked": "12",
-    "featured": true,
+    "featured": false,
     "technical_details": {
       "frontend_features": [
         "Real-time link dimension tracking using useRef",
