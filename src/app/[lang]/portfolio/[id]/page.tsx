@@ -101,12 +101,14 @@ export default function Page({
           <div className="mt-4 flex gap-4">
             <a
               href={project.live_demo}
+              target="_blank"
               className="flex items-center gap-2 rounded-md bg-accent px-4 py-2 font-semibold text-white transition hover:bg-accent/90"
             >
               <Globe size={20} />
               Live Demo
             </a>
             <a
+              target="_blank"
               href={project.github}
               className="flex items-center gap-2 rounded-md border border-secondary px-4 py-2 font-semibold text-neutral transition hover:bg-secondary/10"
             >

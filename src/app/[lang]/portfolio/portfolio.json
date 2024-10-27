@@ -198,5 +198,78 @@
     },
     "github": "https://github.com/nicohorn/nicohorn_webpage",
     "live_demo": "/"
+  },
+  {
+    "title": "Next.js Authentication Starter",
+    "description": "A robust authentication and user management boilerplate built with Next.js 14 and NextAuth v4, providing a solid foundation for web applications requiring secure user authentication, email verification, and role-based access control.",
+    "features": [
+      "Complete authentication system with NextAuth",
+      "Email verification flow for new registrations",
+      "Secure password recovery system",
+      "Role-based authorization (Admin/User)",
+      "User profile management",
+      "Responsive mobile-first design",
+      "Toast notification system",
+      "Secure password handling with bcrypt",
+      "MongoDB integration with Mongoose"
+    ],
+    "date": "2024",
+    "extended_description": "This Next.js starter provides a production-ready authentication system that can be easily integrated into any web application. Built with modern practices and security in mind, it includes essential features like email verification, password recovery, and role-based access control. The starter uses Tailwind CSS for styling and includes a custom notification system for user feedback. It's designed to be easily customizable and extendable while maintaining secure authentication practices.",
+    "technologies": [
+      "Next.js 14",
+      "NextAuth v4",
+      "TypeScript",
+      "MongoDB",
+      "Mongoose",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Node.js",
+      "Nodemailer",
+      "JWT",
+      "Bcrypt"
+    ],
+    "images": [
+      {
+        "image": "/portfolio/wekthor-auth-flow.png",
+        "description": "Complete authentication flow with email verification"
+      },
+      {
+        "image": "/portfolio/wekthor-user-management.png",
+        "description": "User management and profile settings interface"
+      }
+    ],
+    "total_lines_of_code": "2500+",
+    "hours_worked": "50+",
+    "featured": true,
+    "technical_details": {
+      "frontend_features": [
+        "Modern Next.js App Router implementation",
+        "Responsive UI with Tailwind CSS",
+        "Client-side form validation",
+        "Custom toast notification system",
+        "Protected route middleware",
+        "Conditional rendering based on user roles"
+      ],
+      "backend_features": [
+        "Complete authentication API endpoints",
+        "Secure password handling",
+        "JWT-based authentication",
+        "Email service setup with Nodemailer",
+        "MongoDB/Mongoose integration",
+        "NextAuth session handling"
+      ],
+      "security": [
+        "Bcrypt password hashing",
+        "JWT token management",
+        "Protected API routes",
+        "Secure email verification flow",
+        "Role-based access control",
+        "Session management",
+        "CORS configuration",
+        "Environment variable protection"
+      ]
+    },
+    "github": "https://github.com/nicohorn/wekthor-games-webpage",
+    "live_demo": "https://wekthor-games-webpage.vercel.app/"
   }
 ]
